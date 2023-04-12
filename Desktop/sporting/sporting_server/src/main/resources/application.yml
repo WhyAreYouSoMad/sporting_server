@@ -1,0 +1,49 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  port: 8080
+
+spring:
+  datasource:
+    url : jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+    
+  output:
+    ansi:
+      enabled: always
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      dialect: org.hibernate.dialect.H2Dialect # DB 방언설정 (H2)
+    show-sql: true    
+    properties:
+      hibernate:
+        hbm2ddl:
+          import_files: classpath:db/data.sql # DB 파일 명시적으로 선택
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor # 멀티 라인 입력 가능하도록
+        connection: 
+          charSet: UTF-8 # 인코딩 설정
+        '[format_sql]': true
+        dialect: org.hibernate.dialect.H2Dialect
+        naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        default_batch_fetch_size: 1000
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+
+
+
