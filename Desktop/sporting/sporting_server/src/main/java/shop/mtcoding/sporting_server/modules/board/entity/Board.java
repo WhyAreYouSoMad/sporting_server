@@ -43,7 +43,7 @@ public class Board {
     private Long id;
 
     @NonNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @Comment("유저 테이블")
     @JoinColumn(name = "user_id")
     private User user;
