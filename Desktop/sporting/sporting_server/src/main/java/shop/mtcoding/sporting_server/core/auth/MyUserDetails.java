@@ -7,14 +7,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
+import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
 public class MyUserDetails implements UserDetails {
 
-    private User user;
+    private MyLoginUser user;
 
-    public MyUserDetails(User user) {
+    public MyUserDetails(MyLoginUser user) {
         this.user = user;
     }
 
@@ -32,7 +33,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getNickname();
+        return user.getUsername();
     }
 
     @Override

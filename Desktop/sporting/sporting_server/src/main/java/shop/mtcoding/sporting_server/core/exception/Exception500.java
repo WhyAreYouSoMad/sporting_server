@@ -3,7 +3,7 @@ package shop.mtcoding.sporting_server.core.exception;
 import org.springframework.http.HttpStatus;
 
 import lombok.Getter;
-import shop.mtcoding.sporting_server.core.dto.ResponseDto;
+import shop.mtcoding.sporting_server.core.dto.ResponseDTO;
 
 // 서버 에러
 @Getter
@@ -12,8 +12,8 @@ public class Exception500 extends RuntimeException {
         super(message);
     }
 
-    public ResponseDto<?> body() {
-        ResponseDto<String> responseDto = new ResponseDto<>();
+    public ResponseDTO<?> body() {
+        ResponseDTO<String> responseDto = new ResponseDTO<>();
         responseDto.fail(HttpStatus.INTERNAL_SERVER_ERROR, "serverError", getMessage());
         return responseDto;
     }
