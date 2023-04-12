@@ -22,6 +22,7 @@ import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 @DataJpaTest
 @ComponentScan
 @SpringJUnitConfig
+@Transactional
 public class UserRepositoryTest {
 
     @Autowired
@@ -46,7 +47,6 @@ public class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void selectAndUpdate() {
         var optionalUser = this.userRepository.findById(1L);
 
