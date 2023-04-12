@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,10 +20,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -35,15 +39,13 @@ public class UserFavoriteSport {
     @Column(name = "id")
     private Long id;
 
-    @NonNull
     @Comment("유저 정보 테이블")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_info_id")
     private PlayerInfo userInfo;
 
-    @NonNull
     @Comment("카테고리 테이블")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private SportCategory category;
 }
