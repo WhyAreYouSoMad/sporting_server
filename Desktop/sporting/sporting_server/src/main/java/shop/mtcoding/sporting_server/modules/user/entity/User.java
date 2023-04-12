@@ -19,10 +19,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.core.enums.role.RoleType;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -54,8 +56,7 @@ public class User {
 
     @NonNull
     @Comment("인증")
-    @Enumerated(EnumType.STRING)
-    private RoleType role;
+    private String role;
 
     @NonNull
     @Comment("유저 생성일자")
@@ -71,4 +72,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private UserStatus status;
+
+    public User get(int i) {
+        return null;
+    }
+
 }
