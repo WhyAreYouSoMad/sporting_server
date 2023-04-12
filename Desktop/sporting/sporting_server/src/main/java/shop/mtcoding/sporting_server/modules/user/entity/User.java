@@ -54,8 +54,7 @@ public class User {
 
     @NonNull
     @Comment("인증")
-    @Enumerated(EnumType.STRING)
-    private RoleType role;
+    private String role;
 
     @NonNull
     @Comment("유저 생성일자")
