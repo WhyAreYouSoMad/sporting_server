@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.jpa.player;
+package shop.mtcoding.sporting_server.jpa.user_player;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +19,6 @@ import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAddress;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoGender;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
-import shop.mtcoding.sporting_server.jpa.user.UserRepositoryTest;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.player_info.repository.PlayerInfoRepository;

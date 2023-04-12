@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.jpa.user;
+package shop.mtcoding.sporting_server.jpa.user_player;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,7 +43,6 @@ public class UserRepositoryTest {
 
         User user = users.get(0);
         Assertions.assertEquals(user.getNickname(), "ssar");
-        System.out.println("테스트 : " + user.getCreatedAt()); // 2023-04-12T15:28:58.868996300
     }
 
     @Test

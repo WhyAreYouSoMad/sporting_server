@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 
-public interface CategoryRepository extends JpaRepository<SportCategory, Integer>, CategoryCustomRepository {
+public interface SportCategoryRepository extends JpaRepository<SportCategory, Integer>, SportCategoryCustomRepository {
 
 }
