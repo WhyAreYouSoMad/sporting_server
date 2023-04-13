@@ -25,7 +25,6 @@ import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "user_tb")
@@ -40,8 +39,8 @@ public class User {
 
     @NonNull
     @Comment("유저 - 닉네임 / 회사 - 회사명")
-    @Column(name = "username", unique = true)
-    private String username;
+    @Column(name = "nickname", unique = true)
+    private String nickname;
 
     @NonNull
     @Comment("유저-로그인 이메일")
@@ -82,11 +81,11 @@ public class User {
     }
 
     @Builder
-    public User(Long id, @NonNull String username, @NonNull String email, @NonNull String password,
+    public User(Long id, @NonNull String nickname, @NonNull String email, @NonNull String password,
             @NonNull String role, @NonNull LocalDateTime createdAt, LocalDateTime updatedAt,
             @NonNull UserStatus status) {
         this.id = id;
-        this.username = username;
+        this.nickname = nickname;
         this.email = email;
         this.password = password;
         this.role = role;

@@ -17,7 +17,7 @@ public class UserResponse {
 
         public JoinDto(User user) {
             this.id = user.getId();
-            this.username = user.getUsername();
+            this.username = user.getNickname();
             this.email = user.getEmail();
             this.role = user.getRole();
             this.createdAt = MyDateUtils.toStringFormat(user.getCreatedAt());
