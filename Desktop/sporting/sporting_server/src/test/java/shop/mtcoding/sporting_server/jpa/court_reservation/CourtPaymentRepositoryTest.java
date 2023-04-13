@@ -112,7 +112,7 @@ public class CourtPaymentRepositoryTest {
 
         courtPayment.setPaymentType(paymentType);
         courtPayment.setPaymentAmount(paymentAmount);
-        courtPayment.setOriginDate(originDate);
+        courtPayment.setOriginData(originDate);
         courtPayment.setCreatedAt(createdAt);
         courtPayment.setStatus(status);
 
@@ -131,7 +131,7 @@ public class CourtPaymentRepositoryTest {
 
         courtPayment.setPaymentType(paymentType);
         courtPayment.setPaymentAmount(paymentAmount);
-        courtPayment.setOriginDate(originDate);
+        courtPayment.setOriginData(originDate);
         courtPayment.setCreatedAt(createdAt);
         courtPayment.setStatus(status);
 

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Comment;
@@ -29,6 +30,7 @@ import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 
 @Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -49,8 +51,8 @@ public class StadiumCourt {
     private Stadium stadium;
 
     @NonNull
-    @Comment("thumbnail 사진 정보 (여러장 가능)")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Comment("thumbnail 사진 정보")
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 

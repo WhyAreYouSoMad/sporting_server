@@ -69,8 +69,8 @@ public class CourtPayment {
 
     @Lob
     @Comment("결제 정보 고유데이터")
-    @Column(name = "origin_date")
-    private String originDate;
+    @Column(name = "origin_data")
+    private String originData;
 
     @Column(name = "created_at")
     @Comment("결제 내역 생성일")

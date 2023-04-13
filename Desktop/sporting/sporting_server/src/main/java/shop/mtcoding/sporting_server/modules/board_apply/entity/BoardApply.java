@@ -52,6 +52,7 @@ public class BoardApply {
     @ManyToMany
     @JoinColumn(name = "user_id")
     private List<User> users = new ArrayList<>();
+    // 주의할 것 :
 
     @NonNull
     @Comment("경기장 코트 테이블")

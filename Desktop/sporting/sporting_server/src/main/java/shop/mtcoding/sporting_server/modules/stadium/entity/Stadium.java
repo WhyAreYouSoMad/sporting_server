@@ -33,6 +33,7 @@ import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory
 
 @Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -48,7 +49,7 @@ public class Stadium {
 
     @Comment("회사 정보 테이블")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_info")
+    @JoinColumn(name = "company_info_id")
     private CompanyInfo companyInfo;
 
     @NonNull
@@ -85,7 +86,7 @@ public class Stadium {
     @NonNull
     @Comment("카테고리 테이블")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "category_id")
     private SportCategory category;
 
     @NonNull

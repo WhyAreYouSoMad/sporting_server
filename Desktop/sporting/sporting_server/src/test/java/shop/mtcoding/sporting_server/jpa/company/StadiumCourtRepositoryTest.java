@@ -18,21 +18,23 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
-import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
+import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
+import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @DataJpaTest
 @ComponentScan
 @SpringJUnitConfig
-public class StadiumRepositoryTest {
+public class StadiumCourtRepositoryTest {
     @Autowired
-    private StadiumRepository stadiumRepository;
+    private StadiumCourtRepository stadiumCourtRepository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -42,7 +44,7 @@ public class StadiumRepositoryTest {
 
     @BeforeEach
     public void init() {
-        em.createNativeQuery("ALTER TABLE stadium_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
+        em.createNativeQuery("ALTER TABLE stadium_court_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
 
         CompanyInfo companyInfoPS = setUpCompanyInfo(
                 "111-01-00110", "부산시", "010-0000-0000", "insert테스트",
@@ -52,70 +54,96 @@ public class StadiumRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("축구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
 
-        setUp(companyInfoPS, "서면 탁구장", "신설", StadiumAddress.부산시, 129.3, 35.3, "010-1111-1111", sportCategoryPS,
+        Stadium stadium = setUpStadium(companyInfoPS, "서면 탁구장", "신설", StadiumAddress.부산시, 129.3, 35.3, "010-1111-1111",
+                sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
                 fileInfoPS, StadiumStatus.등록대기, LocalDateTime.now());
+
+        setUp(stadium, fileInfoPS, 50000, 4, "신설 탁구장", LocalDateTime.now(), LocalDateTime.now(),
+                StadiumCourtStatus.등록대기);
     }
 
     @Test
     void selectAll() {
-        List<Stadium> stadiumList = stadiumRepository.findAll();
-        Assertions.assertNotEquals(stadiumList.size(), 0);
+        List<StadiumCourt> stadiumCourtList = stadiumCourtRepository.findAll();
+        Assertions.assertNotEquals(stadiumCourtList.size(), 0);
 
-        Stadium stadium = stadiumList.get(0);
-        Assertions.assertEquals(stadium.getCompanyInfo().getBusinessAdress(), "부산시");
+        StadiumCourt stadiumCourt = stadiumCourtList.get(0);
+        Assertions.assertEquals(stadiumCourt.getStadium().getCompanyInfo().getBusinessNumber(), "111-01-00110");
     }
 
     @Test
     void selectAndUpdate() {
-        var optionalStadium = this.stadiumRepository.findById(1L);
+        var optionalStadiumCourt = this.stadiumCourtRepository.findById(1L);
 
-        if (optionalStadium.isPresent()) {
-            var result = optionalStadium.get();
-            Assertions.assertEquals(result.getCategory().getSport(), "축구");
-            var sport = "테니스";
-            result.getCategory().setSport(sport);
+        if (optionalStadiumCourt.isPresent()) {
+            var result = optionalStadiumCourt.get();
+            Assertions.assertEquals(result.getContent(), "신설 탁구장");
+            var content = "새로 오픈!";
+            result.setContent(content);
 
-            Stadium merge = entityManager.merge(result);
-            Assertions.assertEquals(merge.getCategory().getSport(), "테니스");
+            StadiumCourt merge = entityManager.merge(result);
+            Assertions.assertEquals(merge.getContent(), "새로 오픈!");
         } else {
-            Assertions.assertNotNull(optionalStadium.get());
+            Assertions.assertNotNull(optionalStadiumCourt.get());
         }
     }
 
     @Test
     void insertAndDelete() {
         CompanyInfo companyInfoPS = setUpCompanyInfo(
-                "222-02-00220", "서울시", "020-0000-0000", "insert테스트",
+                "222-02-00220", "울산시", "020-0000-0000", "insert테스트2",
                 setUpUser("love", "love@naver.com", "1234", "company",
                         LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기),
                 LocalDateTime.now());
-        SportCategory sportCategoryPS = setUpSportCategory("탁구", LocalDateTime.now());
-        FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
+        SportCategory sportCategoryPS = setUpSportCategory("야구", LocalDateTime.now());
+        FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.코트사진);
 
-        Stadium stadiumPS = setUp(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5, "020-2222-2222",
+        Stadium stadium = setUpStadium(companyInfoPS, "울산 야구장", "깨끗", StadiumAddress.울산시, 129.4, 35.6, "010-2222-2222",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
                 fileInfoPS, StadiumStatus.등록대기, LocalDateTime.now());
 
-        Optional<Stadium> findStadium = this.stadiumRepository.findById(stadiumPS.getId());
+        StadiumCourt stadiumCourtPS = setUp(stadium, fileInfoPS, 100000, 18, "신설 야구장", LocalDateTime.now(),
+                LocalDateTime.now(),
+                StadiumCourtStatus.등록대기);
 
-        if (findStadium.isPresent()) {
-            var result = findStadium.get();
-            Assertions.assertEquals(result.getCategory().getSport(), "탁구");
+        Optional<StadiumCourt> findStadiumCourt = this.stadiumCourtRepository.findById(stadiumCourtPS.getId());
 
-            entityManager.remove(stadiumPS);
+        if (findStadiumCourt.isPresent()) {
+            var result = findStadiumCourt.get();
+            Assertions.assertEquals(result.getStadium().getName(), "울산 야구장");
 
-            Optional<Stadium> deleteStadium = this.stadiumRepository.findById(stadiumPS.getId());
-            if (deleteStadium.isPresent()) {
-                Assertions.assertNull(deleteStadium.get());
+            entityManager.remove(stadiumCourtPS);
+
+            Optional<StadiumCourt> deleteStadiumCourt = this.stadiumCourtRepository.findById(stadiumCourtPS.getId());
+            if (deleteStadiumCourt.isPresent()) {
+                Assertions.assertNull(deleteStadiumCourt.get());
             }
         } else {
-            Assertions.assertNotNull(findStadium.get());
+            Assertions.assertNotNull(findStadiumCourt.get());
         }
     }
 
-    private Stadium setUp(CompanyInfo companyInfo, String name, String description, StadiumAddress address, Double lat,
+    private StadiumCourt setUp(Stadium stadium, FileInfo fileInfo, Integer courtPrice,
+            Integer capacity, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
+            StadiumCourtStatus status) {
+
+        StadiumCourt stadiumCourt = new StadiumCourt();
+        stadiumCourt.setStadium(stadium);
+        stadiumCourt.setFileInfo(fileInfo);
+        stadiumCourt.setCourtPrice(courtPrice);
+        stadiumCourt.setCapacity(capacity);
+        stadiumCourt.setContent(content);
+        stadiumCourt.setCreatedAt(createdAt);
+        stadiumCourt.setUpdatedAt(updatedAt);
+        stadiumCourt.setStatus(status);
+
+        return this.entityManager.persist(stadiumCourt);
+    }
+
+    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, StadiumAddress address,
+            Double lat,
             Double lon, String tel, SportCategory sportCategory,
             LocalTime startTime, LocalTime endTime, FileInfo fileInfo, StadiumStatus status, LocalDateTime updatedAt) {
 
@@ -124,7 +152,6 @@ public class StadiumRepositoryTest {
         stadium.setCompanyInfo(companyInfo);
         stadium.setName(name);
         stadium.setDescription(description);
-        stadium.setAddress(address);
         stadium.setLat(lat);
         stadium.setLon(lon);
         stadium.setTel(tel);
@@ -136,14 +163,6 @@ public class StadiumRepositoryTest {
         stadium.setUpdatedAt(updatedAt);
 
         return this.entityManager.persist(stadium);
-    }
-
-    private FileInfo setUpFileInfo(FileInfoSource type) {
-
-        FileInfo fileInfo = new FileInfo();
-        fileInfo.setType(type);
-
-        return this.entityManager.persist(fileInfo);
     }
 
     private SportCategory setUpSportCategory(String sport, LocalDateTime createdAt) {
@@ -184,3 +203,12 @@ public class StadiumRepositoryTest {
 
         return this.entityManager.persist(user);
     }
+
+    private FileInfo setUpFileInfo(FileInfoSource type) {
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setType(type);
+
+        return this.entityManager.persist(fileInfo);
+    }
+
+}
