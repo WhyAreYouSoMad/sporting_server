@@ -81,9 +81,9 @@ public class FileInfoRepositoryTest {
 
             entityManager.remove(fileInfo);
 
-            Optional<FileInfo> deleteUser = this.fileInfoRepository.findById(fileInfo.getId());
-            if (deleteUser.isPresent()) {
-                Assertions.assertNull(deleteUser.get());
+            Optional<FileInfo> deletefileInfo = this.fileInfoRepository.findById(fileInfo.getId());
+            if (deletefileInfo.isPresent()) {
+                Assertions.assertNull(deletefileInfo.get());
             }
         } else {
             Assertions.assertNotNull(findFileInfo.get());

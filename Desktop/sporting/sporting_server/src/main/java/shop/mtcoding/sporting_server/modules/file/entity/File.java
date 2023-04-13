@@ -36,7 +36,7 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("고유번호")
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     // 하나의 Court에서 사진이 여러개 일 수 있으므로, ManyToOne
     @Comment("파일 출처")

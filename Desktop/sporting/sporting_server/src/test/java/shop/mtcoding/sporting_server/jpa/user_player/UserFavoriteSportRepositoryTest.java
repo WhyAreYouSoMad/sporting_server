@@ -70,7 +70,7 @@ public class UserFavoriteSportRepositoryTest {
             Assertions.assertEquals(result.getCategory().getId(), 1);
             Assertions.assertEquals(result.getCategory().getSport(), "축구");
 
-            var id = 2;
+            var id = 2L;
             result.getCategory().setId(id);
             UserFavoriteSport merge = entityManager.merge(result);
 

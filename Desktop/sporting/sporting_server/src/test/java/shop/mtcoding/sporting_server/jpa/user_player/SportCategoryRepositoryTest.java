@@ -51,7 +51,7 @@ public class SportCategoryRepositoryTest {
 
     @Test
     void selectAndUpdate() {
-        var optionalSportCategory = this.sportCategoryRepository.findById(1);
+        var optionalSportCategory = this.sportCategoryRepository.findById(1L);
 
         if (optionalSportCategory.isPresent()) {
             var result = optionalSportCategory.get();
