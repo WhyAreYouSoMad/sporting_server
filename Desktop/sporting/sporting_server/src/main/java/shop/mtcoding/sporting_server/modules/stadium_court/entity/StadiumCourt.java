@@ -28,7 +28,6 @@ import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 
-@Setter
 @Getter
 @Setter
 @AllArgsConstructor

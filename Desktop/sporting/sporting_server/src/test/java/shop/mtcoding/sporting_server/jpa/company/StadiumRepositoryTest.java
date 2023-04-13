@@ -184,3 +184,4 @@ public class StadiumRepositoryTest {
 
         return this.entityManager.persist(user);
     }
+}
