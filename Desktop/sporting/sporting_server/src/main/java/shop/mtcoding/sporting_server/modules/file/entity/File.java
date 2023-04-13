@@ -19,10 +19,12 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.FileStatus;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -34,7 +36,7 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("고유번호")
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     // 하나의 Court에서 사진이 여러개 일 수 있으므로, ManyToOne
     @Comment("파일 출처")
@@ -43,11 +45,11 @@ public class File {
     private FileInfo fileInfo;
 
     @Comment("파일 이름")
-    @Column(name = "file_name")
+    @Column(name = "file_name", unique = true)
     private String fileName;
 
     @Comment("파일 경로")
-    @Column(name = "file_url")
+    @Column(name = "file_url", unique = true)
     private String fileUrl;
 
     @Enumerated(EnumType.STRING)

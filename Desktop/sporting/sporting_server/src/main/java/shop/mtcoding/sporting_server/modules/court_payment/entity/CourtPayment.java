@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,12 +24,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
+import shop.mtcoding.sporting_server.core.enums.field.etc.PaymentType;
 import shop.mtcoding.sporting_server.core.enums.field.status.CourtPaymentStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
-import shop.mtcoding.sporting_server.modules.paymenttype.entity.PaymentType;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -44,8 +47,7 @@ public class CourtPayment {
 
     @NonNull
     @Comment("결제 방식 ex)Card, Bank, Mobile …")
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_type")
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
     @NonNull
@@ -54,13 +56,13 @@ public class CourtPayment {
     private Integer paymentAmount;
 
     @NonNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @Comment("플레이어 정보테이블")
     @JoinColumn(name = "player_info_id")
     private PlayerInfo playerInfo;
 
     @NonNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @Comment("기업 정보테이블")
     @JoinColumn(name = "company_info_id")
     private CompanyInfo companyInfo;

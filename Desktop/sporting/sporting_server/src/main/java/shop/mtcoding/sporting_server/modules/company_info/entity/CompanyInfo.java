@@ -20,10 +20,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -66,7 +68,7 @@ public class CompanyInfo {
     @NonNull
     @Comment("기업 사진 정보 (1장)")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info")
+    @JoinColumn(name = "file_info", unique = true)
     private FileInfo fileInfo;
 
     @Comment("기업 수정일자")

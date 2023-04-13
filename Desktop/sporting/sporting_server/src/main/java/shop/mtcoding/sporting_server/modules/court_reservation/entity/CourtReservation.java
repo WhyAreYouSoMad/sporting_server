@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,12 +23,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.CourtReservationStatus;
-import shop.mtcoding.sporting_server.modules.board.entity.Board;
 import shop.mtcoding.sporting_server.modules.court_payment.entity.CourtPayment;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -46,15 +49,9 @@ public class CourtReservation {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NonNull
-    @Comment("공고 테이블")
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
-    private Board board;
-
     @Comment("코트 결제 테이블")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stadium_payment_id")
+    @JoinColumn(name = "stadium_payment_id", unique = true)
     private CourtPayment stadiumPayment;
 
     @NonNull
@@ -72,6 +69,7 @@ public class CourtReservation {
 
     @NonNull
     @Comment("예약 상태 (대기,승낙,거절)")
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private CourtReservationStatus status;
 }

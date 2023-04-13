@@ -22,6 +22,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAddress;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoGender;
@@ -29,6 +30,7 @@ import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -71,10 +73,9 @@ public class PlayerInfo {
     @Column(name = "tel")
     private String tel;
 
-    @NonNull
     @Comment("플레이어 사진 정보 (1장)")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info")
+    @JoinColumn(name = "file_info", unique = true)
     private FileInfo fileInfo;
 
     @Comment("회사 수정일자")

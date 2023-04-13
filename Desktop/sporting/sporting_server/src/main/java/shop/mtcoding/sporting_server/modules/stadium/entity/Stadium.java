@@ -99,7 +99,7 @@ public class Stadium {
     @NonNull
     @Comment("thumbnail 사진 정보")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info")
+    @JoinColumn(name = "file_info", unique = true)
     private FileInfo fileInfo;
 
     @NonNull

@@ -20,9 +20,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 
 @Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "user_tb")

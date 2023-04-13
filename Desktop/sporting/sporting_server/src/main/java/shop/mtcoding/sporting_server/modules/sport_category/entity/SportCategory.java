@@ -17,8 +17,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -30,7 +32,7 @@ public class SportCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("고유번호")
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @NonNull
     @Comment("스포츠 종목")
