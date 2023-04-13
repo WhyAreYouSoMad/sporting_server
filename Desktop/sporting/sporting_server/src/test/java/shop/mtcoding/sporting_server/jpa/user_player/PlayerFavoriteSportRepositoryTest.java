@@ -55,8 +55,8 @@ public class PlayerFavoriteSportRepositoryTest {
 
         PlayerFavoriteSport userFavoriteSport = userFavoriteSportList.get(0);
         System.out.println("테스트 : " + userFavoriteSport.getCategory().getSport());
-        System.out.println("테스트 : " + userFavoriteSport.getUserInfo().getId());
-        System.out.println("테스트 : " + userFavoriteSport.getUserInfo().getAddress());
+        System.out.println("테스트 : " + userFavoriteSport.getPlayerInfo().getId());
+        System.out.println("테스트 : " + userFavoriteSport.getPlayerInfo().getAddress());
         Assertions.assertEquals(userFavoriteSport.getCategory().getSport(), "축구");
     }
 
@@ -107,7 +107,7 @@ public class PlayerFavoriteSportRepositoryTest {
         PlayerFavoriteSport userFavoriteSport = new PlayerFavoriteSport();
 
         userFavoriteSport.setCategory(setUpSportCategory("축구", LocalDateTime.now()));
-        userFavoriteSport.setUserInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
+        userFavoriteSport.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
                 PlayerInfoAddress.부산시, "000-0000-0000", LocalDateTime.now()));
 
         return this.entityManager.persist(userFavoriteSport);
@@ -118,7 +118,7 @@ public class PlayerFavoriteSportRepositoryTest {
         PlayerFavoriteSport userFavoriteSport = new PlayerFavoriteSport();
 
         userFavoriteSport.setCategory(setUpSportCategory("야구", LocalDateTime.now()));
-        userFavoriteSport.setUserInfo(setUpPlayerInfo2(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
+        userFavoriteSport.setPlayerInfo(setUpPlayerInfo2(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
                 PlayerInfoAddress.부산시, "000-0000-0000", LocalDateTime.now()));
 
         return this.entityManager.persist(userFavoriteSport);

@@ -41,8 +41,8 @@ public class PlayerFavoriteSport {
 
     @Comment("유저 정보 테이블")
     @ManyToOne
-    @JoinColumn(name = "user_info_id")
-    private PlayerInfo userInfo;
+    @JoinColumn(name = "player_info_id")
+    private PlayerInfo playerInfo;
 
     @Comment("카테고리 테이블")
     @ManyToOne

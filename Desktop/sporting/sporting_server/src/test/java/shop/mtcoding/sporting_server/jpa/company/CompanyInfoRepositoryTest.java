@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.company;
+package shop.mtcoding.sporting_server.jpa.company;
 
 import java.time.LocalDateTime;
 import java.util.List;
