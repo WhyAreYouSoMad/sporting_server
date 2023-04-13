@@ -24,12 +24,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 
+@Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

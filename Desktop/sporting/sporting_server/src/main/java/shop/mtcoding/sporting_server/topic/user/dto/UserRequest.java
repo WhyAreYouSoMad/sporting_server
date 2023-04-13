@@ -11,14 +11,14 @@ public class UserRequest {
     @Getter
     @Setter
     public static class JoinDTO {
-        private String username;
+        private String nickname;
         private String password;
         private String email;
         private String role;
 
         public User toEntity() {
             return User.builder()
-                    .username(username)
+                    .nickname(nickname)
                     .password(password)
                     .email(email)
                     .role(role)
