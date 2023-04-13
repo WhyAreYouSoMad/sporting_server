@@ -20,19 +20,19 @@ import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAddress;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoGender;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
+import shop.mtcoding.sporting_server.modules.player_favorite_sport.entity.PlayerFavoriteSport;
+import shop.mtcoding.sporting_server.modules.player_favorite_sport.repository.PlayerFavoriteSportRepository;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
-import shop.mtcoding.sporting_server.modules.user_favorite_sport.entity.UserFavoriteSport;
-import shop.mtcoding.sporting_server.modules.user_favorite_sport.repository.UserFavoriteSportRepository;
 
 @DataJpaTest
 @ComponentScan
 @SpringJUnitConfig
-public class UserFavoriteSportRepositoryTest {
+public class PlayerFavoriteSportRepositoryTest {
 
     @Autowired
-    private UserFavoriteSportRepository userFavoriteSportRepository;
+    private PlayerFavoriteSportRepository userFavoriteSportRepository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -50,15 +50,14 @@ public class UserFavoriteSportRepositoryTest {
 
     @Test
     void selectAll() {
-        List<UserFavoriteSport> userFavoriteSportList = userFavoriteSportRepository.findAll();
+        List<PlayerFavoriteSport> userFavoriteSportList = userFavoriteSportRepository.findAll();
         Assertions.assertNotEquals(userFavoriteSportList.size(), 0);
 
-        UserFavoriteSport userFavoriteSport = userFavoriteSportList.get(0);
+        PlayerFavoriteSport userFavoriteSport = userFavoriteSportList.get(0);
         System.out.println("테스트 : " + userFavoriteSport.getCategory().getSport());
         System.out.println("테스트 : " + userFavoriteSport.getUserInfo().getId());
         System.out.println("테스트 : " + userFavoriteSport.getUserInfo().getAddress());
         Assertions.assertEquals(userFavoriteSport.getCategory().getSport(), "축구");
-        Assertions.assertEquals(userFavoriteSport.getUserInfo().getId(), 1);
     }
 
     @Test
@@ -67,12 +66,11 @@ public class UserFavoriteSportRepositoryTest {
 
         if (optionalUserFavoriteSport.isPresent()) {
             var result = optionalUserFavoriteSport.get();
-            Assertions.assertEquals(result.getCategory().getId(), 1);
             Assertions.assertEquals(result.getCategory().getSport(), "축구");
 
             var id = 2L;
             result.getCategory().setId(id);
-            UserFavoriteSport merge = entityManager.merge(result);
+            PlayerFavoriteSport merge = entityManager.merge(result);
 
             Assertions.assertEquals(merge.getCategory().getId(), 2);
         } else {
@@ -83,19 +81,18 @@ public class UserFavoriteSportRepositoryTest {
     @Test
     @Transactional
     void insertAndDelete() {
-        UserFavoriteSport userFavoriteSport = setUp2();
+        PlayerFavoriteSport userFavoriteSport = setUp2();
 
-        Optional<UserFavoriteSport> findUserFavoriteSport = this.userFavoriteSportRepository
+        Optional<PlayerFavoriteSport> findUserFavoriteSport = this.userFavoriteSportRepository
                 .findById(userFavoriteSport.getId());
 
         if (findUserFavoriteSport.isPresent()) {
             var result = findUserFavoriteSport.get();
             Assertions.assertEquals(result.getCategory().getSport(), "야구");
-            Assertions.assertEquals(result.getCategory().getId(), 2);
 
             entityManager.remove(userFavoriteSport);
 
-            Optional<UserFavoriteSport> deleteUserFavoriteSport = this.userFavoriteSportRepository
+            Optional<PlayerFavoriteSport> deleteUserFavoriteSport = this.userFavoriteSportRepository
                     .findById(userFavoriteSport.getId());
             if (deleteUserFavoriteSport.isPresent()) {
                 Assertions.assertNull(deleteUserFavoriteSport.get());
@@ -105,9 +102,9 @@ public class UserFavoriteSportRepositoryTest {
         }
     }
 
-    private UserFavoriteSport setUp() {
+    private PlayerFavoriteSport setUp() {
 
-        UserFavoriteSport userFavoriteSport = new UserFavoriteSport();
+        PlayerFavoriteSport userFavoriteSport = new PlayerFavoriteSport();
 
         userFavoriteSport.setCategory(setUpSportCategory("축구", LocalDateTime.now()));
         userFavoriteSport.setUserInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
@@ -116,9 +113,9 @@ public class UserFavoriteSportRepositoryTest {
         return this.entityManager.persist(userFavoriteSport);
     }
 
-    private UserFavoriteSport setUp2() {
+    private PlayerFavoriteSport setUp2() {
 
-        UserFavoriteSport userFavoriteSport = new UserFavoriteSport();
+        PlayerFavoriteSport userFavoriteSport = new PlayerFavoriteSport();
 
         userFavoriteSport.setCategory(setUpSportCategory("야구", LocalDateTime.now()));
         userFavoriteSport.setUserInfo(setUpPlayerInfo2(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,

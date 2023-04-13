@@ -41,7 +41,7 @@ public class User {
 
     @NonNull
     @Comment("유저 - 닉네임 / 회사 - 회사명")
-    @Column(name = "nickname", unique = true)
+    @Column(name = "nickname")
     private String nickname;
 
     @NonNull

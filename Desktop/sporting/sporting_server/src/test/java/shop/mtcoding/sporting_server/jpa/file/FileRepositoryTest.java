@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.enums.field.status.FileStatus;
-import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.file.entity.File;
 import shop.mtcoding.sporting_server.modules.file.repository.FileRepository;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;

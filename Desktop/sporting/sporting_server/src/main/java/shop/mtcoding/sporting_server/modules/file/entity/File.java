@@ -45,11 +45,11 @@ public class File {
     private FileInfo fileInfo;
 
     @Comment("파일 이름")
-    @Column(name = "file_name")
+    @Column(name = "file_name", unique = true)
     private String fileName;
 
     @Comment("파일 경로")
-    @Column(name = "file_url")
+    @Column(name = "file_url", unique = true)
     private String fileUrl;
 
     @Enumerated(EnumType.STRING)

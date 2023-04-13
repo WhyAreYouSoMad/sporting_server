@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.modules.user_favorite_sport.entity;
+package shop.mtcoding.sporting_server.modules.player_favorite_sport.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory
 @Entity
 @Table(name = "user_favorite_sport_tb")
 @EqualsAndHashCode(of = "id", callSuper = false)
-public class UserFavoriteSport {
+public class PlayerFavoriteSport {
     @Id
     @Comment("고유번호")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

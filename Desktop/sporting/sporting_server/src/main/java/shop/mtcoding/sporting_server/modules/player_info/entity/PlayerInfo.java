@@ -75,7 +75,7 @@ public class PlayerInfo {
 
     @Comment("플레이어 사진 정보 (1장)")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info")
+    @JoinColumn(name = "file_info", unique = true)
     private FileInfo fileInfo;
 
     @Comment("회사 수정일자")
