@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +29,14 @@ public class SportCategoryRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    @Autowired
+    private EntityManager em;
+
     @BeforeEach
     public void init() {
+
+        em.createNativeQuery("ALTER TABLE sport_category_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
+
         setUp("축구", LocalDateTime.now());
     }
 

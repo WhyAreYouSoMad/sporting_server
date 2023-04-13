@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Assertions;
@@ -36,8 +37,14 @@ public class UserFavoriteSportRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    @Autowired
+    private EntityManager em;
+
     @BeforeEach
     public void init() {
+
+        em.createNativeQuery("ALTER TABLE user_favorite_sport_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
+
         setUp();
     }
 

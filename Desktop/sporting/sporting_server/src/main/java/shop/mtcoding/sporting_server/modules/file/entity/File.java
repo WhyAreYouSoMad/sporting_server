@@ -19,10 +19,12 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.FileStatus;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

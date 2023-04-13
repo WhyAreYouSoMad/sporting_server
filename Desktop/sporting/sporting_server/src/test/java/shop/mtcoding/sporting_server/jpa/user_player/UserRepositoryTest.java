@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Assertions;
@@ -31,8 +32,14 @@ public class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    @Autowired
+    private EntityManager em;
+
     @BeforeEach
     public void init() {
+
+        em.createNativeQuery("ALTER TABLE user_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
+
         setUp("ssar", "ssar@naver.com", "1234", "player", LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기);
     }
 

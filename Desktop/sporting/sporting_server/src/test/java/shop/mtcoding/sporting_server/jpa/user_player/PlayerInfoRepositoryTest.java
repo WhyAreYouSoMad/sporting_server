@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,8 +36,14 @@ public class PlayerInfoRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    @Autowired
+    private EntityManager em;
+
     @BeforeEach
     public void init() {
+
+        em.createNativeQuery("ALTER TABLE player_info_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
+
         setUpUser("ssar", "ssar@naver.com", "1234", "player", LocalDateTime.now(), LocalDateTime.now(),
                 UserStatus.인증대기);
         setUpFileInfo(FileInfoSource.플레이어프로필);
