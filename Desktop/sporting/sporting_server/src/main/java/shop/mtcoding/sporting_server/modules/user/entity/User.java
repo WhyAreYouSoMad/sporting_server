@@ -9,11 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Comment;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,13 +22,11 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
-import shop.mtcoding.sporting_server.core.enums.role.RoleType;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "user_tb")
 @EqualsAndHashCode(of = "id", callSuper = false)
@@ -41,8 +40,8 @@ public class User {
 
     @NonNull
     @Comment("유저 - 닉네임 / 회사 - 회사명")
-    @Column(name = "nickname")
-    private String nickname;
+    @Column(name = "username", unique = true)
+    private String username;
 
     @NonNull
     @Comment("유저-로그인 이메일")
@@ -58,7 +57,6 @@ public class User {
     @Comment("인증")
     private String role;
 
-    @NonNull
     @Comment("유저 생성일자")
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -73,8 +71,28 @@ public class User {
     @Column(name = "status")
     private UserStatus status;
 
-    public User get(int i) {
-        return null;
+    // @PrePersist // insert 시에 동작
+    // public void onCreate() {
+    // this.createdAt = LocalDateTime.now();
+    // }
+
+    @PreUpdate // update 시에 동작
+    public void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @Builder
+    public User(Long id, @NonNull String username, @NonNull String email, @NonNull String password,
+            @NonNull String role, @NonNull LocalDateTime createdAt, LocalDateTime updatedAt,
+            @NonNull UserStatus status) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.status = status;
     }
 
 }
