@@ -124,6 +124,7 @@ public class StadiumRepositoryTest {
         stadium.setCompanyInfo(companyInfo);
         stadium.setName(name);
         stadium.setDescription(description);
+        stadium.setAddress(address);
         stadium.setLat(lat);
         stadium.setLon(lon);
         stadium.setTel(tel);
@@ -183,4 +184,3 @@ public class StadiumRepositoryTest {
 
         return this.entityManager.persist(user);
     }
-}

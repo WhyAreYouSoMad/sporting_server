@@ -25,11 +25,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.BoardApplyStatus;
 import shop.mtcoding.sporting_server.modules.board.entity.Board;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
+@Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

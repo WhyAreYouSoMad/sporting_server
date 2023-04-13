@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.dto.ResponseDTO;
+import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.topic.user.dto.UserRequest;
 import shop.mtcoding.sporting_server.topic.user.dto.UserResponse;
@@ -28,7 +28,7 @@ public class UserController {
         UserResponse.JoinDto data = userService.회원가입(joinDTO);
 
         // select 안됨
-        ResponseDTO<?> responseDTO = new ResponseDTO<>().data(data);
+        ResponseDto<?> responseDTO = new ResponseDto<>().data(data);
         return ResponseEntity.ok().body(responseDTO);
     }
 

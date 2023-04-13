@@ -31,6 +31,7 @@ import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 
+@Setter
 @Getter
 @Setter
 @AllArgsConstructor

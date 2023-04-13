@@ -3,7 +3,7 @@ package shop.mtcoding.sporting_server.core.exception;
 import org.springframework.http.HttpStatus;
 
 import lombok.Getter;
-import shop.mtcoding.sporting_server.core.dto.ResponseDTO;
+import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 
 // 권한 없음
 @Getter
@@ -12,8 +12,8 @@ public class Exception403 extends RuntimeException {
         super(message);
     }
 
-    public ResponseDTO<?> body() {
-        ResponseDTO<String> responseDto = new ResponseDTO<>();
+    public ResponseDto<?> body() {
+        ResponseDto<String> responseDto = new ResponseDto<>();
         responseDto.fail(HttpStatus.FORBIDDEN, "forbidden", getMessage());
         return responseDto;
     }
