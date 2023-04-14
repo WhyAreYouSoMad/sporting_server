@@ -36,12 +36,12 @@ public class UserController {
     // @Vaild 붙여서 처리 가능
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO loginDTO) {
         String jwt = userService.로그인(loginDTO);
-
+        System.out.println("디버깅 : " + 4);
         // userdetailsService 활용하지 않은 코드
         return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt).body("로그인완료");
     }
 
-    @GetMapping("/users/1")
+    @GetMapping("/user/1")
     public ResponseEntity<?> userCheck(@AuthenticationPrincipal MyUserDetails myUserDetails) {
         Long id = myUserDetails.getUser().getId();
         String role = myUserDetails.getUser().getRole();
@@ -51,7 +51,7 @@ public class UserController {
 
     @GetMapping("/")
     public ResponseEntity<?> hello() {
-
+        System.out.println("디버깅 111: " + System.getenv("HS512_SECRET"));
         return ResponseEntity.ok().body("ok");
     }
 
