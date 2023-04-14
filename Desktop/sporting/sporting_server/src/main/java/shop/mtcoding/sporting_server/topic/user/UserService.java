@@ -42,14 +42,19 @@ public class UserService {
     }
 
     public String 로그인(UserRequest.LoginDTO loginDTO) {
-        Optional<User> userOP = userRepository.findByUsername(loginDTO.getUsername());
+        System.out.println("디버깅 : " + 1);
+        Optional<User> userOP = userRepository.findByUsername(loginDTO.getNickname());
         // 로그인 유저 아이디가 있다면
+        System.out.println("디버깅 : " + 2);
         if (userOP.isPresent()) {
             // 있으면 비밀번호 match (details를 안쓸거면 내가 비교해야되고, 암호화 된걸 처리해야 함)
             User userPS = userOP.get();
             // 로그인 입력 값과 DB password를 비교
             if (passwordEncoder.matches(loginDTO.getPassword(), userPS.getPassword())) {
+                System.out.println("디버깅 : " + 3);
+                System.out.println("디버깅 111: " + System.getenv("HS512_SECRET"));
                 String jwt = MyJwtProvider.create(userPS); // 토큰 생성1
+                System.out.println("디버깅 : " + 4);
                 return jwt;
             }
             throw new RuntimeException("패스워드 틀렸어");

@@ -31,7 +31,7 @@ public class UserRequest {
     @Getter
     @Setter
     public static class LoginDTO {
-        private String username;
+        private String nickname;
         private String password;
 
         // save하는게 아니라 toEntity 필요 없음
