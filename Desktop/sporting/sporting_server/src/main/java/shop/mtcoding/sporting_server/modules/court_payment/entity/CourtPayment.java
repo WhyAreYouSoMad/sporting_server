@@ -46,12 +46,13 @@ public class CourtPayment {
     private Long id;
 
     @NonNull
-    @Comment("결제 방식 ex)Card, Bank, Mobile …")
+    @Comment("결제 방식 ex)카드결제/계좌이체/휴대폰결제/포인트")
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_type")
     private PaymentType paymentType;
 
     @NonNull
-    @Comment("결제 총금액")
+    @Comment("결제 총 금액")
     @Column(name = "payment_amount")
     private Integer paymentAmount;
 

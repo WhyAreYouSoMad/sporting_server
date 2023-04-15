@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -49,10 +48,9 @@ public class BoardApply {
 
     @NonNull
     @Comment("유저 테이블")
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private List<User> users = new ArrayList<>();
-    // 주의할 것 :
+    private User user;
 
     @NonNull
     @Comment("경기장 코트 테이블")

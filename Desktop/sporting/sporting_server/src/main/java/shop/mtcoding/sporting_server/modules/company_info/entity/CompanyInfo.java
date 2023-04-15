@@ -52,7 +52,7 @@ public class CompanyInfo {
 
     @NonNull
     @Comment("기업 주소")
-    @Column(name = "business_address", unique = true)
+    @Column(name = "business_address")
     private String businessAdress;
 
     @NonNull
@@ -68,7 +68,7 @@ public class CompanyInfo {
     @NonNull
     @Comment("기업 사진 정보 (1장)")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info", unique = true)
+    @JoinColumn(name = "file_info_id", unique = true)
     private FileInfo fileInfo;
 
     @Comment("기업 수정일자")

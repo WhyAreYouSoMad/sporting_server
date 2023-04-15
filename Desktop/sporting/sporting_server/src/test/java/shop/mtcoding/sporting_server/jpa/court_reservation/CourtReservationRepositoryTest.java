@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.jpa.court_reservation;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +43,7 @@ public class CourtReservationRepositoryTest {
     public void init() {
         em.createNativeQuery("ALTER TABLE court_reservation_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
 
-        setUp(null, LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(), CourtReservationStatus.대기);
+        setUp(null, LocalDate.now(), "9", LocalDateTime.now(), CourtReservationStatus.대기);
     }
 
     @Test
@@ -76,7 +77,7 @@ public class CourtReservationRepositoryTest {
 
     @Test
     void insertAndDelete() {
-        CourtReservation courtReservation = setUp(null, LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now(),
+        CourtReservation courtReservation = setUp(null, LocalDate.now(), "13", LocalDateTime.now(),
                 CourtReservationStatus.승낙);
         Optional<CourtReservation> findCourtReservation = this.courtReservationRepository
                 .findById(courtReservation.getId());
@@ -97,18 +98,17 @@ public class CourtReservationRepositoryTest {
         }
     }
 
-    private CourtReservation setUp(CourtPayment stadiumPayment, LocalDateTime startTime, LocalDateTime endTime,
-            LocalDateTime createdAt,
-            CourtReservationStatus status) {
+    private CourtReservation setUp(CourtPayment stadiumPayment, LocalDate reservationDate,
+            String reservationTime, LocalDateTime createdAt, CourtReservationStatus status) {
 
         CourtReservation courtReservation = new CourtReservation();
 
         courtReservation.setUser(setUpUser("ssar", "ssar@naver.com", "1234", "role", LocalDateTime.now(),
                 LocalDateTime.now(), UserStatus.인증완료));
 
-        courtReservation.setStadiumPayment(stadiumPayment);
-        courtReservation.setStartTime(startTime);
-        courtReservation.setEndTime(endTime);
+        courtReservation.setCourtPayment(stadiumPayment);
+        courtReservation.setReservationDate(reservationDate);
+        courtReservation.setReservationTime(reservationTime);
         courtReservation.setCreatedAt(createdAt);
         courtReservation.setStatus(status);
         return this.entityManager.persist(courtReservation);

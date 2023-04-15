@@ -50,32 +50,28 @@ public class PlayerInfo {
     @JoinColumn(name = "user_id", unique = true)
     private User user;
 
-    @NonNull
     @Comment("플레이어 성별 (남자/여자/비공개)")
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private PlayerInfoGender gender;
 
-    @NonNull
     @Comment("플레이어 나이 (ex. 10대이하, 20대 30대 , … , 70대이상)")
     @Enumerated(EnumType.STRING)
     @Column(name = "age")
     private PlayerInfoAge age;
 
-    @NonNull
     @Comment("플레이어 거주도시 (ex. 서울시, 부산시, 대구시, 인천시, 광주시, 대전시, 울산시, 제주시)")
     @Enumerated(EnumType.STRING)
     @Column(name = "address")
     private PlayerInfoAddress address;
 
-    @NonNull
     @Comment("플레이어 핸드폰번호")
     @Column(name = "tel")
     private String tel;
 
     @Comment("플레이어 사진 정보 (1장)")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info", unique = true)
+    @JoinColumn(name = "file_info_id", unique = true)
     private FileInfo fileInfo;
 
     @Comment("회사 수정일자")
