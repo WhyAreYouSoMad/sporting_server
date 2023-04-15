@@ -1,7 +1,8 @@
 package shop.mtcoding.sporting_server.core.dto;
 
-import lombok.*;
 import org.springframework.http.HttpStatus;
+
+import lombok.Getter;
 
 @Getter
 public class ResponseDto<T> {

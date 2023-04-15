@@ -2,6 +2,9 @@ package shop.mtcoding.sporting_server.topic.user.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import lombok.Getter;
 import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
@@ -11,6 +14,7 @@ public class UserRequest {
     @Getter
     @Setter
     public static class JoinDTO {
+
         private String nickname;
         private String password;
         private String email;
