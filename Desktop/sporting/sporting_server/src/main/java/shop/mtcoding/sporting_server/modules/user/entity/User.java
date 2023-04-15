@@ -9,12 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Comment;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,7 +37,6 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @NonNull
     @Comment("유저 - 닉네임 / 회사 - 회사명")
     @Column(name = "nickname", unique = true)
     private String nickname;
@@ -53,7 +52,7 @@ public class User {
     private String password;
 
     @NonNull
-    @Comment("인증")
+    @Comment("PLAYER / USER / ADMIND(1단계에선 x)")
     private String role;
 
     @Comment("유저 생성일자")
@@ -65,7 +64,7 @@ public class User {
     private LocalDateTime updatedAt;
 
     @NonNull
-    @Comment("유저 활성상태 (인증대기/인증완료/휴먼상태/탈퇴계정)")
+    @Comment("유저 활성상태 (일반회원/인증대기/인증완료/휴먼상태/탈퇴계정)")
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private UserStatus status;
@@ -81,9 +80,8 @@ public class User {
     }
 
     @Builder
-    public User(Long id, @NonNull String nickname, @NonNull String email, @NonNull String password,
-            @NonNull String role, @NonNull LocalDateTime createdAt, LocalDateTime updatedAt,
-            @NonNull UserStatus status) {
+    public User(Long id, String nickname, @NonNull String email, @NonNull String password, @NonNull String role,
+            LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;

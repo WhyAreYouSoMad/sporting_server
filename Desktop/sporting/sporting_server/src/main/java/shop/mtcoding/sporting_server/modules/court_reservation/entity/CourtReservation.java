@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.modules.court_reservation.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -51,18 +52,18 @@ public class CourtReservation {
 
     @Comment("코트 결제 테이블")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stadium_payment_id", unique = true)
-    private CourtPayment stadiumPayment;
+    @JoinColumn(name = "court_payment_id", unique = true)
+    private CourtPayment courtPayment;
 
     @NonNull
-    @Comment("경기 시작시간")
-    @Column(name = "start_time")
-    private LocalDateTime startTime;
+    @Comment("예약 날짜")
+    @Column(name = "reservation_date")
+    private LocalDate reservationDate;
 
     @NonNull
-    @Comment("경기 종료시간")
-    @Column(name = "end_time")
-    private LocalDateTime endTime;
+    @Comment("예약 시간")
+    @Column(name = "reservation_time")
+    private String reservationTime;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

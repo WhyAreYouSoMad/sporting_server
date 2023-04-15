@@ -72,9 +72,9 @@ public class BoardApplyRepositoryTest {
                 LocalDateTime.now(),
                 LocalDateTime.now(), 4, 1, 1, BoardAge.AGE_20, 20000, LocalDateTime.now(), LocalDateTime.now(),
                 BoardStatus.모집중);
-        List<User> userListPS = setUpUsers();
+        // List<User> userListPS = setUpUsers();
 
-        setUp(userListPS, stadiumCourtPS, boardPS, 4, 1, 1, 25, LocalDateTime.now(), BoardApplyStatus.대기);
+        setUp(userPS, stadiumCourtPS, boardPS, 4, 1, 1, 25, LocalDateTime.now(), BoardApplyStatus.대기);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class BoardApplyRepositoryTest {
         Assertions.assertNotEquals(boardApplyList.size(), 0);
 
         BoardApply boardApply = boardApplyList.get(0);
-        Assertions.assertEquals(boardApply.getUsers().size(), 3);
+        Assertions.assertEquals(boardApply.getUser().getNickname(), "ssar");
     }
 
     @Test
@@ -126,7 +126,7 @@ public class BoardApplyRepositoryTest {
                 LocalDateTime.now(), 4, 1, 1, BoardAge.AGE_20, 20000, LocalDateTime.now(), LocalDateTime.now(),
                 BoardStatus.모집중);
 
-        BoardApply boardApplyPS = setUp(userListPS, stadiumCourtPS, boardPS, 4, 1, 1, 25, LocalDateTime.now(),
+        BoardApply boardApplyPS = setUp(userPS, stadiumCourtPS, boardPS, 4, 1, 1, 25, LocalDateTime.now(),
                 BoardApplyStatus.대기);
         Optional<BoardApply> findBoardApply = this.boardApplyRepository.findById(boardApplyPS.getId());
 
@@ -145,12 +145,12 @@ public class BoardApplyRepositoryTest {
         }
     }
 
-    private BoardApply setUp(List<User> users, StadiumCourt stadiumCourt, Board board, Integer personNum,
+    private BoardApply setUp(User users, StadiumCourt stadiumCourt, Board board, Integer personNum,
             Integer manPlayerCount, Integer womanPlayerCount, Integer age, LocalDateTime createdAt,
             BoardApplyStatus status) {
 
         BoardApply boardApply = new BoardApply();
-        boardApply.setUsers(users);
+        boardApply.setUser(users);
         boardApply.setStadiumCourt(stadiumCourt);
         boardApply.setBoard(board);
         boardApply.setPersonNum(personNum);
