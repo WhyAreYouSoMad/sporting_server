@@ -19,14 +19,5 @@ public class PaymentResponse {
         private String reservationTime;
         private Integer paymentPrice;
 
-        // 결제페이지 ResponseDTO
-        public formOutDTO(StadiumCourt stadiumCourtPS, PaymentRequest.formInDTO forInDTO) {
-            this.stadiumName = stadiumCourtPS.getStadium().getName();
-            this.courtContent = stadiumCourtPS.getContent();
-            this.paymentPrice = stadiumCourtPS.getCourtPrice();
-            this.reservationDate = forInDTO.getReservationDate();
-            this.reservationTime = forInDTO.getTime();
-        }
-
     }
 }
