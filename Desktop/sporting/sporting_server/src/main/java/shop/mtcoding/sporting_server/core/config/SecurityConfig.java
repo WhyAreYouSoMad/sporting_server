@@ -87,7 +87,7 @@ public class SecurityConfig {
             log.warn("워닝 : 권한 실패 : " + accessDeniedException.getMessage());
             log.error("에러 : 권한 실패 : " + accessDeniedException.getMessage());
             response.setContentType("text/plain; charset=utf-8");
-            response.setStatus(403);
+            response.setStatus(402);
             response.getWriter().print("권한 실패");
         });
 
