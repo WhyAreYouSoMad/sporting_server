@@ -79,7 +79,7 @@ public class StadiumCourt {
     private LocalDateTime updatedAt;
 
     @NonNull
-    @Comment("경기장 코트 활성화 상태 (등록/등록대기/코트 비활성)")
+    @Comment("경기장 코트 활성화 상태 (등록완료/등록대기/비활성)")
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StadiumCourtStatus status;
