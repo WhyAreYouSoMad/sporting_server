@@ -11,6 +11,7 @@ import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
 import shop.mtcoding.sporting_server.topic.payment.dto.PaymentRequest;
 import shop.mtcoding.sporting_server.topic.payment.dto.PaymentResponse;
+import shop.mtcoding.sporting_server.topic.payment.dto.PaymentResponse.FormOutDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class PaymentService {
     private final StadiumCourtRepository stadiumCourtRepository;
     private final CourtReservationRepository courtReservationRepository;
 
-    public PaymentResponse.formOutDTO getForm(Long stadiumCourtId, PaymentRequest.formInDTO forInDTO) {
+    public PaymentResponse.FormOutDTO getForm(Long stadiumCourtId, PaymentRequest.FormInDTO forInDTO) {
         StadiumCourt stadiumCourtPS = stadiumCourtRepository.findById(stadiumCourtId).orElseThrow(() -> {
             throw new Exception400("해당 코트가 존재하지 않습니다.");
         });
@@ -31,6 +32,8 @@ public class PaymentService {
                     throw new Exception400("해당 일시에 예약이 불가능합니다.");
                 });
 
-        return new PaymentResponse.formOutDTO(stadiumCourtPS, forInDTO);
+        PaymentResponse.FormOutDTO formOutDTO = new FormOutDTO(stadiumCourtPS, forInDTO);
+
+        return formOutDTO;
     }
 }

@@ -2,6 +2,7 @@ package shop.mtcoding.sporting_server.topic.payment.dto;
 
 import java.time.LocalDate;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,8 @@ public class PaymentResponse {
     @Setter
     @Getter
     @NoArgsConstructor
-    public static class formOutDTO {
+    @EqualsAndHashCode
+    public static class FormOutDTO {
         private String stadiumName;
         private String courtContent;
         private LocalDate reservationDate;
@@ -20,12 +22,22 @@ public class PaymentResponse {
         private Integer paymentPrice;
 
         // 결제페이지 ResponseDTO
-        public formOutDTO(StadiumCourt stadiumCourtPS, PaymentRequest.formInDTO forInDTO) {
+        public FormOutDTO(StadiumCourt stadiumCourtPS, PaymentRequest.FormInDTO forInDTO) {
             this.stadiumName = stadiumCourtPS.getStadium().getName();
             this.courtContent = stadiumCourtPS.getContent();
             this.paymentPrice = stadiumCourtPS.getCourtPrice();
             this.reservationDate = forInDTO.getReservationDate();
             this.reservationTime = forInDTO.getTime();
+        }
+
+        // 테스트용
+        public FormOutDTO(String stadiumName, String courtContent, LocalDate reservationDate, String reservationTime,
+                Integer paymentPrice) {
+            this.stadiumName = stadiumName;
+            this.courtContent = courtContent;
+            this.reservationDate = reservationDate;
+            this.reservationTime = reservationTime;
+            this.paymentPrice = paymentPrice;
         }
 
     }
