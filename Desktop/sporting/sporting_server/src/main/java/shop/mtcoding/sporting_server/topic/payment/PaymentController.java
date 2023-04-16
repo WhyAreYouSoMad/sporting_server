@@ -20,9 +20,10 @@ public class PaymentController {
 
     // GetMapping, PostMapping, PutMapping, DeleteMapping
     @PostMapping("/user/payment/form/{id}")
-    public ResponseEntity<?> paymentForm(@PathVariable Long id) {
+    public ResponseEntity<?> paymentForm(@PathVariable Long id, @RequestBody PaymentRequest.formInDTO forInDTO) {
 
-        return null;
-        // return ResponseEntity.ok().body(new ResponseDto<>().data(formOutDTO));
+        PaymentResponse.formOutDTO formOutDTO = paymentService.getForm(id, forInDTO);
+
+        return ResponseEntity.ok().body(new ResponseDto<>().data(formOutDTO));
     }
 }
