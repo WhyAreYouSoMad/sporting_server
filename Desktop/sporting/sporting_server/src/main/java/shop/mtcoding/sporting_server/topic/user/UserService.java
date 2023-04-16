@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public String 로그인(UserRequest.LoginDTO loginDTO) {
-        System.out.println("디버깅 : " + 1);
+        System.out.println("디버깅 : " + 1 + loginDTO.getNickname());
         Optional<User> userOP = userRepository.findByUsername(loginDTO.getNickname());
         // 로그인 유저 아이디가 있다면
         System.out.println("디버깅 : " + 2);
