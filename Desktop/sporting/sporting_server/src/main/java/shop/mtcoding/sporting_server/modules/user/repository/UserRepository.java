@@ -10,6 +10,6 @@ import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 public interface UserRepository
                 extends JpaRepository<User, Long>, UserCustomRepository {
-        @Query("select u from User u where u.nickname = :nickname")
-        Optional<User> findByUsername(@Param("nickname") String nickname);
+        @Query("select u from User u where u.email = :email")
+        Optional<User> findByEmail(@Param("email") String email);
 }
