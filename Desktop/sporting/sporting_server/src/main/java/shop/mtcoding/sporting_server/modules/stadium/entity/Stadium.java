@@ -111,4 +111,5 @@ public class Stadium {
     @Comment("경기장 수정 시간")
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 }

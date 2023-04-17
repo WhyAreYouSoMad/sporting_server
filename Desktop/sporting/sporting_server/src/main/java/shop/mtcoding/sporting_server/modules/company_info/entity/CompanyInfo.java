@@ -45,27 +45,22 @@ public class CompanyInfo {
     @JoinColumn(name = "user_id", unique = true)
     private User user;
 
-    @NonNull
     @Comment("기업 사업자번호")
     @Column(name = "business_number", unique = true)
     private String businessNumber;
 
-    @NonNull
     @Comment("기업 주소")
     @Column(name = "business_address")
     private String businessAdress;
 
-    @NonNull
     @Comment("기업 전화번호")
     @Column(name = "tel")
     private String tel;
 
-    @NonNull
     @Comment("기업 대표자명")
     @Column(name = "ceo")
     private String ceo;
 
-    @NonNull
     @Comment("기업 사진 정보 (1장)")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "file_info_id", unique = true)
