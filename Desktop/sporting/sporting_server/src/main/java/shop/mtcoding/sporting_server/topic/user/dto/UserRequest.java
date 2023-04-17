@@ -1,34 +1,14 @@
 package shop.mtcoding.sporting_server.topic.user.dto;
 
+<<<<<<< HEAD
+=======
 import java.time.LocalDateTime;
 
+>>>>>>> 25384157b52fc64a7ac53ca6956c64dae0473408
 import lombok.Getter;
 import lombok.Setter;
-import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
-import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 public class UserRequest {
-    @Getter
-    @Setter
-    public static class JoinDTO {
-
-        private String nickname;
-        private String password;
-        private String email;
-        private String role;
-
-        public User toEntity() {
-            return User.builder()
-                    .nickname(nickname)
-                    .password(password)
-                    .email(email)
-                    .role(role)
-                    .status(UserStatus.인증대기)
-                    .createdAt(LocalDateTime.now())
-                    .build();
-        }
-    }
-
     @Getter
     @Setter
     public static class LoginDTO {

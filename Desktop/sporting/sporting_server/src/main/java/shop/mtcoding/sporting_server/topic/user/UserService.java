@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.role.RoleType;
@@ -14,14 +13,16 @@ import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.user.dto.UserRequest;
-import shop.mtcoding.sporting_server.topic.user.dto.UserResponse;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+<<<<<<< HEAD
+=======
     /**
      * 1. 트랜잭션 관리
      * 2. 영속성 객체 변경감지
@@ -48,6 +49,7 @@ public class UserService {
         return new UserResponse.JoinDto(userPS);
     }
 
+>>>>>>> 25384157b52fc64a7ac53ca6956c64dae0473408
     public String 로그인(UserRequest.LoginDTO loginDTO) {
         Optional<User> userOP = userRepository.findByEmail(loginDTO.getEmail());
         // 로그인 유저 아이디가 있다면
