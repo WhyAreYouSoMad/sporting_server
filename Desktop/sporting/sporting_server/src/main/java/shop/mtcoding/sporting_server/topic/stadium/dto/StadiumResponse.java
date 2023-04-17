@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ public class StadiumResponse {
     @Getter
     @Setter
     @NoArgsConstructor
+    @AllArgsConstructor
     @EqualsAndHashCode
     public static class StadiumRegistrationOutDTO {
         private Long id;
