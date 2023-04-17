@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,11 @@ import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 
 public class StadiumRequest {
+
     @Getter
     @Setter
     @NoArgsConstructor
+    @AllArgsConstructor
     @EqualsAndHashCode
     public static class StadiumRegistrationInDTO {
         private String name;

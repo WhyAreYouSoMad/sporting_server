@@ -30,7 +30,7 @@ public class StadiumService {
 
     @Transactional
     public StadiumRegistrationOutDTO save(Long id, StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO) {
-
+        System.out.println("테스트 : 서비스 들어옴 ㅇㅇ");
         // 모킹용
         // (company topic에서 info 저장 구현한다면, User 찾아서 User.companyinfo를 Stadium에
         // 저장하는 코드로 변경예정)

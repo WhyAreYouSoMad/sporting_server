@@ -6,11 +6,13 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
+@EqualsAndHashCode
 public class MyUserDetails implements UserDetails {
 
     private MyLoginUser user;
