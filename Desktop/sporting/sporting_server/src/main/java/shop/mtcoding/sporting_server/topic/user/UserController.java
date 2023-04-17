@@ -23,7 +23,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/join")
+    @PostMapping("/joinUser")
     public ResponseEntity<?> join(@RequestBody UserRequest.JoinDTO joinDTO) {
         // select 됨
         UserResponse.JoinDto data = userService.회원가입(joinDTO);
@@ -37,7 +37,6 @@ public class UserController {
     // @Vaild 붙여서 처리 가능
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO loginDTO) {
         String jwt = userService.로그인(loginDTO);
-        System.out.println("디버깅 : " + 4);
         // userdetailsService 활용하지 않은 코드
         return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt).body("로그인완료");
     }
