@@ -2,10 +2,13 @@ package shop.mtcoding.sporting_server.topic.user;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.core.enums.role.RoleType;
+import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
@@ -18,6 +21,35 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+<<<<<<< HEAD
+=======
+    /**
+     * 1. 트랜잭션 관리
+     * 2. 영속성 객체 변경감지
+     * 3. RequestDTO 요청받기
+     * 4. 비지니스 로직 처리하기
+     * 5. ResponseDTO 응답하기
+     */
+    @Transactional
+    public UserResponse.JoinDto 회원가입(UserRequest.JoinDTO joinDTO) {
+        // rawPassword : 입력 Password값 저장
+        String rawPassword = joinDTO.getPassword();
+        Optional<User> emailCheck = userRepository.findByEmail(joinDTO.getEmail());
+        if (emailCheck.isPresent()) {
+            throw new Exception400("동일한 email이 있습니다");
+        }
+        // encPassword : BCryptPasswordEncoder로 60Byte 암호화
+        // 암호화 결과 : $2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW
+        String encPassword = passwordEncoder.encode(rawPassword);
+        joinDTO.setPassword(encPassword);
+        joinDTO.setRole(RoleType.USER.toString());
+
+        // JPA 사용에 있어 영속성 컨텍스트
+        User userPS = userRepository.save(joinDTO.toEntity());
+        return new UserResponse.JoinDto(userPS);
+    }
+
+>>>>>>> 25384157b52fc64a7ac53ca6956c64dae0473408
     public String 로그인(UserRequest.LoginDTO loginDTO) {
         Optional<User> userOP = userRepository.findByEmail(loginDTO.getEmail());
         // 로그인 유저 아이디가 있다면

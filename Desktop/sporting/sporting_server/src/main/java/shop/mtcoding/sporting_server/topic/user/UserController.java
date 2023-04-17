@@ -17,6 +17,19 @@ public class UserController {
 
     private final UserService userService;
 
+<<<<<<< HEAD
+=======
+    @PostMapping("/joinUser")
+    public ResponseEntity<?> join(@RequestBody UserRequest.JoinDTO joinDTO) {
+        // select 됨
+        UserResponse.JoinDto data = userService.회원가입(joinDTO);
+
+        // select 안됨
+        ResponseDto<?> responseDTO = new ResponseDto<>().data(data);
+        return ResponseEntity.ok().body(responseDTO);
+    }
+
+>>>>>>> 25384157b52fc64a7ac53ca6956c64dae0473408
     @PostMapping("/login")
     // @Vaild 붙여서 처리 가능
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO loginDTO) {
