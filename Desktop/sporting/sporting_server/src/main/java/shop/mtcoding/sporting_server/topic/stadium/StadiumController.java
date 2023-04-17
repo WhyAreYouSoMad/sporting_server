@@ -22,4 +22,15 @@ public class StadiumController {
 
     private final StadiumService stadiumService;
 
+    @PostMapping("/company/stadiums")
+    public ResponseEntity<?> save(
+            @RequestBody @Valid StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO,
+            BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+
+        StadiumRegistrationOutDTO stadiumRegistrationOutDTO = stadiumService.save(myUserDetails.getUser().getId(),
+                stadiumRegistrationInDTO);
+
+        // return null;
+        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumRegistrationOutDTO));
+    }
 }
