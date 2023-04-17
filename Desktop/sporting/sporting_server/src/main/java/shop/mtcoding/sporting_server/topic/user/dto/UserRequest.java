@@ -1,10 +1,5 @@
 package shop.mtcoding.sporting_server.topic.user.dto;
 
-<<<<<<< HEAD
-=======
-import java.time.LocalDateTime;
-
->>>>>>> 25384157b52fc64a7ac53ca6956c64dae0473408
 import lombok.Getter;
 import lombok.Setter;
 
