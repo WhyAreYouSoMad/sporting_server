@@ -28,7 +28,7 @@ public class PlayerService {
      * 5. ResponseDTO 응답하기
      */
     @Transactional
-    public PlayerResponse.JoinDto 회원가입(PlayerRequest.JoinDTO joinDTO) {
+    public PlayerResponse.JoinOutDto 회원가입(PlayerRequest.JoinInDTO joinDTO) {
         // rawPassword : 입력 Password값 저장
         String rawPassword = joinDTO.getPassword();
         Optional<User> emailCheck = userRepository.findByEmail(joinDTO.getEmail());
@@ -43,7 +43,7 @@ public class PlayerService {
 
         // JPA 사용에 있어 영속성 컨텍스트
         User userPS = userRepository.save(joinDTO.toEntity());
-        return new PlayerResponse.JoinDto(userPS);
+        return new PlayerResponse.JoinOutDto(userPS);
     }
 
 }

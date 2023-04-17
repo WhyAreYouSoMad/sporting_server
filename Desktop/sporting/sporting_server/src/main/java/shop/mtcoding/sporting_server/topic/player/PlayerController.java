@@ -22,9 +22,9 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @PostMapping("/joinPlayer")
-    public ResponseEntity<?> join(@RequestBody PlayerRequest.JoinDTO joinDTO) {
+    public ResponseEntity<?> join(@RequestBody PlayerRequest.JoinInDTO joinDTO) {
         // select 됨
-        PlayerResponse.JoinDto data = playerService.회원가입(joinDTO);
+        PlayerResponse.JoinOutDto data = playerService.회원가입(joinDTO);
 
         // select 안됨
         ResponseDto<?> responseDTO = new ResponseDto<>().data(data);

@@ -2,6 +2,7 @@ package shop.mtcoding.sporting_server.topic.player.dto;
 
 import java.time.LocalDateTime;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
@@ -10,7 +11,8 @@ import shop.mtcoding.sporting_server.modules.user.entity.User;
 public class PlayerRequest {
     @Getter
     @Setter
-    public static class JoinDTO {
+    @EqualsAndHashCode
+    public static class JoinInDTO {
 
         private String nickname;
         private String password;
