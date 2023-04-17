@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,16 @@ public class StadiumController {
         StadiumRegistrationOutDTO stadiumRegistrationOutDTO = stadiumService.save(myUserDetails.getUser().getId(),
                 stadiumRegistrationInDTO);
 
-        // return null;
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumRegistrationOutDTO));
+    }
+
+    @GetMapping("/company/stadiums")
+    public ResponseEntity<?> findAllList(String keyword) {
+
+        stadiumService.findKeywordList();
+
+
+        return null;
+        // return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumRegistrationOutDTO));
     }
 }

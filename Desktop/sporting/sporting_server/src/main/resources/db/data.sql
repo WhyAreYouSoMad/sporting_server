@@ -14,7 +14,7 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
        (19, '경기장사진'), (20, '경기장사진'),
        (21, '경기장사진'), (22, '경기장사진'),
        (23, '경기장사진'), (24, '경기장사진'),
-       (25, '경기장사진'), (26, '경기장사진'),
+       (25, '경기장사진'), (26, '경기장사진');
 
 -- ▶ 스포츠 종류 
 INSERT INTO sport_category_tb(id, sport, created_at) 
@@ -28,18 +28,18 @@ VALUES (1, '야구', now()), (5, '풋살', now()),
 INSERT INTO user_tb(id, nickname, password, email, role, status, created_at, updated_at) 
 -- 1)정보수정 진행한 상태, 2) 회원가입 직전으로 나뉨
 -- 공백이나 default 지정시 nickname unique 제약조건에 걸림
-VALUES (1, 'ssar123', '1234', 'ssar@nate.com', 'PLAYER', '일반회원', now(), now()), 
-       (2, 'user316', '1234', 'dope@nate.com', 'PLAYER', '일반회원', now(), now()), 
-       (3, 'baseball451', '1234', 'cos@nate.com', 'COMPANY', '인증완료', now(), now()),
-       (4, 'user512', '1234', 'love@nate.com', 'COMPANY', '인증완료', now(), now());
+VALUES (1, 'ssar123', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'ssar@nate.com', 'PLAYER', '일반회원', now(), now()), 
+       (2, 'user316', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'dope@nate.com', 'PLAYER', '일반회원', now(), now()), 
+       (3, 'baseball451', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'cos@nate.com', 'COMPANY', '인증완료', now(), now()),
+       (4, 'user512', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'love@nate.com', 'COMPANY', '인증완료', now(), now());
 
 INSERT INTO player_info_tb(id, user_id, gender, age, address, tel, file_info_id, updated_at) 
 VALUES (1, 1, '남자', '20대', '부산시','010-1001-1111', 1, now()),  
        (2, 2, '', '', '','', 2, now()); 
 
 INSERT INTO company_info_tb(id, user_id, business_number, business_address, tel, ceo, file_info_id, updated_at) 
-VALUES (1, 1, '111-11-11111', '부산시 연제구', '010-1001-2222', '', 3, now()), -- view에 ceo이름 없는상태
-       (2, 2, '', '', '', '', 4, now());
+VALUES (1, 3, '111-11-11111', '부산시 연제구', '010-1001-2222', '', 3, now()), -- view에 ceo이름 없는상태
+       (2, 4, '', '', '', '', 4, now());
        
 
 -- ▶ 경기장 & 코트
@@ -59,7 +59,7 @@ VALUES (1, 1, 'a 야구장', '010-0234-5678', 1, '부산시', 35.1846, 128.9863,
        (12, 2, 'c 볼링장', '010-4234-5676', 6, '울산시', 37.3226, 126.8593, 22, '09:00', '18:00', '등록대기', Now(), NOW()),
        (13, 2, 'a 탁구장', '010-4234-5677', 7, '울산시', 37.3226, 126.8593, 23, '09:00', '18:00', '등록대기', Now(), NOW()),
        (14, 2, 'a 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 24, '09:00', '18:00', '등록대기', Now(), NOW()),
-       (15, 2, 'b 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 25, '09:00', '18:00', '등록대기', Now(), NOW());
+       (15, 2, 'b 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 25, '09:00', '18:00', '등록대기', Now(), NOW()),
        (16, 2, 'c 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 26, '09:00', '18:00', '등록대기', Now(), NOW());
 
 INSERT INTO stadium_court_tb(id, stadium_id, file_info_id, court_price, capacity, content, status, created_at, updated_at) 
