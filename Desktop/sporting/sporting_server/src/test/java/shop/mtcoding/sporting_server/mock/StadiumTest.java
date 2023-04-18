@@ -5,6 +5,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.ArgumentMatchers.any;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,54 +35,56 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRe
 @WebMvcTest(StadiumController.class)
 public class StadiumTest {
 
-    @Autowired
-    MockMvc mvc;
+        @Autowired
+        MockMvc mvc;
 
-    @MockBean
-    private StadiumService stadiumService;
+        @MockBean
+        private StadiumService stadiumService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+        @Autowired
+        private ObjectMapper objectMapper;
 
-    @BeforeEach
-    public void init() {
-        MyLoginUser user = MyLoginUser.builder().id(1L).role("COMPANY").build();
-        MyUserDetails myUserDetails = new MyUserDetails(user);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(
-                myUserDetails,
-                myUserDetails.getPassword(),
-                myUserDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
+        @BeforeEach
+        public void init() {
+                MyLoginUser user = MyLoginUser.builder().id(1L).role("COMPANY").build();
+                MyUserDetails myUserDetails = new MyUserDetails(user);
+                Authentication authentication = new UsernamePasswordAuthenticationToken(
+                                myUserDetails,
+                                myUserDetails.getPassword(),
+                                myUserDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
 
-    @Test
-    @WithMockUser(username = "cos", roles = { "Company" })
-    @DisplayName("경기장 등록 테스트")
-    void stadiumRegistrationTest() throws Exception {
+        @Test
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @DisplayName("경기장 등록 테스트")
+        void stadiumRegistrationTest() throws Exception {
 
-        // given
-        Long id = 1L;
-        StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO = new StadiumRegistrationInDTO("경기장1", "부산시",
-                "농구");
-        StadiumResponse.StadiumRegistrationOutDTO stadiumRegistrationOutDTO = new StadiumRegistrationOutDTO(5L, "경기장1",
-                "부산시", "농구");
+                // given
+                Long id = 1L;
+                StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO = new StadiumRegistrationInDTO("경기장1",
+                                "부산시",
+                                "농구");
+                StadiumResponse.StadiumRegistrationOutDTO stadiumRegistrationOutDTO = new StadiumRegistrationOutDTO(5L,
+                                "경기장1",
+                                "부산시", "농구");
 
-        given(this.stadiumService.save(id, stadiumRegistrationInDTO))
-                .willReturn(stadiumRegistrationOutDTO);
+                given(this.stadiumService.save(id, stadiumRegistrationInDTO))
+                                .willReturn(stadiumRegistrationOutDTO);
 
-        // When
-        ResultActions resultActions = this.mvc.perform(
-                post("/company/stadiums")
-                        .with(csrf())
-                        .content(objectMapper.writeValueAsString(stadiumRegistrationInDTO))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE));
+                // When
+                ResultActions resultActions = this.mvc.perform(
+                                post("/company/stadiums")
+                                                .with(csrf())
+                                                .content(objectMapper.writeValueAsString(stadiumRegistrationInDTO))
+                                                .contentType(MediaType.APPLICATION_JSON_VALUE));
 
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        // Then
-        resultActions
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.name").value("경기장1"));
-    }
+                // Then
+                resultActions
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.data.name").value("경기장1"));
+        }
 }
