@@ -1,5 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,8 +13,8 @@ import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory
 import shop.mtcoding.sporting_server.modules.sport_category.repository.SportCategoryRepository;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
-import shop.mtcoding.sporting_server.modules.user.entity.User;
-import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
+import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
 
@@ -22,10 +24,10 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRe
 public class StadiumService {
 
     private final StadiumRepository stadiumRepository;
+    private final StadiumCourtRepository stadiumCourtRepository;
     private final CompanyInfoRepository companyInfoRepository;
     private final SportCategoryRepository sportCategoryRepository;
 
-    @Transactional
     public StadiumRegistrationOutDTO save(Long id, StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO) {
 
         CompanyInfo companyInfoPS = companyInfoRepository.findByUserId(id).orElseThrow(() -> {
@@ -41,9 +43,6 @@ public class StadiumService {
                 .save(stadiumRegistrationInDTO.toEntity(companyInfoPS, stadiumRegistrationInDTO, sportCategoryPS));
 
         return new StadiumRegistrationOutDTO(stadiumPS);
-    }
-
-    public void findKeywordList() {
     }
 
 }
