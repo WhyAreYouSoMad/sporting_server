@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -66,7 +68,7 @@ public class StadiumPlayerTest {
                                 "농구");
                 StadiumResponse.StadiumRegistrationOutDTO stadiumRegistrationOutDTO = new StadiumRegistrationOutDTO(5L,
                                 "경기장1",
-                                "부산시", "농구");
+                                "부산시", "농구", "09:00", "18:00");
 
                 given(this.stadiumService.save(id, stadiumRegistrationInDTO))
                                 .willReturn(stadiumRegistrationOutDTO);

@@ -66,6 +66,11 @@ public class StadiumCourt {
     private Integer capacity;
 
     @NonNull
+    @Comment("경기장 코트 제목")
+    @Column(name = "title")
+    private String title;
+
+    @NonNull
     @Comment("경기장 코트 상세내용")
     @Column(name = "content")
     private String content;
