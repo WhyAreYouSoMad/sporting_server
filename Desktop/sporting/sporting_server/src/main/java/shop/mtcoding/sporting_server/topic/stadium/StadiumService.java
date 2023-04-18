@@ -15,6 +15,7 @@ import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
 import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
 
