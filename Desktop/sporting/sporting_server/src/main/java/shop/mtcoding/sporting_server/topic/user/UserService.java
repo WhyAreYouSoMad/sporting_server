@@ -2,15 +2,21 @@ package shop.mtcoding.sporting_server.topic.user;
 
 import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
+import shop.mtcoding.sporting_server.core.exception.Exception400;
+import shop.mtcoding.sporting_server.core.exception.Exception403;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.user.dto.UserRequest;
+import shop.mtcoding.sporting_server.topic.user.dto.UserResponse;
+import shop.mtcoding.sporting_server.topic.user.dto.UserResponse.UserDetailOutDto;
 
 @RequiredArgsConstructor
 @Service
@@ -35,5 +41,20 @@ public class UserService {
         } else {
             throw new RuntimeException("유저네임 없어");
         }
+    }
+
+    @Transactional
+    public UserDetailOutDto getUser(Long userId, Authentication authentication) {
+        Long loggedInUserId = ((MyUserDetails) authentication.getPrincipal()).getId();
+
+        User userPS = userRepository.findById(userId).orElseThrow(() -> {
+            throw new Exception400("해당 유저가 없습니다");
+        });
+
+        if (!userId.equals(loggedInUserId)) {
+            throw new Exception403("권한이 없습니다");
+        }
+        UserResponse.UserDetailOutDto userDetailOutDto = new UserDetailOutDto(userPS);
+        return userDetailOutDto;
     }
 }

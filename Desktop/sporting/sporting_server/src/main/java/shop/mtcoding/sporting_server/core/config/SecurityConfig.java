@@ -98,7 +98,6 @@ public class SecurityConfig {
                         .antMatchers("/api/company/**").access("hasRole('ADMIN') or hasRole('COMPANY')")
                         .antMatchers("/api/admin/**").hasRole("ADMIN")
 
-
                         .anyRequest().permitAll());
 
         return http.build();
