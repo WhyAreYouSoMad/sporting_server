@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.http.MediaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.player.PlayerController;
 import shop.mtcoding.sporting_server.topic.player.PlayerService;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerRequest;
@@ -25,39 +24,40 @@ import shop.mtcoding.sporting_server.topic.player.dto.PlayerResponse;
 @WebMvcTest(PlayerController.class)
 public class PlayerMockTest {
 
-    @Autowired
-    MockMvc mvc;
+        @Autowired
+        MockMvc mvc;
 
-    @MockBean
-    private PlayerService playerService;
+        @MockBean
+        private PlayerService playerService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+        @Autowired
+        private ObjectMapper objectMapper;
 
-    @Test
-    @WithMockUser(username = "cos", roles = { "User" })
-    @DisplayName("플레이어 회원가입 테스트")
-    void savePlayer() throws Exception {
-        // Given
-        PlayerRequest.JoinInDTO joinInDTO = new PlayerRequest.JoinInDTO();
-        PlayerResponse.JoinOutDto joinOutDto = new PlayerResponse.JoinOutDto(1L, "ssar", "ssar@nate.com", "USER",
-                "22:00");
+        @Test
+        @WithMockUser(username = "cos", roles = { "User" })
+        @DisplayName("플레이어 회원가입 테스트")
+        void savePlayer() throws Exception {
+                // Given
+                PlayerRequest.JoinInDTO joinInDTO = new PlayerRequest.JoinInDTO();
+                PlayerResponse.JoinOutDto joinOutDto = new PlayerResponse.JoinOutDto(1L, "ssar", "ssar@nate.com",
+                                "USER",
+                                "22:00");
 
-        given(this.playerService.회원가입(joinInDTO)).willReturn(joinOutDto);
+                given(this.playerService.회원가입(joinInDTO)).willReturn(joinOutDto);
 
-        // When
-        ResultActions resultActions = this.mvc.perform(
-                post("/api/joinPlayer")
-                        .with(csrf())
-                        .content(objectMapper.writeValueAsString(joinInDTO))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE));
+                // When
+                ResultActions resultActions = this.mvc.perform(
+                                post("/api/joinPlayer")
+                                                .with(csrf())
+                                                .content(objectMapper.writeValueAsString(joinInDTO))
+                                                .contentType(MediaType.APPLICATION_JSON_VALUE));
 
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        // Then
-        resultActions
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.email").value("ssar@nate.com"));
-    }
+                // Then
+                resultActions
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.data.email").value("ssar@nate.com"));
+        }
 }
