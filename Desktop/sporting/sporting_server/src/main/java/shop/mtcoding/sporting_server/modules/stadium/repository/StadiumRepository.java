@@ -9,8 +9,10 @@ import org.springframework.data.repository.query.Param;
 
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
+import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
 public interface StadiumRepository extends JpaRepository<Stadium, Long>, StadiumCustomRepository {
 
