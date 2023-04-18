@@ -1,7 +1,6 @@
 package shop.mtcoding.sporting_server.topic.player;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerRequest;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerResponse;
@@ -29,14 +27,6 @@ public class PlayerController {
         // select 안됨
         ResponseDto<?> responseDTO = new ResponseDto<>().data(data);
         return ResponseEntity.ok().body(responseDTO);
-    }
-
-    @GetMapping("/user/1")
-    public ResponseEntity<?> userCheck(@AuthenticationPrincipal MyUserDetails myUserDetails) {
-        Long id = myUserDetails.getUser().getId();
-        String role = myUserDetails.getUser().getRole();
-
-        return ResponseEntity.ok().body(id + " : " + role);
     }
 
     @GetMapping("/")
