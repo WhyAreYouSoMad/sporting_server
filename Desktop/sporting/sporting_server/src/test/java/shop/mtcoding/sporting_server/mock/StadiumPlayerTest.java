@@ -5,7 +5,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.mockito.ArgumentMatchers.any;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +32,7 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
 
 @WebMvcTest(StadiumController.class)
-public class StadiumTest {
+public class StadiumPlayerTest {
 
         @Autowired
         MockMvc mvc;
@@ -46,7 +45,7 @@ public class StadiumTest {
 
         @BeforeEach
         public void init() {
-                MyLoginUser user = MyLoginUser.builder().id(1L).role("COMPANY").build();
+                MyLoginUser user = MyLoginUser.builder().id(1L).role("PLAYER").build();
                 MyUserDetails myUserDetails = new MyUserDetails(user);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                                 myUserDetails,
@@ -74,13 +73,14 @@ public class StadiumTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                post("/company/stadiums")
+                                post("/api/company/stadiums")
                                                 .with(csrf())
                                                 .content(objectMapper.writeValueAsString(stadiumRegistrationInDTO))
                                                 .contentType(MediaType.APPLICATION_JSON_VALUE));
 
-                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-                System.out.println("테스트 : " + responseBody);
+                // String responseBody =
+                // resultActions.andReturn().getResponse().getContentAsString();
+                // System.out.println("테스트 : " + responseBody);
 
                 // Then
                 resultActions
