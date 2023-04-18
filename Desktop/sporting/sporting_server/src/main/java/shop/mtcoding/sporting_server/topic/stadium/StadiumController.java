@@ -40,8 +40,12 @@ public class StadiumController {
     }
 
     @GetMapping("/user/stadiums")
-    public ResponseEntity<?> findAllList() {
+    public ResponseEntity<?> findAllList(String keyword) {
+        StadiumUtils.keywordValidiationCheck(keyword);
+
+        stadiumService.findKeywordList(keyword);
 
         return null;
+        // return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
     }
 }
