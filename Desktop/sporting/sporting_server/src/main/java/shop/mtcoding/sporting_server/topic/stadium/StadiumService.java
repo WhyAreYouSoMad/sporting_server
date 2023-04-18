@@ -52,4 +52,11 @@ public class StadiumService {
         return stadiumListOut;
     }
 
+    public List<StadiumMyListOutDTO> findKeywordMyList(String keyword, Long pricipalCompanyId) {
+        List<StadiumMyListOutDTO> stadiumMyListOut = stadiumRepository.findStadiumMyListBySportKeyword(keyword,
+                pricipalCompanyId);
+
+        return stadiumMyListOut;
+    }
+
 }

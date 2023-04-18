@@ -50,6 +50,11 @@ public class StadiumController {
 
     @GetMapping("/company/mystadiums")
     public ResponseEntity<?> findAllMyList(String keyword, @AuthenticationPrincipal MyUserDetails myUserDetails) {
-        return null;
+        StadiumUtils.keywordValidiationCheck(keyword);
+
+        List<StadiumMyListOutDTO> stadiumMyListOutDTO = stadiumService.findKeywordMyList(keyword,
+                myUserDetails.getUser().getId());
+
+        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
     }
 }
