@@ -24,7 +24,7 @@ public interface StadiumRepository extends JpaRepository<Stadium, Long>, Stadium
             + "FROM Stadium st "
             + "INNER JOIN st.category ct "
             + "WHERE ct.sport = :sportKeyword and st.companyInfo.user.id = :pricipalCompanyId "
-            + "GROUP BY st.id, ct.sport, st.name")
+            + "GROUP BY st.id")
     List<StadiumMyListOutDTO> findStadiumMyListBySportKeyword(@Param("sportKeyword") String sportKeyword,
             @Param("pricipalCompanyId") Long pricipalCompanyId);
 }
