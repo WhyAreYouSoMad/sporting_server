@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -57,4 +59,5 @@ public class StadiumController {
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
     }
+
 }
