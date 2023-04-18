@@ -42,7 +42,6 @@ public class StadiumController {
     @GetMapping("/user/stadiums")
     public ResponseEntity<?> findAllList(String keyword) {
         StadiumUtils.keywordValidiationCheck(keyword);
-
         List<StadiumListOutDTO> stadiumListOutDTO = stadiumService.findKeywordList(keyword);
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
