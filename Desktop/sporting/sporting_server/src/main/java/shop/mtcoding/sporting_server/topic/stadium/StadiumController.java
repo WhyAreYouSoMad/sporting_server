@@ -18,6 +18,7 @@ import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.core.util.StadiumUtils;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
 
@@ -45,5 +46,10 @@ public class StadiumController {
         List<StadiumListOutDTO> stadiumListOutDTO = stadiumService.findKeywordList(keyword);
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
+    }
+
+    @GetMapping("/company/mystadiums")
+    public ResponseEntity<?> findAllMyList(String keyword, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        return null;
     }
 }
