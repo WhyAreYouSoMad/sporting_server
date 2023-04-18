@@ -52,7 +52,7 @@ public class StadiumService {
         return stadiumListOut;
     }
 
-    public List<StadiumMyListOutDTO> findKeywordMyList(String keyword, Long pricipalCompanyId) {
+    public List<StadiumMyListOutDTO> findKeywordMyList(Long pricipalCompanyId, String keyword) {
         List<StadiumMyListOutDTO> stadiumMyListOut = stadiumRepository.findStadiumMyListBySportKeyword(keyword,
                 pricipalCompanyId);
 

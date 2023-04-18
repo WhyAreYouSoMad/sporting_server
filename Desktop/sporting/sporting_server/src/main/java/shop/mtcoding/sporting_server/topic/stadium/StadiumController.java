@@ -52,8 +52,10 @@ public class StadiumController {
     public ResponseEntity<?> findAllMyList(String keyword, @AuthenticationPrincipal MyUserDetails myUserDetails) {
         StadiumUtils.keywordValidiationCheck(keyword);
 
-        List<StadiumMyListOutDTO> stadiumMyListOutDTO = stadiumService.findKeywordMyList(keyword,
-                myUserDetails.getUser().getId());
+        System.out.println("테스트 : aa" + myUserDetails.getUser().getId());
+
+        List<StadiumMyListOutDTO> stadiumMyListOutDTO = stadiumService
+                .findKeywordMyList(myUserDetails.getUser().getId(), keyword);
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
     }
