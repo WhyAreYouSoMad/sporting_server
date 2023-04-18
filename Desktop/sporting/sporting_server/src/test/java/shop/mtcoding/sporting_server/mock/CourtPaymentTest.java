@@ -56,7 +56,7 @@ public class CourtPaymentTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                post("/api/user/payment/form/" + id)
+                                post("/api/user/payments/form/" + id)
                                                 // .header(HttpHeaders.AUTHORIZATION, jwtTokenSetup())
                                                 .with(csrf())
                                                 .content(objectMapper.writeValueAsString(formInDTO))

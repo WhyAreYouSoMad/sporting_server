@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.http.MediaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.player.PlayerController;
 import shop.mtcoding.sporting_server.topic.player.PlayerService;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerRequest;
