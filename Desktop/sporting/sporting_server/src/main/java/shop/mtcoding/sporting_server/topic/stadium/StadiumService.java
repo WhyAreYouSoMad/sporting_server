@@ -68,7 +68,10 @@ public class StadiumService {
             throw new Exception403("수정 권한이 없습니다.");
         }
 
-        return null;
+        StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumRepository.findByStadiumId(stadiumId);
+        stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findByStadiumIdForCourtList(stadiumId));
+
+        return stadiumUpdateFomrOutDTO;
     }
 
 }
