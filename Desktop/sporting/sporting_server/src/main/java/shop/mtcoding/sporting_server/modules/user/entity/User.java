@@ -12,15 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import lombok.*;
 import org.hibernate.annotations.Comment;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 
 @Getter
@@ -81,7 +75,7 @@ public class User {
 
     @Builder
     public User(Long id, String nickname, @NonNull String email, @NonNull String password, @NonNull String role,
-            LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status) {
+                LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
@@ -91,5 +85,4 @@ public class User {
         this.updatedAt = updatedAt;
         this.status = status;
     }
-
 }
