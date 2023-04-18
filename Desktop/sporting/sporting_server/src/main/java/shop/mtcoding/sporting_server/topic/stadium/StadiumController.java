@@ -60,4 +60,13 @@ public class StadiumController {
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
     }
 
+    @GetMapping("/company/mystadiums/updateform/{stadiumId}")
+    public ResponseEntity<?> findAllMyList(@PathVariable Long stadiumId,
+            @AuthenticationPrincipal MyUserDetails myUserDetails) {
+
+        StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumService.getUpdateForm(myUserDetails.getUser().getId(),
+                stadiumId);
+
+        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumUpdateFomrOutDTO));
+    }
 }

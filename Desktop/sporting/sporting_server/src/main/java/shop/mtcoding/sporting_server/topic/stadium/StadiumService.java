@@ -60,4 +60,15 @@ public class StadiumService {
         return stadiumMyListOut;
     }
 
+    public StadiumUpdateFomrOutDTO getUpdateForm(Long id, Long stadiumId) {
+        Stadium stadium = stadiumRepository.findById(stadiumId).orElseThrow(() -> {
+            throw new Exception400("존재하지 않는 경기장입니다.");
+        });
+        if (!stadium.getCompanyInfo().getUser().getId().equals(id)) {
+            throw new Exception403("수정 권한이 없습니다.");
+        }
+
+        return null;
+    }
+
 }
