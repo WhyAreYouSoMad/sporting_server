@@ -1,5 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import java.time.LocalTime;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,7 +39,9 @@ public class StadiumRequest {
                     .name(stadiumRegistrationInDTO.getName())
                     .address(StadiumAddress.valueOf(stadiumRegistrationInDTO.getAddress()))
                     .category(sportCategoryPS)
-                    .status(StadiumStatus.등록)
+                    .status(StadiumStatus.운영중)
+                    .startTime(LocalTime.of(9, 0))
+                    .endTime(LocalTime.of(18, 0))
                     .build();
         }
     }

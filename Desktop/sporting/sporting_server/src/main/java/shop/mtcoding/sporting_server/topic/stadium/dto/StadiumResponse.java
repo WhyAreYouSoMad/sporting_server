@@ -19,12 +19,16 @@ public class StadiumResponse {
         private String name;
         private String address;
         private String category;
+        private String startTime;
+        private String endTime;
 
         public StadiumRegistrationOutDTO(Stadium stadiumPS) {
             this.id = stadiumPS.getId();
             this.name = stadiumPS.getName();
             this.address = stadiumPS.getAddress().toString();
             this.category = stadiumPS.getCategory().getSport();
+            this.startTime = stadiumPS.getStartTime().toString();
+            this.endTime = stadiumPS.getEndTime().toString();
         }
 
     }
