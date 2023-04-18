@@ -43,9 +43,8 @@ public class StadiumController {
     public ResponseEntity<?> findAllList(String keyword) {
         StadiumUtils.keywordValidiationCheck(keyword);
 
-        stadiumService.findKeywordList(keyword);
+        List<StadiumListOutDTO> stadiumListOutDTO = stadiumService.findKeywordList(keyword);
 
-        return null;
-        // return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
+        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
     }
 }

@@ -45,4 +45,10 @@ public class StadiumService {
         return new StadiumRegistrationOutDTO(stadiumPS);
     }
 
+    public List<StadiumListOutDTO> findKeywordList(String keyword) {
+        List<StadiumListOutDTO> stadiumListOut = stadiumRepository.findStadiumListBySportKeyword(keyword);
+
+        return stadiumListOut;
+    }
+
 }
