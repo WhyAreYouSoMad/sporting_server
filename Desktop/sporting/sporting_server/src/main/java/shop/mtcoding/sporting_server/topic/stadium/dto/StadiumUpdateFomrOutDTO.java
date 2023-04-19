@@ -3,6 +3,8 @@ package shop.mtcoding.sporting_server.topic.stadium.dto;
 import java.time.LocalTime;
 import java.util.List;
 
+import com.querydsl.core.annotations.QueryProjection;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,6 +27,7 @@ public class StadiumUpdateFomrOutDTO {
     private LocalTime endTime;
     private List<CourtResponseDTO> court;
 
+    @QueryProjection
     public StadiumUpdateFomrOutDTO(Long id, String name, StadiumAddress address, StadiumStatus status,
             LocalTime startTime, LocalTime endTime) {
         this.id = id;

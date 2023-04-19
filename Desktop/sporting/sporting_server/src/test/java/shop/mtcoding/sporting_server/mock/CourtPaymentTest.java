@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +23,8 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.sporting_server.core.config.JpaConfig;
+import shop.mtcoding.sporting_server.core.config.SecurityConfig;
 import shop.mtcoding.sporting_server.topic.payment.PaymentController;
 import shop.mtcoding.sporting_server.topic.payment.PaymentService;
 import shop.mtcoding.sporting_server.topic.payment.dto.PaymentRequest;
