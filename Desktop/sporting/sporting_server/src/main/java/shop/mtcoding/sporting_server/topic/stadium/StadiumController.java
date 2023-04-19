@@ -61,7 +61,7 @@ public class StadiumController {
     }
 
     @GetMapping("/company/mystadiums/updateform/{stadiumId}")
-    public ResponseEntity<?> findAllMyList(@PathVariable Long stadiumId,
+    public ResponseEntity<?> updateForm(@PathVariable Long stadiumId,
             @AuthenticationPrincipal MyUserDetails myUserDetails) {
 
         StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumService.getUpdateForm(myUserDetails.getUser().getId(),
