@@ -93,7 +93,7 @@ public class SecurityConfig {
 
         // 9. 인증, 권한 필터 설정
         http.authorizeRequests(
-                authroize -> authroize.antMatchers("/a/**").authenticated()// 인증이 필요한곳
+                authroize -> authroize.antMatchers("/api/a/**").authenticated()// 인증이 필요한곳
                         .antMatchers("/api/user/**").access("hasRole('ADMIN') or hasRole('PLAYER')")
                         .antMatchers("/api/company/**").access("hasRole('ADMIN') or hasRole('COMPANY')")
                         .antMatchers("/api/admin/**").hasRole("ADMIN")

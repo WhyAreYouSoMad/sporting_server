@@ -11,5 +11,14 @@ public class UserRequest {
         private String password;
 
         // save하는게 아니라 toEntity 필요 없음
+
+        public LoginDTO(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        public LoginDTO() {
+        }
+
     }
 }
