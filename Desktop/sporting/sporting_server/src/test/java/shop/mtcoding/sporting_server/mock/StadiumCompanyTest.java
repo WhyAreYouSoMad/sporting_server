@@ -3,10 +3,10 @@ package shop.mtcoding.sporting_server.mock;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +26,15 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
+import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumController;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumService;
+import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
 @WebMvcTest(StadiumController.class)
 public class StadiumCompanyTest {
@@ -114,5 +118,44 @@ public class StadiumCompanyTest {
                 resultActions
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.data[1].name").value("b 배구장"));
+        }
+
+        @Test
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @DisplayName("경기장 수정 페이지 진입 테스트")
+        void stadiumUpdateFormTest() throws Exception {
+
+                // given
+                Long stadiumId = 3L;
+                Long companyUserId = 4L;
+                StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = new StadiumUpdateFomrOutDTO(3L, "a 농구장",
+                                StadiumAddress.울산시, StadiumStatus.운영중,
+                                LocalTime.of(9, 0), LocalTime.of(18, 0));
+
+                List<CourtResponseDTO> CourtResponseListDTO = new ArrayList();
+                CourtResponseDTO courtResponseDTO1 = new CourtResponseDTO(3L, "a 농구장(코트1)", "그물상태 양호 농구장", 10, 30000,
+                                "농구");
+                CourtResponseDTO courtResponseDTO2 = new CourtResponseDTO(4L, "a 농구장(코트2)", "코트상태 양호 농구장", 10, 30000,
+                                "농구");
+                CourtResponseListDTO.add(courtResponseDTO1);
+                CourtResponseListDTO.add(courtResponseDTO2);
+
+                stadiumUpdateFomrOutDTO.setCourt(CourtResponseListDTO);
+
+                given(this.stadiumService.getUpdateForm(companyUserId, stadiumId))
+                                .willReturn(stadiumUpdateFomrOutDTO);
+
+                // When
+                ResultActions resultActions = this.mvc.perform(
+                                get("/api/company/mystadiums/updateform/" + stadiumId)
+                                                .with(csrf()));
+
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
+
+                // Then
+                resultActions
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.data.name").value("a 농구장"));
         }
 }

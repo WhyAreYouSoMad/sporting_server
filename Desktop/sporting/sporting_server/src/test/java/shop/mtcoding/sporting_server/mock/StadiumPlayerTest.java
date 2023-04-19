@@ -89,4 +89,5 @@ public class StadiumPlayerTest {
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.data.name").value("경기장1"));
         }
+
 }
