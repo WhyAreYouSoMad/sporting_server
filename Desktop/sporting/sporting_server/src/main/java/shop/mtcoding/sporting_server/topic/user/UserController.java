@@ -32,7 +32,7 @@ public class UserController {
         return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt).body("로그인완료");
     }
 
-    @GetMapping("/a/user/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<?> userCheck(@PathVariable Long id, @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Long principalId = myUserDetails.getUser().getId();
         String role = myUserDetails.getUser().getRole();
@@ -42,7 +42,7 @@ public class UserController {
         return ResponseEntity.ok().body(id + " : " + role);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/a/user/{id}")
     public ResponseEntity<?> userDetail(@PathVariable Long id, Authentication authentication) {
         UserResponse.UserDetailOutDto userDetailOutDto = userService.getUser(id, authentication);
         return ResponseEntity.ok().body(new ResponseDto<>().data(userDetailOutDto));
