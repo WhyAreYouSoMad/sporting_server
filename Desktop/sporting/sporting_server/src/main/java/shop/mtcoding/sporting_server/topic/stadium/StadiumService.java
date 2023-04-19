@@ -69,7 +69,8 @@ public class StadiumService {
         }
 
         StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumRepository.findByStadiumId(stadiumId);
-        stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findByStadiumIdForCourtList(stadiumId));
+        stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findCourtsByStadiumId(stadiumId));
+        // stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findByStadiumIdForCourtList(stadiumId));
 
         return stadiumUpdateFomrOutDTO;
     }

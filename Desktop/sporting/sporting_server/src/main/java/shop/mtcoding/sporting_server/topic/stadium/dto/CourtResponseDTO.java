@@ -1,5 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,6 +21,7 @@ public class CourtResponseDTO {
     private Integer courtPrice;
     private String sport;
 
+    @QueryProjection
     public CourtResponseDTO(Long id, String title, String content, Integer capacity, Integer courtPrice, String sport) {
         this.id = id;
         this.title = title;
