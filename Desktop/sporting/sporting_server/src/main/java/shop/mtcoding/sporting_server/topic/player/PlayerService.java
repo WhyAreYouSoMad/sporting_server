@@ -9,15 +9,22 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.role.RoleType;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
+import shop.mtcoding.sporting_server.core.exception.Exception403;
+import shop.mtcoding.sporting_server.modules.player_favorite_sport.repository.PlayerFavoriteSportRepository;
+import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
+import shop.mtcoding.sporting_server.modules.player_info.repository.PlayerInfoRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerRequest;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerResponse;
+import shop.mtcoding.sporting_server.topic.player.dto.PlayerUpdateFormOutDTO;
 
 @RequiredArgsConstructor
 @Service
 public class PlayerService {
     private final UserRepository userRepository;
+    private final PlayerInfoRepository playerInfoRepository;
+    private final PlayerFavoriteSportRepository playerFavoriteSportRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     /**
@@ -44,6 +51,20 @@ public class PlayerService {
         // JPA 사용에 있어 영속성 컨텍스트
         User userPS = userRepository.save(joinDTO.toEntity());
         return new PlayerResponse.JoinOutDto(userPS);
+    }
+
+    public PlayerUpdateFormOutDTO getUpdateForm(Long id, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> {
+            throw new Exception400("존재하지 않는 유저 입니다");
+        });
+        if (!user.getId().equals(id)) {
+            throw new Exception403("수정 권한이 없습니다");
+        }
+
+        PlayerUpdateFormOutDTO playerUpdateFormOutDTO = userRepository.findByUserId(userId);
+        playerUpdateFormOutDTO.setPlayerInfo(playerInfoRepository.findplayerInfoByuserId(userId));
+        playerUpdateFormOutDTO.setPlayerFavoriteSport(playerFavoriteSportRepository.findSportByuserId(userId));
+        return playerUpdateFormOutDTO;
     }
 
 }

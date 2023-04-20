@@ -7,9 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import shop.mtcoding.sporting_server.modules.user.entity.User;
+import shop.mtcoding.sporting_server.topic.player.dto.PlayerUpdateFormOutDTO;
 
 public interface UserRepository
                 extends JpaRepository<User, Long>, UserCustomRepository {
         @Query("select u from User u where u.email = :email")
         Optional<User> findByEmail(@Param("email") String email);
+
 }
