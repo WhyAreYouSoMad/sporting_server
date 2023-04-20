@@ -8,6 +8,8 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.modules.user.entity.QUser;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.QCompanyUpdateFormOutDTO;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerUpdateFormOutDTO;
 import shop.mtcoding.sporting_server.topic.player.dto.QPlayerUpdateFormOutDTO;
 
@@ -26,6 +28,17 @@ public class UserRepositoryImpl implements UserCustomRepository {
                         qUser.id, qUser.nickname, qUser.email, qUser.password))
                 .from(qUser)
                 .where(qUser.id.eq(userId));
+        return query.fetchOne();
+    }
+
+    @Override
+    public CompanyUpdateFormOutDTO findByCompanyUserId(Long id) {
+        QUser qUser = QUser.user;
+
+        JPAQuery<CompanyUpdateFormOutDTO> query = jpaQueryFactory
+                .select(new QCompanyUpdateFormOutDTO(qUser.id, qUser.nickname, qUser.email, qUser.password))
+                .from(qUser)
+                .where(qUser.id.eq(id));
         return query.fetchOne();
     }
 
