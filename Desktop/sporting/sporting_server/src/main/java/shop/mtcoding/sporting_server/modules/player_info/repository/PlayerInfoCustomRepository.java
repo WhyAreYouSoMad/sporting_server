@@ -1,5 +1,9 @@
 package shop.mtcoding.sporting_server.modules.player_info.repository;
 
-public interface PlayerInfoCustomRepository {
+import org.springframework.data.repository.query.Param;
 
+import shop.mtcoding.sporting_server.topic.player.dto.PlayerInfoResponseDTO;
+
+public interface PlayerInfoCustomRepository {
+    PlayerInfoResponseDTO findplayerInfoByuserId(@Param("userId") Long userId);
 }

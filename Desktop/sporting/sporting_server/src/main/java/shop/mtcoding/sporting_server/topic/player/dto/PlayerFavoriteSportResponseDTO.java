@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 
 @EqualsAndHashCode
 @NoArgsConstructor

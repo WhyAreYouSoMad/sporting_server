@@ -40,7 +40,7 @@ VALUES (1, 'ssar123', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB
        (4, 'user512', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'love@nate.com', 'COMPANY', '인증완료', now(), now());
 
 INSERT INTO player_info_tb(id, user_id, gender, age, address, tel, file_info_id, updated_at) 
-VALUES (1, 1, '남자', '20대', '부산시','010-1001-1111', 1, now()),  
+VALUES (1, 1, '남자', 'AGE_20', '부산시','010-1001-1111', 1, now()),  
        (2, 2, '', '', '','', 2, now()); 
 
 INSERT INTO company_info_tb(id, user_id, business_number, business_address, tel, ceo, file_info_id, updated_at) 
