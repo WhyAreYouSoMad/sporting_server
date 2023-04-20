@@ -53,6 +53,7 @@ public class PlayerService {
         return new PlayerResponse.JoinOutDto(userPS);
     }
 
+    @Transactional
     public PlayerUpdateFormOutDTO getUpdateForm(Long id, Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 유저 입니다");
