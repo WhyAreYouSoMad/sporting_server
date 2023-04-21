@@ -1,4 +1,5 @@
 package shop.mtcoding.sporting_server.topic.company.dto;
+
 import lombok.*;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.core.util.MyDateUtils;
@@ -25,6 +26,5 @@ public class CompanyResponse {
             this.role = user.getRole();
             this.createdAt = MyDateUtils.toStringFormat(user.getCreatedAt());
         }
-
     }
 }

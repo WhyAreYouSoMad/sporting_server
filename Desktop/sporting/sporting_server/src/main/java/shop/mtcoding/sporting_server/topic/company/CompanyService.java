@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.sporting_server.core.enums.role.RoleType;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
+import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
 
 import java.util.Optional;
 
@@ -20,11 +22,11 @@ import java.util.Optional;
 public class CompanyService {
 
     private final UserRepository userRepository;
+    private final CompanyInfoRepository companyInfoRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
     public CompanyResponse.JoinDTO 회원가입(CompanyRequest.JoinInDTO joinDTO) {
-
 
         Optional<User> emailCheck = userRepository.findByEmail(joinDTO.getEmail());
         if (emailCheck.isPresent()) {
@@ -42,5 +44,17 @@ public class CompanyService {
         User userPS = userRepository.save(joinDTO.toEntity());
 
         return new CompanyResponse.JoinDTO(userPS);
+    }
+
+    public CompanyUpdateFormOutDTO getUpdateForm(Long id) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> {
+            throw new Exception400("존재하지 않는 유저 입니다");
+        });
+
+        CompanyUpdateFormOutDTO companyUpdateFormOutDTO = userRepository.findByCompanyUserId(id);
+        companyUpdateFormOutDTO.setCompanyInfo(companyInfoRepository.findCompanyInfoByUserId(id));
+        return companyUpdateFormOutDTO;
+
     }
 }
