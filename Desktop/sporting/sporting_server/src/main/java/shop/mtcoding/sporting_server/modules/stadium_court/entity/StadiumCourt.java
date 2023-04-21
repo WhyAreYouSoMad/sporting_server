@@ -49,7 +49,7 @@ public class StadiumCourt {
     @JoinColumn(name = "stadium_id")
     private Stadium stadium;
 
-
+    @NonNull
     @Comment("thumbnail 사진 정보")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "file_info_id")

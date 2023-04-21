@@ -66,7 +66,7 @@ public class UserTest {
                 Long userId = 1L;
                 UserResponse.UserDetailOutDto userDetailOutDto = new UserResponse.UserDetailOutDto();
                 userDetailOutDto.setId(userId);
-                userDetailOutDto.setEmail("ssar@nate.com");
+                userDetailOutDto.setNickname("ssar");
                 userDetailOutDto.setRole("PLAYER");
                 given(userService.getUser(eq(userId), any())).willReturn(userDetailOutDto);
 
@@ -80,7 +80,7 @@ public class UserTest {
                 // Then
                 resultActions.andExpect(status().isOk())
                                 .andExpect(jsonPath("$.data.id").value(userId))
-                                .andExpect(jsonPath("$.data.email").value("ssar@nate.com"));
+                                .andExpect(jsonPath("$.data.nickname").value("ssar"));
         }
 
         @Test

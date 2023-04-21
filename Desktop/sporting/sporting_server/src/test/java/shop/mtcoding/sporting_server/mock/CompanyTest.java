@@ -67,7 +67,7 @@ public class CompanyTest {
 
                 // given
                 CompanyRequest.JoinInDTO joinInDTO = new CompanyRequest.JoinInDTO();
-                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO("1234", "1234", "sdif@sdflk.dsf",
+                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "1234", "sdif@sdflk.dsf",
                                 "컴퍼니");
                 given(this.companyService.회원가입(joinInDTO)).willReturn(joinOutDTO);
 
