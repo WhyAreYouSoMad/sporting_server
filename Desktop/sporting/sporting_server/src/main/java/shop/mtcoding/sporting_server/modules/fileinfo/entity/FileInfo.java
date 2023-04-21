@@ -22,7 +22,6 @@ import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
@@ -39,4 +38,10 @@ public class FileInfo {
     @Comment("파일 출처 테이블 (ex. 기업프로필, 플레이어프로필, 경기장사진, 코트사진)")
     @Enumerated(EnumType.STRING)
     private FileInfoSource type;
+
+    public FileInfo(Long id, FileInfoSource type) {
+        this.id = id;
+        this.type = type;
+    }
+
 }

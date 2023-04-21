@@ -3,6 +3,7 @@ package shop.mtcoding.sporting_server.mock;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDateTime;
@@ -22,14 +23,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
+import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
+import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.topic.stadium_court.StadiumCourtController;
 import shop.mtcoding.sporting_server.topic.stadium_court.StadiumCourtService;
 import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtRequest;
+import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtRequest.StadiumCourtInDTO;
 import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtResponse;
+import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtResponse.StadiumCourtOutDTO;
 
 @WebMvcTest(StadiumCourtController.class)
 public class StadiumCourtTest {
@@ -56,36 +61,36 @@ public class StadiumCourtTest {
 
         @Test
         @WithMockUser(username = "cos", roles = { "Company" })
-        @DisplayName("코트 등록")
-        void saveStadiumCourt() throws Exception {
-                // Given
+        @DisplayName("코트 등록 테스트")
+        void stadiumCOuTest() throws Exception {
 
-                Long userId = 3L;
+                // given
                 Long stadiumId = 1L;
-
-                StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO = new StadiumCourtRequest.StadiumCourtInDTO(
-                                null, 8000, 10, "아주좋은 코트", LocalDateTime.now(), StadiumCourtStatus.등록대기);
-
-                StadiumCourtResponse.StadiumCourtOutDTO stadiumCourtOutDTO = new StadiumCourtResponse.StadiumCourtOutDTO(
-                                1L, null, null, 8000, 10, "아주좋은 코트", LocalDateTime.now(), null,
+                FileInfo fileInfo = new FileInfo(10L, FileInfoSource.코트사진);
+                StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO = new StadiumCourtInDTO(fileInfo, "야구장코트",
+                                "코트가좋아요", 20, 50000);
+                StadiumCourtResponse.StadiumCourtOutDTO stadiumCourtOutDTO = new StadiumCourtOutDTO(1L, 1L, fileInfo,
+                                "야구장코트", "코트가좋아요", 20, 50000, LocalDateTime.now(), LocalDateTime.now(),
                                 StadiumCourtStatus.등록대기);
 
-                given(this.stadiumCourtService.save(stadiumCourtInDTO, userId, stadiumId))
+                given(this.stadiumCourtService.save(stadiumCourtInDTO, stadiumId))
                                 .willReturn(stadiumCourtOutDTO);
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
                                 post("/api/company/stadiums/court/" + stadiumId)
                                                 .with(csrf())
-                                                .content(objectMapper.writeValueAsString(stadiumCourtOutDTO))
+                                                .content(objectMapper.writeValueAsString(stadiumCourtInDTO))
                                                 .contentType(MediaType.APPLICATION_JSON_VALUE));
 
-                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-                System.out.println("테스트 : " + responseBody);
+                // String responseBody =
+                // resultActions.andReturn().getResponse().getContentAsString();
+                // System.out.println("테스트 : " + responseBody);
+
                 // Then
                 resultActions
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.data.content").value("아주좋은 코트"));
+                                .andExpect(jsonPath("$.data.content").value("코트가좋아요"));
         }
 
 }
