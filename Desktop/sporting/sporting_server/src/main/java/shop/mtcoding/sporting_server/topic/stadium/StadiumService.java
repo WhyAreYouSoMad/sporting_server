@@ -10,11 +10,16 @@ import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.exception.Exception403;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
+import shop.mtcoding.sporting_server.modules.fileinfo.repository.FileInfoRepository;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.sport_category.repository.SportCategoryRepository;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
+import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
+import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
 import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumCourtDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
@@ -29,6 +34,8 @@ public class StadiumService {
     private final StadiumRepository stadiumRepository;
     private final CompanyInfoRepository companyInfoRepository;
     private final SportCategoryRepository sportCategoryRepository;
+    private final StadiumCourtRepository stadiumCourtRepository;
+    private final FileInfoRepository fileInfoRepository;
 
     public StadiumRegistrationOutDTO save(Long id, StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO) {
 
@@ -73,6 +80,24 @@ public class StadiumService {
         // stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findByStadiumIdForCourtList(stadiumId));
 
         return stadiumUpdateFomrOutDTO;
+    }
+
+    public StadiumDetailDTO detail(Long stadiumId) {
+
+        Stadium stadium = stadiumRepository.findById(stadiumId).orElseThrow(() -> {
+            throw new Exception400("존재하지 않는 경기장입니다.");
+        });
+
+        StadiumDetailDTO stadiumDetailDTO = stadiumRepository.findByStadiumId2(stadiumId);
+        stadiumDetailDTO.setFileInfo(fileInfoRepository.findStadiumById(stadium.getFileInfo().getId()));
+
+        stadiumDetailDTO.setCategory(stadiumRepository.findCategoryByStadiumId(stadium.getCategory().getId()));
+
+        stadiumDetailDTO.setStadiumCourt(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
+
+        System.out.println("테스트 : " + stadiumDetailDTO.getStadiumCourt().get(0).getId());
+
+        return stadiumDetailDTO;
     }
 
 }

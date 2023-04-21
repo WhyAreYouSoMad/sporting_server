@@ -11,4 +11,5 @@ import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory
 public interface SportCategoryRepository extends JpaRepository<SportCategory, Long>, SportCategoryCustomRepository {
 
     Optional<SportCategory> findBySport(@Param("sport") String sport);
+
 }
