@@ -71,8 +71,7 @@ public class StadiumCourtTest {
                 StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO = new StadiumCourtInDTO(fileInfo, "야구장코트",
                                 "코트가좋아요", 20, 50000);
                 StadiumCourtResponse.StadiumCourtOutDTO stadiumCourtOutDTO = new StadiumCourtOutDTO(1L, 1L, fileInfo,
-                                "야구장코트", "코트가좋아요", 20, 50000, LocalDateTime.now(), LocalDateTime.now(),
-                                StadiumCourtStatus.등록대기);
+                                "야구장코트", "코트가좋아요", 20, 50000, LocalDateTime.now(), StadiumCourtStatus.등록대기);
 
                 given(this.stadiumCourtService.save(stadiumCourtInDTO, stadiumId, id))
                                 .willReturn(stadiumCourtOutDTO);

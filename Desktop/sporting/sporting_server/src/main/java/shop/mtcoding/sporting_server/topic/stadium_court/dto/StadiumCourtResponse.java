@@ -28,7 +28,6 @@ public class StadiumCourtResponse {
         private Integer capacity;
         private Integer courtPrice;
         private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
         private StadiumCourtStatus status;
 
         public StadiumCourtOutDTO(StadiumCourt stadiumCourt) {
@@ -40,7 +39,6 @@ public class StadiumCourtResponse {
             this.capacity = stadiumCourt.getCapacity();
             this.courtPrice = stadiumCourt.getCourtPrice();
             this.createdAt = stadiumCourt.getCreatedAt();
-            this.updatedAt = stadiumCourt.getUpdatedAt();
             this.status = stadiumCourt.getStatus();
         }
 

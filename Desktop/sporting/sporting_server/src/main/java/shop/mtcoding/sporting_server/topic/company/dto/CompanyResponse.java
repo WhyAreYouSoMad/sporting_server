@@ -15,13 +15,13 @@ public class CompanyResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class JoinDTO {
-        private String nickname;
+        private Long id;
         private String email;
         private String role;
         private String createdAt; // 포맷해서 던짐 (util)
 
         public JoinDTO(User user) {
-            this.nickname = user.getNickname();
+            this.id = user.getId();
             this.email = user.getEmail();
             this.role = user.getRole();
             this.createdAt = MyDateUtils.toStringFormat(user.getCreatedAt());

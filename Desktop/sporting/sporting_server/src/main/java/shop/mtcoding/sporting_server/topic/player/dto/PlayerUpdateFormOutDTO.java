@@ -24,7 +24,11 @@ public class PlayerUpdateFormOutDTO {
     @QueryProjection
     public PlayerUpdateFormOutDTO(Long id, String nickname, String email, String password) {
         this.id = id;
-        this.nickname = nickname;
+        if (nickname != null) {
+            this.nickname = nickname;
+        } else {
+            this.nickname = email;
+        }
         this.email = email;
         this.password = password;
     }

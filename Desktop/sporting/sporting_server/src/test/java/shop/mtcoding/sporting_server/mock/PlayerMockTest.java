@@ -68,7 +68,7 @@ public class PlayerMockTest {
         void savePlayer() throws Exception {
                 // Given
                 PlayerRequest.JoinInDTO joinInDTO = new PlayerRequest.JoinInDTO();
-                PlayerResponse.JoinOutDto joinOutDto = new PlayerResponse.JoinOutDto(1L, "ssar", "ssar@nate.com",
+                PlayerResponse.JoinOutDto joinOutDto = new PlayerResponse.JoinOutDto(1L, "ssar@nate.com",
                                 "USER",
                                 "22:00");
 

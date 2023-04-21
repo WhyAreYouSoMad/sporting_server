@@ -16,12 +16,16 @@ public class UserResponse {
     @EqualsAndHashCode
     public static class UserDetailOutDto {
         private Long id;
-        private String email;
+        private String nickname;
         private String role;
 
         public UserDetailOutDto(User user) {
             this.id = user.getId();
-            this.email = user.getEmail();
+            if (user.getNickname() != null) {
+                this.nickname = user.getNickname();
+            } else {
+                this.nickname = user.getEmail();
+            }
             this.role = user.getRole();
         }
 
