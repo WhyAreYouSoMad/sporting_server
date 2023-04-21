@@ -1,12 +1,14 @@
 package shop.mtcoding.sporting_server.modules.stadium.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;

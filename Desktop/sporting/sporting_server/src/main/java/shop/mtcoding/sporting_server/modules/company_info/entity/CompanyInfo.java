@@ -41,7 +41,7 @@ public class CompanyInfo {
 
     @NonNull
     @Comment("유저 테이블")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", unique = true)
     private User user;
 
