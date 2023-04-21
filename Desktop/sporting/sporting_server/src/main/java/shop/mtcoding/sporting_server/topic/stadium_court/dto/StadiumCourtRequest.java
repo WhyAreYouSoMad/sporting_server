@@ -1,15 +1,16 @@
 package shop.mtcoding.sporting_server.topic.stadium_court.dto;
 
-import lombok.*;
-import shop.mtcoding.sporting_server.core.enums.ValueOfEnum;
-import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
-import shop.mtcoding.sporting_server.core.enums.field.fk_fields.SportCategoryType;
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
-
-import java.time.LocalDateTime;
 
 public class StadiumCourtRequest {
 
@@ -21,20 +22,19 @@ public class StadiumCourtRequest {
     public static class StadiumCourtInDTO {
 
         private FileInfo fileInfo;
-        private Integer courtPrice;
-        private Integer capacity;
+        private String title;
         private String content;
-        private LocalDateTime createdAt;
-        private StadiumCourtStatus status;
+        private Integer capacity;
+        private Integer courtPrice;
 
-        public StadiumCourt toEntity(Stadium stadiumPS) {
+        public StadiumCourt toEntity(Stadium stadiumPS, StadiumCourtInDTO stadiumCourtInDTO) {
             return StadiumCourt.builder()
-
                     .stadium(stadiumPS)
                     .fileInfo(fileInfo)
-                    .courtPrice(courtPrice)
-                    .capacity(capacity)
+                    .title(title)
                     .content(content)
+                    .capacity(capacity)
+                    .courtPrice(courtPrice)
                     .createdAt(LocalDateTime.now())
                     .status(StadiumCourtStatus.등록대기)
                     .build();

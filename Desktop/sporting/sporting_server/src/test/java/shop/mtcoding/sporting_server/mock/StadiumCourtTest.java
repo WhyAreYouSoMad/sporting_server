@@ -66,6 +66,7 @@ public class StadiumCourtTest {
 
                 // given
                 Long stadiumId = 1L;
+                Long id = 3L;
                 FileInfo fileInfo = new FileInfo(10L, FileInfoSource.코트사진);
                 StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO = new StadiumCourtInDTO(fileInfo, "야구장코트",
                                 "코트가좋아요", 20, 50000);
@@ -73,7 +74,7 @@ public class StadiumCourtTest {
                                 "야구장코트", "코트가좋아요", 20, 50000, LocalDateTime.now(), LocalDateTime.now(),
                                 StadiumCourtStatus.등록대기);
 
-                given(this.stadiumCourtService.save(stadiumCourtInDTO, stadiumId))
+                given(this.stadiumCourtService.save(stadiumCourtInDTO, stadiumId, id))
                                 .willReturn(stadiumCourtOutDTO);
 
                 // When
