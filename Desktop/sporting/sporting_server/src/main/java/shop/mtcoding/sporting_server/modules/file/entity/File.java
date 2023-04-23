@@ -44,16 +44,16 @@ public class File {
     @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 
-    @Comment("파일 이름")
-    @Column(name = "file_name", unique = true)
-    private String fileName;
+    // @Comment("파일 이름")
+    // @Column(name = "file_name", unique = true)
+    // private String fileName;
 
     @Comment("파일 경로")
-    @Column(name = "file_url", unique = true)
+    @Column(name = "file_url")
     private String fileUrl;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    @Comment("admin 승인관련 (ex. 승인/대기/승인불가)")
-    private FileStatus status;
+    // @Enumerated(EnumType.STRING)
+    // @Column(name = "status")
+    // @Comment("admin 승인관련 (ex. 승인/대기/승인불가)")
+    // private FileStatus status;
 }
