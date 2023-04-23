@@ -1,5 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,10 +11,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
 public class StadiumMyListOutDTO {
     private Long id;
     private String sport;
     private String name;
+    private StadiumFileResponseDTO stadiumFile;
+
+    @QueryProjection
+    public StadiumMyListOutDTO(Long id, String sport, String name, StadiumFileResponseDTO stadiumFile) {
+        this.id = id;
+        this.sport = sport;
+        this.name = name;
+        this.stadiumFile = stadiumFile;
+    }
+
 }

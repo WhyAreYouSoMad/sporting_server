@@ -28,13 +28,21 @@ public interface StadiumRepository extends JpaRepository<Stadium, Long>, Stadium
                         + "GROUP BY st.id")
         List<StadiumListOutDTO> findStadiumListBySportKeyword(@Param("sportKeyword") String sportKeyword);
 
-        @Query("SELECT new shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO(st.id, ct.sport, st.name) "
-                        + "FROM Stadium st "
-                        + "INNER JOIN st.category ct "
-                        + "WHERE ct.sport = :sportKeyword and st.companyInfo.user.id = :pricipalCompanyId "
-                        + "GROUP BY st.id")
-        List<StadiumMyListOutDTO> findStadiumMyListBySportKeyword(@Param("sportKeyword") String sportKeyword,
-                        @Param("pricipalCompanyId") Long pricipalCompanyId);
+        // @Query("SELECT new
+        // shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO(st.id,
+        // ct.sport, st.name, "
+        // + "new
+        // shop.mtcoding.sporting_server.topic.stadium.dto.StadiumFileResponseDTO(ft.id,
+        // ft.fileUrl)) "
+        // + "FROM Stadium st "
+        // + "INNER JOIN st.category ct "
+        // + "INNER JOIN File ft ON st.fileInfo.id = ft.fileInfo.id "
+        // + "WHERE ct.sport = :sportKeyword and st.companyInfo.user.id =
+        // :pricipalCompanyId "
+        // + "GROUP BY st.id")
+        // List<StadiumMyListOutDTO>
+        // findStadiumMyListBySportKeyword(@Param("sportKeyword") String sportKeyword,
+        // @Param("pricipalCompanyId") Long pricipalCompanyId);
 
         // @Query("SELECT new
         // shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO(st.id,

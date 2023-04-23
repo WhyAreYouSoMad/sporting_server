@@ -24,20 +24,20 @@ public class StadiumUpdateFomrOutDTO {
     private StadiumStatus status;
     private LocalTime startTime;
     private LocalTime endTime;
-    private StadiumFileResponseDTO courtFile;
+    private StadiumFileResponseDTO stadiumFile;
     private List<CourtResponseDTO> court;
 
     @QueryProjection
     public StadiumUpdateFomrOutDTO(Long id, String name, StadiumAddress address,
             StadiumStatus status,
-            LocalTime startTime, LocalTime endTime, StadiumFileResponseDTO courtFile) {
+            LocalTime startTime, LocalTime endTime, StadiumFileResponseDTO stadiumFile) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.status = status;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.courtFile = courtFile;
+        this.stadiumFile = stadiumFile;
     }
 
     public StadiumUpdateFomrOutDTO(List<CourtResponseDTO> court) {

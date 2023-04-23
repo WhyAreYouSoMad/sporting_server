@@ -19,9 +19,11 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.QCourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QSportCategoryDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumDetailDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumFileResponseDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumUpdateFomrOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.SportCategoryDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
 // StadiumCustomRepository 에서 생성한 인터페이스를 여기서 구현
@@ -31,6 +33,21 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 public class StadiumRepositoryImpl implements StadiumCustomRepository {
 
         private final JPAQueryFactory jpaQueryFactory;
+
+        @Override
+        public List<StadiumMyListOutDTO> findStadiumMyListBySportKeyword(String sportKeyword, Long principalCompanyId) {
+                QStadium qStadium = QStadium.stadium;
+                QFile qFile = QFile.file;
+                JPAQuery<StadiumMyListOutDTO> query = jpaQueryFactory
+                                .select(new QStadiumMyListOutDTO(qStadium.id, qStadium.category.sport, qStadium.name,
+                                                new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
+                                .from(qStadium)
+                                .leftJoin(qFile).on(qStadium.fileInfo.id.eq(qFile.fileInfo.id))
+                                .where(qStadium.category.sport.eq(sportKeyword),
+                                                qStadium.companyInfo.user.id.eq(principalCompanyId))
+                                .groupBy(qStadium.id);
+                return query.fetch();
+        }
 
         @Override
         public List<CourtResponseDTO> findCourtsByStadiumId(Long stadiumId) {
