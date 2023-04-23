@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.querydsl.core.annotations.QueryProjection;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,17 +24,20 @@ public class StadiumUpdateFomrOutDTO {
     private StadiumStatus status;
     private LocalTime startTime;
     private LocalTime endTime;
+    private StadiumFileResponseDTO courtFile;
     private List<CourtResponseDTO> court;
 
     @QueryProjection
-    public StadiumUpdateFomrOutDTO(Long id, String name, StadiumAddress address, StadiumStatus status,
-            LocalTime startTime, LocalTime endTime) {
+    public StadiumUpdateFomrOutDTO(Long id, String name, StadiumAddress address,
+            StadiumStatus status,
+            LocalTime startTime, LocalTime endTime, StadiumFileResponseDTO courtFile) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.status = status;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.courtFile = courtFile;
     }
 
     public StadiumUpdateFomrOutDTO(List<CourtResponseDTO> court) {
