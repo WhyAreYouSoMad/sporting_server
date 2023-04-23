@@ -21,14 +21,24 @@ public class CourtResponseDTO {
     private Integer courtPrice;
     private String sport;
 
+    // private String profileURL;
+    private CourtFileResponseDto courtFile;
+
     @QueryProjection
-    public CourtResponseDTO(Long id, String title, String content, Integer capacity, Integer courtPrice, String sport) {
+    public CourtResponseDTO(Long id, String title, String content, Integer capacity,
+            Integer courtPrice, String sport, CourtFileResponseDto courtFile) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.capacity = capacity;
         this.courtPrice = courtPrice;
         this.sport = sport;
+        this.courtFile = courtFile;
     }
+
+    // @QueryProjection
+    // public CourtResponseDTO(CourtFileResponseDto courtFile) {
+    // this.courtFile = courtFile;
+    // }
 
 }

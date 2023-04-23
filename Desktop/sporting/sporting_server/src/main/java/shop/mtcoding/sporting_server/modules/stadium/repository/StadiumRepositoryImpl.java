@@ -9,18 +9,18 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.modules.file.entity.QFile;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.QSportCategory;
-import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.QStadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.QStadiumCourt;
 import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.QCourtFileResponseDto;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QCourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QSportCategoryDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumCourtDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumFileResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumUpdateFomrOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.SportCategoryDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumCourtDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
@@ -35,13 +35,14 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
         @Override
         public List<CourtResponseDTO> findCourtsByStadiumId(Long stadiumId) {
                 QStadiumCourt qStadiumCourt = QStadiumCourt.stadiumCourt;
-
+                QFile qFile = QFile.file;
                 JPAQuery<CourtResponseDTO> query = jpaQueryFactory
                                 .select(new QCourtResponseDTO(qStadiumCourt.id, qStadiumCourt.title,
-                                                qStadiumCourt.content,
-                                                qStadiumCourt.capacity, qStadiumCourt.courtPrice,
-                                                qStadiumCourt.stadium.category.sport))
+                                                qStadiumCourt.content, qStadiumCourt.capacity,
+                                                qStadiumCourt.courtPrice, qStadiumCourt.stadium.category.sport,
+                                                new QCourtFileResponseDto(qFile.id, qFile.fileUrl)))
                                 .from(qStadiumCourt)
+                                .leftJoin(qFile).on(qStadiumCourt.fileInfo.id.eq(qFile.fileInfo.id))
                                 .where(qStadiumCourt.stadium.id.eq(stadiumId));
 
                 return query.fetch();
@@ -50,12 +51,14 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
         @Override
         public StadiumUpdateFomrOutDTO findByStadiumId(Long stadiumId) {
                 QStadium qStadium = QStadium.stadium;
-
+                QFile qFile = QFile.file;
                 JPAQuery<StadiumUpdateFomrOutDTO> query = jpaQueryFactory
-                                .select(new QStadiumUpdateFomrOutDTO(qStadium.id, qStadium.name,
-                                                qStadium.address, qStadium.status,
-                                                qStadium.startTime, qStadium.endTime))
+                                .select(new QStadiumUpdateFomrOutDTO(qStadium.id, qStadium.name, qStadium.address,
+                                                qStadium.status,
+                                                qStadium.startTime, qStadium.endTime,
+                                                new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
                                 .from(qStadium)
+                                .leftJoin(qFile).on(qStadium.fileInfo.id.eq(qFile.fileInfo.id))
                                 .where(qStadium.id.eq(stadiumId));
 
                 return query.fetchOne();
