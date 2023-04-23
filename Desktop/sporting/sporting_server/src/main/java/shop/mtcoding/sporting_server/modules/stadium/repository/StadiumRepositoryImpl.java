@@ -9,7 +9,8 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.modules.file.entity.QFile;
+import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
+import shop.mtcoding.sporting_server.modules.file.entity.QProfileFile;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.QSportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.QStadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.QStadiumCourt;
@@ -37,7 +38,7 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
         @Override
         public List<StadiumMyListOutDTO> findStadiumMyListBySportKeyword(String sportKeyword, Long principalCompanyId) {
                 QStadium qStadium = QStadium.stadium;
-                QFile qFile = QFile.file;
+                QProfileFile qFile = QProfileFile.profileFile;
                 JPAQuery<StadiumMyListOutDTO> query = jpaQueryFactory
                                 .select(new QStadiumMyListOutDTO(qStadium.id, qStadium.category.sport, qStadium.name,
                                                 new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
@@ -52,7 +53,7 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
         @Override
         public List<CourtResponseDTO> findCourtsByStadiumId(Long stadiumId) {
                 QStadiumCourt qStadiumCourt = QStadiumCourt.stadiumCourt;
-                QFile qFile = QFile.file;
+                QProfileFile qFile = QProfileFile.profileFile;
                 JPAQuery<CourtResponseDTO> query = jpaQueryFactory
                                 .select(new QCourtResponseDTO(qStadiumCourt.id, qStadiumCourt.title,
                                                 qStadiumCourt.content, qStadiumCourt.capacity,
@@ -68,7 +69,7 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
         @Override
         public StadiumUpdateFomrOutDTO findByStadiumId(Long stadiumId) {
                 QStadium qStadium = QStadium.stadium;
-                QFile qFile = QFile.file;
+                QProfileFile qFile = QProfileFile.profileFile;
                 JPAQuery<StadiumUpdateFomrOutDTO> query = jpaQueryFactory
                                 .select(new QStadiumUpdateFomrOutDTO(qStadium.id, qStadium.name, qStadium.address,
                                                 qStadium.status,

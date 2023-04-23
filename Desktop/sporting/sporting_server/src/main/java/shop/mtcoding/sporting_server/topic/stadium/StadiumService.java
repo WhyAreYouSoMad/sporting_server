@@ -56,7 +56,7 @@ public class StadiumService {
 
     public List<StadiumListOutDTO> findKeywordList(String keyword) {
         List<StadiumListOutDTO> stadiumListOut = stadiumRepository.findStadiumListBySportKeyword(keyword);
-
+        System.out.println("테스트 : " + stadiumListOut.size());
         return stadiumListOut;
     }
 
