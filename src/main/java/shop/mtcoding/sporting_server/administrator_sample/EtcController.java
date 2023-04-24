@@ -53,7 +53,7 @@ public class EtcController {
         }
 
         int nowPage = users.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(nowPage - 4, 1); // 버튼에서 첫 숫자
+        int startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
         int endPage = Math.min(nowPage + 5, users.getTotalPages()); // 버튼에서 마지막 숫자
 
         model.addAttribute("userList", users.getContent());

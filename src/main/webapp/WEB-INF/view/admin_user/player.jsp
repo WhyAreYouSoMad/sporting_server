@@ -62,10 +62,9 @@
 
                             <c:forEach var="num" begin="${startPage}" end="${endPage}">
 
-
-                                <li class='page-item'><a class='page-link'
-                                        href="/admin/user/player?page=${num-1}&keyword=${keyword}">${num}</a></li>
-
+                            <li class="page-item ${num == nowPage ? 'active' : ''}">
+                                <a class="page-link" href="/admin/user/player?page=${num-1}&keyword=${keyword}">${num}</a>
+                            </li>
                             </c:forEach>
 
                             <li class='page-item ${nowPage == totalPage ? "disabled" : ""}'><a class="page-link"
