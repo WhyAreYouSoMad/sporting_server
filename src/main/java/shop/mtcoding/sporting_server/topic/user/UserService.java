@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
-import shop.mtcoding.sporting_server.core.exception.Exception403;
+import shop.mtcoding.sporting_server.core.exception.Exception500;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
@@ -37,9 +37,9 @@ public class UserService {
                 String jwt = MyJwtProvider.create(userPS); // 토큰 생성1
                 return jwt;
             }
-            throw new RuntimeException("패스워드 틀렸어");
+            throw new Exception500("패스워드 틀렸어");
         } else {
-            throw new RuntimeException("유저네임 없어");
+            throw new Exception500("유저네임 없어");
         }
     }
 

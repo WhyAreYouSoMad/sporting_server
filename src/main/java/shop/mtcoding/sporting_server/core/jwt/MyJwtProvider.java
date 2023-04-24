@@ -16,7 +16,7 @@ public class MyJwtProvider {
     private static final int EXP = 1000 * 60 * 60;
     public static final String TOKEN_PREFIX = "Bearer "; // 스페이스 필요함
     public static final String HEADER = "Authorization";
-    private static final String SECRET = System.getenv("HS512_SECRET");
+    private static final String SECRET = "metacoding";
 
     public static String create(User user) {
         String jwt = JWT.create()
