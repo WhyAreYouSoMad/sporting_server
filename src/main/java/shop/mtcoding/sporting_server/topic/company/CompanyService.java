@@ -48,7 +48,7 @@ public class CompanyService {
 
     public CompanyUpdateFormOutDTO getUpdateForm(Long id) {
 
-        User user = userRepository.findById(id).orElseThrow(() -> {
+        userRepository.findById(id).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 유저 입니다");
         });
 

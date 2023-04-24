@@ -44,16 +44,11 @@ public class UserService {
     }
 
     @Transactional
-    public UserDetailOutDto getUser(Long userId, Authentication authentication) {
+    public UserDetailOutDto getUser(Authentication authentication) {
         Long loggedInUserId = ((MyUserDetails) authentication.getPrincipal()).getId();
-
-        User userPS = userRepository.findById(userId).orElseThrow(() -> {
+        User userPS = userRepository.findById(loggedInUserId).orElseThrow(() -> {
             throw new Exception400("해당 유저가 없습니다");
         });
-
-        if (!userId.equals(loggedInUserId)) {
-            throw new Exception403("권한이 없습니다");
-        }
         UserResponse.UserDetailOutDto userDetailOutDto = new UserDetailOutDto(userPS);
         return userDetailOutDto;
     }
