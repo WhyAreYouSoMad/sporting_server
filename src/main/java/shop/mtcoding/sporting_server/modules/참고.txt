@@ -1,0 +1,7 @@
+1. xxToOne에 LAZY 명시 이유
+ex) @Comment("유저 테이블")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "thumbnail_file" )
+    private File thumbnailFile;
+- xxtoOne 기본 default EAGER -> 연관된 것 다 엮여서 select 됨 
+(연관된 것은 당장 필요하지 않을 경우가 많으므로 부하 ↑)
