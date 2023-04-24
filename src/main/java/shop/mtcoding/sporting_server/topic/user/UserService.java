@@ -37,9 +37,9 @@ public class UserService {
                 String jwt = MyJwtProvider.create(userPS); // 토큰 생성1
                 return jwt;
             }
-            throw new Exception500("패스워드 틀렸어");
+            throw new Exception400("패스워드 틀렸어");
         } else {
-            throw new Exception500("유저네임 없어");
+            throw new Exception400("유저네임 없어");
         }
     }
 
