@@ -42,9 +42,9 @@ public class UserController {
         return ResponseEntity.ok().body(id + " : " + role);
     }
 
-    @GetMapping("/a/user/{id}")
-    public ResponseEntity<?> userDetail(@PathVariable Long id, Authentication authentication) {
-        UserResponse.UserDetailOutDto userDetailOutDto = userService.getUser(id, authentication);
+    @GetMapping("/a/user")
+    public ResponseEntity<?> userDetail(Authentication authentication) {
+        UserResponse.UserDetailOutDto userDetailOutDto = userService.getUser(authentication);
         return ResponseEntity.ok().body(new ResponseDto<>().data(userDetailOutDto));
     }
 }

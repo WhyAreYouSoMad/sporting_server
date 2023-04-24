@@ -113,12 +113,12 @@ public class PlayerMockTest {
                                 PlayerInfoAddress.부산시);
                 playerUpdateFormOutDTO.setPlayerInfo(playerInfoResponseDTO);
 
-                given(this.playerService.getUpdateForm(userId, userId))
+                given(this.playerService.getUpdateForm(userId))
                                 .willReturn(playerUpdateFormOutDTO);
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/user/updateform/" + userId)
+                                get("/api/user/updateform")
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();

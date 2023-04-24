@@ -68,10 +68,10 @@ public class UserTest {
                 userDetailOutDto.setId(userId);
                 userDetailOutDto.setNickname("ssar");
                 userDetailOutDto.setRole("PLAYER");
-                given(userService.getUser(eq(userId), any())).willReturn(userDetailOutDto);
+                given(userService.getUser(any())).willReturn(userDetailOutDto);
 
                 // When
-                ResultActions resultActions = mvc.perform(get("/api/a/user/{id}", userId)
+                ResultActions resultActions = mvc.perform(get("/api/a/user")
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON_VALUE));
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();

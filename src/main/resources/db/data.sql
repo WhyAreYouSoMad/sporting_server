@@ -58,7 +58,7 @@ VALUES (1, 'ssar123', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB
 
 INSERT INTO player_info_tb(id, user_id, gender, age, address, tel, file_info_id, updated_at) 
 VALUES (1, 1, '남자', 'AGE_20', '부산시','010-1001-1111', 1, now()),  
-       (2, 2, '', '', '','', 2, now()); 
+       (2, 2, '남자', 'AGE_20', '부산시','100-555-5555', 2, now()); 
 
 INSERT INTO company_info_tb(id, user_id, business_number, business_address, tel, ceo, file_info_id, updated_at) 
 VALUES (1, 3, '111-11-11111', '부산시 연제구', '010-1001-2222', '', 3, now()), -- view에 ceo이름 없는상태

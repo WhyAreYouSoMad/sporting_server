@@ -53,17 +53,14 @@ public class PlayerService {
         return new PlayerResponse.JoinOutDto(userPS);
     }
 
-    public PlayerUpdateFormOutDTO getUpdateForm(Long id, Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> {
+    @Transactional
+    public PlayerUpdateFormOutDTO getUpdateForm(Long id) {
+        userRepository.findById(id).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 유저 입니다");
         });
-        if (!user.getId().equals(id)) {
-            throw new Exception403("수정 권한이 없습니다");
-        }
-
-        PlayerUpdateFormOutDTO playerUpdateFormOutDTO = userRepository.findByUserId(userId);
-        playerUpdateFormOutDTO.setPlayerInfo(playerInfoRepository.findplayerInfoByuserId(userId));
-        playerUpdateFormOutDTO.setPlayerFavoriteSport(playerFavoriteSportRepository.findSportByuserId(userId));
+        PlayerUpdateFormOutDTO playerUpdateFormOutDTO = userRepository.findByUserId(id);
+        playerUpdateFormOutDTO.setPlayerInfo(playerInfoRepository.findplayerInfoByuserId(id));
+        playerUpdateFormOutDTO.setPlayerFavoriteSport(playerFavoriteSportRepository.findSportByuserId(id));
         return playerUpdateFormOutDTO;
     }
 
