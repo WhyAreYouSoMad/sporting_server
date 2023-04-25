@@ -95,7 +95,29 @@ public class EtcController {
     }
 
     @GetMapping("/admin/user/wait")
-    public String user_wait() {
+    public String user_wait(
+            String keyword,
+            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            Model model) {
+
+        Page<User> users;
+        if (keyword != null && !keyword.isEmpty()) {
+            users = userService.getUserListByEmailContaining(keyword, pageable);
+        } else {
+            users = userService.getWaitUserList(pageable);
+        }
+
+        int nowPage = users.getPageable().getPageNumber() + 1;
+        int startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
+        int endPage = Math.min(nowPage + 5, users.getTotalPages()); // 버튼에서 마지막 숫자
+
+        model.addAttribute("userList", users.getContent());
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPage", users.getTotalPages());
+        model.addAttribute("keyword", keyword);
+
         return "/admin_user/wait";
     }
 

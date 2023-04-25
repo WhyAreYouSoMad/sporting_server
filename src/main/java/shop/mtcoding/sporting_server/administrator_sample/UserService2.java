@@ -46,6 +46,15 @@ public class UserService2 {
         return userRepository.findAll(example, pageable);
     }
 
+    public Page<User> getWaitUserList(Pageable pageable) {
+        User user = new User();
+        user.setRole("COMPANY");
+        user.setStatus(UserStatus.인증대기);
+        Example<User> example = Example.of(user);
+
+        return userRepository.findAll(example, pageable);
+    }
+
     public Page<User> getUserListByEmailContaining(String email, Pageable pageable) {
         return userRepository.findByEmailContaining(email, pageable);
     }
