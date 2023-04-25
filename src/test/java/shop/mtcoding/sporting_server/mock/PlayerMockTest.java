@@ -69,7 +69,7 @@ public class PlayerMockTest {
                 // Given
                 PlayerRequest.JoinInDTO joinInDTO = new PlayerRequest.JoinInDTO();
                 PlayerResponse.JoinOutDto joinOutDto = new PlayerResponse.JoinOutDto(1L, "ssar@nate.com",
-                                "USER",
+                                "USER", "일반회원",
                                 "22:00");
 
                 given(this.playerService.회원가입(joinInDTO)).willReturn(joinOutDto);

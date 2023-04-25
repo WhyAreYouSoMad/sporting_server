@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class CompanyTest {
                 // given
                 CompanyRequest.JoinInDTO joinInDTO = new CompanyRequest.JoinInDTO();
                 CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "1234", "sdif@sdflk.dsf",
-                                "컴퍼니");
+                                "인증대기", "ddd");
                 given(this.companyService.회원가입(joinInDTO)).willReturn(joinOutDTO);
 
                 // When

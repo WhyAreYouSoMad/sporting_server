@@ -146,7 +146,7 @@ public class CourtPaymentRepositoryTest {
         PlayerInfo playerInfo = new PlayerInfo();
 
         playerInfo.setUser(setUpUser("ssar", "ssar@naver.com", "1234", "role", LocalDateTime.now(), LocalDateTime.now(),
-                UserStatus.인증완료));
+                UserStatus.일반회원));
 
         playerInfo.setGender(gender);
         playerInfo.setAge(age);
@@ -162,7 +162,7 @@ public class CourtPaymentRepositoryTest {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setUser(setUpUser2("NAVER", "naver@naver.com", "1234", "role", LocalDateTime.now(),
-                LocalDateTime.now(), UserStatus.인증완료));
+                LocalDateTime.now(), UserStatus.기업회원));
 
         companyInfo.setBusinessNumber(businessNumber);
         companyInfo.setBusinessAdress(businessAdress);

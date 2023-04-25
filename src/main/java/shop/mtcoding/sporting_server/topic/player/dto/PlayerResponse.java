@@ -19,12 +19,14 @@ public class PlayerResponse {
         private Long id;
         private String email;
         private String role;
+        private String status;
         private String createdAt;
 
         public JoinOutDto(User user) {
             this.id = user.getId();
             this.email = user.getEmail();
             this.role = user.getRole();
+            this.status = user.getStatus().toString();
             this.createdAt = MyDateUtils.toStringFormat(user.getCreatedAt());
         }
     }
