@@ -21,13 +21,13 @@ public class StadiumCourtRequest {
     @EqualsAndHashCode
     public static class StadiumCourtInDTO {
 
-        private FileInfo fileInfo;
+        private String courtProfile;
         private String title;
         private String content;
         private Integer capacity;
         private Integer courtPrice;
 
-        public StadiumCourt toEntity(Stadium stadiumPS, StadiumCourtInDTO stadiumCourtInDTO) {
+        public StadiumCourt toEntity(Stadium stadiumPS, StadiumCourtInDTO stadiumCourtInDTO, FileInfo fileInfo) {
             return StadiumCourt.builder()
                     .stadium(stadiumPS)
                     .fileInfo(fileInfo)

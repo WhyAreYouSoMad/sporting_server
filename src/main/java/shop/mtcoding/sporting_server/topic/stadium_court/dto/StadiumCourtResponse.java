@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
-import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
+import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 
 public class StadiumCourtResponse {
@@ -22,7 +22,7 @@ public class StadiumCourtResponse {
 
         private Long stadiumId;
         private Long id;
-        private FileInfo fileInfo;
+        private CourtFileDto courtFile = new CourtFileDto();
         private String title;
         private String content;
         private Integer capacity;
@@ -30,10 +30,11 @@ public class StadiumCourtResponse {
         private LocalDateTime createdAt;
         private StadiumCourtStatus status;
 
-        public StadiumCourtOutDTO(StadiumCourt stadiumCourt) {
+        public StadiumCourtOutDTO(StadiumCourt stadiumCourt, ProfileFile profileFile) {
             this.stadiumId = stadiumCourt.getStadium().getId();
             this.id = stadiumCourt.getId();
-            this.fileInfo = stadiumCourt.getFileInfo();
+            this.courtFile.setId(profileFile.getId());
+            this.courtFile.setFileUrl(profileFile.getFileUrl());
             this.title = stadiumCourt.getTitle();
             this.content = stadiumCourt.getContent();
             this.capacity = stadiumCourt.getCapacity();
@@ -42,5 +43,14 @@ public class StadiumCourtResponse {
             this.status = stadiumCourt.getStatus();
         }
 
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class CourtFileDto {
+            private Long id;
+            private String fileUrl;
+        }
     }
 }
