@@ -1,6 +1,5 @@
 package shop.mtcoding.sporting_server.topic.company.dto;
 
-
 import lombok.*;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
@@ -22,6 +21,7 @@ public class CompanyRequest {
 
         public User toEntity() {
             return User.builder()
+                    .nickname(email)
                     .password(password)
                     .email(email)
                     .role(role)

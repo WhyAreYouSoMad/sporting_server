@@ -37,6 +37,7 @@ public class UserResponse {
     @EqualsAndHashCode
     public static class LoginOutDto {
         private Long id;
+        private String nickname;
         private String role;
     }
 }

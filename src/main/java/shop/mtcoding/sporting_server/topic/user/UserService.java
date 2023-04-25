@@ -41,6 +41,7 @@ public class UserService {
                 String jwt = MyJwtProvider.create(userPS); // 토큰 생성1
                 loginOutList.add(jwt);
                 loginOutList.add(userPS.getId());
+                loginOutList.add(userPS.getNickname());
                 loginOutList.add(userPS.getRole());
                 return loginOutList;
 
