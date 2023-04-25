@@ -107,7 +107,7 @@ public class CourtReservationRepositoryTest {
         CourtReservation courtReservation = new CourtReservation();
 
         courtReservation.setUser(setUpUser("ssar", "ssar@naver.com", "1234", "role", LocalDateTime.now(),
-                LocalDateTime.now(), UserStatus.인증완료));
+                LocalDateTime.now(), UserStatus.일반회원));
 
         courtReservation.setCourtPayment(stadiumPayment);
         courtReservation.setReservationDate(reservationDate);

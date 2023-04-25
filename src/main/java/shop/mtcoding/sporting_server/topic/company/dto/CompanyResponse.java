@@ -18,6 +18,7 @@ public class CompanyResponse {
         private Long id;
         private String email;
         private String role;
+        private String status;
         private String createdAt; // 포맷해서 던짐 (util)
 
         public JoinDTO(User user) {
@@ -25,6 +26,7 @@ public class CompanyResponse {
             this.email = user.getEmail();
             this.role = user.getRole();
             this.createdAt = MyDateUtils.toStringFormat(user.getCreatedAt());
+            this.status = user.getStatus().toString();
         }
     }
 }

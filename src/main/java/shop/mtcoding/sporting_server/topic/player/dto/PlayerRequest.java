@@ -25,7 +25,7 @@ public class PlayerRequest {
                     .password(password)
                     .email(email)
                     .role(role)
-                    .status(UserStatus.인증대기)
+                    .status(UserStatus.일반회원)
                     .createdAt(LocalDateTime.now())
                     .build();
         }
