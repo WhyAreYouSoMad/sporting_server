@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,13 +28,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
-import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
-import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumController;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumService;
 import shop.mtcoding.sporting_server.topic.stadium.dto.SportCategoryDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumCourtDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumFileResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumRegistrationInDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse;
@@ -107,8 +103,9 @@ public class StadiumPlayerTest {
                 // given
                 Long stadiumId = 1L;
 
-                StadiumDetailDTO stadiumDetailDTO = new StadiumDetailDTO(LocalTime.of(9, 0), LocalTime.of(18, 0),
-                                "a 야구장", 35.1846, 128.9863, StadiumAddress.부산시);
+                StadiumDetailOutDTO stadiumDetailDTO = new StadiumDetailOutDTO(LocalTime.of(9, 0), LocalTime.of(18, 0),
+                                "a 야구장", 35.1846, 128.9863, StadiumAddress.부산시,
+                                new StadiumFileResponseDTO(1L, "경기장 URL"));
                 SportCategoryDTO category = new SportCategoryDTO(1L, "야구");
 
                 given(this.stadiumService.detail(stadiumId))

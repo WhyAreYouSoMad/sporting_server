@@ -15,7 +15,7 @@ import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class StadiumDetailDTO {
+public class StadiumDetailOutDTO {
 
     private LocalTime startTime;
     private LocalTime endTime;
@@ -24,30 +24,27 @@ public class StadiumDetailDTO {
     private Double lon;
     private StadiumAddress address;
     private SportCategoryDTO category;
+    private StadiumFileResponseDTO stadiumFile;
     private List<StadiumCourtDTO> stadiumCourt;
-    private FileInfoResponseDTO fileInfo;
 
-    public StadiumDetailDTO(FileInfoResponseDTO fileInfo) {
-        this.fileInfo = fileInfo;
-    }
-
-    public StadiumDetailDTO(List<StadiumCourtDTO> stadiumCourt) {
+    public StadiumDetailOutDTO(List<StadiumCourtDTO> stadiumCourt) {
         this.stadiumCourt = stadiumCourt;
     }
 
-    public StadiumDetailDTO(SportCategoryDTO category) {
+    public StadiumDetailOutDTO(SportCategoryDTO category) {
         this.category = category;
     }
 
     @QueryProjection
-    public StadiumDetailDTO(LocalTime startTime, LocalTime endTime, String name, Double lat, Double lon,
-            StadiumAddress address) {
+    public StadiumDetailOutDTO(LocalTime startTime, LocalTime endTime, String name, Double lat, Double lon,
+            StadiumAddress address, StadiumFileResponseDTO stadiumFile) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
         this.lat = lat;
         this.lon = lon;
         this.address = address;
+        this.stadiumFile = stadiumFile;
     }
 
 }

@@ -18,17 +18,16 @@ public class StadiumCourtDTO {
     private String content;
     private Integer capacity;
     private Integer courtPrice;
-
-    private FileInfo fileInfo;
+    private CourtFileResponseDto courtFile;
 
     @QueryProjection
     public StadiumCourtDTO(Long id, String title, String content, Integer capacity, Integer courtPrice,
-            FileInfo fileInfo) {
+            CourtFileResponseDto courtFile) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.capacity = capacity;
         this.courtPrice = courtPrice;
-        this.fileInfo = fileInfo;
+        this.courtFile = courtFile;
     }
 }

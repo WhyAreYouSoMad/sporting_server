@@ -9,7 +9,6 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.file.entity.QProfileFile;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.QSportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.QStadium;
@@ -18,12 +17,12 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QCourtFileResponseDto;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QCourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QSportCategoryDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumDetailOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumFileResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.QStadiumUpdateFomrOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.SportCategoryDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
@@ -83,13 +82,15 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
         }
 
         @Override
-        public StadiumDetailDTO findByStadiumId2(Long id) {
+        public StadiumDetailOutDTO findByStadiumId2(Long id) {
                 QStadium qStadium = QStadium.stadium;
-
-                JPAQuery<StadiumDetailDTO> query = jpaQueryFactory
-                                .select(new QStadiumDetailDTO(qStadium.startTime, qStadium.endTime, qStadium.name,
-                                                qStadium.lat, qStadium.lon, qStadium.address))
+                QProfileFile qFile = QProfileFile.profileFile;
+                JPAQuery<StadiumDetailOutDTO> query = jpaQueryFactory
+                                .select(new QStadiumDetailOutDTO(qStadium.startTime, qStadium.endTime, qStadium.name,
+                                                qStadium.lat, qStadium.lon, qStadium.address,
+                                                new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
                                 .from(qStadium)
+                                .leftJoin(qFile).on(qStadium.fileInfo.id.eq(qFile.fileInfo.id))
                                 .where(qStadium.id.eq(id));
 
                 return query.fetchOne();
