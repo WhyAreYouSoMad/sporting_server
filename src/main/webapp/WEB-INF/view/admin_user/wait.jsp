@@ -43,7 +43,7 @@
                             <tr class="my-text-align">
                                 <td class="text-center">${user.id}</td>
                                 <td>${user.email}</td>
-                                <td>${user.nickname == null ? user.email : user.nickname}</td>
+                                <td>${user.nickname}</td>
                                 <td class="text-center">${user.createdAt}</td>
                                 <td><button onclick="" class="btn-xs">승인</button></td>
                             </tr>
