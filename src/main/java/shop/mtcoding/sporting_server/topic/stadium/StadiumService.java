@@ -6,10 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.exception.Exception403;
+import shop.mtcoding.sporting_server.core.util.S3Utils;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
+import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
+import shop.mtcoding.sporting_server.modules.file.repository.ProfileFileRepository;
+import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.fileinfo.repository.FileInfoRepository;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.sport_category.repository.SportCategoryRepository;
@@ -33,7 +38,9 @@ public class StadiumService {
     private final SportCategoryRepository sportCategoryRepository;
     private final StadiumCourtRepository stadiumCourtRepository;
     private final FileInfoRepository fileInfoRepository;
+    private final ProfileFileRepository profileFileRepository;
 
+    @Transactional
     public StadiumRegistrationOutDTO save(Long id, StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO) {
 
         CompanyInfo companyInfoPS = companyInfoRepository.findByUserId(id).orElseThrow(() -> {
@@ -47,6 +54,19 @@ public class StadiumService {
 
         Stadium stadiumPS = stadiumRepository
                 .save(stadiumRegistrationInDTO.toEntity(companyInfoPS, stadiumRegistrationInDTO, sportCategoryPS));
+
+        String sport = stadiumPS.getCategory().getSport();
+        FileInfo fileInfo;
+        ProfileFile profileFile;
+
+        fileInfo = FileInfo.builder().type(FileInfoSource.경기장사진).build();
+        fileInfoRepository.save(fileInfo);
+        profileFile = ProfileFile.builder().fileInfo(fileInfo)
+                .fileUrl(S3Utils.chooseStadiumUrl(sport))
+                .build();
+        profileFileRepository.save(profileFile);
+
+        stadiumPS.setFileInfo(fileInfo);
 
         return new StadiumRegistrationOutDTO(stadiumPS);
     }

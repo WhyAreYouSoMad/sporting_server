@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +43,7 @@ public class StadiumRequest {
                     .status(StadiumStatus.운영중)
                     .startTime(LocalTime.of(9, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .createdAt(LocalDateTime.now())
                     .build();
         }
     }
