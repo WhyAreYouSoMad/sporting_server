@@ -31,8 +31,8 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO loginDTO) {
         ArrayList loginOutList = userService.로그인(loginDTO);
         String jwt = (String) loginOutList.get(0);
-        UserResponse.LoginOutDto loginOutDto = new LoginOutDto((Long) loginOutList.get(1),
-                (String) loginOutList.get(2));
+        UserResponse.LoginOutDto loginOutDto = new LoginOutDto((Long) loginOutList.get(1), (String) loginOutList.get(2),
+                (String) loginOutList.get(3));
 
         // userdetailsService 활용하지 않은 코드
         return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt)
@@ -42,6 +42,7 @@ public class UserController {
     @GetMapping("/a")
     public ResponseEntity<?> userCheck(@AuthenticationPrincipal MyUserDetails myUserDetails) {
         UserResponse.LoginOutDto loginOutDto = new LoginOutDto(myUserDetails.getUser().getId(),
+                myUserDetails.getUser().getNickname(),
                 myUserDetails.getUser().getRole());
         return ResponseEntity.ok().body(new ResponseDto<>().data(loginOutDto));
     }

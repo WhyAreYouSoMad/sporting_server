@@ -12,15 +12,16 @@ import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 public class MyLoginUser {
     private Long id;
     private String role;
-    private String username;
+    private String nickname;
     private String email;
     private String password;
     private UserStatus status;
 
     @Builder
-    public MyLoginUser(Long id, String role, String email) {
+    public MyLoginUser(Long id, String role, String email, String nickname) {
         this.id = id;
         this.role = role;
         this.email = email;
+        this.nickname = nickname;
     }
 }

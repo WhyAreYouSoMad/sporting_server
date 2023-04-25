@@ -14,14 +14,13 @@ public class PlayerRequest {
     @EqualsAndHashCode
     public static class JoinInDTO {
 
-        private String nickname;
         private String password;
         private String email;
         private String role;
 
         public User toEntity() {
             return User.builder()
-                    .nickname(nickname)
+                    .nickname(email)
                     .password(password)
                     .email(email)
                     .role(role)
