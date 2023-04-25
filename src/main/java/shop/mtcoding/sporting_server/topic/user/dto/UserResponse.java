@@ -21,11 +21,7 @@ public class UserResponse {
 
         public UserDetailOutDto(User user) {
             this.id = user.getId();
-            if (user.getNickname() != null) {
-                this.nickname = user.getNickname();
-            } else {
-                this.nickname = user.getEmail();
-            }
+            this.nickname = user.getNickname();
             this.role = user.getRole();
         }
     }
