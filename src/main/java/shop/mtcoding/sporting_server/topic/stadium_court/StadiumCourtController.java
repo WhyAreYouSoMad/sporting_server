@@ -1,5 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium_court;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,8 @@ public class StadiumCourtController {
 
     @PostMapping("/company/stadiums/court/{stadiumId}")
     public ResponseEntity<?> save(@RequestBody @Valid StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO,
-            @AuthenticationPrincipal MyUserDetails myUserDetails, Stadium stadiumPS, @PathVariable Long stadiumId) {
+            @AuthenticationPrincipal MyUserDetails myUserDetails, Stadium stadiumPS, @PathVariable Long stadiumId)
+            throws IOException {
 
         StadiumCourtOutDTO stadiumCourtOutDTO = stadiumCourtService.save(stadiumCourtInDTO,
                 stadiumId, myUserDetails.getUser().getId());
