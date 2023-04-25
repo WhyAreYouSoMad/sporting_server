@@ -50,11 +50,7 @@ public class StadiumController {
     @PutMapping("/stadiums")
     public ResponseEntity<?> update(
             @RequestBody @Valid StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO,
-            BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails)
-            throws JsonProcessingException {
-
-        ObjectMapper om = new ObjectMapper();
-        System.out.println("테스트 : " + om.writeValueAsString(stadiumUpdateInDTO));
+            BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails) {
 
         return ResponseEntity.ok().body(new ResponseDto<>());
     }

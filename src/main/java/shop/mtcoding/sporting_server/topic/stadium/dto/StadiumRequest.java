@@ -56,11 +56,14 @@ public class StadiumRequest {
     @EqualsAndHashCode
     public static class StadiumUpdateInDTO {
         private String id;
+        @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시 등으로 입력)")
         private String address;
+        @ValueOfEnum(enumClass = StadiumStatus.class, message = "status 값 이상 (운영중, 휴업, 등록대기, 폐업으로 입력)")
         private String status;
         private String startTime;
         private String endTime;
-        private String sport;
+        @ValueOfEnum(enumClass = SportCategoryType.class, message = "스포츠 카테고리 값 이상 (야구, 축구, 배구 등으로 입력)")
+        private String category;
         private StadiumFileDTO stadiumFile;
         private List<CourtDTO> courtList;
 
