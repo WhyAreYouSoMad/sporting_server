@@ -10,9 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
@@ -41,6 +45,18 @@ public class StadiumController {
                 stadiumRegistrationInDTO);
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumRegistrationOutDTO));
+    }
+
+    @PutMapping("/stadiums")
+    public ResponseEntity<?> update(
+            @RequestBody @Valid StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO,
+            BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails)
+            throws JsonProcessingException {
+
+        ObjectMapper om = new ObjectMapper();
+        System.out.println("테스트 : " + om.writeValueAsString(stadiumUpdateInDTO));
+
+        return ResponseEntity.ok().body(new ResponseDto<>());
     }
 
     @GetMapping("/user/stadiums")

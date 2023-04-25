@@ -2,6 +2,7 @@ package shop.mtcoding.sporting_server.topic.stadium.dto;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -45,6 +46,56 @@ public class StadiumRequest {
                     .endTime(LocalTime.of(18, 0))
                     .createdAt(LocalDateTime.now())
                     .build();
+        }
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @EqualsAndHashCode
+    public static class StadiumUpdateInDTO {
+        private String id;
+        private String address;
+        private String status;
+        private String startTime;
+        private String endTime;
+        private String sport;
+        private StadiumFileDTO stadiumFile;
+        private List<CourtDTO> courtList;
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class StadiumFileDTO {
+            private String id;
+            private String fileBase64;
+        }
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class CourtDTO {
+            private String id;
+            private String title;
+            private String content;
+            private String capacity;
+            private String courtPrice;
+            private CourtFileDTO courtFile;
+
+            @Getter
+            @Setter
+            @NoArgsConstructor
+            @AllArgsConstructor
+            @EqualsAndHashCode
+            public static class CourtFileDTO {
+                private String id;
+                private String fileBase64;
+            }
         }
     }
 
