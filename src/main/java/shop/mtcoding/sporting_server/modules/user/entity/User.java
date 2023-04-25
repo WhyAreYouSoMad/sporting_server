@@ -75,7 +75,7 @@ public class User {
 
     @Builder
     public User(Long id, String nickname, @NonNull String email, @NonNull String password, @NonNull String role,
-                LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status) {
+            LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;

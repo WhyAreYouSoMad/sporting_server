@@ -45,7 +45,7 @@
                                 <td>${user.email}</td>
                                 <td>${user.nickname}</td>
                                 <td class="text-center">${user.createdAt}</td>
-                                <td><button onclick="" class="btn-xs">승인</button></td>
+                                <td><button onclick="changeStatus(${user.id})" class="btn-xs">승인</button></td>
                             </tr>
                         </c:forEach>
 
@@ -100,20 +100,36 @@
         <script>
             function searchGet() {
                 let keyword =  $("#keyword").val();
-                location.href = "/admin/user/player?page=0&keyword=" + keyword;
+                location.href = "/admin/user/wait?page=0&keyword=" + keyword;
             }
             function callPrev() {
                 let requestPage = `${nowPage-2}`;
                 let keyword = `${keyword}`
-                location.href = "/admin/user/player?page=" + requestPage+"&keyword="+keyword;
+                location.href = "/admin/user/wait?page=" + requestPage+"&keyword="+keyword;
             }
 
             function callNext() {
                 let requestPage = `${nowPage}`;
                 let keyword = `${keyword}`
-                location.href = "/admin/user/player?page=" + requestPage+"&keyword="+keyword;
+                location.href = "/admin/user/wait?page=" + requestPage+"&keyword="+keyword;
             }
 
+            function changeStatus(userId) {
+                $.ajax({
+                    url: '/admin/company/status',
+                    method: 'POST',
+                    data: { userId: userId },
+                    success: function(response) {
+                        alert('승인 완료!');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    // 에러 처리
+                    alert('승인 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
+            }
         </script>
 
         <%@ include file="../layout/footer.jsp" %>
