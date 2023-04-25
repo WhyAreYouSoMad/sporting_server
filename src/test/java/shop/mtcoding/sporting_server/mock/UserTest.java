@@ -1,22 +1,18 @@
 package shop.mtcoding.sporting_server.mock;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -29,7 +25,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
-import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.user.UserController;
 import shop.mtcoding.sporting_server.topic.user.UserService;
@@ -92,7 +87,12 @@ public class UserTest {
                 String password = "password";
                 UserRequest.LoginDTO loginDTO = new UserRequest.LoginDTO(email, password);
 
-                given(this.userService.로그인(loginDTO)).willReturn("로그인완료");
+                ArrayList loginOutList = new ArrayList();
+                loginOutList.add("1");
+                loginOutList.add(1L);
+                loginOutList.add("2");
+
+                given(this.userService.로그인(loginDTO)).willReturn(loginOutList);
 
                 ResultActions resultActions = this.mvc.perform(
                                 post("/api/login")
@@ -102,7 +102,7 @@ public class UserTest {
 
                 resultActions
                                 .andExpect(status().isOk())
-                                .andExpect(content().string("로그인완료"));
+                                .andExpect(jsonPath("$.data.role").value("2"));
 
         }
 }

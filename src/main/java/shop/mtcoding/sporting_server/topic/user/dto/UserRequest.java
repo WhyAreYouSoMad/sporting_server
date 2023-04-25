@@ -1,11 +1,13 @@
 package shop.mtcoding.sporting_server.topic.user.dto;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 public class UserRequest {
     @Getter
     @Setter
+    @EqualsAndHashCode
     public static class LoginDTO {
         private String email;
         private String password;
