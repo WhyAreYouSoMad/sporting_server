@@ -28,6 +28,15 @@ public class UserResponse {
             }
             this.role = user.getRole();
         }
+    }
 
+    @Setter
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @EqualsAndHashCode
+    public static class LoginOutDto {
+        private Long id;
+        private String role;
     }
 }

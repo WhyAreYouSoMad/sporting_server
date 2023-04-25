@@ -1,10 +1,11 @@
 package shop.mtcoding.sporting_server.topic.user;
 
+import java.util.ArrayList;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.topic.user.dto.UserRequest;
 import shop.mtcoding.sporting_server.topic.user.dto.UserResponse;
+import shop.mtcoding.sporting_server.topic.user.dto.UserResponse.LoginOutDto;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,19 +29,21 @@ public class UserController {
     @PostMapping("/login")
     // @Vaild 붙여서 처리 가능
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO loginDTO) {
-        String jwt = userService.로그인(loginDTO);
+        ArrayList loginOutList = userService.로그인(loginDTO);
+        String jwt = (String) loginOutList.get(0);
+        UserResponse.LoginOutDto loginOutDto = new LoginOutDto((Long) loginOutList.get(1),
+                (String) loginOutList.get(2));
+
         // userdetailsService 활용하지 않은 코드
-        return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt).body(new ResponseDto<>());
+        return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt)
+                .body(new ResponseDto<>().data(loginOutDto));
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<?> userCheck(@PathVariable Long id, @AuthenticationPrincipal MyUserDetails myUserDetails) {
-        Long principalId = myUserDetails.getUser().getId();
-        String role = myUserDetails.getUser().getRole();
-        if (principalId != id) {
-            return ResponseEntity.badRequest().body(" 올바른 접근이 아닙니다");
-        }
-        return ResponseEntity.ok().body(id + " : " + role);
+    @GetMapping("/a")
+    public ResponseEntity<?> userCheck(@AuthenticationPrincipal MyUserDetails myUserDetails) {
+        UserResponse.LoginOutDto loginOutDto = new LoginOutDto(myUserDetails.getUser().getId(),
+                myUserDetails.getUser().getRole());
+        return ResponseEntity.ok().body(new ResponseDto<>().data(loginOutDto));
     }
 
     @GetMapping("/a/user")

@@ -1,7 +1,9 @@
 package shop.mtcoding.sporting_server.topic.user;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
+import org.hibernate.mapping.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
-import shop.mtcoding.sporting_server.core.exception.Exception500;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
@@ -26,7 +27,10 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
-    public String 로그인(UserRequest.LoginDTO loginDTO) {
+    public ArrayList 로그인(UserRequest.LoginDTO loginDTO) {
+
+        ArrayList loginOutList = new ArrayList();
+
         Optional<User> userOP = userRepository.findByEmail(loginDTO.getEmail());
         // 로그인 유저 아이디가 있다면
         if (userOP.isPresent()) {
@@ -35,7 +39,11 @@ public class UserService {
             // 로그인 입력 값과 DB password를 비교
             if (passwordEncoder.matches(loginDTO.getPassword(), userPS.getPassword())) {
                 String jwt = MyJwtProvider.create(userPS); // 토큰 생성1
-                return jwt;
+                loginOutList.add(jwt);
+                loginOutList.add(userPS.getId());
+                loginOutList.add(userPS.getRole());
+                return loginOutList;
+
             }
             throw new Exception400("패스워드 틀렸어");
         } else {
