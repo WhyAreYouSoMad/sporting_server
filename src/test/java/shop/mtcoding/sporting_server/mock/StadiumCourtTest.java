@@ -35,6 +35,7 @@ import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtRequest
 import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtRequest.StadiumCourtInDTO;
 import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtResponse;
 import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtResponse.StadiumCourtOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium_court.dto.StadiumCourtResponse.StadiumCourtOutDTO.CourtFileDto;
 
 @WebMvcTest(StadiumCourtController.class)
 public class StadiumCourtTest {
@@ -68,9 +69,10 @@ public class StadiumCourtTest {
                 Long stadiumId = 1L;
                 Long id = 3L;
                 FileInfo fileInfo = new FileInfo(10L, FileInfoSource.코트사진);
-                StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO = new StadiumCourtInDTO(fileInfo, "야구장코트",
+                StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO = new StadiumCourtInDTO("Url", "야구장코트",
                                 "코트가좋아요", 20, 50000);
-                StadiumCourtResponse.StadiumCourtOutDTO stadiumCourtOutDTO = new StadiumCourtOutDTO(1L, 1L, fileInfo,
+                StadiumCourtResponse.StadiumCourtOutDTO stadiumCourtOutDTO = new StadiumCourtOutDTO(1L, 1L,
+                                new CourtFileDto(1L, "Url"),
                                 "야구장코트", "코트가좋아요", 20, 50000, LocalDateTime.now(), StadiumCourtStatus.등록대기);
 
                 given(this.stadiumCourtService.save(stadiumCourtInDTO, stadiumId, id))
