@@ -23,6 +23,7 @@ public class MyJwtProvider {
                 .withSubject(SUBJECT)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXP))
                 .withClaim("id", user.getId())
+                .withClaim("nickname", user.getNickname())
                 .withClaim("role", user.getRole())
                 .sign(Algorithm.HMAC512(SECRET));
         return TOKEN_PREFIX + jwt;
