@@ -40,10 +40,9 @@
                             <tr class="my-text-align">
                                 <td class="text-center">${user.id}</td>
                                 <td>${user.email}</td>
-                                <td class="text-center">${user.nickname}</td>
-                                <td>${user.createdAt}</td>
-                                <td><button onclick="" class="btn-xs">삭제</button>
-                                </td>
+                                <td>${user.nickname == null ? user.email : user.nickname}</td>
+                                <td class="text-center">${user.createdAt}</td>
+                                <td><button onclick="" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
 
