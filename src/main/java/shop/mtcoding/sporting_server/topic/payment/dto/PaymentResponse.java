@@ -15,6 +15,7 @@ public class PaymentResponse {
     @NoArgsConstructor
     @EqualsAndHashCode
     public static class FormOutDTO {
+        private Long courtId;
         private String stadiumName;
         private String courtContent;
         private LocalDate reservationDate;
@@ -23,6 +24,7 @@ public class PaymentResponse {
 
         // 결제페이지 ResponseDTO
         public FormOutDTO(StadiumCourt stadiumCourtPS, PaymentRequest.FormInDTO forInDTO) {
+            this.courtId = stadiumCourtPS.getId();
             this.stadiumName = stadiumCourtPS.getStadium().getName();
             this.courtContent = stadiumCourtPS.getContent();
             this.paymentPrice = stadiumCourtPS.getCourtPrice();

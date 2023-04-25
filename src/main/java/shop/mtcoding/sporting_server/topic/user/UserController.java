@@ -29,7 +29,7 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody UserRequest.LoginDTO loginDTO) {
         String jwt = userService.로그인(loginDTO);
         // userdetailsService 활용하지 않은 코드
-        return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt).body("로그인완료");
+        return ResponseEntity.ok().header(MyJwtProvider.HEADER, jwt).body(new ResponseDto<>());
     }
 
     @GetMapping("/user/{id}")
