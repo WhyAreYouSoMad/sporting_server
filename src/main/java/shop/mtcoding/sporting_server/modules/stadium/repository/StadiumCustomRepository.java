@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.SportCategoryDTO;
-import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
@@ -18,7 +18,7 @@ public interface StadiumCustomRepository {
 
     StadiumUpdateFomrOutDTO findByStadiumId(@Param("stadiumId") Long stadiumId);
 
-    StadiumDetailDTO findByStadiumId2(@Param("categoryId") Long categoryId);
+    StadiumDetailOutDTO findByStadiumId2(@Param("categoryId") Long categoryId);
 
     SportCategoryDTO findCategoryByStadiumId(@Param("stadiumId") Long stadiumId);
 

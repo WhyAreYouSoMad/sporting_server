@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.core.util.StadiumUtils;
-import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
@@ -73,10 +73,8 @@ public class StadiumController {
 
     @GetMapping("/user/detail/{stadiumId}")
     public ResponseEntity<?> detail(@PathVariable Long stadiumId) {
-
-        StadiumDetailDTO stadiumDetailDTO = stadiumService.detail(
+        StadiumDetailOutDTO stadiumDetailDTO = stadiumService.detail(
                 stadiumId);
-
         return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumDetailDTO));
     }
 }
