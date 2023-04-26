@@ -43,7 +43,7 @@
                                 <td>${stadium.tel}</td>
                                 <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td>
                                 <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
-                                <td><button onclick="courtDelete(${courtList.id})" class="btn-xs">삭제</button></td>
+                                <td><button onclick="stadiumDelete(${stadium.id})" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -99,5 +99,7 @@
                 let keyword = `${keyword}`
                 location.href = "/admin/stadium?page=" + requestPage+"&keyword="+keyword;
             }
+
+
         </script>
         <%@ include file="../layout/footer.jsp" %>
