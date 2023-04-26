@@ -1,7 +1,10 @@
 package shop.mtcoding.sporting_server.topic.player;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +26,7 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @PostMapping("/joinPlayer")
-    public ResponseEntity<?> join(@RequestBody PlayerRequest.JoinInDTO joinDTO) {
+    public ResponseEntity<?> join(@RequestBody @Valid PlayerRequest.JoinInDTO joinDTO, BindingResult bindingResult) {
         // select 됨
         PlayerResponse.JoinOutDto data = playerService.회원가입(joinDTO);
 
