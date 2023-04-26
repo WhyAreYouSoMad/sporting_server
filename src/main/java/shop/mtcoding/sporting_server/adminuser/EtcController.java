@@ -218,8 +218,38 @@ public class EtcController {
         }
     }
 
+    @PostMapping("/admin/court/delete")
+    public ResponseEntity<Object> courtDelete(@RequestParam("courtId") Long courtId) {
+        boolean delete = stadiumCourtService.courtDelete(courtId);
+        if (delete) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/admin/court/inactive")
-    public String court_inactive() {
+    public String court_inactive(String keyword,
+            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            Model model) {
+
+        Page<StadiumCourt> courts;
+        if (keyword != null && !keyword.isEmpty()) {
+            courts = stadiumCourtService.getCourtListByTitleContaining(keyword, pageable);
+        } else {
+            courts = stadiumCourtService.getStadiumCourtDeleteList(pageable);
+        }
+
+        int nowPage = courts.getPageable().getPageNumber() + 1;
+        int startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
+        int endPage = Math.min(nowPage + 5, courts.getTotalPages()); // 버튼에서 마지막 숫자
+
+        model.addAttribute("courtList", courts.getContent());
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPage", courts.getTotalPages());
+        model.addAttribute("keyword", keyword);
         return "/admin_court/inactive";
     }
     // ~ court 관리
