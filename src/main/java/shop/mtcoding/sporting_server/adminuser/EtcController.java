@@ -133,9 +133,9 @@ public class EtcController {
         }
     }
 
-    @PostMapping("/admin/company/delete")
-    public ResponseEntity<Object> companyDelete(@RequestParam("userId") Long userId) {
-        boolean delete = userService.companyDelete(userId);
+    @PostMapping("/admin/user/delete")
+    public ResponseEntity<Object> userDelete(@RequestParam("userId") Long userId) {
+        boolean delete = userService.userDelete(userId);
         if (delete) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

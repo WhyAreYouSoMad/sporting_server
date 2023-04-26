@@ -73,7 +73,7 @@ public class UserService2 {
         }
     }
 
-    public boolean companyDelete(Long userId) {
+    public boolean userDelete(Long userId) {
         Optional<User> User = userRepository.findById(userId);
         if (User.isPresent()) {
             User user = User.get();
