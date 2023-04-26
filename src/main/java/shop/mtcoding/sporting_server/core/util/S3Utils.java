@@ -8,12 +8,20 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
+import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
+
+@RequiredArgsConstructor
 public class S3Utils {
+
+    private final AmazonS3Client amazonS3Client;
 
     public static String chooseCourtName(String sport) {
         String fileName = "";
@@ -184,6 +192,26 @@ public class S3Utils {
 
         return storeFileName;
     };
+
+    public static Boolean updateProfileCheck_Stadium(ProfileFile stadiumProfileFilePS, String fileBase64, String bucket,
+            String staticRegion) throws IOException {
+
+        Boolean check = false;
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+        ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
+                stadiumProfileFilePS.getFileName());
+
+        long stadiumDBFileSize = objectMetadata.getContentLength();
+        MultipartFile multipartFile1 = BASE64DecodedMultipartFile
+                .convertBase64ToMultipartFile(fileBase64);
+        long stadiumDTOFileSize = multipartFile1.getSize();
+        if (stadiumDBFileSize == stadiumDTOFileSize) {
+            check = true;
+        }
+
+        return check;
+    }
 
     public static String branchFolder(String keyword, String storeFileName) {
         String key;

@@ -189,16 +189,14 @@ public class StadiumService {
                 .orElseThrow(() -> {
                     throw new Exception400("Stadium Profile File이 존재하지 않습니다.");
                 });
-        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
-        ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
-                stadiumProfileFilePS.getFileName());
 
-        long stadiumDBFileSize = objectMetadata.getContentLength();
-        MultipartFile multipartFile1 = BASE64DecodedMultipartFile
-                .convertBase64ToMultipartFile(stadiumUpdateInDTO.getStadiumFile().getFileBase64());
-        long stadiumDTOFileSize = multipartFile1.getSize();
+        // size가 다르면 false, 같으면 true
+        Boolean sizeCheck = S3Utils.updateProfileCheck_Stadium(stadiumProfileFilePS,
+                stadiumUpdateInDTO.getStadiumFile().getFileBase64(),
+                bucket, staticRegion);
 
-        if (stadiumDBFileSize != stadiumDTOFileSize) {
+        // size가 다를경우 sizeCheck = false임, !false로 아래 로직 실행
+        if (!sizeCheck) {
             MultipartFile multipartFile2 = BASE64DecodedMultipartFile
                     .convertBase64ToMultipartFile(stadiumUpdateInDTO.getStadiumFile().getFileBase64());
             List<String> nameAndUrl = S3Utils.uploadFile(multipartFile2, "Stadium", bucket, amazonS3Client);
