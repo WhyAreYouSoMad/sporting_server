@@ -41,9 +41,9 @@ public class ProfileFile {
     @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 
-    // @Comment("파일 이름")
-    // @Column(name = "file_name", unique = true)
-    // private String fileName;
+    @Comment("S3에 저장된 폴더(객체)+파일 이름")
+    @Column(name = "file_name")
+    private String fileName;
 
     @Comment("파일 경로")
     @Column(name = "file_url")
@@ -53,4 +53,5 @@ public class ProfileFile {
     // @Column(name = "status")
     // @Comment("admin 승인관련 (ex. 승인/대기/승인불가)")
     // private FileStatus status;
+
 }

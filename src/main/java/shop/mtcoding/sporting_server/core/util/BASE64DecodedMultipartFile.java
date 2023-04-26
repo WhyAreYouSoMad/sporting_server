@@ -25,7 +25,7 @@ public class BASE64DecodedMultipartFile implements MultipartFile {
             // byte[] decodedBytes = Base64.decodeBase64(base64);
 
         } catch (Exception e) {
-            throw new Exception400("코트 프로필 사진이 올바른 base64 문자열이 아닙니다.");
+            throw new Exception400("프로필 사진이 올바른 base64 문자열이 아닙니다.");
         }
         return new BASE64DecodedMultipartFile(decodedData);
     }

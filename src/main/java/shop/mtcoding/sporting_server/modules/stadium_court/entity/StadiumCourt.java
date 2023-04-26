@@ -27,6 +27,7 @@ import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumUpdateInDTO;
 
 @Getter
 @Setter
@@ -89,4 +90,11 @@ public class StadiumCourt {
     @Column(name = "status")
     private StadiumCourtStatus status;
 
+    public void dtoToEntityForCourtUpdate(StadiumUpdateInDTO.CourtDTO courtDTO) {
+        this.title = courtDTO.getTitle();
+        this.content = courtDTO.getContent();
+        this.capacity = Integer.parseInt(courtDTO.getCapacity());
+        this.courtPrice = Integer.parseInt(courtDTO.getCourtPrice());
+        this.updatedAt = LocalDateTime.now();
+    }
 }

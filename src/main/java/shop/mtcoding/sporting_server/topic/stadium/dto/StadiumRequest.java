@@ -2,6 +2,7 @@ package shop.mtcoding.sporting_server.topic.stadium.dto;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -45,6 +46,59 @@ public class StadiumRequest {
                     .endTime(LocalTime.of(18, 0))
                     .createdAt(LocalDateTime.now())
                     .build();
+        }
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @EqualsAndHashCode
+    public static class StadiumUpdateInDTO {
+        private String id;
+        @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시 등으로 입력)")
+        private String address;
+        @ValueOfEnum(enumClass = StadiumStatus.class, message = "status 값 이상 (운영중, 휴업, 등록대기, 폐업으로 입력)")
+        private String status;
+        private String startTime;
+        private String endTime;
+        @ValueOfEnum(enumClass = SportCategoryType.class, message = "스포츠 카테고리 값 이상 (야구, 축구, 배구 등으로 입력)")
+        private String category;
+        private StadiumFileDTO stadiumFile;
+        private List<CourtDTO> courtList;
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class StadiumFileDTO {
+            private String id;
+            private String fileBase64;
+        }
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class CourtDTO {
+            private String id;
+            private String title;
+            private String content;
+            private String capacity;
+            private String courtPrice;
+            private CourtFileDTO courtFile;
+
+            @Getter
+            @Setter
+            @NoArgsConstructor
+            @AllArgsConstructor
+            @EqualsAndHashCode
+            public static class CourtFileDTO {
+                private String id;
+                private String fileBase64;
+            }
         }
     }
 
