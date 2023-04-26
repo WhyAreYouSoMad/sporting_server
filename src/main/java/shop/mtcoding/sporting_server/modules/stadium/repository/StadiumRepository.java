@@ -1,15 +1,38 @@
 package shop.mtcoding.sporting_server.modules.stadium.repository;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 
 public interface StadiumRepository extends JpaRepository<Stadium, Long>, StadiumCustomRepository {
+
+        @Query("select s from Stadium s where s.name = :name")
+        Optional<Stadium> findByName(@Param("name") String name);
+
+        Page<Stadium> findByNameContaining(String keyword, Pageable pageable);
+
+        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
+                        + "FROM Stadium st "
+                        + "INNER JOIN st.category ct "
+                        + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
+                        + "WHERE st.status = '운영중'")
+        Page<AdminStadiumListOutDto> findAllForAdmin(Pageable pageable);
+
+        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
+                        + "FROM Stadium st "
+                        + "INNER JOIN st.category ct "
+                        + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
+                        + "WHERE st.status = '운영중' and st.name LIKE %:name%")
+        Page<AdminStadiumListOutDto> findAllForAdminByName(Pageable pageable, @Param("name") String name);
 
         @Query("SELECT new shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO(st.id, ct.sport, st.name, sct.courtPrice, ft.id, ft.fileUrl) "
                         + "FROM Stadium st "

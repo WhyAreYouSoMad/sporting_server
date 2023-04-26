@@ -2,6 +2,10 @@ package shop.mtcoding.sporting_server.modules.stadium.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +13,9 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
+import shop.mtcoding.sporting_server.adminuser.dto.stadium.QAdminStadiumListOutDto;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.modules.file.entity.QProfileFile;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.QSportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.QStadium;
@@ -33,6 +40,34 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 public class StadiumRepositoryImpl implements StadiumCustomRepository {
 
         private final JPAQueryFactory jpaQueryFactory;
+
+        // @Override
+        // public Page<AdminStadiumListOutDto> findAllForAdmin(Pageable pageable) {
+        // if (!(pageable instanceof PageRequest)) {
+        // pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        // }
+        // QStadium qStadium = QStadium.stadium;
+        // QSportCategory qSportCategory = QSportCategory.sportCategory;
+        // QProfileFile qFile = QProfileFile.profileFile;
+
+        // List<AdminStadiumListOutDto> content = jpaQueryFactory
+        // .select(new QAdminStadiumListOutDto(qStadium.id, qStadium.name,
+        // qSportCategory.sport, qFile.fileUrl, qStadium.createdAt))
+        // .from(qStadium)
+        // .leftJoin(qSportCategory).on(qSportCategory.id.eq(qStadium.category.id))
+        // .leftJoin(qFile).on(qFile.fileInfo.id.eq(qStadium.fileInfo.id))
+        // .where(qStadium.status.eq(StadiumStatus.운영중))
+        // .offset(pageable.getOffset())
+        // .limit(pageable.getPageSize())
+        // .fetch();
+
+        // long total = jpaQueryFactory
+        // .selectFrom(qStadium)
+        // .where(qStadium.status.eq(StadiumStatus.운영중))
+        // .fetchCount();
+
+        // return new PageImpl<>(content, pageable, total);
+        // }
 
         @Override
         public List<StadiumMyListOutDTO> findStadiumMyListBySportKeyword(String sportKeyword, Long principalCompanyId) {

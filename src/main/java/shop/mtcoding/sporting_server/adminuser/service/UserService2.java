@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.adminuser;
+package shop.mtcoding.sporting_server.adminuser.service;
 
 import java.util.Optional;
 
