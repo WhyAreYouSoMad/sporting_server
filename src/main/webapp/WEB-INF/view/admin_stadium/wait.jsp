@@ -61,7 +61,7 @@
                             <c:forEach var="num" begin="${startPage}" end="${endPage}">
 
                             <li class="page-item ${num == nowPage ? 'active' : ''}">
-                                <a class="page-link" href="/admin/stadium?page=${num-1}&keyword=${keyword}">${num}</a>
+                                <a class="page-link" href="/admin/stadium/wait?page=${num-1}&keyword=${keyword}">${num}</a>
                             </li>
                             </c:forEach>
 
@@ -89,18 +89,18 @@
                 <script>
             function searchGet() {
                 let keyword =  $("#keyword").val();
-                location.href = "/admin/stadium?page=0&keyword=" + keyword;
+                location.href = "/admin/stadium/wait?page=0&keyword=" + keyword;
             }
             function callPrev() {
                 let requestPage = `${nowPage-2}`;
                 let keyword = `${keyword}`
-                location.href = "/admin/stadium?page=" + requestPage+"&keyword="+keyword;
+                location.href = "/admin/stadium/wait?page=" + requestPage+"&keyword="+keyword;
             }
 
             function callNext() {
                 let requestPage = `${nowPage}`;
                 let keyword = `${keyword}`
-                location.href = "/admin/stadium?page=" + requestPage+"&keyword="+keyword;
+                location.href = "/admin/stadium/wait?page=" + requestPage+"&keyword="+keyword;
             }
 
 
