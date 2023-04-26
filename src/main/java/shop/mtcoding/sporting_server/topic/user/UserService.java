@@ -44,16 +44,16 @@ public class UserService {
                 loginOutList.add(userPS.getNickname());
                 loginOutList.add(userPS.getRole());
                 if (userPS.getStatus().equals(UserStatus.악질유저)) {
-                    throw new Exception400("악질유저는 로그인 할 수 없습니다");
+                    throw new Exception400("악질유저는 로그인이 불가능합니다");
                 } else if (userPS.getStatus().equals(UserStatus.인증대기)) {
-                    throw new Exception400("관리자 승인이 필요합니다");
+                    throw new Exception400("관리자의 승인이 필요합니다");
                 }
                 return loginOutList;
 
             }
-            throw new Exception400("패스워드 틀렸어");
+            throw new Exception400("패스워드가 유효하지 않습니다");
         } else {
-            throw new Exception400("유저네임 없어");
+            throw new Exception400("이메일이 유효하지 않거나 존재하지 않습니다");
         }
     }
 
