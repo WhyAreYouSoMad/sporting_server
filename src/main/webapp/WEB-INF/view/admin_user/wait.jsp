@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
     <%@ include file="../layout/header.jsp" %>
+    
 
 
 
@@ -44,7 +45,7 @@
                                 <td class="text-center">${user.id}</td>
                                 <td>${user.email}</td>
                                 <td>${user.nickname}</td>
-                                <td class="text-center">${user.createdAt}</td>
+                                <td class="text-center">${MyDateUtils.toStringFormat(user.createdAt)}</td>
                                 <td><button onclick="changeStatus(${user.id})" class="btn-xs">승인</button></td>
                             </tr>
                         </c:forEach>
