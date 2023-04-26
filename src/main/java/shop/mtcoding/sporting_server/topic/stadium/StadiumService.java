@@ -69,7 +69,9 @@ public class StadiumService {
 
         fileInfo = FileInfo.builder().type(FileInfoSource.경기장사진).build();
         fileInfoRepository.save(fileInfo);
-        profileFile = ProfileFile.builder().fileInfo(fileInfo)
+        profileFile = ProfileFile.builder()
+                .fileInfo(fileInfo)
+                .fileName(S3Utils.chooseStadiumName(sport))
                 .fileUrl(S3Utils.chooseStadiumUrl(sport))
                 .build();
         profileFileRepository.save(profileFile);

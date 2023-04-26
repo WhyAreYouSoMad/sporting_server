@@ -13,6 +13,39 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class S3Utils {
 
+    public static String chooseStadiumName(String sport) {
+        String fileName = "";
+        switch (sport) {
+            case "야구":
+                fileName = "Stadium/야구_Stadium.png";
+                break;
+            case "풋살":
+                fileName = "Stadium/풋살장_Stadium.png";
+                break;
+            case "축구":
+                fileName = "Stadium/축구_Stadium.png";
+                break;
+            case "볼링":
+                fileName = "Stadium/볼링_Stadium.png";
+                break;
+            case "배구":
+                fileName = "Stadium/배구_Stadium.png";
+                break;
+            case "탁구":
+                fileName = "Stadium/탁구_Stadium.png";
+                break;
+            case "농구":
+                fileName = "Stadium/농구_Stadium.png";
+                break;
+            case "테니스":
+                fileName = "Stadium/테니스_Stadium.png";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid keyword: " + sport);
+        }
+        return fileName;
+    }
+
     public static String chooseCourtUrl(String sport) {
         String url = "";
         switch (sport) {
