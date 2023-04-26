@@ -7,14 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.sporting_server.core.enums.role.RoleType;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
+import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest.UpdateInDTO;
 
 import java.util.Optional;
+
+import javax.persistence.EntityManager;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +59,14 @@ public class CompanyService {
         CompanyUpdateFormOutDTO companyUpdateFormOutDTO = userRepository.findByCompanyUserId(id);
         companyUpdateFormOutDTO.setCompanyInfo(companyInfoRepository.findCompanyInfoByUserId(id));
         return companyUpdateFormOutDTO;
+
+    }
+
+    public void 정보변경(Long id, UpdateInDTO updateInDTO) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            throw new Exception400("존재하지 않는 유저 입니다");
+        }
 
     }
 }

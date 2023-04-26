@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,4 +39,14 @@ public class CompanyController {
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(companyResponseOutDTO));
     }
+
+    @PutMapping("/company/update")
+    public ResponseEntity<?> updateCompany(@AuthenticationPrincipal MyUserDetails myUserDetails,
+            @RequestBody CompanyRequest.UpdateInDTO updateInDTO) {
+
+        companyService.정보변경(myUserDetails.getUser().getId(), updateInDTO);
+        // ResponseDto<?> responseDTO = new ResponseDto<>().data(data);
+        return ResponseEntity.ok().body(null);
+    }
+
 }
