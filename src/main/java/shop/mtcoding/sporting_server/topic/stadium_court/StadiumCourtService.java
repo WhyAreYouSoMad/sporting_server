@@ -1,7 +1,11 @@
 package shop.mtcoding.sporting_server.topic.stadium_court;
 
 import java.io.IOException;
+
+import java.util.List;
+
 import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Example;
@@ -59,17 +63,20 @@ public class StadiumCourtService {
 
             MultipartFile multipartFile = BASE64DecodedMultipartFile
                     .convertBase64ToMultipartFile(stadiumCourtInDTO.getCourtProfile());
-            String storeFileUrl = S3Utils.uploadFile(multipartFile, "Court", bucket, amazonS3Client);
+            List<String> nameAndUrl = S3Utils.uploadFile(multipartFile, "Court", bucket, amazonS3Client);
 
             fileInfo = FileInfo.builder().type(FileInfoSource.코트사진).build();
             fileInfoRepository.save(fileInfo);
-            profileFile = ProfileFile.builder().fileInfo(fileInfo).fileUrl(storeFileUrl).build();
+            profileFile = ProfileFile.builder().fileInfo(fileInfo).fileName(nameAndUrl.get(0))
+                    .fileUrl(nameAndUrl.get(1)).build();
             profileFileRepository.save(profileFile);
 
         } else {
             fileInfo = FileInfo.builder().type(FileInfoSource.코트사진).build();
             fileInfoRepository.save(fileInfo);
+
             profileFile = ProfileFile.builder().fileInfo(fileInfo)
+                    .fileName(S3Utils.chooseCourtName(sport))
                     .fileUrl(S3Utils.chooseCourtUrl(sport))
                     .build();
             profileFileRepository.save(profileFile);

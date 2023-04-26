@@ -1,15 +1,18 @@
 package shop.mtcoding.sporting_server.topic.stadium;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +26,7 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumUpdateOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
 @RestController
@@ -30,51 +34,71 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 @RequestMapping("/api")
 public class StadiumController {
 
-    private final StadiumService stadiumService;
+        private final StadiumService stadiumService;
+        @Value("${bucket}")
+        private String bucket;
 
-    @PostMapping("/company/stadiums")
-    public ResponseEntity<?> save(
-            @RequestBody @Valid StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO,
-            BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        @Value("${static}")
+        private String staticRegion;
 
-        StadiumRegistrationOutDTO stadiumRegistrationOutDTO = stadiumService.save(myUserDetails.getUser().getId(),
-                stadiumRegistrationInDTO);
+        @PostMapping("/company/stadiums")
+        public ResponseEntity<?> save(
+                        @RequestBody @Valid StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO,
+                        BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails) {
 
-        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumRegistrationOutDTO));
-    }
+                StadiumRegistrationOutDTO stadiumRegistrationOutDTO = stadiumService.save(
+                                myUserDetails.getUser().getId(),
+                                stadiumRegistrationInDTO);
 
-    @GetMapping("/user/stadiums")
-    public ResponseEntity<?> findAllList(String keyword) {
-        StadiumUtils.keywordValidiationCheck(keyword);
-        List<StadiumListOutDTO> stadiumListOutDTO = stadiumService.findKeywordList(keyword);
+                return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumRegistrationOutDTO));
+        }
 
-        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
-    }
+        @PutMapping("/company/stadiums")
+        public ResponseEntity<?> update(
+                        @RequestBody @Valid StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO,
+                        BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails)
+                        throws IOException {
+                System.out.println("테스트111111111111111");
+                System.out.println("테스트 11 : " + myUserDetails.getUser().getId());
+                StadiumUpdateOutDTO stadiumUpdateOutDTO = stadiumService.update(myUserDetails.getUser().getId(),
+                                stadiumUpdateInDTO);
 
-    @GetMapping("/company/mystadiums")
-    public ResponseEntity<?> findAllMyList(String keyword, @AuthenticationPrincipal MyUserDetails myUserDetails) {
-        StadiumUtils.keywordValidiationCheck(keyword);
+                return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumUpdateOutDTO));
+        }
 
-        List<StadiumMyListOutDTO> stadiumMyListOutDTO = stadiumService
-                .findKeywordMyList(myUserDetails.getUser().getId(), keyword);
+        @GetMapping("/user/stadiums")
+        public ResponseEntity<?> findAllList(String keyword) {
+                StadiumUtils.keywordValidiationCheck(keyword);
+                List<StadiumListOutDTO> stadiumListOutDTO = stadiumService.findKeywordList(keyword);
 
-        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
-    }
+                return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
+        }
 
-    @GetMapping("/company/mystadiums/updateform/{stadiumId}")
-    public ResponseEntity<?> updateForm(@PathVariable Long stadiumId,
-            @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        @GetMapping("/company/mystadiums")
+        public ResponseEntity<?> findAllMyList(String keyword, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+                StadiumUtils.keywordValidiationCheck(keyword);
 
-        StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumService.getUpdateForm(myUserDetails.getUser().getId(),
-                stadiumId);
+                List<StadiumMyListOutDTO> stadiumMyListOutDTO = stadiumService
+                                .findKeywordMyList(myUserDetails.getUser().getId(), keyword);
 
-        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumUpdateFomrOutDTO));
-    }
+                return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
+        }
 
-    @GetMapping("/user/detail/{stadiumId}")
-    public ResponseEntity<?> detail(@PathVariable Long stadiumId) {
-        StadiumDetailOutDTO stadiumDetailDTO = stadiumService.detail(
-                stadiumId);
-        return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumDetailDTO));
-    }
+        @GetMapping("/company/mystadiums/updateform/{stadiumId}")
+        public ResponseEntity<?> updateForm(@PathVariable Long stadiumId,
+                        @AuthenticationPrincipal MyUserDetails myUserDetails) {
+
+                StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumService.getUpdateForm(
+                                myUserDetails.getUser().getId(),
+                                stadiumId);
+
+                return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumUpdateFomrOutDTO));
+        }
+
+        @GetMapping("/user/detail/{stadiumId}")
+        public ResponseEntity<?> detail(@PathVariable Long stadiumId) {
+                StadiumDetailOutDTO stadiumDetailDTO = stadiumService.detail(
+                                stadiumId);
+                return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumDetailDTO));
+        }
 }

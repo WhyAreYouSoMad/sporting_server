@@ -34,6 +34,7 @@ public class StadiumCourtResponse {
             this.stadiumId = stadiumCourt.getStadium().getId();
             this.id = stadiumCourt.getId();
             this.courtFile.setId(profileFile.getId());
+            this.courtFile.setFileName(profileFile.getFileName());
             this.courtFile.setFileUrl(profileFile.getFileUrl());
             this.title = stadiumCourt.getTitle();
             this.content = stadiumCourt.getContent();
@@ -50,6 +51,7 @@ public class StadiumCourtResponse {
         @EqualsAndHashCode
         public static class CourtFileDto {
             private Long id;
+            private String fileName;
             private String fileUrl;
         }
     }
