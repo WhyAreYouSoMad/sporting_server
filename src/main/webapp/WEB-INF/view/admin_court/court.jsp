@@ -44,7 +44,7 @@
                                 <td>${courtList.courtPrice}</td>
                                 <td>${courtList.capacity}</td>
                                 <td class="text-center">${MyDateUtils.toStringFormat(courtList.createdAt)}</td>
-                                <td><button onclick="" class="btn-xs">삭제</button></td>
+                                <td><button onclick="courtDelete(${courtList.id})" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -99,6 +99,22 @@
                 location.href = "/admin/court?page=" + requestPage+"&keyword="+keyword;
             }
 
+            function courtDelete(courtId) {
+                $.ajax({
+                    url: '/admin/court/delete',
+                    method: 'POST',
+                    data: { courtId: courtId },
+                    success: function(response) {
+                        alert('내 맘에 안드는 코트 삭제!');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    // 에러 처리
+                    alert('삭제 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
+            }
         </script>
 
         <%@ include file="../layout/footer.jsp" %>

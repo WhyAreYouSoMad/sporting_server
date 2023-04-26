@@ -114,4 +114,25 @@ public class StadiumCourtService {
             return false;
         }
     }
+
+    @Transactional
+    public boolean courtDelete(Long courtId) {
+        Optional<StadiumCourt> StadiumCourt = stadiumCourtRepository.findById(courtId);
+        if (StadiumCourt.isPresent()) {
+            StadiumCourt stadiumCourt = StadiumCourt.get();
+            stadiumCourt.setStatus(StadiumCourtStatus.비활성);
+            stadiumCourtRepository.save(stadiumCourt);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Page<StadiumCourt> getStadiumCourtDeleteList(Pageable pageable) {
+        StadiumCourt stadiumCourt = new StadiumCourt();
+        stadiumCourt.setStatus(StadiumCourtStatus.비활성);
+        Example<StadiumCourt> example = Example.of(stadiumCourt);
+        return stadiumCourtRepository.findAll(example, pageable);
+    }
 }
