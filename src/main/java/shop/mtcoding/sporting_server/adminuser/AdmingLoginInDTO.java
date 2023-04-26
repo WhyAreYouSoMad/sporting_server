@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.administrator_sample;
+package shop.mtcoding.sporting_server.adminuser;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,6 @@
-package shop.mtcoding.sporting_server.administrator_sample;
+package shop.mtcoding.sporting_server.adminuser;
+
+import java.util.Optional;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -57,5 +59,29 @@ public class UserService2 {
 
     public Page<User> getUserListByEmailContaining(String email, Pageable pageable) {
         return userRepository.findByEmailContaining(email, pageable);
+    }
+
+    public boolean approveCompany(Long userId) {
+        Optional<User> User = userRepository.findById(userId);
+        if (User.isPresent()) {
+            User user = User.get();
+            user.setStatus(UserStatus.기업회원);
+            userRepository.save(user);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean userDelete(Long userId) {
+        Optional<User> User = userRepository.findById(userId);
+        if (User.isPresent()) {
+            User user = User.get();
+            user.setStatus(UserStatus.악질유저);
+            userRepository.save(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,9 +1,16 @@
 package shop.mtcoding.sporting_server.topic.stadium_court;
 
 import java.io.IOException;
+
 import java.util.List;
 
+import java.util.Optional;
+
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +19,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.util.BASE64DecodedMultipartFile;
 import shop.mtcoding.sporting_server.core.util.S3Utils;
@@ -78,5 +86,60 @@ public class StadiumCourtService {
         StadiumCourt stadiumCourtPS = stadiumCourtRepository
                 .save(stadiumCourtInDTO.toEntity(stadiumPS, stadiumCourtInDTO, fileInfo));
         return new StadiumCourtOutDTO(stadiumCourtPS, profileFile);
+    }
+
+    public Page<StadiumCourt> getStadiumCourtList(Pageable pageable) {
+        StadiumCourt stadiumCourt = new StadiumCourt();
+        stadiumCourt.setStatus(StadiumCourtStatus.등록완료);
+        Example<StadiumCourt> example = Example.of(stadiumCourt);
+
+        return stadiumCourtRepository.findAll(example, pageable);
+    }
+
+    public Page<StadiumCourt> getStadiumCourtWaitList(Pageable pageable) {
+        StadiumCourt stadiumCourt = new StadiumCourt();
+        stadiumCourt.setStatus(StadiumCourtStatus.등록대기);
+        Example<StadiumCourt> example = Example.of(stadiumCourt);
+
+        return stadiumCourtRepository.findAll(example, pageable);
+    }
+
+    public Page<StadiumCourt> getCourtListByTitleContaining(String title, Pageable pageable) {
+        return stadiumCourtRepository.findByTitleContaining(title, pageable);
+    }
+
+    @Transactional
+    public boolean approveCompany(Long courtId) {
+        Optional<StadiumCourt> StadiumCourt = stadiumCourtRepository.findById(courtId);
+        if (StadiumCourt.isPresent()) {
+            StadiumCourt stadiumCourt = StadiumCourt.get();
+            stadiumCourt.setStatus(StadiumCourtStatus.등록완료);
+            stadiumCourtRepository.save(stadiumCourt);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Transactional
+    public boolean courtDelete(Long courtId) {
+        Optional<StadiumCourt> StadiumCourt = stadiumCourtRepository.findById(courtId);
+        if (StadiumCourt.isPresent()) {
+            StadiumCourt stadiumCourt = StadiumCourt.get();
+            stadiumCourt.setStatus(StadiumCourtStatus.비활성);
+            stadiumCourtRepository.save(stadiumCourt);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Page<StadiumCourt> getStadiumCourtDeleteList(Pageable pageable) {
+        StadiumCourt stadiumCourt = new StadiumCourt();
+        stadiumCourt.setStatus(StadiumCourtStatus.비활성);
+        Example<StadiumCourt> example = Example.of(stadiumCourt);
+        return stadiumCourtRepository.findAll(example, pageable);
     }
 }
