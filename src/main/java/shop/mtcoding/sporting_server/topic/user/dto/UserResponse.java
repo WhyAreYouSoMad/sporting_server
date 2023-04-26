@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.topic.user.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,8 +36,21 @@ public class UserResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
+    @Builder
     public static class LoginOutDto {
         private Long id;
         private String role;
+    }
+
+    @Setter
+    @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @EqualsAndHashCode
+    @Builder
+    public static class TokenCheckDto {
+        private Long id;
+        private String role;
+        private String nickname;
     }
 }

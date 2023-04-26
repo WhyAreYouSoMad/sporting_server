@@ -1,12 +1,18 @@
 package shop.mtcoding.sporting_server.topic.stadium;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
+import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.exception.Exception403;
 import shop.mtcoding.sporting_server.core.util.S3Utils;
@@ -20,11 +26,13 @@ import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory
 import shop.mtcoding.sporting_server.modules.sport_category.repository.SportCategoryRepository;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
+import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumUpdateInDTO.CourtDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
@@ -112,6 +120,61 @@ public class StadiumService {
         stadiumDetailDTO.setStadiumCourt(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
 
         return stadiumDetailDTO;
+    }
+
+    @Transactional
+    public void update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO) {
+
+        Stadium stadiumPS = stadiumRepository.findById(Long.parseLong(stadiumUpdateInDTO.getId())).orElseThrow(() -> {
+            throw new Exception400("존재하지 않는 경기장입니다.");
+        });
+
+        if (stadiumPS.getCompanyInfo().getUser().getId() != userId) {
+            throw new Exception400("해당 게시물을 올린 사용자만 수정할 수 있습니다.");
+        }
+
+        List<CourtDTO> courtList = stadiumUpdateInDTO.getCourtList();
+        List<Long> courtIdList = courtList.stream()
+                .map(court -> Long.parseLong(court.getId()))
+                .collect(Collectors.toList());
+
+        // DTO에 담긴 CourtIds를 이용한 DB 조회 리스트
+        List<StadiumCourt> courtsToUpdatePS = stadiumCourtRepository.findByIdIn(courtIdList);
+        if (courtsToUpdatePS.size() != courtList.size()) {
+            throw new Exception400("존재하지 않는 Court가 요청 되었습니다.");
+
+        }
+
+        // court를 Map으로 변환(courtsToUpdatePS 영속화를 활용하기 위함)
+        Map<Long, StadiumCourt> courtMap = courtsToUpdatePS.stream()
+                .collect(Collectors.toMap(StadiumCourt::getId, Function.identity()));
+
+        List<StadiumCourt> stadiumsToUpdate = courtList.stream()
+                .map(court -> {
+                    // court: RequestDTO, courtMap value: DB에서 조회
+                    StadiumCourt stadiumCourtPS = courtMap.get(Long.parseLong(court.getId()));
+
+                    if (!stadiumCourtPS.getStadium().equals(stadiumPS)) {
+                        throw new Exception400("해당 경기장에서 관리하는 Court만 수정 가능합니다.");
+                    }
+                    // StadiumCourt update - fileUrl 제외
+                    stadiumCourtPS.dtoToEntityForCourtUpdate(court);
+                    return stadiumCourtPS;
+                })
+                .collect(Collectors.toList());
+
+        // Stadium update - fileUrl 제외
+        stadiumPS.dtoToEntityForStadiumUpdate(stadiumUpdateInDTO);
+        if (!stadiumPS.getCategory().getSport().equals(stadiumUpdateInDTO.getCategory())) {
+            SportCategory sportCategory = sportCategoryRepository.findBySport(stadiumUpdateInDTO.getCategory())
+                    .orElseThrow(() -> {
+                        throw new Exception400("해당 스포츠 카테고리가 존재하지 않습니다.");
+                    });
+            stadiumPS.setCategory(sportCategory);
+        }
+
+        // file 체킹 테스트
+
     }
 
 }
