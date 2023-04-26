@@ -66,7 +66,7 @@ public class BoardApplyRepositoryTest {
                         LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기),
                 LocalDateTime.now());
         Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
-                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.등록대기,
+                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
         User userPS = setUpUser("ssar", "ssar@naver.com", "1234", "player",
                 LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기);
@@ -119,7 +119,7 @@ public class BoardApplyRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("야구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
         Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
-                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.등록대기,
+                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
         User userPS = setUpUser("ssar1", "ssar@naver.com", "1234", "player",
                 LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기);

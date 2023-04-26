@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.adminuser.service;
+package shop.mtcoding.sporting_server.admin.stadium.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto;
 import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
 
 @Service
@@ -31,6 +31,9 @@ public class AdminStadiumService {
 
     public Page<AdminWaitStadiumListOutDto> getWaitStadiumList(Pageable pageable) {
         return stadiumRepository.findAllWaitForAdmin(pageable);
+    }
+
+    public void stadiumApprove(Long stadiumId) {
     }
 
 }

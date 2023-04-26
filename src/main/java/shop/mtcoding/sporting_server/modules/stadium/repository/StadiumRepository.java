@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 
@@ -26,26 +26,24 @@ public interface StadiumRepository extends JpaRepository<Stadium, Long>, Stadium
                         + "WHERE st.status = '운영중'")
         Page<AdminStadiumListOutDto> findAllForAdmin(Pageable pageable);
 
-        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
-                        + "FROM Stadium st "
-                        + "INNER JOIN st.category ct "
-                        + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
-                        + "WHERE st.status = '승인대기' and st.name LIKE %:name%")
-        Page<AdminWaitStadiumListOutDto> findAllWaitForAdminByName(Pageable pageable, @Param("name") String name);
-
-        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
-                        + "FROM Stadium st "
-                        + "INNER JOIN st.category ct "
-                        + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
-                        + "WHERE st.status = '승인대기'")
-        Page<AdminWaitStadiumListOutDto> findAllWaitForAdmin(Pageable pageable);
-
         @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
                         + "FROM Stadium st "
                         + "INNER JOIN st.category ct "
                         + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
                         + "WHERE st.status = '운영중' and st.name LIKE %:name%")
         Page<AdminStadiumListOutDto> findAllForAdminByName(Pageable pageable, @Param("name") String name);
+
+        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto(st.id, st.name, st.status, st.createdAt) "
+                        + "FROM Stadium st "
+                        + "INNER JOIN st.category ct "
+                        + "WHERE st.status = '승인대기' and st.name LIKE %:name%")
+        Page<AdminWaitStadiumListOutDto> findAllWaitForAdminByName(Pageable pageable, @Param("name") String name);
+
+        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto(st.id, st.name, st.status, st.createdAt) "
+                        + "FROM Stadium st "
+                        + "INNER JOIN st.category ct "
+                        + "WHERE st.status = '승인대기'")
+        Page<AdminWaitStadiumListOutDto> findAllWaitForAdmin(Pageable pageable);
 
         @Query("SELECT new shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO(st.id, ct.sport, st.name, sct.courtPrice, ft.id, ft.fileUrl) "
                         + "FROM Stadium st "

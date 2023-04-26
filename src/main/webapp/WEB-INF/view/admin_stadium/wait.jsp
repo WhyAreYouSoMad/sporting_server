@@ -34,21 +34,20 @@
                         <tr class="my-text-align">
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">경기장 이름</th>
-                            <th scope="col" class="text-center">연락처</th>
-                            <th scope="col" class="text-center">사진</th>
+                            <th scope="col" class="text-center">등록 현황</th>
                             <th scope="col" class="text-center">등록 일자</th>
                         </tr>
 
-                        <%-- <c:forEach items="${stadiumList}" var="stadium">
+                        <c:forEach items="${stadiumWaitList}" var="stadium">
                             <tr class="my-text-align">
                                 <td class="text-center">${stadium.id}</td>
                                 <td>${stadium.name}</td>
-                                <td>${stadium.tel}</td>
-                                <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td>
+                                <td>${stadium.status}</td>
+                                <%-- <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td> --%>
                                 <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
-                                <td><button onclick="stadiumDelete(${stadium.id})" class="btn-xs">삭제</button></td>
+                                <td><button onclick="stadiumApprove(${stadium.id})" class="btn-xs">승인</button></td>
                             </tr>
-                        </c:forEach> --%>
+                        </c:forEach>
                     </table>
 
 
@@ -86,7 +85,8 @@
 
         </div>
 
-                <script>
+        <script>
+
             function searchGet() {
                 let keyword =  $("#keyword").val();
                 location.href = "/admin/stadium/wait?page=0&keyword=" + keyword;
@@ -103,6 +103,21 @@
                 location.href = "/admin/stadium/wait?page=" + requestPage+"&keyword="+keyword;
             }
 
-
+         function stadiumApprove(courtId) {
+                $.ajax({
+                    url: '/admin/court/status',
+                    method: 'POST',
+                    data: { courtId: courtId },
+                    success: function(response) {
+                        alert('승인 완료!');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    // 에러 처리
+                    alert('승인 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
+            }
         </script>
         <%@ include file="../layout/footer.jsp" %>

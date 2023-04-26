@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.adminuser.dto.stadium;
+package shop.mtcoding.sporting_server.admin.stadium.dto;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

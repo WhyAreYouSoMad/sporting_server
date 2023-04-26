@@ -99,6 +99,8 @@
                 location.href = "/admin/court/waitt?page=" + requestPage+"&keyword="+keyword;
             }
 
+
+// 이거부터 하면 됨
             function changeStatus(courtId) {
                 $.ajax({
                     url: '/admin/court/status',

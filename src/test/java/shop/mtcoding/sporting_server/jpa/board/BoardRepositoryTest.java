@@ -68,7 +68,7 @@ public class BoardRepositoryTest {
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
 
         Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
-                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.등록대기,
+                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
 
         StadiumCourt stadiumCourtPS = setUpStadiumCourt(stadiumPS, fileInfoPS, 40000, 4, "최신 시설 코트",
@@ -117,7 +117,7 @@ public class BoardRepositoryTest {
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
         SportCategory sportCategoryPS = setUpSportCategory("축구", LocalDateTime.now());
         Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
-                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.등록대기,
+                "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
         StadiumCourt stadiumCourtPS = setUpStadiumCourt(stadiumPS, fileInfoPS, 40000, 4, "최신 시설 코트",
                 LocalDateTime.now(), LocalDateTime.now(), StadiumCourtStatus.등록대기);
