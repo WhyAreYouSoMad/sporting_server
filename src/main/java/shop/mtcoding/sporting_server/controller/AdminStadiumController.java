@@ -4,14 +4,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
 import shop.mtcoding.sporting_server.adminuser.service.AdminStadiumService;
-import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
+import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 
 @RequiredArgsConstructor
 @Controller
