@@ -30,6 +30,7 @@ import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumUpdateInDTO;
 
 @Getter
 @Setter
@@ -111,5 +112,12 @@ public class Stadium {
     @Comment("경기장 수정 시간")
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public void dtoToEntityForStadiumUpdate(StadiumUpdateInDTO stadiumUpdateDTO) {
+        this.address = StadiumAddress.valueOf(stadiumUpdateDTO.getAddress());
+        this.status = (StadiumStatus.valueOf(stadiumUpdateDTO.getStatus()));
+        this.startTime = (LocalTime.parse(stadiumUpdateDTO.getStartTime()));
+        this.endTime = (LocalTime.parse(stadiumUpdateDTO.getEndTime()));
+    }
 
 }

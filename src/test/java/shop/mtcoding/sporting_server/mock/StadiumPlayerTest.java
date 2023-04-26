@@ -37,6 +37,7 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumRegistrationInDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO.StadiumFileDto;
 
 @WebMvcTest(StadiumController.class)
 public class StadiumPlayerTest {
@@ -73,7 +74,7 @@ public class StadiumPlayerTest {
                                 "농구");
                 StadiumResponse.StadiumRegistrationOutDTO stadiumRegistrationOutDTO = new StadiumRegistrationOutDTO(5L,
                                 "경기장1",
-                                "부산시", "농구", "09:00", "18:00");
+                                "부산시", "농구", "09:00", "18:00", new StadiumFileDto(1L, "name", "url"));
 
                 given(this.stadiumService.save(id, stadiumRegistrationInDTO))
                                 .willReturn(stadiumRegistrationOutDTO);

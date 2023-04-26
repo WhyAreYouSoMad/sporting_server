@@ -21,6 +21,7 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
        (29, '코트사진'), (30, '코트사진'),
        (31, '코트사진'), (32, '코트사진');
 
+
 INSERT INTO file_tb(id, file_info_id, file_url)
 VALUES (1, 1, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg'), (2, 2, ''),
        (3, 3, ''), (4, 4, ''),
@@ -38,6 +39,8 @@ VALUES (1, 1, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/
        (27, 27, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (28, 28, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
        (29, 29, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (30, 30, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
        (31, 31, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (32, 32, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png');
+
+
 
 -- ▶ 스포츠 종류 
 INSERT INTO sport_category_tb(id, sport, created_at) 
