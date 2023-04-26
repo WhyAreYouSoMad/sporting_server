@@ -1,14 +1,12 @@
-package shop.mtcoding.sporting_server.adminuser.dto.stadium;
+package shop.mtcoding.sporting_server.admin.stadium.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-
-import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 
 @Setter
 @Getter
@@ -18,15 +16,13 @@ public class AdminWaitStadiumListOutDto {
 
     private Long id;
     private String name;
-    private String tel;
-    private String fileUrl;
+    private String status;
     private LocalDateTime createdAt;
 
-    public AdminWaitStadiumListOutDto(Long id, String name, String tel, String fileUrl, LocalDateTime createdAt) {
+    public AdminWaitStadiumListOutDto(Long id, String name, StadiumStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
-        this.tel = tel;
-        this.fileUrl = fileUrl;
+        this.status = status.name();
         this.createdAt = createdAt;
     }
 

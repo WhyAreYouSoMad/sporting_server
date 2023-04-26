@@ -60,7 +60,7 @@ public class StadiumCourtRepositoryTest {
         Stadium stadium = setUpStadium(companyInfoPS, "서면 탁구장", "신설", StadiumAddress.부산시, 129.3, 35.3, "010-1111-1111",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
-                fileInfoPS, StadiumStatus.등록대기, LocalDateTime.now());
+                fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
 
         setUp(stadium, fileInfoPS, 50000, 4, "신설 탁구장", LocalDateTime.now(), LocalDateTime.now(),
                 StadiumCourtStatus.등록대기);
@@ -105,7 +105,7 @@ public class StadiumCourtRepositoryTest {
         Stadium stadium = setUpStadium(companyInfoPS, "울산 야구장", "깨끗", StadiumAddress.울산시, 129.4, 35.6, "010-2222-2222",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
-                fileInfoPS, StadiumStatus.등록대기, LocalDateTime.now());
+                fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
 
         StadiumCourt stadiumCourtPS = setUp(stadium, fileInfoPS, 100000, 18, "신설 야구장", LocalDateTime.now(),
                 LocalDateTime.now(),

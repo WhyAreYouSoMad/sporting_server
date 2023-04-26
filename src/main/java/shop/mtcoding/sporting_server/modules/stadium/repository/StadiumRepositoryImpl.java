@@ -2,10 +2,6 @@ package shop.mtcoding.sporting_server.modules.stadium.repository;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +9,6 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.QAdminStadiumListOutDto;
-import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.modules.file.entity.QProfileFile;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.QSportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.QStadium;

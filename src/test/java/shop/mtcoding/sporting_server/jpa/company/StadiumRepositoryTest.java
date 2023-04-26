@@ -57,7 +57,7 @@ public class StadiumRepositoryTest {
 
         setUp(companyInfoPS, "서면 탁구장", "신설", StadiumAddress.부산시, 129.3, 35.3, "010-1111-1111", sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
-                fileInfoPS, StadiumStatus.등록대기, LocalDateTime.now());
+                fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class StadiumRepositoryTest {
         Stadium stadiumPS = setUp(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5, "020-2222-2222",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
-                fileInfoPS, StadiumStatus.등록대기, LocalDateTime.now());
+                fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
 
         Optional<Stadium> findStadium = this.stadiumRepository.findById(stadiumPS.getId());
 

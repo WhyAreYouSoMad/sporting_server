@@ -1,11 +1,11 @@
-package shop.mtcoding.sporting_server.adminuser.service;
+package shop.mtcoding.sporting_server.admin.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.adminuser.dto.AdmingLoginInDTO;
+import shop.mtcoding.sporting_server.admin.dto.AdmingLoginInDTO;
 import shop.mtcoding.sporting_server.core.handler.ex.CustomException;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;

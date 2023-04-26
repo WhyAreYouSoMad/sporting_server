@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
-import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto;
 import shop.mtcoding.sporting_server.topic.stadium.dto.CourtResponseDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.SportCategoryDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
