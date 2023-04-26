@@ -4,18 +4,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto;
+import shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto;
 import shop.mtcoding.sporting_server.adminuser.service.AdminStadiumService;
-import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -54,7 +50,32 @@ public class AdminStadiumController {
     }
 
     @GetMapping("/admin/stadium/wait")
-    public String stadium_wait() {
+    public String stadium_wait(
+            String keyword,
+            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            Model model) {
+
+        Page<AdminWaitStadiumListOutDto> adminWaitStadiumListOutDto;
+        int nowPage = 0;
+        int startPage = 0;
+        int endPage = 0;
+        if (keyword != null && !keyword.isEmpty()) {
+            adminWaitStadiumListOutDto = adminStadiumService.getWaitStadiumListByName(keyword, pageable);
+        } else {
+            adminWaitStadiumListOutDto = adminStadiumService.getWaitStadiumList(pageable);
+        }
+
+        nowPage = adminWaitStadiumListOutDto.getPageable().getPageNumber() + 1;
+        startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
+        endPage = Math.min(nowPage + 5, adminWaitStadiumListOutDto.getTotalPages()); // 버튼에서 마지막 숫자
+        model.addAttribute("stadiumList", adminWaitStadiumListOutDto.getContent());
+        model.addAttribute("totalPage", adminWaitStadiumListOutDto.getTotalPages());
+
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("keyword", keyword);
+
         return "/admin_stadium/wait";
     }
 
