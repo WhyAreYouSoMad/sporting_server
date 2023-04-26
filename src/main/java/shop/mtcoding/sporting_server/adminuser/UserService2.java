@@ -72,4 +72,16 @@ public class UserService2 {
             return false;
         }
     }
+
+    public boolean companyDelete(Long userId) {
+        Optional<User> User = userRepository.findById(userId);
+        if (User.isPresent()) {
+            User user = User.get();
+            user.setStatus(UserStatus.악질유저);
+            userRepository.save(user);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
