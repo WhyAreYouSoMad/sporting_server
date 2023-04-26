@@ -1,20 +1,26 @@
 package shop.mtcoding.sporting_server.topic.stadium;
 
-import java.time.LocalTime;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
-import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.exception.Exception403;
+import shop.mtcoding.sporting_server.core.util.BASE64DecodedMultipartFile;
 import shop.mtcoding.sporting_server.core.util.S3Utils;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
@@ -40,13 +46,18 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class StadiumService {
-
+    private final AmazonS3Client amazonS3Client;
     private final StadiumRepository stadiumRepository;
     private final CompanyInfoRepository companyInfoRepository;
     private final SportCategoryRepository sportCategoryRepository;
     private final StadiumCourtRepository stadiumCourtRepository;
     private final FileInfoRepository fileInfoRepository;
     private final ProfileFileRepository profileFileRepository;
+
+    @Value("${bucket}")
+    private String bucket;
+    @Value("${static}")
+    private String staticRegion;
 
     @Transactional
     public StadiumRegistrationOutDTO save(Long id, StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO) {
@@ -124,7 +135,7 @@ public class StadiumService {
     }
 
     @Transactional
-    public void update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO) {
+    public void update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO) throws IOException {
 
         Stadium stadiumPS = stadiumRepository.findById(Long.parseLong(stadiumUpdateInDTO.getId())).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 경기장입니다.");
@@ -172,6 +183,28 @@ public class StadiumService {
                         throw new Exception400("해당 스포츠 카테고리가 존재하지 않습니다.");
                     });
             stadiumPS.setCategory(sportCategory);
+        }
+
+        ProfileFile stadiumProfileFilePS = profileFileRepository.findById(stadiumPS.getFileInfo().getId())
+                .orElseThrow(() -> {
+                    throw new Exception400("Stadium Profile File이 존재하지 않습니다.");
+                });
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+        ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
+                stadiumProfileFilePS.getFileName());
+
+        long stadiumDBFileSize = objectMetadata.getContentLength();
+        MultipartFile multipartFile1 = BASE64DecodedMultipartFile
+                .convertBase64ToMultipartFile(stadiumUpdateInDTO.getStadiumFile().getFileBase64());
+        long stadiumDTOFileSize = multipartFile1.getSize();
+
+        if (stadiumDBFileSize != stadiumDTOFileSize) {
+            MultipartFile multipartFile2 = BASE64DecodedMultipartFile
+                    .convertBase64ToMultipartFile(stadiumUpdateInDTO.getStadiumFile().getFileBase64());
+            List<String> nameAndUrl = S3Utils.uploadFile(multipartFile2, "Stadium", bucket, amazonS3Client);
+
+            stadiumProfileFilePS.setFileName(nameAndUrl.get(0));
+            stadiumProfileFilePS.setFileUrl(nameAndUrl.get(1));
         }
 
         // file 체킹 테스트
