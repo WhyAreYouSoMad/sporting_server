@@ -77,8 +77,7 @@ public class StadiumService {
         profileFileRepository.save(profileFile);
 
         stadiumPS.setFileInfo(fileInfo);
-
-        return new StadiumRegistrationOutDTO(stadiumPS);
+        return new StadiumRegistrationOutDTO(stadiumPS, profileFile);
     }
 
     public List<StadiumListOutDTO> findKeywordList(String keyword) {

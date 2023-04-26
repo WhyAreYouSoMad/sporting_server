@@ -2,6 +2,8 @@ package shop.mtcoding.sporting_server.core.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +14,39 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class S3Utils {
+
+    public static String chooseCourtName(String sport) {
+        String fileName = "";
+        switch (sport) {
+            case "야구":
+                fileName = "Court/야구_Court.png";
+                break;
+            case "풋살":
+                fileName = "Court/풋살장_Court.png";
+                break;
+            case "축구":
+                fileName = "Court/축구_Court.png";
+                break;
+            case "볼링":
+                fileName = "Court/볼링_Court.png";
+                break;
+            case "배구":
+                fileName = "Court/배구_Court.png";
+                break;
+            case "탁구":
+                fileName = "Court/탁구_Court.png";
+                break;
+            case "농구":
+                fileName = "Court/농구_Court.png";
+                break;
+            case "테니스":
+                fileName = "Court/테니스_Court.png";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid keyword: " + sport);
+        }
+        return fileName;
+    }
 
     public static String chooseStadiumName(String sport) {
         String fileName = "";
@@ -112,7 +147,7 @@ public class S3Utils {
         return url;
     }
 
-    public static String uploadFile(MultipartFile multipartFile, String keyword, String bucket,
+    public static List<String> uploadFile(MultipartFile multipartFile, String keyword, String bucket,
             AmazonS3Client amazonS3Client) throws IOException {
         ObjectMetadata objectMetadata = S3Utils.makeObjectMetadata(multipartFile);
 
@@ -127,7 +162,11 @@ public class S3Utils {
 
         String storeFileUrl = amazonS3Client.getUrl(bucket, key).toString();
 
-        return storeFileUrl;
+        List<String> nameAndUrl = new ArrayList<>();
+        nameAndUrl.add(key);
+        nameAndUrl.add(storeFileUrl);
+
+        return nameAndUrl;
     }
 
     public static ObjectMetadata makeObjectMetadata(MultipartFile multipartFile) {
