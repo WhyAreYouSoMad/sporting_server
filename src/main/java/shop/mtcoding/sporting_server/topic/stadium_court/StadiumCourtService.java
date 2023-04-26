@@ -101,18 +101,4 @@ public class StadiumCourtService {
         return stadiumCourtRepository.findByTitleContaining(title, pageable);
     }
 
-    @Transactional
-    public boolean approveCompany(Long courtId) {
-        Optional<StadiumCourt> StadiumCourt = stadiumCourtRepository.findById(courtId);
-        if (StadiumCourt.isPresent()) {
-            StadiumCourt stadiumCourt = StadiumCourt.get();
-            stadiumCourt.setStatus(StadiumCourtStatus.등록완료);
-            stadiumCourtRepository.save(stadiumCourt);
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 }
