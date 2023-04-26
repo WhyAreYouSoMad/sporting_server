@@ -1,8 +1,13 @@
 package shop.mtcoding.sporting_server.topic.company;
 
 import lombok.RequiredArgsConstructor;
+
+import javax.validation.Valid;
+
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +29,8 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @PostMapping("/joinCompany")
-    public ResponseEntity<?> joinCompany(@RequestBody CompanyRequest.JoinInDTO joinDTO) {
+    public ResponseEntity<?> joinCompany(@RequestBody @Valid CompanyRequest.JoinInDTO joinDTO,
+            BindingResult bindingResult) {
 
         CompanyResponse.JoinDTO data = companyService.회원가입(joinDTO);
         ResponseDto<?> responseDTO = new ResponseDto<>().data(data);

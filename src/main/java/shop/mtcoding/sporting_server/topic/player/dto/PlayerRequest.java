@@ -2,6 +2,9 @@ package shop.mtcoding.sporting_server.topic.player.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +16,11 @@ public class PlayerRequest {
     @Setter
     @EqualsAndHashCode
     public static class JoinInDTO {
-
-        private String password;
+        @Email(message = "올바른 email 형식이 아닙니다")
+        @NotEmpty(message = "email을 입력해주세요")
         private String email;
+        @NotEmpty(message = "password를 입력해주세요")
+        private String password;
         private String role;
 
         public User toEntity() {
