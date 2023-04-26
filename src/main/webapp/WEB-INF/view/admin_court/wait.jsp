@@ -44,6 +44,7 @@
                                 <td>${courtList.courtPrice}</td>
                                 <td>${courtList.capacity}</td>
                                 <td class="text-center">${MyDateUtils.toStringFormat(courtList.createdAt)}</td>
+                                 <td><button onclick="changeStatus(${courtList.id})" class="btn-xs">승인</button></td>
                                 <td><button onclick="" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
@@ -81,4 +82,40 @@
                 </div>
             </div>
         </div>
+
+           <script>
+            function searchGet() {
+                let keyword =  $("#keyword").val();
+                location.href = "/admin/court/wait?page=0&keyword=" + keyword;
+            }
+            function callPrev() {
+                let requestPage = `${nowPage-2}`;
+                let keyword = `${keyword}`
+                location.href = "/admin/court/wait?page=" + requestPage+"&keyword="+keyword;
+            }
+
+            function callNext() {
+                let requestPage = `${nowPage}`;
+                let keyword = `${keyword}`
+                location.href = "/admin/court/waitt?page=" + requestPage+"&keyword="+keyword;
+            }
+
+            function changeStatus(courtId) {
+                $.ajax({
+                    url: '/admin/court/status',
+                    method: 'POST',
+                    data: { courtId: courtId },
+                    success: function(response) {
+                        alert('승인 완료!');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    // 에러 처리
+                    alert('승인 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
+            }
+        </script>
+
         <%@ include file="../layout/footer.jsp" %>

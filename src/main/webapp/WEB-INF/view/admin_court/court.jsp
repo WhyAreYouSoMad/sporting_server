@@ -81,4 +81,24 @@
                 </div>
             </div>
         </div>
+
+            <script>
+            function searchGet() {
+                let keyword =  $("#keyword").val();
+                location.href = "/admin/court?page=0&keyword=" + keyword;
+            }
+            function callPrev() {
+                let requestPage = `${nowPage-2}`;
+                let keyword = `${keyword}`
+                location.href = "/admin/court?page=" + requestPage+"&keyword="+keyword;
+            }
+
+            function callNext() {
+                let requestPage = `${nowPage}`;
+                let keyword = `${keyword}`
+                location.href = "/admin/court?page=" + requestPage+"&keyword="+keyword;
+            }
+
+        </script>
+
         <%@ include file="../layout/footer.jsp" %>

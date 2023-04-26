@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium_court;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Example;
@@ -98,6 +99,20 @@ public class StadiumCourtService {
 
     public Page<StadiumCourt> getCourtListByTitleContaining(String title, Pageable pageable) {
         return stadiumCourtRepository.findByTitleContaining(title, pageable);
+    }
+
+    @Transactional
+    public boolean approveCompany(Long courtId) {
+        Optional<StadiumCourt> StadiumCourt = stadiumCourtRepository.findById(courtId);
+        if (StadiumCourt.isPresent()) {
+            StadiumCourt stadiumCourt = StadiumCourt.get();
+            stadiumCourt.setStatus(StadiumCourtStatus.등록완료);
+            stadiumCourtRepository.save(stadiumCourt);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
+import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.stadium_court.StadiumCourtService;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
@@ -29,6 +30,7 @@ public class EtcController {
     private final EtcService etcService;
     private final UserService2 userService;
     private final StadiumCourtService stadiumCourtService;
+    private final StadiumCourtRepository stadiumCourtRepository;
 
     @GetMapping("/admin/loginForm")
     public String loginForm() {
@@ -200,6 +202,16 @@ public class EtcController {
         model.addAttribute("keyword", keyword);
 
         return "/admin_court/wait";
+    }
+
+    @PostMapping("/admin/court/status")
+    public ResponseEntity<Object> approveStadimCourtourt(@RequestParam("courtId") Long courtId) {
+        boolean isApproved = stadiumCourtService.approveCompany(courtId);
+        if (isApproved) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/admin/court/inactive")
