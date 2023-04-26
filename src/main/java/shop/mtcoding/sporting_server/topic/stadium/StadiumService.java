@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -11,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.ObjectMetadata;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
@@ -39,7 +37,10 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumUpdateInDTO.CourtDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumRegistrationOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumUpdateOutDTO;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumResponse.StadiumUpdateOutDTO.CourtOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumUpdateFomrOutDTO;
 
 @Service
@@ -135,7 +136,8 @@ public class StadiumService {
     }
 
     @Transactional
-    public void update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO) throws IOException {
+    public StadiumUpdateOutDTO update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO)
+            throws IOException {
 
         Stadium stadiumPS = stadiumRepository.findById(Long.parseLong(stadiumUpdateInDTO.getId())).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 경기장입니다.");
@@ -161,7 +163,7 @@ public class StadiumService {
         Map<Long, StadiumCourt> courtMap = courtsToUpdatePS.stream()
                 .collect(Collectors.toMap(StadiumCourt::getId, Function.identity()));
 
-        List<StadiumCourt> stadiumsToUpdate = courtList.stream()
+        List<StadiumCourt> stadiumsToUpdatePS = courtList.stream()
                 .map(court -> {
                     // court: RequestDTO, courtMap value: DB에서 조회
                     StadiumCourt stadiumCourtPS = courtMap.get(Long.parseLong(court.getId()));
@@ -171,6 +173,7 @@ public class StadiumService {
                     }
                     // StadiumCourt update - fileUrl 제외
                     stadiumCourtPS.dtoToEntityForCourtUpdate(court);
+
                     return stadiumCourtPS;
                 })
                 .collect(Collectors.toList());
@@ -195,17 +198,93 @@ public class StadiumService {
                 stadiumUpdateInDTO.getStadiumFile().getFileBase64(),
                 bucket, staticRegion);
 
-        // size가 다를경우 sizeCheck = false임, !false로 아래 로직 실행
+        // size가 다를경우 sizeCheck = false, !false로 아래 로직 실행
         if (!sizeCheck) {
             MultipartFile multipartFile2 = BASE64DecodedMultipartFile
                     .convertBase64ToMultipartFile(stadiumUpdateInDTO.getStadiumFile().getFileBase64());
-            List<String> nameAndUrl = S3Utils.uploadFile(multipartFile2, "Stadium", bucket, amazonS3Client);
 
+            // 사진이 업데이트 되었을 경우 S3upload 후, DB 반영
+            List<String> nameAndUrl = S3Utils.uploadFile(multipartFile2, "Stadium", bucket, amazonS3Client);
             stadiumProfileFilePS.setFileName(nameAndUrl.get(0));
             stadiumProfileFilePS.setFileUrl(nameAndUrl.get(1));
         }
 
-        // file 체킹 테스트
+        // Court file 체킹 테스트
+        List<Long> fileIds = new ArrayList<>();
+        for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourtList()) {
+            Long fileId = Long.parseLong(courtDTO.getCourtFile().getId());
+            fileIds.add(fileId);
+        }
+
+        List<ProfileFile> courtProfilesToUpdatePS = profileFileRepository.findByIdIn(fileIds);
+        if (courtProfilesToUpdatePS.size() != fileIds.size()) {
+            throw new Exception400("존재하지 않는 Court Profile이 요청되었습니다.");
+        }
+
+        List<StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO> courtFileList = new ArrayList<>();
+
+        for (StadiumRequest.StadiumUpdateInDTO.CourtDTO court : courtList) {
+            StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO courtFile = court.getCourtFile();
+            if (courtFile != null) {
+                courtFileList.add(courtFile);
+            }
+        }
+
+        Map<Long, ProfileFile> courtProfilesMap = courtProfilesToUpdatePS.stream()
+                .collect(Collectors.toMap(ProfileFile::getId, Function.identity()));
+
+        List<ProfileFile> courtsProfilesToUpdate = courtFileList.stream()
+                .map(courtFile -> {
+                    // court: RequestDTO, courtFileMap value: DB에서 조회
+                    ProfileFile courtPorfilePS = courtProfilesMap.get(Long.parseLong(courtFile.getId()));
+
+                    Boolean sizeCheck2;
+                    try {
+                        sizeCheck2 = S3Utils.updateProfileCheck_Court(courtPorfilePS,
+                                courtFile.getFileBase64(),
+                                bucket, staticRegion);
+                    } catch (IOException e) {
+                        throw new Exception400("Court Profile 통신에 실패하였습니다.");
+                    }
+
+                    // size가 다를경우 sizeCheck = false, !false로 아래 로직 실행
+                    if (!sizeCheck2) {
+                        MultipartFile multipartFile3;
+                        try {
+                            multipartFile3 = BASE64DecodedMultipartFile
+                                    .convertBase64ToMultipartFile(courtFile.getFileBase64());
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            throw new Exception400("Court Profile MultiPartFile 변환에 실패하였습니다.");
+                        }
+
+                        // 사진이 업데이트 되었을 경우 S3upload 후, DB 반영
+                        List<String> nameAndUrl;
+                        try {
+                            nameAndUrl = S3Utils.uploadFile(multipartFile3, "Court", bucket, amazonS3Client);
+                        } catch (IOException e) {
+                            throw new Exception400("Court Profile 업로드에 실패하였습니다.");
+                        }
+                        courtPorfilePS.setFileName(nameAndUrl.get(0));
+                        courtPorfilePS.setFileUrl(nameAndUrl.get(1));
+                    }
+
+                    return courtPorfilePS;
+                })
+                .collect(Collectors.toList());
+
+        List<CourtOutDTO> courtOutListDto = new ArrayList<>();
+        for (int i = 0; i < stadiumsToUpdatePS.size(); i++) {
+            StadiumCourt stadiumCourtPS = stadiumsToUpdatePS.get(i);
+            ProfileFile courtFilePS = courtProfilesToUpdatePS.get(i);
+            CourtOutDTO addCoutDto = new CourtOutDTO(stadiumCourtPS, courtFilePS);
+            courtOutListDto.add(addCoutDto);
+        }
+
+        StadiumResponse.StadiumUpdateOutDTO stadiumUpdateOutDTO = new StadiumUpdateOutDTO(stadiumPS,
+                stadiumProfileFilePS, courtOutListDto);
+
+        return stadiumUpdateOutDTO;
 
     }
 

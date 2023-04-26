@@ -213,6 +213,26 @@ public class S3Utils {
         return check;
     }
 
+    public static Boolean updateProfileCheck_Court(ProfileFile courtProfileFilePS, String fileBase64, String bucket,
+            String staticRegion) throws IOException {
+
+        Boolean check = false;
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+        ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
+        courtProfileFilePS.getFileName());
+
+        long stadiumDBFileSize = objectMetadata.getContentLength();
+        MultipartFile multipartFile1 = BASE64DecodedMultipartFile
+                .convertBase64ToMultipartFile(fileBase64);
+        long stadiumDTOFileSize = multipartFile1.getSize();
+        if (stadiumDBFileSize == stadiumDTOFileSize) {
+            check = true;
+        }
+
+        return check;
+    }
+
     public static String branchFolder(String keyword, String storeFileName) {
         String key;
         switch (keyword) {

@@ -53,4 +53,5 @@ public class ProfileFile {
     // @Column(name = "status")
     // @Comment("admin 승인관련 (ex. 승인/대기/승인불가)")
     // private FileStatus status;
+
 }
