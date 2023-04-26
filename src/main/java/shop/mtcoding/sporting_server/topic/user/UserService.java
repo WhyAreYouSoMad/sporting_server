@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
+import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
@@ -43,7 +44,11 @@ public class UserService {
                 loginOutList.add(userPS.getId());
                 loginOutList.add(userPS.getNickname());
                 loginOutList.add(userPS.getRole());
-                return loginOutList;
+                if (userPS.getStatus() != UserStatus.악질유저) {
+                    return loginOutList;
+                } else {
+                    throw new Exception400("악질유저는 로그인 할 수 없습니다");
+                }
 
             }
             throw new Exception400("패스워드 틀렸어");
