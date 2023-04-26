@@ -45,7 +45,6 @@
                                 <td>${courtList.capacity}</td>
                                 <td class="text-center">${MyDateUtils.toStringFormat(courtList.createdAt)}</td>
                                  <td><button onclick="changeStatus(${courtList.id})" class="btn-xs">승인</button></td>
-                                <td><button onclick="" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
                     </table>
