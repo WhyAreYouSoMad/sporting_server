@@ -40,6 +40,7 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumUpd
 @Entity
 @Table(name = "stadium_tb")
 @EqualsAndHashCode(of = "id", callSuper = false)
+
 public class Stadium {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
