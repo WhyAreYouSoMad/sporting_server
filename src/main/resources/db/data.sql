@@ -21,23 +21,23 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
        (29, '코트사진'), (30, '코트사진'),
        (31, '코트사진'), (32, '코트사진');
 
-INSERT INTO file_tb(id, file_info_id, file_url)
-VALUES (1, 1, ''), (2, 2, ''),
-       (3, 3, ''), (4, 4, ''),
-       (5, 5, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'), (6, 6, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'),
-       (7, 7, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%86%8D%EA%B5%AC_Stadium.png'), (8, 8, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%86%8D%EA%B5%AC_Stadium.png'),
-       (9, 9, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EC%95%BC%EA%B5%AC_Court.png'), (10, 10, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EC%95%BC%EA%B5%AC_Court.png'), 
-       (11, 11, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), (12, 12, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), 
-       (13, 13, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), (14, 14, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), 
-       (15, 15, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%B6%95%EA%B5%AC_Stadium.png'), (16, 16, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png'), 
-       (17, 17, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png'), (18, 18, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png'), 
-       (19, 19, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%92%8B%EC%82%B4%EC%9E%A5_Stadium.png'), (20, 20, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), 
-       (21, 21, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), (22, 22, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), 
-       (23, 23, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%83%81%EA%B5%AC_Stadium.png'), (24, 24, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), 
-       (25, 25, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), (26, 26, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), 
-       (27, 27, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (28, 28, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
-       (29, 29, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (30, 30, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
-       (31, 31, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (32, 32, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png');
+INSERT INTO file_tb(id, file_info_id, file_name, file_url)
+VALUES (1, 1, '', ''), (2, 2, '', ''),
+       (3, 3, '', ''), (4, 4, '', ''),
+       (5, 5, 'Stadium/%EC%95%BC%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'), (6, 6, 'Stadium/%EC%95%BC%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'),
+       (7, 7, 'Stadium/%EB%86%8D%EA%B5%AC_Stadium.png' ,'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%86%8D%EA%B5%AC_Stadium.png'), (8, 8, 'Stadium/%EB%86%8D%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%86%8D%EA%B5%AC_Stadium.png'),
+       (9, 9, 'Court/%EC%95%BC%EA%B5%AC_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EC%95%BC%EA%B5%AC_Court.png'), (10, 10, 'Court/%EC%95%BC%EA%B5%AC_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EC%95%BC%EA%B5%AC_Court.png'), 
+       (11, 11, 'Court/%EB%86%8D%EA%B5%AC_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), (12, 12, 'Court/%EB%86%8D%EA%B5%AC_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), 
+       (13, 13, 'Court/%EB%86%8D%EA%B5%AC_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), (14, 14, 'Court/%EB%86%8D%EA%B5%AC_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%86%8D%EA%B5%AC_Court.png'), 
+       (15, 15, 'Stadium/%EC%B6%95%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%B6%95%EA%B5%AC_Stadium.png'), (16, 16, 'Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png'), 
+       (17, 17, 'Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png'), (18, 18, 'Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B0%B0%EA%B5%AC_Stadium.png'), 
+       (19, 19, 'Stadium/%ED%92%8B%EC%82%B4%EC%9E%A5_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%92%8B%EC%82%B4%EC%9E%A5_Stadium.png'), (20, 20, 'Stadium/%EB%B3%BC%EB%A7%81_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), 
+       (21, 21, 'Stadium/%EB%B3%BC%EB%A7%81_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), (22, 22, 'Stadium/%EB%B3%BC%EB%A7%81_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), 
+       (23, 23, 'Stadium/%ED%83%81%EA%B5%AC_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%83%81%EA%B5%AC_Stadium.png'), (24, 24, 'Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), 
+       (25, 25, 'Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), (26, 26, 'Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), 
+       (27, 27, 'Court/%EB%B3%BC%EB%A7%81_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (28, 28, 'Court/%EB%B3%BC%EB%A7%81_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
+       (29, 29, 'Court/%EB%B3%BC%EB%A7%81_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (30, 30, 'Court/%EB%B3%BC%EB%A7%81_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
+       (31, 31, 'Court/%EB%B3%BC%EB%A7%81_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (32, 32, 'Court/%EB%B3%BC%EB%A7%81_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png');
 
 -- ▶ 스포츠 종류 
 INSERT INTO sport_category_tb(id, sport, created_at) 
