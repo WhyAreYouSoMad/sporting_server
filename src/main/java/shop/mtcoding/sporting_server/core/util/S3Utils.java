@@ -199,14 +199,35 @@ public class S3Utils {
         Boolean check = false;
 
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+
         ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
                 stadiumProfileFilePS.getFileName());
 
         long stadiumDBFileSize = objectMetadata.getContentLength();
+
         MultipartFile multipartFile1 = BASE64DecodedMultipartFile
                 .convertBase64ToMultipartFile(fileBase64);
         long stadiumDTOFileSize = multipartFile1.getSize();
         if (stadiumDBFileSize == stadiumDTOFileSize) {
+            check = true;
+        }
+
+        return check;
+    }
+
+    public static Boolean updateProfileCheck_Company(ProfileFile companyProfileFilePS, String fileBase64, String bucket,
+            String staticRegion) throws IOException {
+        Boolean check = false;
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+        ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
+                companyProfileFilePS.getFileName());
+
+        long companyDBFileSize = objectMetadata.getContentLength();
+        MultipartFile multipartFile1 = BASE64DecodedMultipartFile
+                .convertBase64ToMultipartFile(fileBase64);
+        long companyDTOFileSize = multipartFile1.getSize();
+        if (companyDBFileSize == companyDTOFileSize) {
             check = true;
         }
 
@@ -220,7 +241,7 @@ public class S3Utils {
 
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
         ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
-        courtProfileFilePS.getFileName());
+                courtProfileFilePS.getFileName());
 
         long stadiumDBFileSize = objectMetadata.getContentLength();
         MultipartFile multipartFile1 = BASE64DecodedMultipartFile

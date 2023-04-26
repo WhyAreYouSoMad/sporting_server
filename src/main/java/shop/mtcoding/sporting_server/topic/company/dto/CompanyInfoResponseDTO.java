@@ -19,13 +19,16 @@ public class CompanyInfoResponseDTO {
     private String tel;
     private String businessAdress;
     private String businessNumber;
+    private CompanyFileResponseDTO companyFileResponseDTO;
 
     @QueryProjection
-    public CompanyInfoResponseDTO(Long id, String tel, String businessAdress, String businessNumber) {
+    public CompanyInfoResponseDTO(Long id, String tel, String businessAdress, String businessNumber,
+            CompanyFileResponseDTO companyFileResponseDTO) {
         this.id = id;
         this.tel = tel;
         this.businessAdress = businessAdress;
         this.businessNumber = businessNumber;
+        this.companyFileResponseDTO = companyFileResponseDTO;
     }
 
 }

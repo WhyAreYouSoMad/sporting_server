@@ -45,28 +45,24 @@ public class CompanyRequest {
     @EqualsAndHashCode
     public static class UpdateInDTO {
 
-        // private String nickname;
-        // private String password;
+        private String nickname;
+        private String password;
+        private LocalDateTime updatedAt;
 
         private String tel;
         private String businessAdress;
-        // private FileInfo fileInfo;/
+        private CompanyFileDTO companyFile;
 
-        // public User toEntity() {
-        // return User.builder()
-        // .nickname(nickname)
-        // .password(password)
-        // .updatedAt(LocalDateTime.now())
-        // .build();
-        // }
-
-        public CompanyInfo toEntity2() {
-            return CompanyInfo.builder()
-                    .tel(tel)
-                    .businessAdress(businessAdress)
-                    .updatedAt(LocalDateTime.now())
-                    .build();
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class CompanyFileDTO {
+            private String id;
+            private String fileBase64;
         }
+
     }
 
 }
