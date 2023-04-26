@@ -1,7 +1,5 @@
 package shop.mtcoding.sporting_server.adminuser;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,14 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
-import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 
 @RequiredArgsConstructor
 @Controller
 public class EtcController {
-    private final UserRepository userRepository;
     private final EtcService etcService;
     private final UserService2 userService;
 
@@ -129,9 +124,19 @@ public class EtcController {
     }
 
     @PostMapping("/admin/company/status")
-    public ResponseEntity<Object> approveUser(@RequestParam("userId") Long userId) {
+    public ResponseEntity<Object> changeStatus(@RequestParam("userId") Long userId) {
         boolean isApproved = userService.approveCompany(userId);
         if (isApproved) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/admin/company/delete")
+    public ResponseEntity<Object> companyDelete(@RequestParam("userId") Long userId) {
+        boolean delete = userService.companyDelete(userId);
+        if (delete) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
