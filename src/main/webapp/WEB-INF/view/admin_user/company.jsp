@@ -43,7 +43,7 @@
                                 <td>${user.email}</td>
                                 <td>${user.nickname}</td>
                                 <td class="text-center">${MyDateUtils.toStringFormat(user.createdAt)}</td>
-                                <td><button onclick="" class="btn-xs">삭제</button></td>
+                                <td><button onclick="companyDelete(${user.id})" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
 
@@ -112,6 +112,23 @@
                 let requestPage = `${nowPage}`;
                 let keyword = `${keyword}`
                 location.href = "/admin/user/company?page=" + requestPage+"&keyword="+keyword;
+            }
+
+            function companyDelete(userId) {
+                $.ajax({
+                    url: '/admin/company/delete',
+                    method: 'POST',
+                    data: { userId: userId },
+                    success: function(response) {
+                        alert('악질유저 삭제 완료!');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    // 에러 처리
+                    alert('삭제 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
             }
 
         </script>
