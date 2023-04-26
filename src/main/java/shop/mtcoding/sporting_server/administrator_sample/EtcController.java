@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
+import shop.mtcoding.sporting_server.topic.stadium_court.StadiumCourtService;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,6 +20,7 @@ public class EtcController {
 
     private final EtcService etcService;
     private final UserService2 userService;
+    private final StadiumCourtService stadiumCourtService;
 
     @GetMapping("/admin/loginForm")
     public String loginForm() {
@@ -129,12 +132,55 @@ public class EtcController {
 
     // court 관리 ~
     @GetMapping("/admin/court")
-    public String court() {
+    public String courts(
+            String keyword,
+            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            Model model) {
+
+        Page<StadiumCourt> courts;
+        if (keyword != null && !keyword.isEmpty()) {
+            courts = stadiumCourtService.getCourtListByTitleContaining(keyword, pageable);
+        } else {
+            courts = stadiumCourtService.getStadiumCourtList(pageable);
+        }
+
+        int nowPage = courts.getPageable().getPageNumber() + 1;
+        int startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
+        int endPage = Math.min(nowPage + 5, courts.getTotalPages()); // 버튼에서 마지막 숫자
+
+        model.addAttribute("courtList", courts.getContent());
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPage", courts.getTotalPages());
+        model.addAttribute("keyword", keyword);
+
         return "/admin_court/court";
     }
 
     @GetMapping("/admin/court/wait")
-    public String court_wait() {
+    public String court_wait(String keyword,
+            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            Model model) {
+
+        Page<StadiumCourt> courts;
+        if (keyword != null && !keyword.isEmpty()) {
+            courts = stadiumCourtService.getCourtListByTitleContaining(keyword, pageable);
+        } else {
+            courts = stadiumCourtService.getStadiumCourtWaitList(pageable);
+        }
+
+        int nowPage = courts.getPageable().getPageNumber() + 1;
+        int startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
+        int endPage = Math.min(nowPage + 5, courts.getTotalPages()); // 버튼에서 마지막 숫자
+
+        model.addAttribute("courtList", courts.getContent());
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPage", courts.getTotalPages());
+        model.addAttribute("keyword", keyword);
+
         return "/admin_court/wait";
     }
 
