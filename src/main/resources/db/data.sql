@@ -22,7 +22,7 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
        (31, '코트사진'), (32, '코트사진');
 
 INSERT INTO file_tb(id, file_info_id, file_url)
-VALUES (1, 1, ''), (2, 2, ''),
+VALUES (1, 1, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg'), (2, 2, ''),
        (3, 3, ''), (4, 4, ''),
        (5, 5, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'), (6, 6, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'),
        (7, 7, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%86%8D%EA%B5%AC_Stadium.png'), (8, 8, 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%86%8D%EA%B5%AC_Stadium.png'),
