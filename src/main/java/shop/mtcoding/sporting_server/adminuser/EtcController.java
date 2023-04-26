@@ -208,6 +208,16 @@ public class EtcController {
         return "/admin_court/wait";
     }
 
+    @PostMapping("/admin/court/status")
+    public ResponseEntity<Object> approveStadimCourtourt(@RequestParam("courtId") Long courtId) {
+        boolean isApproved = stadiumCourtService.approveCompany(courtId);
+        if (isApproved) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/admin/court/inactive")
     public String court_inactive() {
         return "/admin_court/inactive";
