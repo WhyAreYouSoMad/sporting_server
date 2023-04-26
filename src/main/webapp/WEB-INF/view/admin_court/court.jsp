@@ -43,7 +43,7 @@
                                 <td>${courtList.title}</td>
                                 <td>${courtList.courtPrice}</td>
                                 <td>${courtList.capacity}</td>
-                                <td class="text-center">${courtList.createdAt}</td>
+                                <td class="text-center">${MyDateUtils.toStringFormat(courtList.createdAt)}</td>
                                 <td><button onclick="" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>

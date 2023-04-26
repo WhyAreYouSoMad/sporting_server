@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.administrator_sample;
+package shop.mtcoding.sporting_server.adminuser;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
