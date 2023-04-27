@@ -16,7 +16,7 @@ import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class StadiumDetailOutDTO {
-
+    private Long id;
     private LocalTime startTime;
     private LocalTime endTime;
     private String name;
@@ -36,8 +36,9 @@ public class StadiumDetailOutDTO {
     }
 
     @QueryProjection
-    public StadiumDetailOutDTO(LocalTime startTime, LocalTime endTime, String name, Double lat, Double lon,
+    public StadiumDetailOutDTO(Long id, LocalTime startTime, LocalTime endTime, String name, Double lat, Double lon,
             StadiumAddress address, StadiumFileResponseDTO stadiumFile) {
+        this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;

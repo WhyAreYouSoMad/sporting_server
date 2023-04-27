@@ -34,6 +34,34 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
 
         private final JPAQueryFactory jpaQueryFactory;
 
+        // @Override
+        // public Page<AdminStadiumListOutDto> findAllForAdmin(Pageable pageable) {
+        // if (!(pageable instanceof PageRequest)) {
+        // pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        // }
+        // QStadium qStadium = QStadium.stadium;
+        // QSportCategory qSportCategory = QSportCategory.sportCategory;
+        // QProfileFile qFile = QProfileFile.profileFile;
+
+        // List<AdminStadiumListOutDto> content = jpaQueryFactory
+        // .select(new QAdminStadiumListOutDto(qStadium.id, qStadium.name,
+        // qSportCategory.sport, qFile.fileUrl, qStadium.createdAt))
+        // .from(qStadium)
+        // .leftJoin(qSportCategory).on(qSportCategory.id.eq(qStadium.category.id))
+        // .leftJoin(qFile).on(qFile.fileInfo.id.eq(qStadium.fileInfo.id))
+        // .where(qStadium.status.eq(StadiumStatus.운영중))
+        // .offset(pageable.getOffset())
+        // .limit(pageable.getPageSize())
+        // .fetch();
+
+        // long total = jpaQueryFactory
+        // .selectFrom(qStadium)
+        // .where(qStadium.status.eq(StadiumStatus.운영중))
+        // .fetchCount();
+
+        // return new PageImpl<>(content, pageable, total);
+        // }
+
         @Override
         public List<StadiumMyListOutDTO> findStadiumMyListBySportKeyword(String sportKeyword, Long principalCompanyId) {
                 QStadium qStadium = QStadium.stadium;
@@ -86,7 +114,8 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
                 QStadium qStadium = QStadium.stadium;
                 QProfileFile qFile = QProfileFile.profileFile;
                 JPAQuery<StadiumDetailOutDTO> query = jpaQueryFactory
-                                .select(new QStadiumDetailOutDTO(qStadium.startTime, qStadium.endTime, qStadium.name,
+                                .select(new QStadiumDetailOutDTO(qStadium.id, qStadium.startTime, qStadium.endTime,
+                                                qStadium.name,
                                                 qStadium.lat, qStadium.lon, qStadium.address,
                                                 new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
                                 .from(qStadium)

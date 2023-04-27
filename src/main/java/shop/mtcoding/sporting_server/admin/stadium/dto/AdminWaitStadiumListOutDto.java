@@ -1,0 +1,29 @@
+package shop.mtcoding.sporting_server.admin.stadium.dto;
+
+import java.time.LocalDateTime;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode
+public class AdminWaitStadiumListOutDto {
+
+    private Long id;
+    private String name;
+    private String status;
+    private LocalDateTime createdAt;
+
+    public AdminWaitStadiumListOutDto(Long id, String name, StadiumStatus status, LocalDateTime createdAt) {
+        this.id = id;
+        this.name = name;
+        this.status = status.name();
+        this.createdAt = createdAt;
+    }
+
+}

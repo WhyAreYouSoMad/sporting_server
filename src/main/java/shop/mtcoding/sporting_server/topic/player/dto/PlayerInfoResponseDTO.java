@@ -21,14 +21,16 @@ public class PlayerInfoResponseDTO {
     private PlayerInfoGender gender;
     private PlayerInfoAge age;
     private PlayerInfoAddress address;
+    private PlayerFileResponseDTO playerFile;
 
     @QueryProjection
     public PlayerInfoResponseDTO(Long id, String tel, PlayerInfoGender gender, PlayerInfoAge age,
-            PlayerInfoAddress address) {
+            PlayerInfoAddress address, PlayerFileResponseDTO playerFile) {
         this.id = id;
         this.tel = tel;
         this.gender = gender;
         this.age = age;
         this.address = address;
+        this.playerFile = playerFile;
     }
 }

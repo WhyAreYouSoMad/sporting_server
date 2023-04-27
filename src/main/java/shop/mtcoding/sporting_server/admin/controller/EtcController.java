@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.adminuser;
+package shop.mtcoding.sporting_server.admin.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
-
+import shop.mtcoding.sporting_server.admin.dto.AdmingLoginInDTO;
+import shop.mtcoding.sporting_server.admin.service.EtcService;
+import shop.mtcoding.sporting_server.admin.service.UserService2;
+import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.stadium_court.StadiumCourtService;
-import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 
 @RequiredArgsConstructor
 @Controller
@@ -253,22 +255,5 @@ public class EtcController {
         return "/admin_court/inactive";
     }
     // ~ court 관리
-
-    // stadium 관리 ~
-    @GetMapping("/admin/stadium")
-    public String stadium() {
-        return "/admin_stadium/stadium";
-    }
-
-    @GetMapping("/admin/stadium/wait")
-    public String stadium_wait() {
-        return "/admin_stadium/wait";
-    }
-
-    @GetMapping("/admin/stadium/inactive")
-    public String stadium_inactive() {
-        return "/admin_stadium/inactive";
-    }
-    // ~ stadium 관리
 
 }

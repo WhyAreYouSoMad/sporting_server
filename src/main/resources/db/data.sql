@@ -19,7 +19,13 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
        -- 추가 코트사진
        (27, '코트사진'), (28, '코트사진'),
        (29, '코트사진'), (30, '코트사진'),
-       (31, '코트사진'), (32, '코트사진');
+       (31, '코트사진'), (32, '코트사진'),
+
+       -- Admin 경기장사진
+       (33, '경기장사진'), (34, '경기장사진'),
+       (35, '경기장사진'), (36, '경기장사진'),
+       (37, '경기장사진'), (38, '경기장사진');
+
 
 INSERT INTO file_tb(id, file_info_id, file_name, file_url)
 VALUES (1, 1, '', ''), (2, 2, '', ''),
@@ -38,7 +44,12 @@ VALUES (1, 1, '', ''), (2, 2, '', ''),
        (25, 25, 'Stadium/테니스_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), (26, 26, 'Stadium/테니스_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png'), 
        (27, 27, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (28, 28, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
        (29, 29, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (30, 30, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), 
-       (31, 31, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (32, 32, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png');
+       (31, 31, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'), (32, 32, 'Court/볼링_Court.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png'),
+
+       (33, 33, 'Stadium/볼링_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png'), (34, 34, 'Stadium/야구_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'),
+       (35, 35, 'Stadium/야구_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'), (36, 36, 'Stadium/풋살장_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%92%8B%EC%82%B4%EC%9E%A5_Stadium.png'),
+       (37, 37, 'Stadium/풋살장_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%92%8B%EC%82%B4%EC%9E%A5_Stadium.png'), (38, 38, 'Stadium/테니스_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%ED%85%8C%EB%8B%88%EC%8A%A4_Stadium.png');
+
 
 -- ▶ 스포츠 종류 
 INSERT INTO sport_category_tb(id, sport, created_at) 
@@ -89,7 +100,16 @@ VALUES (1, 1, 'a 야구장', '010-0234-5678', 1, '부산시', 35.1846, 128.9863,
        
        (14, 2, 'a 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 24, '09:00', '18:00', '운영중', Now(), NOW()),
        (15, 2, 'b 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 25, '09:00', '18:00', '운영중', Now(), NOW()),
-       (16, 2, 'c 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 26, '09:00', '18:00', '운영중', Now(), NOW());
+       (16, 2, 'c 테니스장', '010-4234-5678', 8, '울산시', 37.3226, 126.8593, 26, '09:00', '18:00', '운영중', Now(), NOW()),
+
+       (17, 2, '부천 볼링장', '010-1123-1111', 6, '대전시', null, null, 33, '09:00', '18:00', '승인대기', Now(), NOW()),
+       (18, 2, '삼익 야구장', '010-2223-1111', 1, '부산시', null, null, 34, '09:00', '18:00', '승인대기', Now(), NOW()),
+       (19, 2, '리베라 야구장', '010-3323-1111', 1, '대구시', null, null, 35, '09:00', '18:00', '승인대기', Now(), NOW()),
+       (20, 2, '아레나 풋살장', '010-4423-1111', 5, '인천시', null, null, 36, '09:00', '18:00', '승인대기', Now(), NOW()),
+       (21, 2, '연제 풋살장', '010-5523-1111', 5, '서울시', null, null, 37, '09:00', '18:00', '승인대기', Now(), NOW()),
+       (22, 2, '장호 테니스장', '010-6623-1111', 8, '대전시', null, null, 38, '09:00', '18:00', '승인대기', Now(), NOW());
+
+
 
 INSERT INTO stadium_court_tb(id, stadium_id, file_info_id, court_price, capacity, title, content, status, created_at, updated_at) 
 VALUES (1, 1, 9, 40000, 22, 'a 야구장(코트1)','최신 시설 야구장', '등록완료', now(), now()), 

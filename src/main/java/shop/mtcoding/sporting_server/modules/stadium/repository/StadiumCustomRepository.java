@@ -22,6 +22,7 @@ public interface StadiumCustomRepository {
 
     SportCategoryDTO findCategoryByStadiumId(@Param("stadiumId") Long stadiumId);
 
+    // Page<AdminStadiumListOutDto> findAllForAdmin(Pageable pageable);
     // List<StadiumCourtDTO> findStadiumCourtByStadiumId(@Param("stadiumId") Long
     // stadiumId);
 }

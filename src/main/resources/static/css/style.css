@@ -1,0 +1,31 @@
+.my-text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vl {
+    border-left: 1px solid grey;
+    height: 723px;
+    margin-left: 10px;
+}
+
+.my-text-align {
+    text-align: center;
+}
+
+tr.my-text-align td {
+    border-top: none;
+}
+
+.link-with-ellipsis {
+    display: block;
+    width: 370px;
+    /* 표시 영역의 너비 */
+    white-space: nowrap;
+    /* 한 줄 표시 */
+    overflow: hidden;
+    /* 표시 영역을 벗어나는 부분을 잘라냄 */
+    text-overflow: ellipsis;
+    /* 줄임표 표시 */
+}

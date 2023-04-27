@@ -40,6 +40,7 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest.StadiumUpd
 @Entity
 @Table(name = "stadium_tb")
 @EqualsAndHashCode(of = "id", callSuper = false)
+
 public class Stadium {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -96,7 +97,7 @@ public class Stadium {
 
     @Comment("thumbnail 사진 정보")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "file_info_id", unique = true)
+    @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 
     @NonNull

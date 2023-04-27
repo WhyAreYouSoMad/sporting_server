@@ -156,7 +156,6 @@ public class StadiumService {
         List<StadiumCourt> courtsToUpdatePS = stadiumCourtRepository.findByIdIn(courtIdList);
         if (courtsToUpdatePS.size() != courtList.size()) {
             throw new Exception400("존재하지 않는 Court가 요청 되었습니다.");
-
         }
 
         // court를 Map으로 변환(courtsToUpdatePS 영속화를 활용하기 위함)
