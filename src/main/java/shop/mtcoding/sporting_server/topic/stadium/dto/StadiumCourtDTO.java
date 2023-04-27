@@ -1,12 +1,12 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 
 @Getter
 @Setter
@@ -17,7 +17,9 @@ public class StadiumCourtDTO {
     private String title;
     private String content;
     private Integer capacity;
+    @JsonIgnore
     private Integer courtPrice;
+    private String price;
     private CourtFileResponseDto courtFile;
 
     @QueryProjection
@@ -27,7 +29,8 @@ public class StadiumCourtDTO {
         this.title = title;
         this.content = content;
         this.capacity = capacity;
-        this.courtPrice = courtPrice;
+        String price = String.format("%,d", courtPrice);
+        this.price = price;
         this.courtFile = courtFile;
     }
 }

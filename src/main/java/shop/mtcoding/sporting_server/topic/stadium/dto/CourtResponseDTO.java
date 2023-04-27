@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.EqualsAndHashCode;
@@ -17,7 +18,9 @@ public class CourtResponseDTO {
     private String title;
     private String content;
     private Integer capacity;
+    @JsonIgnore
     private Integer courtPrice;
+    private String price;
     private String sport;
 
     // private String profileURL;
@@ -30,7 +33,8 @@ public class CourtResponseDTO {
         this.title = title;
         this.content = content;
         this.capacity = capacity;
-        this.courtPrice = courtPrice;
+        String price = String.format("%,d", courtPrice);
+        this.price = price;
         this.sport = sport;
         this.courtFile = courtFile;
     }
