@@ -100,6 +100,22 @@
                 location.href = "/admin/stadium?page=" + requestPage+"&keyword="+keyword;
             }
 
+            function stadiumDelete(stadiumId) {
+                alert(stadiumId)
+                $.ajax({
+                    url: '/admin/stadium/'+stadiumId,
+                    method: 'DELETE',
 
+                    success: function(response) {
+                        console.log(response);
+                        alert('악질경기장 삭제 완료!');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    alert('삭제 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
+            }
         </script>
         <%@ include file="../layout/footer.jsp" %>

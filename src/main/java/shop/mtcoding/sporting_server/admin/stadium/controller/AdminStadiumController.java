@@ -95,7 +95,7 @@ public class AdminStadiumController {
         return new ResponseEntity<>(new ResponseDto<>(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/admin/stadium/{stadiumId}")
+    @DeleteMapping("/stadium/{stadiumId}")
     public ResponseEntity<Object> userDelete(@PathVariable Long stadiumId) {
         adminStadiumService.stadiumDelete(stadiumId);
 
