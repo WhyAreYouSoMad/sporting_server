@@ -17,11 +17,14 @@ public class AdminWaitStadiumListOutDto {
     private Long id;
     private String name;
     private String status;
+    private String fileUrl;
     private LocalDateTime createdAt;
 
-    public AdminWaitStadiumListOutDto(Long id, String name, StadiumStatus status, LocalDateTime createdAt) {
+    public AdminWaitStadiumListOutDto(Long id, String name, StadiumStatus status, String fileUrl,
+            LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
+        this.fileUrl = fileUrl;
         this.status = status.name();
         this.createdAt = createdAt;
     }

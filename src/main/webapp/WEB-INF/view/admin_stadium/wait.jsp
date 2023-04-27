@@ -34,8 +34,9 @@
                         <tr class="my-text-align">
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">경기장 이름</th>
-                            <th scope="col" class="text-center">등록 현황</th>
+                            <th scope="col" class="text-center">사진</th>
                             <th scope="col" class="text-center">등록 일자</th>
+                            <th scope="col" class="text-center">상태</th>
                         </tr>
                      </thead>
                      <tbody id="approveBoardCheck">
@@ -44,9 +45,9 @@
                                 <tr class="my-text-align">
                                     <td class="text-center">${stadium.id}</td>
                                     <td>${stadium.name}</td>
-                                    <td>${stadium.status}</td>
-                                    <%-- <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td> --%>
+                                    <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td>
                                     <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
+                                    <td>${stadium.status}</td>
                                     <td><button onclick="stadiumApprove(${stadium.id})" class="btn-xs">승인</button></td>
                                 </tr>
                             </c:forEach>
