@@ -27,27 +27,31 @@
 
 
 
-             <div class="d-flex justify-content-center">
+             <div class="d-flex justify-content-center" id="approveBoard">
                 <div style="position: relative; top: 50px">
                     <table class="table">
-
+                     <thead>
                         <tr class="my-text-align">
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">경기장 이름</th>
                             <th scope="col" class="text-center">등록 현황</th>
                             <th scope="col" class="text-center">등록 일자</th>
                         </tr>
+                     </thead>
+                     <tbody id="approveBoardCheck">
 
-                        <c:forEach items="${stadiumWaitList}" var="stadium">
-                            <tr class="my-text-align">
-                                <td class="text-center">${stadium.id}</td>
-                                <td>${stadium.name}</td>
-                                <td>${stadium.status}</td>
-                                <%-- <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td> --%>
-                                <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
-                                <td><button onclick="stadiumApprove(${stadium.id})" class="btn-xs">승인</button></td>
-                            </tr>
-                        </c:forEach>
+                            <c:forEach items="${stadiumWaitList}" var="stadium">
+                                <tr class="my-text-align">
+                                    <td class="text-center">${stadium.id}</td>
+                                    <td>${stadium.name}</td>
+                                    <td>${stadium.status}</td>
+                                    <%-- <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td> --%>
+                                    <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
+                                    <td><button onclick="stadiumApprove(${stadium.id})" class="btn-xs">승인</button></td>
+                                </tr>
+                            </c:forEach>
+
+                     </tbody>
                     </table>
 
 
@@ -69,7 +73,7 @@
 
                         </ul>
                     </div>
-                    <div class="input-group justify-content-center" style="position: absolute; bottom: 30;">
+                    <div class="input-group justify-content-center" style="position: absolute; bottom: 30;" id="searchBar">
                         <div class="col-4">
                             <input id="keyword" name="query" type="text" class="form-control" placeholder="검색어 입력"
                                 aria-label="search" value="" aria-describedby="button-addon2">
@@ -118,5 +122,19 @@
                     }
                 });
             }
+
+           function boardCheck() {
+
+                if ($("#approveBoardCheck").children().length == 0) {
+                    let el = `<div class="d-flex justify-content-center" style="margin-top: 80px; color: #808080;">
+                    <h5>승인대기 경기장이 없습니다.</h5>
+                 </div>`;
+
+                    $("#searchBar").remove();
+                    $("#approveBoard").empty();
+                    $("#approveBoard").append(el);
+                }
+            }
+            boardCheck();
         </script>
         <%@ include file="../layout/footer.jsp" %>
