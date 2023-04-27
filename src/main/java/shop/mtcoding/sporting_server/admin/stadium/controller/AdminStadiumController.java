@@ -29,7 +29,7 @@ public class AdminStadiumController {
     private final AdminStadiumService adminStadiumService;
 
     @GetMapping("/stadium")
-    public String stadium(
+    public String stadiumDefault(
             String keyword,
             @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
             Model model) {
@@ -112,15 +112,22 @@ public class AdminStadiumController {
     }
 
     @PutMapping("/stadium/{stadiumId}")
-    public ResponseEntity<?> approve(@PathVariable Long stadiumId) {
+    public ResponseEntity<?> stadium_approve(@PathVariable Long stadiumId) {
         adminStadiumService.stadiumApprove(stadiumId);
 
         return new ResponseEntity<>(new ResponseDto<>(), HttpStatus.OK);
     }
 
     @DeleteMapping("/stadium/{stadiumId}")
-    public ResponseEntity<Object> userDelete(@PathVariable Long stadiumId) {
+    public ResponseEntity<Object> stadium_delete(@PathVariable Long stadiumId) {
         adminStadiumService.stadiumDelete(stadiumId);
+
+        return new ResponseEntity<>(new ResponseDto<>(), HttpStatus.OK);
+    }
+
+    @PutMapping("/stadium/active/{stadiumId}")
+    public ResponseEntity<Object> stadium_active(@PathVariable Long stadiumId) {
+        adminStadiumService.stadiumActive(stadiumId);
 
         return new ResponseEntity<>(new ResponseDto<>(), HttpStatus.OK);
     }
