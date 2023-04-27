@@ -58,8 +58,6 @@ public class StadiumController {
                         @RequestBody @Valid StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO,
                         BindingResult bindingResult, @AuthenticationPrincipal MyUserDetails myUserDetails)
                         throws IOException {
-                System.out.println("테스트111111111111111");
-                System.out.println("테스트 11 : " + myUserDetails.getUser().getId());
                 StadiumUpdateOutDTO stadiumUpdateOutDTO = stadiumService.update(myUserDetails.getUser().getId(),
                                 stadiumUpdateInDTO);
 

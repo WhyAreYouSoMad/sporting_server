@@ -103,11 +103,10 @@
                 location.href = "/admin/stadium/wait?page=" + requestPage+"&keyword="+keyword;
             }
 
-         function stadiumApprove(courtId) {
+         function stadiumApprove(stadiumId) {
                 $.ajax({
-                    url: '/admin/court/status',
-                    method: 'POST',
-                    data: { courtId: courtId },
+                    url: '/admin/stadium/'+stadiumId,
+                    method: 'PUT',
                     success: function(response) {
                         alert('승인 완료!');
                         location.reload();

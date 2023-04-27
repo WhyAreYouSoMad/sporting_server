@@ -19,27 +19,27 @@ public interface StadiumRepository extends JpaRepository<Stadium, Long>, Stadium
         @Query("select s from Stadium s where s.name = :name")
         Optional<Stadium> findByName(@Param("name") String name);
 
-        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
+        @Query("SELECT new shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
                         + "FROM Stadium st "
                         + "INNER JOIN st.category ct "
                         + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
                         + "WHERE st.status = '운영중'")
         Page<AdminStadiumListOutDto> findAllForAdmin(Pageable pageable);
 
-        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
+        @Query("SELECT new shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto(st.id, st.name, st.tel, ft.fileUrl, st.createdAt) "
                         + "FROM Stadium st "
                         + "INNER JOIN st.category ct "
                         + "INNER JOIN ProfileFile ft on ft.fileInfo.id = st.fileInfo.id "
                         + "WHERE st.status = '운영중' and st.name LIKE %:name%")
         Page<AdminStadiumListOutDto> findAllForAdminByName(Pageable pageable, @Param("name") String name);
 
-        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto(st.id, st.name, st.status, st.createdAt) "
+        @Query("SELECT new shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto(st.id, st.name, st.status, st.createdAt) "
                         + "FROM Stadium st "
                         + "INNER JOIN st.category ct "
                         + "WHERE st.status = '승인대기' and st.name LIKE %:name%")
         Page<AdminWaitStadiumListOutDto> findAllWaitForAdminByName(Pageable pageable, @Param("name") String name);
 
-        @Query("SELECT new shop.mtcoding.sporting_server.adminuser.dto.stadium.AdminWaitStadiumListOutDto(st.id, st.name, st.status, st.createdAt) "
+        @Query("SELECT new shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto(st.id, st.name, st.status, st.createdAt) "
                         + "FROM Stadium st "
                         + "INNER JOIN st.category ct "
                         + "WHERE st.status = '승인대기'")
