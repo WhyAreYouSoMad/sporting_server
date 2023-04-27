@@ -102,7 +102,6 @@
             }
 
             function stadiumDelete(stadiumId) {
-                alert(stadiumId)
                 $.ajax({
                     url: '/admin/stadium/'+stadiumId,
                     method: 'DELETE',

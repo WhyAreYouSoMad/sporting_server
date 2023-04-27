@@ -44,8 +44,21 @@
                                     <td>${stadium.name}</td>
                                     <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td>
                                     <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
-                                    <td>${stadium.status}</td>
-
+                                    <%-- <td>${stadium.status}</td> --%>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${stadium.status == '비활성'}">
+                                            <select id="status-select-${stadium.id}" onchange="changeToActive(${stadium.id})">
+                                                <option value="비활성" selected>비활성</option>
+                                                <option value="활성">활성</option>
+                                            </select>
+                                            </c:when>
+                                            <c:otherwise>
+                                            ${stadium.status}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    
                                 </tr>
                             </c:forEach>
                      </tbody>
@@ -63,7 +76,7 @@
                             <c:forEach var="num" begin="${startPage}" end="${endPage}">
 
                             <li class="page-item ${num == nowPage ? 'active' : ''}">
-                                <a class="page-link" href="/admin/stadium/wait?page=${num-1}&keyword=${keyword}">${num}</a>
+                                <a class="page-link" href="/admin/stadium/inactive?page=${num-1}&keyword=${keyword}">${num}</a>
                             </li>
                             </c:forEach>
 
@@ -87,4 +100,38 @@
 
 
         </div>
+
+        <script>
+            function searchGet() {
+                let keyword =  $("#keyword").val();
+                location.href = "/admin/stadium/inactive?page=0&keyword=" + keyword;
+            }
+            function callPrev() {
+                let requestPage = `${nowPage-2}`;
+                let keyword = `${keyword}`
+                location.href = "/admin/stadium/inactive?page=" + requestPage+"&keyword="+keyword;
+            }
+
+            function callNext() {
+                let requestPage = `${nowPage}`;
+                let keyword = `${keyword}`
+                location.href = "/admin/stadium/inactive?page=" + requestPage+"&keyword="+keyword;
+            }
+            function changeToActive(stadiumId) {
+                $.ajax({
+                    url: '/admin/stadium/active/'+stadiumId,
+                    method: 'PUT',
+
+                    success: function(response) {
+                        console.log(response);
+                        alert('경기장 활성화');
+                        location.reload();
+                    },
+                    error: function(error) {
+                    alert('활성화 중 오류가 발생했습니다.');
+                    console.log(error);
+                    }
+                });
+            }
+        </script>
         <%@ include file="../layout/footer.jsp" %>
