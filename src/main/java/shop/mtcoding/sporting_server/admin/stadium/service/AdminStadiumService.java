@@ -45,4 +45,7 @@ public class AdminStadiumService {
         stadiumPS.setStatus(StadiumStatus.운영중);
     }
 
+    public void stadiumDelete(Long stadiumId) {
+    }
+
 }
