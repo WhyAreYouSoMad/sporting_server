@@ -45,7 +45,12 @@ public class AdminStadiumService {
         stadiumPS.setStatus(StadiumStatus.운영중);
     }
 
+    @Transactional
     public void stadiumDelete(Long stadiumId) {
+        Stadium stadiumPS = stadiumRepository.findById(stadiumId).orElseThrow(() -> {
+            throw new CustomException("존재하지 않는 경기장입니다.", HttpStatus.BAD_REQUEST);
+        });
+        stadiumPS.setStatus(StadiumStatus.비활성);
     }
 
 }
