@@ -104,7 +104,8 @@ public class StadiumPlayerTest {
                 // given
                 Long stadiumId = 1L;
 
-                StadiumDetailOutDTO stadiumDetailDTO = new StadiumDetailOutDTO(LocalTime.of(9, 0), LocalTime.of(18, 0),
+                StadiumDetailOutDTO stadiumDetailDTO = new StadiumDetailOutDTO(1L, LocalTime.of(9, 0),
+                                LocalTime.of(18, 0),
                                 "a 야구장", 35.1846, 128.9863, StadiumAddress.부산시,
                                 new StadiumFileResponseDTO(1L, "경기장 URL"));
                 SportCategoryDTO category = new SportCategoryDTO(1L, "야구");

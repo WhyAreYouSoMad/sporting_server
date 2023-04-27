@@ -114,7 +114,8 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
                 QStadium qStadium = QStadium.stadium;
                 QProfileFile qFile = QProfileFile.profileFile;
                 JPAQuery<StadiumDetailOutDTO> query = jpaQueryFactory
-                                .select(new QStadiumDetailOutDTO(qStadium.startTime, qStadium.endTime, qStadium.name,
+                                .select(new QStadiumDetailOutDTO(qStadium.id, qStadium.startTime, qStadium.endTime,
+                                                qStadium.name,
                                                 qStadium.lat, qStadium.lon, qStadium.address,
                                                 new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
                                 .from(qStadium)
