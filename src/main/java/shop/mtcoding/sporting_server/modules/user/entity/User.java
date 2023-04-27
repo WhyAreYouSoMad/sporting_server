@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.modules.user.entity;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import lombok.*;
 import org.hibernate.annotations.Comment;
 
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest.UpdateInDTO;
 
 @Getter
 @Setter
@@ -85,4 +87,11 @@ public class User {
         this.updatedAt = updatedAt;
         this.status = status;
     }
+
+    public void companyUpdateUser(UpdateInDTO updateInDTO) {
+        this.nickname = nickname.valueOf(updateInDTO.getNickname());
+        this.password = password.valueOf(updateInDTO.getPassword());
+        this.updatedAt = updatedAt.now();
+    }
+
 }

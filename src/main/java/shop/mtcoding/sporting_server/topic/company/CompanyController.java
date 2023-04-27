@@ -2,6 +2,8 @@ package shop.mtcoding.sporting_server.topic.company;
 
 import lombok.RequiredArgsConstructor;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.boot.context.properties.bind.BindResult;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,7 @@ import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,4 +48,13 @@ public class CompanyController {
 
         return ResponseEntity.ok().body(new ResponseDto<>().data(companyResponseOutDTO));
     }
+
+    @PutMapping("/company/update")
+    public ResponseEntity<?> updateCompany(@AuthenticationPrincipal MyUserDetails myUserDetails,
+            @RequestBody CompanyRequest.UpdateInDTO updateInDTO) throws IOException {
+        CompanyResponse.UpdateOutDTO updateOutDTO = companyService.정보변경(myUserDetails.getUser().getId(),
+                updateInDTO);
+        return ResponseEntity.ok().body(new ResponseDto<>().data(updateOutDTO));
+    }
+
 }

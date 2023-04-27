@@ -2,6 +2,8 @@ package shop.mtcoding.sporting_server.topic.company.dto;
 
 import lombok.*;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
+import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
+import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 import java.time.LocalDateTime;
@@ -35,4 +37,33 @@ public class CompanyRequest {
                     .build();
         }
     }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @EqualsAndHashCode
+    public static class UpdateInDTO {
+
+        private String nickname;
+        private String password;
+        private LocalDateTime updatedAt;
+
+        private String tel;
+        private String businessAdress;
+        private String businessNumber;
+        private CompanyFileDTO companyFile;
+
+        @Getter
+        @Setter
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode
+        public static class CompanyFileDTO {
+            private Long id;
+            private String fileBase64;
+        }
+
+    }
+
 }
