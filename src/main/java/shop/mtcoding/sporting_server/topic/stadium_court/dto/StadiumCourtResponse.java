@@ -2,6 +2,8 @@ package shop.mtcoding.sporting_server.topic.stadium_court.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,7 +28,9 @@ public class StadiumCourtResponse {
         private String title;
         private String content;
         private Integer capacity;
+        @JsonIgnore
         private Integer courtPrice;
+        private String price;
         private LocalDateTime createdAt;
         private StadiumCourtStatus status;
 
@@ -39,7 +43,8 @@ public class StadiumCourtResponse {
             this.title = stadiumCourt.getTitle();
             this.content = stadiumCourt.getContent();
             this.capacity = stadiumCourt.getCapacity();
-            this.courtPrice = stadiumCourt.getCourtPrice();
+            String price = String.format("%,d", stadiumCourt.getCourtPrice());
+            this.price = price;
             this.createdAt = stadiumCourt.getCreatedAt();
             this.status = stadiumCourt.getStatus();
         }
