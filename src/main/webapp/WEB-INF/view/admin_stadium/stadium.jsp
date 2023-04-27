@@ -44,7 +44,7 @@
                                 <td>${stadium.tel}</td>
                                 <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td>
                                 <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
-                                <td><button onclick="stadiumDelete(${stadium.id})" class="btn-xs">삭제</button></td>
+                                <td><button onclick="confirmDelete(${stadium.id})" class="btn-xs">삭제</button></td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -101,6 +101,12 @@
                 location.href = "/admin/stadium?page=" + requestPage+"&keyword="+keyword;
             }
 
+            function confirmDelete(stadiumId) {
+                if (confirm('정말 삭제하시겠습니까?')) {
+                    stadiumDelete(stadiumId);
+                }
+            }
+
             function stadiumDelete(stadiumId) {
                 $.ajax({
                     url: '/admin/stadium/'+stadiumId,
@@ -108,7 +114,7 @@
 
                     success: function(response) {
                         console.log(response);
-                        alert('악질경기장 삭제 완료!');
+                        // alert('악질경기장 삭제 완료!');
                         location.reload();
                     },
                     error: function(error) {

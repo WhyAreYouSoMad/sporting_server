@@ -49,7 +49,7 @@
                                     <td><a href="${stadium.fileUrl}"  class="link-with-ellipsis">${stadium.fileUrl}</a></td>
                                     <td class="text-center">${MyDateUtils.toStringFormat(stadium.createdAt)}</td>
                                     <td>${stadium.status}</td>
-                                    <td><button onclick="stadiumApprove(${stadium.id})" class="btn-xs">승인</button></td>
+                                    <td><button onclick="confirmApprove(${stadium.id})" class="btn-xs">승인</button></td>
                                 </tr>
                             </c:forEach>
                      </tbody>
@@ -93,7 +93,11 @@
         </div>
 
         <script>
-
+            function confirmApprove(stadiumId) {
+                if (confirm('승인 하시겠습니까?')) {
+                    stadiumApprove(stadiumId);
+                }
+            }
             function searchGet() {
                 let keyword =  $("#keyword").val();
                 location.href = "/admin/stadium/wait?page=0&keyword=" + keyword;
@@ -115,7 +119,7 @@
                     url: '/admin/stadium/'+stadiumId,
                     method: 'PUT',
                     success: function(response) {
-                        alert('승인 완료!');
+                        // alert('승인 완료!');
                         location.reload();
                     },
                     error: function(error) {
