@@ -29,13 +29,14 @@
 
              <div class="d-flex justify-content-center" id="approveBoard">
                 <div style="position: relative; top: 50px">
-                    <table class="table">
+                    <table class="table" >
+                    
                      <thead>
                         <tr class="my-text-align">
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">경기장 이름</th>
                             <th scope="col" class="text-center">사진</th>
-                            <th scope="col" class="text-center">등록 일자</th>
+                            <th scope="col" class="text-center">등록일</th>
                             <th scope="col" class="text-center">상태</th>
                         </tr>
                      </thead>
@@ -51,10 +52,11 @@
                                     <td><button onclick="stadiumApprove(${stadium.id})" class="btn-xs">승인</button></td>
                                 </tr>
                             </c:forEach>
-
                      </tbody>
                     </table>
+                    <div id="noResultComment">
 
+                    </div>
 
                     <div class="d-flex justify-content-center mb-3">
                         <ul class="pagination">
@@ -127,13 +129,13 @@
            function boardCheck() {
 
                 if ($("#approveBoardCheck").children().length == 0) {
-                    let el = `<div class="d-flex justify-content-center" style="margin-top: 80px; color: #808080;">
+                    let el = `<div class="d-flex justify-content-center" style="margin-top: 80px; margin-bottom: 130px; color: #808080;">
                     <h5>승인대기 경기장이 없습니다.</h5>
                  </div>`;
 
-                    $("#searchBar").remove();
-                    $("#approveBoard").empty();
-                    $("#approveBoard").append(el);
+                    // $("#searchBar").remove();
+                    // $("#approveBoard").empty();
+                    $("#noResultComment").append(el);
                 }
             }
             boardCheck();
