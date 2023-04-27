@@ -24,6 +24,7 @@ import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest.UpdateInDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO;
 
 import java.io.IOException;
 import java.util.List;
@@ -78,7 +79,7 @@ public class CompanyService {
     }
 
     @Transactional
-    public CompanyUpdateFormOutDTO 정보변경(Long id, UpdateInDTO updateInDTO) throws IOException {
+    public UpdateOutDTO 정보변경(Long id, UpdateInDTO updateInDTO) throws IOException {
 
         User userPS = userRepository.findById(id).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 유저입니다.");
@@ -96,16 +97,12 @@ public class CompanyService {
         });
         companyInfoPS.setTel(updateInDTO.getTel());
         companyInfoPS.setBusinessAdress(updateInDTO.getBusinessAdress());
-
+        companyInfoPS.setBusinessNumber(updateInDTO.getBusinessNumber());
+        // System.out.println("디버깅 00 : " + companyInfoPS.getFileInfo().getId());
         ProfileFile companyProfileFilePS = profileFileRepository.findById(companyInfoPS.getFileInfo().getId())
                 .orElseThrow(() -> {
                     throw new Exception400("Profile File이 존재하지 않습니다.");
                 });
-
-        // =========================여기까지 함 base64못받아옴===============================
-
-        System.out.println("테스트 : " + updateInDTO.getCompanyFile().getFileBase64());
-        // ===========================================================================================
 
         // size가 다르면 false, 같으면 true
         Boolean sizeCheck = S3Utils.updateProfileCheck_Company(companyProfileFilePS,
@@ -121,8 +118,8 @@ public class CompanyService {
             companyProfileFilePS.setFileUrl(nameAndUrl.get(1));
         }
 
-        CompanyUpdateFormOutDTO companyUpdateFormOutDTO = userRepository.findByCompanyUserId(id);
-        companyUpdateFormOutDTO.setCompanyInfo(companyInfoRepository.findCompanyInfoByUserId(id));
-        return companyUpdateFormOutDTO;
+        UpdateOutDTO updateOutDTO = new UpdateOutDTO(userPS, companyInfoPS, companyProfileFilePS);
+
+        return updateOutDTO;
     }
 }

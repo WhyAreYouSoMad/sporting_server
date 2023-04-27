@@ -217,9 +217,11 @@ public class S3Utils {
 
     public static Boolean updateProfileCheck_Company(ProfileFile companyProfileFilePS, String fileBase64, String bucket,
             String staticRegion) throws IOException {
+
         Boolean check = false;
 
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+
         ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
                 companyProfileFilePS.getFileName());
 

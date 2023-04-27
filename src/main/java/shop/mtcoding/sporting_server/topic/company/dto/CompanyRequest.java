@@ -51,6 +51,7 @@ public class CompanyRequest {
 
         private String tel;
         private String businessAdress;
+        private String businessNumber;
         private CompanyFileDTO companyFile;
 
         @Getter
@@ -59,7 +60,7 @@ public class CompanyRequest {
         @AllArgsConstructor
         @EqualsAndHashCode
         public static class CompanyFileDTO {
-            private String id;
+            private Long id;
             private String fileBase64;
         }
 

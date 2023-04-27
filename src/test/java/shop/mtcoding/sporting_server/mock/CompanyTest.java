@@ -4,6 +4,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,6 +37,8 @@ import shop.mtcoding.sporting_server.topic.company.dto.CompanyInfoResponseDTO;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO.CompanyFileDTO;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerFavoriteSportResponseDTO;
 
 @WebMvcTest(CompanyController.class)
@@ -97,9 +100,10 @@ public class CompanyTest {
                 CompanyUpdateFormOutDTO companyUpdateFormOutDTO = new CompanyUpdateFormOutDTO(3L, "baseball451",
                                 "cos@nate.com", "1234");
 
-                CompanyInfoResponseDTO companyInfoResponseDTO = new CompanyInfoResponseDTO(1L, "010-1001-2222",
-                                "부산시 연제구", "111-11-11111");
-                companyUpdateFormOutDTO.setCompanyInfo(companyInfoResponseDTO);
+                // CompanyInfoResponseDTO companyInfoResponseDTO = new
+                // CompanyInfoResponseDTO(1L, "010-1001-2222",
+                // "부산시 연제구", "111-11-11111");
+                // companyUpdateFormOutDTO.setCompanyInfo(companyInfoResponseDTO);
 
                 given(this.companyService.getUpdateForm(id))
                                 .willReturn(companyUpdateFormOutDTO);
@@ -116,5 +120,45 @@ public class CompanyTest {
                 resultActions
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.data.nickname").value("baseball451"));
+        }
+
+        @Test
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @DisplayName("경기장 정보 수정 (코트 포함 및 이미지 파일)")
+        void updateTest() throws Exception {
+
+                // given
+                CompanyRequest.UpdateInDTO.CompanyFileDTO companyFileDTO = new CompanyRequest.UpdateInDTO.CompanyFileDTO(
+                                3L, "skedfdf");
+                CompanyRequest.UpdateInDTO updateInDTO = new CompanyRequest.UpdateInDTO("아무개나", "1234",
+                                null,
+                                "010-0000-0000",
+                                "1234-65-745454",
+                                "123-65-456", companyFileDTO);
+
+                CompanyResponse.UpdateOutDTO.CompanyFileDTO companyFileDTO2 = new CompanyResponse.UpdateOutDTO.CompanyFileDTO(
+                                3L, "무슨이름", "skedfdf");
+                CompanyResponse.UpdateOutDTO updateOutDTO = new CompanyResponse.UpdateOutDTO(3L, "아무개나", "1234",
+                                "010-0000-0000",
+                                "1234-65-745454",
+                                "123-65-456", companyFileDTO2);
+
+                given(this.companyService.정보변경(3L, updateInDTO))
+                                .willReturn(updateOutDTO);
+
+                // When
+                ResultActions resultActions = this.mvc.perform(
+                                put("/api/company/update")
+                                                .content(objectMapper.writeValueAsString(updateInDTO))
+                                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                                .with(csrf()));
+
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
+
+                // Then
+                resultActions
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.data.password").value("1234"));
         }
 }

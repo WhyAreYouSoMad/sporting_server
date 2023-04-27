@@ -23,6 +23,7 @@ import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -51,11 +52,9 @@ public class CompanyController {
     @PutMapping("/company/update")
     public ResponseEntity<?> updateCompany(@AuthenticationPrincipal MyUserDetails myUserDetails,
             @RequestBody CompanyRequest.UpdateInDTO updateInDTO) throws IOException {
-
-        CompanyUpdateFormOutDTO companyResponseOutDTO = companyService.정보변경(myUserDetails.getUser().getId(),
+        CompanyResponse.UpdateOutDTO updateOutDTO = companyService.정보변경(myUserDetails.getUser().getId(),
                 updateInDTO);
-        // ResponseDto<?> responseDTO = new ResponseDto<>().data(data);
-        return ResponseEntity.ok().body(new ResponseDto<>().data(companyResponseOutDTO));
+        return ResponseEntity.ok().body(new ResponseDto<>().data(updateOutDTO));
     }
 
 }
