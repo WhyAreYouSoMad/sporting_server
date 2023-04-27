@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminInactiveStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
@@ -35,6 +36,14 @@ public class AdminStadiumService {
 
     public Page<AdminWaitStadiumListOutDto> getWaitStadiumList(Pageable pageable) {
         return stadiumRepository.findAllWaitForAdmin(pageable);
+    }
+
+    public Page<AdminInactiveStadiumListOutDto> getInactiveStadiumListByName(String name, Pageable pageable) {
+        return stadiumRepository.getInactiveStadiumListByName(pageable, name);
+    }
+
+    public Page<AdminInactiveStadiumListOutDto> getInactiveStadiumList(Pageable pageable) {
+        return stadiumRepository.getInactiveStadiumList(pageable);
     }
 
     @Transactional

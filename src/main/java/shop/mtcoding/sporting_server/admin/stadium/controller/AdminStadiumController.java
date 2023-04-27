@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.admin.stadium.dto.AdminInactiveStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.service.AdminStadiumService;
@@ -84,7 +85,29 @@ public class AdminStadiumController {
     }
 
     @GetMapping("/stadium/inactive")
-    public String stadium_inactive() {
+    public String stadium_inactive(
+            String keyword,
+            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            Model model) {
+
+        Page<AdminInactiveStadiumListOutDto> adminInactiveStadiumListOutDto;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            adminInactiveStadiumListOutDto = adminStadiumService.getInactiveStadiumListByName(keyword, pageable);
+        } else {
+            adminInactiveStadiumListOutDto = adminStadiumService.getInactiveStadiumList(pageable);
+        }
+
+        int nowPage = adminInactiveStadiumListOutDto.getPageable().getPageNumber() + 1;
+        int startPage = ((nowPage - 1) / 5) * 5 + 1; // 버튼에서 첫 숫자
+        int endPage = Math.min(nowPage + 5, adminInactiveStadiumListOutDto.getTotalPages()); // 버튼에서 마지막 숫자
+
+        model.addAttribute("stadiumInactiveList", adminInactiveStadiumListOutDto.getContent());
+        model.addAttribute("totalPage", adminInactiveStadiumListOutDto.getTotalPages());
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("keyword", keyword);
         return "/admin_stadium/inactive";
     }
 

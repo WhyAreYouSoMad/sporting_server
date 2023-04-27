@@ -101,7 +101,7 @@ public class Stadium {
     private FileInfo fileInfo;
 
     @NonNull
-    @Comment("경기장 활성화 상태 (운영중/휴업/등록대기/폐업)")
+    @Comment("경기장 활성화 상태 (운영중/비활성/승인대기/휴업/폐업)")
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private StadiumStatus status;

@@ -27,13 +27,14 @@
              <div class="d-flex justify-content-center">
                 <div style="position: relative; top: 50px">
                     <table class="table">
+                    
 
                         <tr class="my-text-align">
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">경기장 이름</th>
                             <th scope="col" class="text-center">연락처</th>
                             <th scope="col" class="text-center">사진</th>
-                            <th scope="col" class="text-center">등록 일자</th>
+                            <th scope="col" class="text-center">등록일</th>
                         </tr>
 
                         <c:forEach items="${stadiumList}" var="stadium">
