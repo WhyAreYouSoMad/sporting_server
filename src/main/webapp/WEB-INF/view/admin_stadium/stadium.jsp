@@ -26,7 +26,10 @@
 
              <div class="d-flex justify-content-center">
                 <div style="position: relative; top: 50px">
-                    <table class="table">
+                <div class="d-flex justify-content-center mb-4">
+                    <h3 class="text-secondary">경기장 관리</h3>
+                </div>
+                    <table class="table" style="margin-bottom:30px;">
                     
 
                         <tr class="my-text-align">

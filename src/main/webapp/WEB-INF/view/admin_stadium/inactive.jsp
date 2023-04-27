@@ -26,7 +26,11 @@
 
                          <div class="d-flex justify-content-center" id="approveBoard">
                 <div style="position: relative; top: 50px">
-                    <table class="table" >
+
+                <div class="d-flex justify-content-center mb-4">
+                    <h3 class="text-secondary">비활성 경기장</h3>
+                </div>
+                    <table class="table" style="margin-bottom:30px;" >
                      <thead>
                         <tr class="my-text-align">
                             <th scope="col" class="text-center">번호</th>
