@@ -48,7 +48,7 @@
                                     <td>
                                         <c:choose>
                                             <c:when test="${stadium.status == '비활성'}">
-                                            <select id="status-select-${stadium.id}" onchange="changeToActive(${stadium.id})">
+                                            <select id="status-select-${stadium.id}" onchange="confirmActive(${stadium.id})">
                                                 <option value="비활성" selected>비활성</option>
                                                 <option value="활성">활성</option>
                                             </select>
@@ -102,6 +102,14 @@
         </div>
 
         <script>
+            function confirmActive(stadiumId) {
+                if (confirm('정말 활성화 하시겠습니까?')) {
+                    changeToActive(stadiumId);
+                } else {
+                    $('#status-select-' + stadiumId).val('비활성');
+                }
+            }
+
             function searchGet() {
                 let keyword =  $("#keyword").val();
                 location.href = "/admin/stadium/inactive?page=0&keyword=" + keyword;
@@ -124,7 +132,7 @@
 
                     success: function(response) {
                         console.log(response);
-                        alert('경기장 활성화');
+                        // alert('경기장 활성화');
                         location.reload();
                     },
                     error: function(error) {
