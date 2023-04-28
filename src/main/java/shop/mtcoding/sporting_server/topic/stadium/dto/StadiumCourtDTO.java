@@ -20,7 +20,7 @@ public class StadiumCourtDTO {
     @JsonIgnore
     private Integer courtPrice;
     private String price;
-    private CourtFileResponseDto courtFile;
+    private CourtFileResponseDto sourceFile;
 
     @QueryProjection
     public StadiumCourtDTO(Long id, String title, String content, Integer capacity, Integer courtPrice,
@@ -31,6 +31,6 @@ public class StadiumCourtDTO {
         this.capacity = capacity;
         String price = String.format("%,d", courtPrice);
         this.price = price;
-        this.courtFile = courtFile;
+        this.sourceFile = courtFile;
     }
 }

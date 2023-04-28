@@ -194,13 +194,13 @@ public class StadiumService {
 
         // size가 다르면 false, 같으면 true
         Boolean sizeCheck = S3Utils.updateProfileCheck_Stadium(stadiumProfileFilePS,
-                stadiumUpdateInDTO.getStadiumFile().getFileBase64(),
+                stadiumUpdateInDTO.getSourceFile().getFileBase64(),
                 bucket, staticRegion);
 
         // size가 다를경우 sizeCheck = false, !false로 아래 로직 실행
         if (!sizeCheck) {
             MultipartFile multipartFile2 = BASE64DecodedMultipartFile
-                    .convertBase64ToMultipartFile(stadiumUpdateInDTO.getStadiumFile().getFileBase64());
+                    .convertBase64ToMultipartFile(stadiumUpdateInDTO.getSourceFile().getFileBase64());
 
             // 사진이 업데이트 되었을 경우 S3upload 후, DB 반영
             List<String> nameAndUrl = S3Utils.uploadFile(multipartFile2, "Stadium", bucket, amazonS3Client);
@@ -211,7 +211,7 @@ public class StadiumService {
         // Court file 체킹 테스트
         List<Long> fileIds = new ArrayList<>();
         for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourtList()) {
-            Long fileId = Long.parseLong(courtDTO.getCourtFile().getId());
+            Long fileId = Long.parseLong(courtDTO.getSourceFile().getId());
             fileIds.add(fileId);
         }
 
@@ -223,7 +223,7 @@ public class StadiumService {
         List<StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO> courtFileList = new ArrayList<>();
 
         for (StadiumRequest.StadiumUpdateInDTO.CourtDTO court : courtList) {
-            StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO courtFile = court.getCourtFile();
+            StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO courtFile = court.getSourceFile();
             if (courtFile != null) {
                 courtFileList.add(courtFile);
             }
