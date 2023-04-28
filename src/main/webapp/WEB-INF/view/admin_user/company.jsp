@@ -27,9 +27,14 @@
 
         <div class="d-flex justify-content-center">
                 <div style="position: relative; top: 50px">
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-warning mx-1" onclick="addCheckBox()">Check</button>
+                    <button class="btn btn-primary mx-1" onclick="openEmailForm()">Send</button>
+                </div> 
                     <table class="table">
 
                         <tr class="my-text-align">
+                            <th scope="col" style="width: 30px">#</th>
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">이메일</th>
                             <th scope="col" class="text-center">닉네임</th>
@@ -39,6 +44,9 @@
 
                         <c:forEach items="${userList}" var="user">
                             <tr class="my-text-align">
+                                 <td>
+                                        
+                                </td>
                                 <td class="text-center">${user.id}</td>
                                 <td>${user.email}</td>
                                 <td>${user.nickname}</td>
@@ -97,7 +105,137 @@
 
         </div>
         
+
+              </div>
+            <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                
+                    <h5 class="modal-title" id="emailModalLabel">이메일 전송</h5>
+                    <%-- <button type="button" onclick="closeModal()" class="close" data-dismiss="modal" aria-label="Close"> --%>
+                    <%-- <span aria-hidden="true">&times;</span> --%>
+                    <%-- </button> --%>
+                </div>
+                <div class="modal-body">
+                    <%-- <h4>목록</h4> --%>
+                    <ul id="emailList" class="list-unstyled ms-2"></ul>
+                    <h3 class="font-weight-bold">제목</h3>
+                    <input id="emailSubject" type="text" class="form-control"/>
+                    <h3 class="font-weight-bold">내용</h3>
+                    <textarea id="emailContent" rows="17" class="form-control"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Close</button>
+                    <button id="sendEmailBtn" type="button" class="btn btn-primary" onclick="sendEmail()">Send</button>
+                </div>
+                </div>
+            </div>
+            </div>
         <script>
+
+
+        let emails;
+        function openEmailForm() {
+            let checkBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (checkBoxes.length > 0) { // 체크된 체크박스가 있는 경우
+                emails = [];
+                for (let i = 0; i < checkBoxes.length; i++) {
+                emails.push(checkBoxes[i].value); // 체크된 이메일을 배열에 추가
+                }
+
+                // 이메일 목록을 모달 내부에 추가
+                let emailList = document.getElementById("emailList");
+                emailList.innerHTML = ""; // 초기화
+                for (let i = 0; i < emails.length; i++) {
+                let email = document.createElement("li");
+                email.className = "text-primary font-weight-bold";
+                email.textContent = emails[i];
+                emailList.appendChild(email);
+                }
+
+                // 모달을 띄움
+                $('#emailModal').modal('show');
+            } else { // 체크된 체크박스가 없는 경우
+                alert('체크박스를 선택해주세요.');
+            }
+        }
+        function sendEmail() {
+            
+        let emailList = []; // 이메일과 id를 저장할 배열
+
+        for (let i = 0; i < emails.length; i++) {
+            let email = emails[i];
+            let checkboxes = document.getElementsByName('userIds[]');
+            for (let j = 0; j < checkboxes.length; j++) {
+                if (checkboxes[j].checked && checkboxes[j].value === email) { // 체크된 체크박스 중 이메일과 일치하는 것을 찾음
+                    let row = checkboxes[j].parentNode.parentNode;
+                    let id = row.querySelector('td:nth-child(2)').textContent; // row의 id 값
+                    let emailObj = { id: id, email: email }; // 이메일과 id를 객체에 추가
+                    emailList.push(emailObj); // 객체를 배열에 추가
+                }
+            }
+        }
+        // console.log(emailList);
+        let emailSubject = $("#emailSubject").val();
+        let emailContent = $("#emailContent").val();
+        
+        let emailDTO = {
+            emailList: emailList,
+            title: emailSubject,
+            content: emailContent
+        }
+            $.ajax({
+                type: 'POST',
+                url: '/admin/email',
+                data: JSON.stringify(emailDTO),
+                contentType: 'application/json',
+                success: function(response) {
+                    // Handle success response from the server
+                    console.log('Email sent successfully!');
+                    // console.log(response);
+                },
+                error: function(error) {
+                    // Handle error response from the server
+                    console.log('Error sending email:', error);
+                }
+            });
+
+            $('#emailSubject').val(''); // 제목 입력 폼 초기화
+            $('#emailContent').val(''); // 내용 입력 폼 초기화
+            $('#emailList').empty(); // 이메일 목록 초기화
+            $('#emailModal').modal('hide'); // 모달창 닫기
+         }
+
+        function closeModal() {
+            $('#emailSubject').val(''); 
+            $('#emailContent').val(''); 
+            $('#emailList').empty(); 
+            $('#emailModal').modal('hide'); 
+        }
+        let checkBoxAdded = false; // 체크박스 추가 여부를 저장하는 변수
+
+        function addCheckBox() {
+            if (!checkBoxAdded) { // 체크박스가 추가되어 있지 않은 경우
+                let checkBoxes = document.getElementsByTagName('td'); // 모든 td 태그를 가져옴
+                for (let i = 0; i < checkBoxes.length; i++) {
+                    let td = checkBoxes[i];
+                    if (td.innerHTML.trim() === '') { // td 태그의 내용이 비어 있는 경우
+                        td.innerHTML = '<input type="checkbox" name="userIds[]" value="' + td.parentElement.cells[2].innerText + '"/>'; // 체크박스를 추가
+                    }
+                }
+                checkBoxAdded = true; // 체크박스가 추가되었다고 표시
+            } else { // 체크박스가 추가되어 있는 경우
+                let checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+                for (let i = 0; i < checkBoxes.length; i++) {
+                    let checkBox = checkBoxes[i];
+                    checkBox.parentElement.innerHTML = ''; // 체크박스를 삭제
+                }
+                checkBoxAdded = false; // 체크박스가 삭제되었다고 표시
+            }
+        }   
+
+
             function searchGet() {
                 let keyword =  $("#keyword").val();
                 location.href = "/admin/user/company?page=0&keyword=" + keyword;
