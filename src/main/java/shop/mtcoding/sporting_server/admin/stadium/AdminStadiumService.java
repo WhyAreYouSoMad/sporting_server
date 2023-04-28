@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.admin.stadium.service;
+package shop.mtcoding.sporting_server.admin.stadium;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
