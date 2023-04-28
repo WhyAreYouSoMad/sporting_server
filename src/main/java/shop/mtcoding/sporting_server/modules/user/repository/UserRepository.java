@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.modules.user.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -16,4 +17,6 @@ public interface UserRepository
         Optional<User> findByEmail(@Param("email") String email);
 
         Page<User> findByEmailContaining(String keyword, Pageable pageable);
+
+        List<User> findByIdIn(List<Long> emailIdList);
 }
