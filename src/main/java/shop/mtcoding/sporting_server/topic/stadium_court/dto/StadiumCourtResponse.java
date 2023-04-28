@@ -24,7 +24,7 @@ public class StadiumCourtResponse {
 
         private Long stadiumId;
         private Long id;
-        private CourtFileDto courtFile = new CourtFileDto();
+        private CourtFileDto sourceFile = new CourtFileDto();
         private String title;
         private String content;
         private Integer capacity;
@@ -37,9 +37,9 @@ public class StadiumCourtResponse {
         public StadiumCourtOutDTO(StadiumCourt stadiumCourt, ProfileFile profileFile) {
             this.stadiumId = stadiumCourt.getStadium().getId();
             this.id = stadiumCourt.getId();
-            this.courtFile.setId(profileFile.getId());
-            this.courtFile.setFileName(profileFile.getFileName());
-            this.courtFile.setFileUrl(profileFile.getFileUrl());
+            this.sourceFile.setId(profileFile.getId());
+            // this.sourceFile.setFileName(profileFile.getFileName());
+            this.sourceFile.setFileUrl(profileFile.getFileUrl());
             this.title = stadiumCourt.getTitle();
             this.content = stadiumCourt.getContent();
             this.capacity = stadiumCourt.getCapacity();
@@ -56,6 +56,7 @@ public class StadiumCourtResponse {
         @EqualsAndHashCode
         public static class CourtFileDto {
             private Long id;
+            @JsonIgnore
             private String fileName;
             private String fileUrl;
         }

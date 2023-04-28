@@ -26,7 +26,7 @@ public class StadiumCourtController {
 
     private final StadiumCourtService stadiumCourtService;
 
-    @PostMapping("/company/stadiums/court/{stadiumId}")
+    @PostMapping("/company/stadiums/{stadiumId}/court")
     public ResponseEntity<?> save(@RequestBody @Valid StadiumCourtRequest.StadiumCourtInDTO stadiumCourtInDTO,
             @AuthenticationPrincipal MyUserDetails myUserDetails, Stadium stadiumPS, @PathVariable Long stadiumId)
             throws IOException {

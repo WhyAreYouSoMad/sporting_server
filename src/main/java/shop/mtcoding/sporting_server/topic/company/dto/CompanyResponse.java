@@ -9,6 +9,7 @@ import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryProjection;
 
 public class CompanyResponse {
@@ -47,7 +48,7 @@ public class CompanyResponse {
         private String tel;
         private String businessAdress;
         private String businessNumber;
-        private CompanyFileDTO companyFile = new CompanyFileDTO();
+        private CompanyFileDTO sourceFile = new CompanyFileDTO();
 
         public UpdateOutDTO(Long id, String nickname, String password, String tel, String businessAdress,
                 String businessNumber, CompanyFileDTO companyFile) {
@@ -57,7 +58,7 @@ public class CompanyResponse {
             this.tel = tel;
             this.businessAdress = businessAdress;
             this.businessNumber = businessNumber;
-            this.companyFile = companyFile;
+            this.sourceFile = companyFile;
         }
 
         public UpdateOutDTO(User userPS, CompanyInfo companyInfoPS, ProfileFile companyProfileFilePS) {
@@ -67,9 +68,9 @@ public class CompanyResponse {
             this.tel = companyInfoPS.getTel();
             this.businessAdress = companyInfoPS.getBusinessAdress();
             this.businessNumber = companyInfoPS.getBusinessNumber();
-            this.companyFile.id = companyProfileFilePS.getId();
-            this.companyFile.fileName = companyProfileFilePS.getFileName();
-            this.companyFile.fileBase64 = companyProfileFilePS.getFileUrl();
+            this.sourceFile.id = companyProfileFilePS.getId();
+            // this.sourceFile.fileName = companyProfileFilePS.getFileName();
+            this.sourceFile.fileBase64 = companyProfileFilePS.getFileUrl();
         }
 
         @Getter
@@ -79,6 +80,7 @@ public class CompanyResponse {
         @EqualsAndHashCode
         public static class CompanyFileDTO {
             private Long id;
+            @JsonIgnore
             private String fileName;
             private String fileBase64;
 

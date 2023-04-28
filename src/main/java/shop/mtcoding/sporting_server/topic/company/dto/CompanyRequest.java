@@ -52,7 +52,7 @@ public class CompanyRequest {
         private String tel;
         private String businessAdress;
         private String businessNumber;
-        private CompanyFileDTO companyFile;
+        private CompanyFileDTO sourceFile;
 
         @Getter
         @Setter

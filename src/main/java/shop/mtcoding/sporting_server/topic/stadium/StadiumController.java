@@ -72,7 +72,7 @@ public class StadiumController {
                 return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumListOutDTO));
         }
 
-        @GetMapping("/company/mystadiums")
+        @GetMapping("/company/stadiums")
         public ResponseEntity<?> findAllMyList(String keyword, @AuthenticationPrincipal MyUserDetails myUserDetails) {
                 StadiumUtils.keywordValidiationCheck(keyword);
 
@@ -82,7 +82,7 @@ public class StadiumController {
                 return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumMyListOutDTO));
         }
 
-        @GetMapping("/company/mystadiums/updateform/{stadiumId}")
+        @GetMapping("/company/stadium/{stadiumId}")
         public ResponseEntity<?> updateForm(@PathVariable Long stadiumId,
                         @AuthenticationPrincipal MyUserDetails myUserDetails) {
 
@@ -93,7 +93,7 @@ public class StadiumController {
                 return ResponseEntity.ok().body(new ResponseDto<>().data(stadiumUpdateFomrOutDTO));
         }
 
-        @GetMapping("/user/detail/{stadiumId}")
+        @GetMapping("/user/stadium/{stadiumId}")
         public ResponseEntity<?> detail(@PathVariable Long stadiumId) {
                 StadiumDetailOutDTO stadiumDetailDTO = stadiumService.detail(
                                 stadiumId);

@@ -3,6 +3,8 @@ package shop.mtcoding.sporting_server.topic.stadium.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,7 +27,7 @@ public class StadiumResponse {
         private String category;
         private String startTime;
         private String endTime;
-        private StadiumFileDto stadiumFile = new StadiumFileDto();
+        private StadiumFileDto sourceFile = new StadiumFileDto();
 
         public StadiumRegistrationOutDTO(Long id, String name, String address, String category, String startTime,
                 String endTime, StadiumFileDto stadiumFile) {
@@ -35,7 +37,7 @@ public class StadiumResponse {
             this.category = category;
             this.startTime = startTime;
             this.endTime = endTime;
-            this.stadiumFile = stadiumFile;
+            this.sourceFile = stadiumFile;
         }
 
         public StadiumRegistrationOutDTO(Stadium stadiumPS, ProfileFile profileFile) {
@@ -45,9 +47,9 @@ public class StadiumResponse {
             this.category = stadiumPS.getCategory().getSport();
             this.startTime = stadiumPS.getStartTime().toString();
             this.endTime = stadiumPS.getEndTime().toString();
-            this.stadiumFile.setId(profileFile.getId());
-            this.stadiumFile.setFileName(profileFile.getFileName());
-            this.stadiumFile.setFileUrl(profileFile.getFileUrl());
+            this.sourceFile.setId(profileFile.getId());
+            // this.sourceFile.setFileName(profileFile.getFileName());
+            this.sourceFile.setFileUrl(profileFile.getFileUrl());
         }
 
         @Getter
@@ -57,6 +59,7 @@ public class StadiumResponse {
         @EqualsAndHashCode
         public static class StadiumFileDto {
             private Long id;
+            @JsonIgnore
             private String fileName;
             private String fileUrl;
         }
@@ -74,7 +77,7 @@ public class StadiumResponse {
         private String startTime;
         private String endTime;
         private String category;
-        private StadiumFileOutDTO stadiumFile = new StadiumFileOutDTO();
+        private StadiumFileOutDTO sourceFile = new StadiumFileOutDTO();
         private List<CourtOutDTO> courtList = new ArrayList<>();
 
         public StadiumUpdateOutDTO(String id, String address, String status, String startTime, String endTime,
@@ -85,7 +88,7 @@ public class StadiumResponse {
             this.startTime = startTime;
             this.endTime = endTime;
             this.category = category;
-            this.stadiumFile = stadiumFile;
+            this.sourceFile = stadiumFile;
             this.courtList = courtList;
         }
 
@@ -96,9 +99,9 @@ public class StadiumResponse {
             this.startTime = stadiumPS.getStartTime().toString();
             this.endTime = stadiumPS.getEndTime().toString();
             this.category = stadiumPS.getCategory().getSport();
-            this.stadiumFile.id = Long.toString(stadiumFile.getId());
-            this.stadiumFile.fileName = stadiumFile.getFileName();
-            this.stadiumFile.fileUrl = stadiumFile.getFileUrl();
+            this.sourceFile.id = Long.toString(stadiumFile.getId());
+            // this.sourceFile.fileName = stadiumFile.getFileName();
+            this.sourceFile.fileUrl = stadiumFile.getFileUrl();
             this.courtList = courtList;
         }
 
@@ -109,6 +112,7 @@ public class StadiumResponse {
         @EqualsAndHashCode
         public static class StadiumFileOutDTO {
             private String id;
+            @JsonIgnore
             private String fileName;
             private String fileUrl;
         }
@@ -123,7 +127,7 @@ public class StadiumResponse {
             private String content;
             private String capacity;
             private String courtPrice;
-            private CourtFileOutDTO courtFile = new CourtFileOutDTO();
+            private CourtFileOutDTO sourceFile = new CourtFileOutDTO();
 
             public CourtOutDTO(String id, String title, String content, String capacity, String courtPrice,
                     CourtFileOutDTO courtFile) {
@@ -132,7 +136,7 @@ public class StadiumResponse {
                 this.content = content;
                 this.capacity = capacity;
                 this.courtPrice = courtPrice;
-                this.courtFile = courtFile;
+                this.sourceFile = courtFile;
             }
 
             public CourtOutDTO(StadiumCourt stadiumCourtPS, ProfileFile courtFilePS) {
@@ -141,9 +145,9 @@ public class StadiumResponse {
                 this.content = stadiumCourtPS.getContent();
                 this.capacity = stadiumCourtPS.getCapacity().toString();
                 this.courtPrice = stadiumCourtPS.getCourtPrice().toString();
-                this.courtFile.id = Long.toString(courtFilePS.getId());
-                this.courtFile.fileName = courtFilePS.getFileName();
-                this.courtFile.fileUrl = courtFilePS.getFileUrl();
+                this.sourceFile.id = Long.toString(courtFilePS.getId());
+                // this.sourceFile.fileName = courtFilePS.getFileName();
+                this.sourceFile.fileUrl = courtFilePS.getFileUrl();
 
             }
 
@@ -154,6 +158,7 @@ public class StadiumResponse {
             @EqualsAndHashCode
             public static class CourtFileOutDTO {
                 private String id;
+                @JsonIgnore
                 private String fileName;
                 private String fileUrl;
             }

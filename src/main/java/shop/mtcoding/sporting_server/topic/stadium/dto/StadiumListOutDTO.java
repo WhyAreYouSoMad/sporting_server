@@ -25,7 +25,7 @@ public class StadiumListOutDTO {
     @JsonIgnore
     private String fileUrl;
 
-    private StadiumFileResponseDTO stadiumFile;
+    private StadiumFileResponseDTO sourceFile;
 
     public StadiumListOutDTO(Long id, String sport, String name, Integer courtPrice, Long fileId,
             String fileUrl) {
@@ -36,7 +36,7 @@ public class StadiumListOutDTO {
         this.price = price;
         this.fileId = fileId;
         this.fileUrl = fileUrl;
-        this.stadiumFile = new StadiumFileResponseDTO(fileId, fileUrl);
+        this.sourceFile = new StadiumFileResponseDTO(fileId, fileUrl);
     }
 
 }

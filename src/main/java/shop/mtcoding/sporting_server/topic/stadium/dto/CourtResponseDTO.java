@@ -24,7 +24,7 @@ public class CourtResponseDTO {
     private String sport;
 
     // private String profileURL;
-    private CourtFileResponseDto courtFile;
+    private CourtFileResponseDto sourceFile;
 
     @QueryProjection
     public CourtResponseDTO(Long id, String title, String content, Integer capacity,
@@ -36,7 +36,7 @@ public class CourtResponseDTO {
         String price = String.format("%,d", courtPrice);
         this.price = price;
         this.sport = sport;
-        this.courtFile = courtFile;
+        this.sourceFile = courtFile;
     }
 
     // @QueryProjection

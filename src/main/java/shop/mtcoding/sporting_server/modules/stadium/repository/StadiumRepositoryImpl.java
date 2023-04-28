@@ -71,9 +71,13 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
                                                 new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
                                 .from(qStadium)
                                 .leftJoin(qFile).on(qStadium.fileInfo.id.eq(qFile.fileInfo.id))
-                                .where(qStadium.category.sport.eq(sportKeyword),
-                                                qStadium.companyInfo.user.id.eq(principalCompanyId))
-                                .groupBy(qStadium.id);
+                                .where(qStadium.companyInfo.user.id.eq(principalCompanyId));
+
+                if (!"all".equalsIgnoreCase(sportKeyword)) {
+                        query.where(qStadium.category.sport.eq(sportKeyword));
+                }
+
+                query.groupBy(qStadium.id);
                 return query.fetch();
         }
 

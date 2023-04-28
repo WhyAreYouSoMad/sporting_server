@@ -24,7 +24,7 @@ public class StadiumDetailOutDTO {
     private Double lon;
     private StadiumAddress address;
     private SportCategoryDTO category;
-    private StadiumFileResponseDTO stadiumFile;
+    private StadiumFileResponseDTO sourceFile;
     private List<StadiumCourtDTO> stadiumCourt;
 
     public StadiumDetailOutDTO(List<StadiumCourtDTO> stadiumCourt) {
@@ -45,7 +45,7 @@ public class StadiumDetailOutDTO {
         this.lat = lat;
         this.lon = lon;
         this.address = address;
-        this.stadiumFile = stadiumFile;
+        this.sourceFile = stadiumFile;
     }
 
 }

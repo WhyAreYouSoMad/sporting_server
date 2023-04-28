@@ -24,7 +24,7 @@ public class StadiumUpdateFomrOutDTO {
     private StadiumStatus status;
     private LocalTime startTime;
     private LocalTime endTime;
-    private StadiumFileResponseDTO stadiumFile;
+    private StadiumFileResponseDTO sourceFile;
     private List<CourtResponseDTO> court;
 
     @QueryProjection
@@ -37,7 +37,7 @@ public class StadiumUpdateFomrOutDTO {
         this.status = status;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.stadiumFile = stadiumFile;
+        this.sourceFile = stadiumFile;
     }
 
     public StadiumUpdateFomrOutDTO(List<CourtResponseDTO> court) {

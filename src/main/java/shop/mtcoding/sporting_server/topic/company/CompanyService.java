@@ -106,11 +106,11 @@ public class CompanyService {
 
         // size가 다르면 false, 같으면 true
         Boolean sizeCheck = S3Utils.updateProfileCheck_Company(companyProfileFilePS,
-                updateInDTO.getCompanyFile().getFileBase64(), bucket, staticRegion);
+                updateInDTO.getSourceFile().getFileBase64(), bucket, staticRegion);
 
         if (!sizeCheck) {
             MultipartFile multipartFile2 = BASE64DecodedMultipartFile
-                    .convertBase64ToMultipartFile(updateInDTO.getCompanyFile().getFileBase64());
+                    .convertBase64ToMultipartFile(updateInDTO.getSourceFile().getFileBase64());
 
             // 사진이 업데이트 되었을 경우 S3upload 후, DB 반영
             List<String> nameAndUrl = S3Utils.uploadFile(multipartFile2, "CompanyProfile", bucket, amazonS3Client);

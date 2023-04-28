@@ -41,8 +41,8 @@ public class CompanyController {
         return ResponseEntity.ok().body(responseDTO);
     }
 
-    @GetMapping("/company/updateform")
-    public ResponseEntity<?> updateForm(@AuthenticationPrincipal MyUserDetails myUserDetails) {
+    @GetMapping("/company/{id}")
+    public ResponseEntity<?> updateForm(@AuthenticationPrincipal MyUserDetails myUserDetails, @PathVariable Long id) {
         CompanyUpdateFormOutDTO companyResponseOutDTO = companyService
                 .getUpdateForm(myUserDetails.getUser().getId());
 

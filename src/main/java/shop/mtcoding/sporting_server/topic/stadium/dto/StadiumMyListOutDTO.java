@@ -16,14 +16,14 @@ public class StadiumMyListOutDTO {
     private Long id;
     private String sport;
     private String name;
-    private StadiumFileResponseDTO stadiumFile;
+    private StadiumFileResponseDTO sourceFile;
 
     @QueryProjection
     public StadiumMyListOutDTO(Long id, String sport, String name, StadiumFileResponseDTO stadiumFile) {
         this.id = id;
         this.sport = sport;
         this.name = name;
-        this.stadiumFile = stadiumFile;
+        this.sourceFile = stadiumFile;
     }
 
 }
