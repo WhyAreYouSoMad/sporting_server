@@ -19,7 +19,7 @@ public class EmailDTO {
     @Getter
     @Setter
     public static class EmailObj {
-        private String id;
+        private Long id;
         private String email;
     }
 }

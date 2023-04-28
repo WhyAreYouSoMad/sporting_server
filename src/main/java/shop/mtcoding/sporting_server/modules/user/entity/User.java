@@ -48,7 +48,7 @@ public class User {
     private String password;
 
     @NonNull
-    @Comment("PLAYER / USER / ADMIND(1단계에선 x)")
+    @Comment("PLAYER / USER / ADMIN(1단계에선 x)")
     private String role;
 
     @Comment("유저 생성일자")
