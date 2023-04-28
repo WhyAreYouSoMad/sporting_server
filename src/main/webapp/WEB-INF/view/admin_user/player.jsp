@@ -27,14 +27,13 @@
             <div class="d-flex justify-content-center">
                 <div style="position: relative; top: 50px">
                 <div class="d-flex justify-content-end mb-3">
-                <button class="btn btn-warning mx-1" onclick="addCheckBox()">Check</button>
-                <button class="btn btn-primary mx-1" onclick="openEmailForm()">Send</button>
+                    <button class="btn btn-warning mx-1" onclick="addCheckBox()">Check</button>
+                    <button class="btn btn-primary mx-1" onclick="openEmailForm()">Send</button>
                 </div> 
                     <table class="table">
 
                         <tr class="my-text-align">
                             <th scope="col" style="width: 30px">#</th>
-
                             <th scope="col" class="text-center">번호</th>
                             <th scope="col" class="text-center">이메일</th>
                             <th scope="col" class="text-center">닉네임</th>
@@ -129,7 +128,9 @@
                 </div>
             </div>
             </div>
+
         <script>
+
         let emails;
         function openEmailForm() {
             let checkBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -189,7 +190,7 @@
                 success: function(response) {
                     // Handle success response from the server
                     console.log('Email sent successfully!');
-                    console.log(response);
+                    // console.log(response);
                 },
                 error: function(error) {
                     // Handle error response from the server
