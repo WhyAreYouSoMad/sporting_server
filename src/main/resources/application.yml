@@ -29,6 +29,18 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: aozp83@gmail.com
+    password: zbedqwnlrbxmollv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true  
+
     
   h2:
     console:
