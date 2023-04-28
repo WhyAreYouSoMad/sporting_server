@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.admin.controller;
+package shop.mtcoding.sporting_server.admin.user_court;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.admin.dto.AdmingLoginInDTO;
-import shop.mtcoding.sporting_server.admin.service.EtcService;
-import shop.mtcoding.sporting_server.admin.service.UserService2;
+import shop.mtcoding.sporting_server.admin.login.EtcService;
+import shop.mtcoding.sporting_server.admin.login.dto.AdmingLoginInDTO;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;

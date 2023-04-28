@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.admin.stadium.controller;
+package shop.mtcoding.sporting_server.admin.stadium;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminInactiveStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminStadiumListOutDto;
 import shop.mtcoding.sporting_server.admin.stadium.dto.AdminWaitStadiumListOutDto;
-import shop.mtcoding.sporting_server.admin.stadium.service.AdminStadiumService;
 import shop.mtcoding.sporting_server.core.dto.ResponseDto;
 
 @RequiredArgsConstructor
@@ -119,14 +118,14 @@ public class AdminStadiumController {
     }
 
     @DeleteMapping("/stadium/{stadiumId}")
-    public ResponseEntity<Object> stadium_delete(@PathVariable Long stadiumId) {
+    public ResponseEntity<?> stadium_delete(@PathVariable Long stadiumId) {
         adminStadiumService.stadiumDelete(stadiumId);
 
         return new ResponseEntity<>(new ResponseDto<>(), HttpStatus.OK);
     }
 
     @PutMapping("/stadium/active/{stadiumId}")
-    public ResponseEntity<Object> stadium_active(@PathVariable Long stadiumId) {
+    public ResponseEntity<?> stadium_active(@PathVariable Long stadiumId) {
         adminStadiumService.stadiumActive(stadiumId);
 
         return new ResponseEntity<>(new ResponseDto<>(), HttpStatus.OK);
