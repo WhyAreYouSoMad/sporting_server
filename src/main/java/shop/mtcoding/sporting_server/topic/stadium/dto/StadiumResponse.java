@@ -126,7 +126,7 @@ public class StadiumResponse {
             private String title;
             private String content;
             private String capacity;
-            private String courtPrice;
+            private Integer price;
             private CourtFileOutDTO sourceFile = new CourtFileOutDTO();
 
             public CourtOutDTO(String id, String title, String content, String capacity, String courtPrice,
@@ -135,7 +135,7 @@ public class StadiumResponse {
                 this.title = title;
                 this.content = content;
                 this.capacity = capacity;
-                this.courtPrice = courtPrice;
+                this.price = Integer.parseInt(courtPrice);
                 this.sourceFile = courtFile;
             }
 
@@ -144,7 +144,7 @@ public class StadiumResponse {
                 this.title = stadiumCourtPS.getTitle();
                 this.content = stadiumCourtPS.getContent();
                 this.capacity = stadiumCourtPS.getCapacity().toString();
-                this.courtPrice = stadiumCourtPS.getCourtPrice().toString();
+                this.price = stadiumCourtPS.getCourtPrice();
                 this.sourceFile.id = Long.toString(courtFilePS.getId());
                 // this.sourceFile.fileName = courtFilePS.getFileName();
                 this.sourceFile.fileUrl = courtFilePS.getFileUrl();

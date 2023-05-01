@@ -2,7 +2,6 @@ package shop.mtcoding.sporting_server.topic.stadium.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

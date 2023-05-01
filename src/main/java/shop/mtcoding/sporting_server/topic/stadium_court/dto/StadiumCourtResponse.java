@@ -28,9 +28,9 @@ public class StadiumCourtResponse {
         private String title;
         private String content;
         private Integer capacity;
-        @JsonIgnore
-        private Integer courtPrice;
-        private String price;
+        // @JsonIgnore
+        private Integer price;
+        // private String price;
         private LocalDateTime createdAt;
         private StadiumCourtStatus status;
 
@@ -43,8 +43,8 @@ public class StadiumCourtResponse {
             this.title = stadiumCourt.getTitle();
             this.content = stadiumCourt.getContent();
             this.capacity = stadiumCourt.getCapacity();
-            String price = String.format("%,d", stadiumCourt.getCourtPrice());
-            this.price = price;
+            // String price = String.format("%,d", stadiumCourt.getCourtPrice());
+            this.price = stadiumCourt.getCourtPrice();
             this.createdAt = stadiumCourt.getCreatedAt();
             this.status = stadiumCourt.getStatus();
         }
