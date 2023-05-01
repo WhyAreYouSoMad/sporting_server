@@ -18,9 +18,9 @@ public class CourtResponseDTO {
     private String title;
     private String content;
     private Integer capacity;
-    @JsonIgnore
-    private Integer courtPrice;
-    private String price;
+    // @JsonIgnore
+    private Integer price;
+    // private String price;
     private String sport;
 
     // private String profileURL;
@@ -33,8 +33,8 @@ public class CourtResponseDTO {
         this.title = title;
         this.content = content;
         this.capacity = capacity;
-        String price = String.format("%,d", courtPrice);
-        this.price = price;
+        // String price = String.format("%,d", courtPrice);
+        this.price = courtPrice;
         this.sport = sport;
         this.sourceFile = courtFile;
     }
