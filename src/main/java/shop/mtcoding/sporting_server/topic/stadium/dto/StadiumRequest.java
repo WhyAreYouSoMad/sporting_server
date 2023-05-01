@@ -27,7 +27,8 @@ public class StadiumRequest {
     public static class StadiumRegistrationInDTO {
         private String name;
 
-        @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시 등으로 입력)")
+        // @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시
+        // 등으로 입력)")
         private String address;
 
         @ValueOfEnum(enumClass = SportCategoryType.class, message = "스포츠 카테고리 값 이상 (야구, 축구, 배구 등으로 입력)")
