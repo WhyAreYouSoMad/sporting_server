@@ -60,10 +60,9 @@ public class PlayerInfo {
     @Column(name = "age")
     private PlayerInfoAge age;
 
-    @Comment("플레이어 거주도시 (ex. 서울시, 부산시, 대구시, 인천시, 광주시, 대전시, 울산시, 제주시)")
-    @Enumerated(EnumType.STRING)
+    @Comment("플레이어 거주도시")
     @Column(name = "address")
-    private PlayerInfoAddress address;
+    private String address;
 
     @Comment("플레이어 핸드폰번호")
     @Column(name = "tel")

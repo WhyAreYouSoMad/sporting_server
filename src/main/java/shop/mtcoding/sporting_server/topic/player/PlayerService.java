@@ -112,7 +112,7 @@ public class PlayerService {
         playerInfoPS.setTel(playerUpdateInDTO.getTel());
         playerInfoPS.setGender(PlayerInfoGender.valueOf(playerUpdateInDTO.getGender()));
         playerInfoPS.setAge(PlayerInfoAge.valueOf(playerUpdateInDTO.getAge()));
-        playerInfoPS.setAddress(PlayerInfoAddress.valueOf(playerUpdateInDTO.getAddress()));
+        playerInfoPS.setAddress(playerUpdateInDTO.getAddress());
 
         ProfileFile playerProfileFilePS = profileFileRepository.findById(playerInfoPS.getFileInfo().getId())
                 .orElseThrow(() -> {

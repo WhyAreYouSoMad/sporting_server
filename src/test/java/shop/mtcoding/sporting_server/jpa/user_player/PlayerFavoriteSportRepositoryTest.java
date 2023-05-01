@@ -111,7 +111,7 @@ public class PlayerFavoriteSportRepositoryTest {
 
         userFavoriteSport.setCategory(setUpSportCategory("축구", LocalDateTime.now()));
         userFavoriteSport.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
-                PlayerInfoAddress.부산시, "000-0000-0000", LocalDateTime.now()));
+                "부산시", "000-0000-0000", LocalDateTime.now()));
 
         return this.entityManager.persist(userFavoriteSport);
     }
@@ -122,7 +122,7 @@ public class PlayerFavoriteSportRepositoryTest {
 
         userFavoriteSport.setCategory(setUpSportCategory("야구", LocalDateTime.now()));
         userFavoriteSport.setPlayerInfo(setUpPlayerInfo2(PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
-                PlayerInfoAddress.부산시, "000-0000-0000", LocalDateTime.now()));
+                "부산시", "000-0000-0000", LocalDateTime.now()));
 
         return this.entityManager.persist(userFavoriteSport);
     }
@@ -135,7 +135,7 @@ public class PlayerFavoriteSportRepositoryTest {
         return this.entityManager.persist(sportCategory);
     }
 
-    private PlayerInfo setUpPlayerInfo(PlayerInfoGender gender, PlayerInfoAge age, PlayerInfoAddress address,
+    private PlayerInfo setUpPlayerInfo(PlayerInfoGender gender, PlayerInfoAge age, String address,
             String tel, LocalDateTime updatedAt) {
         PlayerInfo playerInfo = new PlayerInfo();
         setUpUser("ssar", "ssar@naver.com", "1234", "player",
@@ -150,7 +150,7 @@ public class PlayerFavoriteSportRepositoryTest {
         return this.entityManager.persist(playerInfo);
     }
 
-    private PlayerInfo setUpPlayerInfo2(PlayerInfoGender gender, PlayerInfoAge age, PlayerInfoAddress address,
+    private PlayerInfo setUpPlayerInfo2(PlayerInfoGender gender, PlayerInfoAge age, String address,
             String tel, LocalDateTime updatedAt) {
         PlayerInfo playerInfo = new PlayerInfo();
         setUpUser("ssar2", "ssar2@naver.com", "1234", "player",
