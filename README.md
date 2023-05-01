@@ -114,16 +114,15 @@ https://spark-mailbox-fe3.notion.site/K-Digital-Final-Project-7414fcb59b90426199
 ## 테스트 코드 링크
 ### S3
  - Github : https://github.com/aozp73/S3_Sample
- - Blog : 
-  https://blog.naver.com/aozp73/223079979159 (AWS-S3란)
+ - Blog : https://blog.naver.com/aozp73/223079979159 (AWS-S3란)
+		
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  https://blog.naver.com/aozp73/223083368954 (가입 및 버킷세팅)  
   
-  https://blog.naver.com/aozp73/223083368954 (가입 및 버킷세팅)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  https://blog.naver.com/aozp73/223083368954 (SpringBoot 세팅)  
   
-  https://blog.naver.com/aozp73/223083368954 (SpringBoot 세팅)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  https://blog.naver.com/aozp73/223083879283 (전체 진행과정)  
   
-  https://blog.naver.com/aozp73/223083879283 (전체 진행과정)
-  
-  https://blog.naver.com/aozp73/223083889674 (버킷 공유-IAM)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  https://blog.naver.com/aozp73/223083889674 (버킷 공유-IAM)  
 
 ### QueryDSL
  - Github : https://github.com/aozp73/querydsl
@@ -131,9 +130,9 @@ https://spark-mailbox-fe3.notion.site/K-Digital-Final-Project-7414fcb59b90426199
 
 ### Admin
  - Github : https://github.com/aozp73/JPA-AdministratorSample_layout-paging-searching
- - Blog : https://blog.naver.com/aozp73/223083980064 (전체 진행과정)
- 
-          https://blog.naver.com/aozp73/223084021492 (페이징 및 검색) 
+ - Blog : https://blog.naver.com/aozp73/223083980064 (전체 진행과정)  
+     
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  https://blog.naver.com/aozp73/223084021492 (페이징 및 검색) 
 
 ## 보완할 점
 - OAuth를 통한 회원가입 및 로그인
