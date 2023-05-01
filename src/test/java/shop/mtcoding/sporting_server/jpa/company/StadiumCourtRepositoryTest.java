@@ -19,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import shop.mtcoding.sporting_server.config.TextContextConfiguration;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
@@ -57,7 +56,7 @@ public class StadiumCourtRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("축구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
 
-        Stadium stadium = setUpStadium(companyInfoPS, "서면 탁구장", "신설", StadiumAddress.부산시, 129.3, 35.3, "010-1111-1111",
+        Stadium stadium = setUpStadium(companyInfoPS, "서면 탁구장", "신설", "부산시", 129.3, 35.3, "010-1111-1111",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
                 fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
@@ -102,7 +101,7 @@ public class StadiumCourtRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("야구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.코트사진);
 
-        Stadium stadium = setUpStadium(companyInfoPS, "울산 야구장", "깨끗", StadiumAddress.울산시, 129.4, 35.6, "010-2222-2222",
+        Stadium stadium = setUpStadium(companyInfoPS, "울산 야구장", "깨끗", "울산시", 129.4, 35.6, "010-2222-2222",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
                 fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
@@ -145,7 +144,7 @@ public class StadiumCourtRepositoryTest {
         return this.entityManager.persist(stadiumCourt);
     }
 
-    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, StadiumAddress address,
+    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, String address,
             Double lat,
             Double lon, String tel, SportCategory sportCategory,
             LocalTime startTime, LocalTime endTime, FileInfo fileInfo, StadiumStatus status, LocalDateTime updatedAt) {

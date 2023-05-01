@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.sporting_server.config.TextContextConfiguration;
 import shop.mtcoding.sporting_server.core.enums.field.etc.BoardAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.BoardApplyStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.BoardStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
@@ -65,7 +64,7 @@ public class BoardApplyRepositoryTest {
                 setUpUser("cos", "cos@naver.com", "1234", "company",
                         LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기),
                 LocalDateTime.now());
-        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
+        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", "서울시", 129.5, 35.5,
                 "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
         User userPS = setUpUser("ssar", "ssar@naver.com", "1234", "player",
@@ -118,7 +117,7 @@ public class BoardApplyRepositoryTest {
                 LocalDateTime.now());
         SportCategory sportCategoryPS = setUpSportCategory("야구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
-        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
+        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", "서울시", 129.5, 35.5,
                 "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
         User userPS = setUpUser("ssar1", "ssar@naver.com", "1234", "player",
@@ -252,7 +251,7 @@ public class BoardApplyRepositoryTest {
         return this.entityManager.persist(companyInfo);
     }
 
-    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, StadiumAddress address,
+    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, String address,
             Double lat,
             Double lon, String tel, SportCategory sportCategory,
             LocalTime startTime, LocalTime endTime, FileInfo fileInfo, StadiumStatus status, LocalDateTime updatedAt) {

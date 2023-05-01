@@ -19,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import shop.mtcoding.sporting_server.config.TextContextConfiguration;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
