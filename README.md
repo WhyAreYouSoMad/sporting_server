@@ -112,11 +112,22 @@ https://nomadhuns.atlassian.net/jira/software/projects/GFP/boards/1/roadmap
 https://spark-mailbox-fe3.notion.site/K-Digital-Final-Project-7414fcb59b90426199456f580585a91e
 
 ## 테스트 코드 링크
-### BootPay(결제 기능)
-TODO Repository와 블로그 주소 올릴 곳
+### S3
+Github : https://github.com/aozp73/S3_Sample
+Blog : https://blog.naver.com/aozp73/223079979159 (AWS-S3란)
+       https://blog.naver.com/aozp73/223083368954 (가입 및 버킷세팅)
+       https://blog.naver.com/aozp73/223083368954 (SpringBoot 세팅)
+       https://blog.naver.com/aozp73/223083879283 (전체 진행과정)
+       https://blog.naver.com/aozp73/223083889674 (버킷 공유-IAM)
 
-### Form Widget
-TODO Repository와 블로그 주소 올릴 곳
+### QueryDSL
+Github : https://github.com/aozp73/querydsl
+Blog : https://blog.naver.com/aozp73/223079188235 (전체 진행과정)
+
+### Admin
+Github : https://github.com/aozp73/JPA-AdministratorSample_layout-paging-searching
+Blog : https://blog.naver.com/aozp73/223083980064 (전체 진행과정)
+       https://blog.naver.com/aozp73/223084021492 (페이징 및 검색) 
 
 ## 보완할 점
 - OAuth를 통한 회원가입 및 로그인
@@ -127,8 +138,11 @@ TODO Repository와 블로그 주소 올릴 곳
 - 포인트 기능
 
 ## 프로젝트 진행하면서 느낀점
-- 어플리케이션 화면을 구현하면서 컴포넌트 단위로 구조화하는 것이 도움이 많이 된다는 것을 느꼈다.
-- Rest API 주소 설계 부분에서 아쉬움을 느꼈다. 직관적이지 않았고, 글로벌 컨벤션에 맞추지 못한것 같아 아쉬움이 느껴졌다.
-- 협업 전략을 3-Way Merge방식이 아닌 Rebase Merge 방식을 도입했다. 처음이라 초반 부분에 커밋 메시지가 적절하지 않은 경우도 있었고, 커밋에 대한 컨벤션을 정해놓지 않아서 후에 어떤 커밋에서 어떤 작업을 했는지 찾기 어려웠다.
-- 테스트 코드에 대한  테스트 코드를 제대로 수행하지 못했다. 후에 오류가 생겼을 때 유지 보수 측면에서 어려움을 겪을 것으로 예상된다.
-- 
+- AWS S3에 사진파일을 저장하여 활용하였다. 기존 DB와의 통신과 더불어 외부 통신 코드가 추가되어 부하가 커지지 않을까에 대한 고민이 있었다.
+  평소 최대한 클린코드 및 간결한 코드를 작성하여 전체적인 부하에 대해 신경써야겠다는 생각이 들었다.
+- 1~2차 프로젝트에선 Mybatis를 활용하였고, 3차 프로젝트에선 JPA를 공부하며 사용하였다. 
+  JpaRepository 상속에 따른 기본 CRUD 간결화 및 네이밍 쿼리 사용으로 Repository 진행보다 비지니스 로직에 조금 더 집중할 수 있었다.
+- Test 코드에 대해 많은 관심을 가지고 프로젝트를 시작하였지만, 진행한 Test 코드가 실질적으로 많은 상황을 보완해줄 수 있을까라는 생각이 들었다.
+  Repository 테스트, 단위 테스트 및 통합 테스트를 진행한 결과 아쉬운 부분이 존재하였고, 기회가 된다면 Test코드에 대해 전문적으로 배우고 싶다는 
+  생각이 들었다.
+  
