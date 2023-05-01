@@ -1,5 +1,7 @@
 package shop.mtcoding.sporting_server.topic.player;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +50,14 @@ public class PlayerController {
             @PathVariable Long id) {
         PlayerUpdateFormOutDTO playerUpdateFormOutDTO = playerService.getUpdateForm(myUserDetails.getUser().getId());
         return ResponseEntity.ok().body(new ResponseDto<>().data(playerUpdateFormOutDTO));
+    }
+
+    @PutMapping("/user/update")
+    public ResponseEntity<?> updateCompany(@AuthenticationPrincipal MyUserDetails myUserDetails,
+            @RequestBody PlayerRequest.PlayerUpdateInDTO playerUpdateInDTO) throws IOException {
+        PlayerResponse.PlayerUpdateOutDTO playerUpdateOutDTO = playerService.update(myUserDetails.getUser().getId(),
+                playerUpdateInDTO);
+        return ResponseEntity.ok().body(new ResponseDto<>().data(playerUpdateOutDTO));
     }
 
 }

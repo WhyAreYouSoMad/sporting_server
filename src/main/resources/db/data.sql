@@ -28,7 +28,7 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
 
 
 INSERT INTO file_tb(id, file_info_id, file_name, file_url)
-VALUES (1, 1, 'CompanyProfile/company.jpg', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/company.jpg'), (2, 2, '', ''),
+VALUES (1, 1, 'PlayerProfile/player.jpg', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg'), (2, 2, '', ''),
        (3, 3, '', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/b247bb64-1917-4210-a12a-e0fb53d74333.jpg'), 
        (4, 4, 'CompanyProfile/company.jpg', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/company.jpg'),
        (5, 5, 'Stadium/야구_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'), (6, 6, 'Stadium/야구_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'),
@@ -63,10 +63,10 @@ VALUES (1, '야구', now()), (5, '풋살', now()),
 INSERT INTO user_tb(id, nickname, password, email, role, status, created_at, updated_at) 
 -- 1)정보수정 진행한 상태, 2) 회원가입 직전으로 나뉨
 -- 공백이나 default 지정시 nickname unique 제약조건에 걸림
-VALUES (1, 'ssar123', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'aozp73@naver.com', 'PLAYER', '일반회원', now(), now()), 
-       (2, 'user316', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'tonomori@naver.com', 'PLAYER', '일반회원', now(), now()), 
-       (3, 'baseball451', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'aozp73@naver.com', 'COMPANY', '기업회원', now(), now()),
-       (4, 'user512', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'tonomori@naver.com', 'COMPANY', '기업회원', now(), now()),
+VALUES (1, 'ssar123', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'ssar@nate.com', 'PLAYER', '일반회원', now(), now()), 
+       (2, 'user316', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'dope@nate.com', 'PLAYER', '일반회원', now(), now()), 
+       (3, 'baseball451', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'love@nate.com', 'COMPANY', '기업회원', now(), now()),
+       (4, 'user512', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'cos@nate.com', 'COMPANY', '기업회원', now(), now()),
        (5, 'admin999', '$2a$10$AnO40455ZBKSalBx0YJ26eo4/a0J6UZPtYgRmdirjkn1GbgNeB/JW', 'admin@nate.com', 'ADMIN', '관리자', now(), now());
 
 INSERT INTO player_info_tb(id, user_id, gender, age, address, tel, file_info_id, updated_at) 

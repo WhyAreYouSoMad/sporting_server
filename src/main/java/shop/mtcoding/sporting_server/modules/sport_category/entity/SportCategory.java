@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import shop.mtcoding.sporting_server.topic.player.dto.PlayerRequest.PlayerUpdateInDTO;
 
 @Getter
 @Setter
@@ -42,4 +43,8 @@ public class SportCategory {
     @Column(name = "created_at")
     @Comment("스포츠 종목 등록시간")
     private LocalDateTime createdAt;
+
+    public void dtoToEntityForSportUpdate(PlayerUpdateInDTO.PlayerFavoriteSportDTO sportDTO) {
+        this.sport = sportDTO.getSport();
+    }
 }
