@@ -26,7 +26,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumController;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumService;
