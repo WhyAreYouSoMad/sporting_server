@@ -25,6 +25,7 @@ public class PlayerResponse {
     @EqualsAndHashCode
     public static class JoinOutDto {
         private Long id;
+        private String nickname;
         private String email;
         private String role;
         private String status;
@@ -32,6 +33,7 @@ public class PlayerResponse {
 
         public JoinOutDto(User user) {
             this.id = user.getId();
+            this.nickname = user.getNickname();
             this.email = user.getEmail();
             this.role = user.getRole();
             this.status = user.getStatus().toString();

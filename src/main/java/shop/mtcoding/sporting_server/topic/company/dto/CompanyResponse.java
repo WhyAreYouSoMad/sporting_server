@@ -21,6 +21,7 @@ public class CompanyResponse {
     @NoArgsConstructor
     public static class JoinDTO {
         private Long id;
+        private String nickname;
         private String email;
         private String role;
         private String status;
@@ -28,6 +29,7 @@ public class CompanyResponse {
 
         public JoinDTO(User user) {
             this.id = user.getId();
+            this.nickname = user.getNickname();
             this.email = user.getEmail();
             this.role = user.getRole();
             this.createdAt = MyDateUtils.toStringFormat(user.getCreatedAt());
