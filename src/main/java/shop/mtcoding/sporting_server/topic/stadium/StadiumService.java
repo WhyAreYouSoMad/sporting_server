@@ -188,8 +188,8 @@ public class StadiumService {
 
         // Stadium update - fileUrl 제외
         stadiumPS.dtoToEntityForStadiumUpdate(stadiumUpdateInDTO);
-        if (!stadiumPS.getCategory().getSport().equals(stadiumUpdateInDTO.getCategory())) {
-            SportCategory sportCategory = sportCategoryRepository.findBySport(stadiumUpdateInDTO.getCategory())
+        if (!stadiumPS.getCategory().getSport().equals(stadiumUpdateInDTO.getSport())) {
+            SportCategory sportCategory = sportCategoryRepository.findBySport(stadiumUpdateInDTO.getSport())
                     .orElseThrow(() -> {
                         throw new Exception400("해당 스포츠 카테고리가 존재하지 않습니다.");
                     });
