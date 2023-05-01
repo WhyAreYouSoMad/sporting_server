@@ -114,7 +114,7 @@ public class StadiumService {
 
         StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumRepository.findByStadiumId(stadiumId);
 
-        stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findCourtsByStadiumId(stadiumId));
+        stadiumUpdateFomrOutDTO.setCourts(stadiumRepository.findCourtsByStadiumId(stadiumId));
         // stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findByStadiumIdForCourtList(stadiumId));
 
         return stadiumUpdateFomrOutDTO;
@@ -130,7 +130,7 @@ public class StadiumService {
 
         stadiumDetailDTO.setCategory(stadiumRepository.findCategoryByStadiumId(stadium.getCategory().getId()));
 
-        stadiumDetailDTO.setStadiumCourt(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
+        stadiumDetailDTO.setCourts(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
 
         return stadiumDetailDTO;
     }
@@ -147,7 +147,7 @@ public class StadiumService {
             throw new Exception400("해당 게시물을 올린 사용자만 수정할 수 있습니다.");
         }
 
-        List<CourtDTO> courtList = stadiumUpdateInDTO.getCourtList();
+        List<CourtDTO> courtList = stadiumUpdateInDTO.getCourts();
         List<Long> courtIdList = courtList.stream()
                 .map(court -> Long.parseLong(court.getId()))
                 .collect(Collectors.toList());
@@ -210,7 +210,7 @@ public class StadiumService {
 
         // Court file 체킹 테스트
         List<Long> fileIds = new ArrayList<>();
-        for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourtList()) {
+        for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourts()) {
             Long fileId = Long.parseLong(courtDTO.getSourceFile().getId());
             fileIds.add(fileId);
         }

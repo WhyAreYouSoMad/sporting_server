@@ -78,7 +78,7 @@ public class StadiumResponse {
         private String endTime;
         private String category;
         private StadiumFileOutDTO sourceFile = new StadiumFileOutDTO();
-        private List<CourtOutDTO> courtList = new ArrayList<>();
+        private List<CourtOutDTO> courts = new ArrayList<>();
 
         public StadiumUpdateOutDTO(String id, String address, String status, String startTime, String endTime,
                 String category, StadiumFileOutDTO stadiumFile, List<CourtOutDTO> courtList) {
@@ -89,7 +89,7 @@ public class StadiumResponse {
             this.endTime = endTime;
             this.category = category;
             this.sourceFile = stadiumFile;
-            this.courtList = courtList;
+            this.courts = courtList;
         }
 
         public StadiumUpdateOutDTO(Stadium stadiumPS, ProfileFile stadiumFile, List<CourtOutDTO> courtList) {
@@ -102,7 +102,7 @@ public class StadiumResponse {
             this.sourceFile.id = Long.toString(stadiumFile.getId());
             // this.sourceFile.fileName = stadiumFile.getFileName();
             this.sourceFile.fileUrl = stadiumFile.getFileUrl();
-            this.courtList = courtList;
+            this.courts = courtList;
         }
 
         @Getter
@@ -125,11 +125,11 @@ public class StadiumResponse {
             private String id;
             private String title;
             private String content;
-            private String capacity;
+            private Integer capacity;
             private Integer price;
             private CourtFileOutDTO sourceFile = new CourtFileOutDTO();
 
-            public CourtOutDTO(String id, String title, String content, String capacity, String courtPrice,
+            public CourtOutDTO(String id, String title, String content, Integer capacity, String courtPrice,
                     CourtFileOutDTO courtFile) {
                 this.id = id;
                 this.title = title;
@@ -143,7 +143,7 @@ public class StadiumResponse {
                 this.id = Long.toString(stadiumCourtPS.getId());
                 this.title = stadiumCourtPS.getTitle();
                 this.content = stadiumCourtPS.getContent();
-                this.capacity = stadiumCourtPS.getCapacity().toString();
+                this.capacity = stadiumCourtPS.getCapacity();
                 this.price = stadiumCourtPS.getCourtPrice();
                 this.sourceFile.id = Long.toString(courtFilePS.getId());
                 // this.sourceFile.fileName = courtFilePS.getFileName();

@@ -120,9 +120,9 @@ public class StadiumCompanyTest {
                 StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumUpdateInDTO("1", "부산시", "운영중", "09:00", "18:00",
                                 "축구", new StadiumFileDTO("1", "base1"), courtList);
 
-                CourtOutDTO courtOutDTO1 = new CourtOutDTO("1", "테스트 제목1", "테스트 내용1", "20명", "50000",
+                CourtOutDTO courtOutDTO1 = new CourtOutDTO("1", "테스트 제목1", "테스트 내용1", 20, "50000",
                                 new CourtFileOutDTO("1", "name2", "base2"));
-                CourtOutDTO courtOutDTO2 = new CourtOutDTO("2", "테스트 제목2", "테스트 내용2", "20명", "50000",
+                CourtOutDTO courtOutDTO2 = new CourtOutDTO("2", "테스트 제목2", "테스트 내용2", 20, "50000",
                                 new CourtFileOutDTO("2", "name3", "base3"));
                 List<CourtOutDTO> courtOutDTOs = new ArrayList<>();
                 courtOutDTOs.add(courtOutDTO1);
@@ -206,7 +206,7 @@ public class StadiumCompanyTest {
                 CourtResponseListDTO.add(courtResponseDTO1);
                 CourtResponseListDTO.add(courtResponseDTO2);
 
-                stadiumUpdateFomrOutDTO.setCourt(CourtResponseListDTO);
+                stadiumUpdateFomrOutDTO.setCourts(CourtResponseListDTO);
 
                 given(this.stadiumService.getUpdateForm(companyUserId, stadiumId))
                                 .willReturn(stadiumUpdateFomrOutDTO);

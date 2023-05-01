@@ -25,10 +25,10 @@ public class StadiumDetailOutDTO {
     private StadiumAddress address;
     private SportCategoryDTO category;
     private StadiumFileResponseDTO sourceFile;
-    private List<StadiumCourtDTO> stadiumCourt;
+    private List<StadiumCourtDTO> courts;
 
     public StadiumDetailOutDTO(List<StadiumCourtDTO> stadiumCourt) {
-        this.stadiumCourt = stadiumCourt;
+        this.courts = stadiumCourt;
     }
 
     public StadiumDetailOutDTO(SportCategoryDTO category) {
