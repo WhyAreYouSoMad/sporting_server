@@ -28,7 +28,7 @@ VALUES (1, '플레이어프로필'), (2, '플레이어프로필'),
 
 
 INSERT INTO file_tb(id, file_info_id, file_name, file_url)
-VALUES (1, 1, 'CompanyProfile/company.jpg', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/company.jpg'), (2, 2, '', ''),
+VALUES (1, 1, 'PlayerProfile/player.jpg', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg'), (2, 2, '', ''),
        (3, 3, '', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/b247bb64-1917-4210-a12a-e0fb53d74333.jpg'), 
        (4, 4, 'CompanyProfile/company.jpg', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/company.jpg'),
        (5, 5, 'Stadium/야구_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'), (6, 6, 'Stadium/야구_Stadium.png', 'https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EC%95%BC%EA%B5%AC_Stadium.png'),

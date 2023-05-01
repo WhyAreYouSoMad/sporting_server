@@ -236,6 +236,27 @@ public class S3Utils {
         return check;
     }
 
+    public static Boolean updateProfileCheck_Player(ProfileFile playerProfileFilePS, String fileBase64, String bucket,
+            String staticRegion) throws IOException {
+
+        Boolean check = false;
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(staticRegion).build();
+
+        ObjectMetadata objectMetadata = s3Client.getObjectMetadata(bucket,
+                playerProfileFilePS.getFileName());
+
+        long playerDBFileSize = objectMetadata.getContentLength();
+        MultipartFile multipartFile1 = BASE64DecodedMultipartFile
+                .convertBase64ToMultipartFile(fileBase64);
+        long playerDTOFileSize = multipartFile1.getSize();
+        if (playerDBFileSize == playerDTOFileSize) {
+            check = true;
+        }
+
+        return check;
+    }
+
     public static Boolean updateProfileCheck_Court(ProfileFile courtProfileFilePS, String fileBase64, String bucket,
             String staticRegion) throws IOException {
 
