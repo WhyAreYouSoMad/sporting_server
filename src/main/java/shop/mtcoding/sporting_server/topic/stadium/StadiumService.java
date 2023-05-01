@@ -100,6 +100,15 @@ public class StadiumService {
     public List<StadiumMyListOutDTO> findKeywordMyList(Long pricipalCompanyId, String keyword) {
         List<StadiumMyListOutDTO> stadiumMyListOut = stadiumRepository.findStadiumMyListBySportKeyword(keyword,
                 pricipalCompanyId);
+        stadiumMyListOut.forEach(stadiumOut -> {
+            List<StadiumCourt> stadiumCourtListPS = stadiumCourtRepository.findAllByStadiumId(stadiumOut.getId());
+            if (stadiumCourtListPS.size() != 0) {
+                stadiumOut.setPrice(stadiumCourtListPS.get(0).getCourtPrice());
+            } else {
+                stadiumOut.setPrice(0);
+            }
+        });
+        // .collect(Collectors.toList());
 
         return stadiumMyListOut;
     }
