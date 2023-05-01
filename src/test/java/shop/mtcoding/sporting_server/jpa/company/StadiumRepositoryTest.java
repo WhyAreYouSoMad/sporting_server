@@ -55,7 +55,7 @@ public class StadiumRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("축구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
 
-        setUp(companyInfoPS, "서면 탁구장", "신설", StadiumAddress.부산시, 129.3, 35.3, "010-1111-1111", sportCategoryPS,
+        setUp(companyInfoPS, "서면 탁구장", "신설", "부산시", 129.3, 35.3, "010-1111-1111", sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
                 fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
     }
@@ -96,7 +96,7 @@ public class StadiumRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("탁구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
 
-        Stadium stadiumPS = setUp(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5, "020-2222-2222",
+        Stadium stadiumPS = setUp(companyInfoPS, "서울 탁구장", "깔끔", "서울시", 129.5, 35.5, "020-2222-2222",
                 sportCategoryPS,
                 LocalTime.now(), LocalTime.now(),
                 fileInfoPS, StadiumStatus.승인대기, LocalDateTime.now());
@@ -118,7 +118,7 @@ public class StadiumRepositoryTest {
         }
     }
 
-    private Stadium setUp(CompanyInfo companyInfo, String name, String description, StadiumAddress address, Double lat,
+    private Stadium setUp(CompanyInfo companyInfo, String name, String description, String address, Double lat,
             Double lon, String tel, SportCategory sportCategory,
             LocalTime startTime, LocalTime endTime, FileInfo fileInfo, StadiumStatus status, LocalDateTime updatedAt) {
 

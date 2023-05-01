@@ -22,7 +22,7 @@ public class StadiumDetailOutDTO {
     private String name;
     private Double lat;
     private Double lon;
-    private StadiumAddress address;
+    private String address;
     private SportCategoryDTO category;
     private StadiumFileResponseDTO sourceFile;
     private List<StadiumCourtDTO> courts;
@@ -37,7 +37,7 @@ public class StadiumDetailOutDTO {
 
     @QueryProjection
     public StadiumDetailOutDTO(Long id, LocalTime startTime, LocalTime endTime, String name, Double lat, Double lon,
-            StadiumAddress address, StadiumFileResponseDTO stadiumFile) {
+            String address, StadiumFileResponseDTO stadiumFile) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;

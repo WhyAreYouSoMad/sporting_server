@@ -94,7 +94,7 @@ public class StadiumResponse {
 
         public StadiumUpdateOutDTO(Stadium stadiumPS, ProfileFile stadiumFile, List<CourtOutDTO> courtList) {
             this.id = Long.toString(stadiumPS.getId());
-            this.address = stadiumPS.getAddress().name();
+            this.address = stadiumPS.getAddress();
             this.status = stadiumPS.getStatus().name();
             this.startTime = stadiumPS.getStartTime().toString();
             this.endTime = stadiumPS.getEndTime().toString();

@@ -106,7 +106,7 @@ public class StadiumPlayerTest {
 
                 StadiumDetailOutDTO stadiumDetailDTO = new StadiumDetailOutDTO(1L, LocalTime.of(9, 0),
                                 LocalTime.of(18, 0),
-                                "a 야구장", 35.1846, 128.9863, StadiumAddress.부산시,
+                                "a 야구장", 35.1846, 128.9863, "부산시",
                                 new StadiumFileResponseDTO(1L, "경기장 URL"));
                 SportCategoryDTO category = new SportCategoryDTO(1L, "야구");
 
@@ -115,7 +115,7 @@ public class StadiumPlayerTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/user/detail/" + stadiumId)
+                                get("/api/user/stadium/" + stadiumId)
                                                 .with(csrf()));
 
                 // Then

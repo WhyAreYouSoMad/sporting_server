@@ -65,9 +65,9 @@ public class Stadium {
 
     @NonNull
     @Comment("유저 거주도시 (ex. 서울시, 부산시, 대구시, 인천시, 광주시, 대전시, 울산시, 제주시)")
-    @Enumerated(EnumType.STRING)
+    // @Enumerated(EnumType.STRING)
     @Column(name = "address")
-    private StadiumAddress address;
+    private String address;
 
     @Comment("경기장 위도 값")
     @Column(name = "lat")
@@ -115,7 +115,7 @@ public class Stadium {
     private LocalDateTime updatedAt;
 
     public void dtoToEntityForStadiumUpdate(StadiumUpdateInDTO stadiumUpdateDTO) {
-        this.address = StadiumAddress.valueOf(stadiumUpdateDTO.getAddress());
+        this.address = stadiumUpdateDTO.getAddress();
         this.status = (StadiumStatus.valueOf(stadiumUpdateDTO.getStatus()));
         this.startTime = (LocalTime.parse(stadiumUpdateDTO.getStartTime()));
         this.endTime = (LocalTime.parse(stadiumUpdateDTO.getEndTime()));

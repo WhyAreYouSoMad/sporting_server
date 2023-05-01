@@ -20,7 +20,7 @@ public class StadiumUpdateFomrOutDTO {
 
     private Long id;
     private String name;
-    private StadiumAddress address;
+    private String address;
     private StadiumStatus status;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -28,7 +28,7 @@ public class StadiumUpdateFomrOutDTO {
     private List<CourtResponseDTO> courts;
 
     @QueryProjection
-    public StadiumUpdateFomrOutDTO(Long id, String name, StadiumAddress address,
+    public StadiumUpdateFomrOutDTO(Long id, String name, String address,
             StadiumStatus status,
             LocalTime startTime, LocalTime endTime, StadiumFileResponseDTO stadiumFile) {
         this.id = id;
