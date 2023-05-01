@@ -81,7 +81,7 @@ public class PlayerResponse {
             this.age = playerInfoPS.getAge().toString();
             this.address = playerInfoPS.getAddress();
             this.sourceFile.id = playerProfilFilePS.getId();
-            this.sourceFile.fileBase64 = playerProfilFilePS.getFileUrl();
+            this.sourceFile.fileUrl = playerProfilFilePS.getFileUrl();
             this.sportList = sportList;
         }
 
@@ -115,7 +115,7 @@ public class PlayerResponse {
             private Long id;
             @JsonIgnore
             private String fileName;
-            private String fileBase64;
+            private String fileUrl;
 
         }
 
