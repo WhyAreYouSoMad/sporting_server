@@ -79,7 +79,7 @@ public class PlayerResponse {
             this.tel = playerInfoPS.getTel();
             this.gender = playerInfoPS.getGender().toString();
             this.age = playerInfoPS.getAge().toString();
-            this.address = playerInfoPS.getAddress().toString();
+            this.address = playerInfoPS.getAddress();
             this.sourceFile.id = playerProfilFilePS.getId();
             this.sourceFile.fileBase64 = playerProfilFilePS.getFileUrl();
             this.sportList = sportList;
