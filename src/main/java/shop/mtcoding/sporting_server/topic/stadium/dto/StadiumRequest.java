@@ -64,7 +64,7 @@ public class StadiumRequest {
         private String startTime;
         private String endTime;
         @ValueOfEnum(enumClass = SportCategoryType.class, message = "스포츠 카테고리 값 이상 (야구, 축구, 배구 등으로 입력)")
-        private String category;
+        private String sport;
         private StadiumFileDTO sourceFile;
         private List<CourtDTO> courts;
 

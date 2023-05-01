@@ -76,18 +76,18 @@ public class StadiumResponse {
         private String status;
         private String startTime;
         private String endTime;
-        private String category;
+        private String sport;
         private StadiumFileOutDTO sourceFile = new StadiumFileOutDTO();
         private List<CourtOutDTO> courts = new ArrayList<>();
 
         public StadiumUpdateOutDTO(String id, String address, String status, String startTime, String endTime,
-                String category, StadiumFileOutDTO stadiumFile, List<CourtOutDTO> courtList) {
+                String sport, StadiumFileOutDTO stadiumFile, List<CourtOutDTO> courtList) {
             this.id = id;
             this.address = address;
             this.status = status;
             this.startTime = startTime;
             this.endTime = endTime;
-            this.category = category;
+            this.sport = sport;
             this.sourceFile = stadiumFile;
             this.courts = courtList;
         }
@@ -98,7 +98,7 @@ public class StadiumResponse {
             this.status = stadiumPS.getStatus().name();
             this.startTime = stadiumPS.getStartTime().toString();
             this.endTime = stadiumPS.getEndTime().toString();
-            this.category = stadiumPS.getCategory().getSport();
+            this.sport = stadiumPS.getCategory().getSport();
             this.sourceFile.id = Long.toString(stadiumFile.getId());
             // this.sourceFile.fileName = stadiumFile.getFileName();
             this.sourceFile.fileUrl = stadiumFile.getFileUrl();

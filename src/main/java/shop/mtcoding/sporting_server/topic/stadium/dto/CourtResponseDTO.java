@@ -21,21 +21,20 @@ public class CourtResponseDTO {
     // @JsonIgnore
     private Integer price;
     // private String price;
-    private String sport;
+    // private String sport;
 
     // private String profileURL;
     private CourtFileResponseDto sourceFile;
 
     @QueryProjection
     public CourtResponseDTO(Long id, String title, String content, Integer capacity,
-            Integer courtPrice, String sport, CourtFileResponseDto courtFile) {
+            Integer courtPrice, CourtFileResponseDto courtFile) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.capacity = capacity;
         // String price = String.format("%,d", courtPrice);
         this.price = courtPrice;
-        this.sport = sport;
         this.sourceFile = courtFile;
     }
 

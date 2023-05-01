@@ -88,7 +88,7 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
                 JPAQuery<CourtResponseDTO> query = jpaQueryFactory
                                 .select(new QCourtResponseDTO(qStadiumCourt.id, qStadiumCourt.title,
                                                 qStadiumCourt.content, qStadiumCourt.capacity,
-                                                qStadiumCourt.courtPrice, qStadiumCourt.stadium.category.sport,
+                                                qStadiumCourt.courtPrice,
                                                 new QCourtFileResponseDto(qFile.id, qFile.fileUrl)))
                                 .from(qStadiumCourt)
                                 .leftJoin(qFile).on(qStadiumCourt.fileInfo.id.eq(qFile.fileInfo.id))
@@ -103,6 +103,7 @@ public class StadiumRepositoryImpl implements StadiumCustomRepository {
                 QProfileFile qFile = QProfileFile.profileFile;
                 JPAQuery<StadiumUpdateFomrOutDTO> query = jpaQueryFactory
                                 .select(new QStadiumUpdateFomrOutDTO(qStadium.id, qStadium.name, qStadium.address,
+                                                qStadium.category.sport,
                                                 qStadium.status,
                                                 qStadium.startTime, qStadium.endTime,
                                                 new QStadiumFileResponseDTO(qFile.id, qFile.fileUrl)))
