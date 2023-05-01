@@ -40,7 +40,7 @@ public class StadiumRequest {
                     .builder()
                     .companyInfo(companyInfoPS)
                     .name(stadiumRegistrationInDTO.getName())
-                    .address(StadiumAddress.valueOf(stadiumRegistrationInDTO.getAddress()))
+                    .address(stadiumRegistrationInDTO.getAddress())
                     .category(sportCategoryPS)
                     .status(StadiumStatus.운영중)
                     .startTime(LocalTime.of(9, 0))

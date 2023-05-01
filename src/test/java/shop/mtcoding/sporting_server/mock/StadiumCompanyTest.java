@@ -147,7 +147,7 @@ public class StadiumCompanyTest {
                 // Then
                 resultActions
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.data.stadiumFile.fileName").value("name1"));
+                                .andExpect(jsonPath("$.data.sourceFile.fileUrl").value("base1"));
         }
 
         @Test
@@ -172,7 +172,7 @@ public class StadiumCompanyTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/company/mystadiums" + "?keyword=" + keyword)
+                                get("/api/company/stadiums" + "?keyword=" + keyword)
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();
@@ -193,7 +193,7 @@ public class StadiumCompanyTest {
                 Long stadiumId = 3L;
                 Long companyUserId = 4L;
                 StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = new StadiumUpdateFomrOutDTO(3L, "a 농구장",
-                                StadiumAddress.울산시, StadiumStatus.운영중,
+                                "울산시", StadiumStatus.운영중,
                                 LocalTime.of(9, 0), LocalTime.of(18, 0), new StadiumFileResponseDTO(1L, "경기장 URL"));
 
                 List<CourtResponseDTO> CourtResponseListDTO = new ArrayList();
@@ -213,7 +213,7 @@ public class StadiumCompanyTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/company/mystadiums/updateform/" + stadiumId)
+                                get("/api/company/stadium/" + stadiumId)
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();

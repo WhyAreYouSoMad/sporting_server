@@ -63,7 +63,7 @@ public class StadiumCourtTest {
         @Test
         @WithMockUser(username = "cos", roles = { "Company" })
         @DisplayName("코트 등록 테스트")
-        void stadiumCOuTest() throws Exception {
+        void stadiumCourtTest() throws Exception {
 
                 // given
                 Long stadiumId = 1L;
@@ -80,7 +80,7 @@ public class StadiumCourtTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                post("/api/company/stadiums/court/" + stadiumId)
+                                post("/api/company/stadiums/" + stadiumId + "/court/")
                                                 .with(csrf())
                                                 .content(objectMapper.writeValueAsString(stadiumCourtInDTO))
                                                 .contentType(MediaType.APPLICATION_JSON_VALUE));
