@@ -2,6 +2,7 @@ package shop.mtcoding.sporting_server.core.dto;
 
 import org.springframework.http.HttpStatus;
 
+import io.sentry.Sentry;
 import lombok.Getter;
 
 @Getter
