@@ -15,6 +15,7 @@ public class StadiumMyListOutDTO {
     private Long id;
     private String sport;
     private String name;
+    private Integer price;
     private StadiumFileResponseDTO sourceFile;
 
     @QueryProjection
