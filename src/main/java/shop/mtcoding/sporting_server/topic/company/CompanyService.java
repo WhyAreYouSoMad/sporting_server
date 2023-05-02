@@ -1,6 +1,9 @@
 package shop.mtcoding.sporting_server.topic.company;
 
-import lombok.RequiredArgsConstructor;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,7 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.querydsl.codegen.Keywords;
 
+import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.enums.role.RoleType;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.util.BASE64DecodedMultipartFile;
@@ -18,17 +24,15 @@ import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
 import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.file.repository.ProfileFileRepository;
+import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
+import shop.mtcoding.sporting_server.modules.fileinfo.repository.FileInfoRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
-import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
-import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest.UpdateInDTO;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
+import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +42,7 @@ public class CompanyService {
     private final UserRepository userRepository;
     private final CompanyInfoRepository companyInfoRepository;
     private final ProfileFileRepository profileFileRepository;
+    private final FileInfoRepository fileInfoRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Value("${bucket}")
@@ -61,7 +66,32 @@ public class CompanyService {
         joinDTO.setPassword(encPassword);
         joinDTO.setRole(RoleType.COMPANY.toString());
 
-        User userPS = userRepository.save(joinDTO.toEntity());
+        User user = joinDTO.toEntity();
+        User userPS = userRepository.save(user);
+
+        FileInfo fileInfo;
+        ProfileFile profileFile;
+
+        fileInfo = FileInfo.builder().type(FileInfoSource.기업프로필).build();
+        fileInfoRepository.save(fileInfo);
+        profileFile = ProfileFile.builder()
+                .fileInfo(fileInfo)
+                .fileName("CompanyProfile/company.jpg")
+                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/company.jpg")
+                .build();
+        profileFileRepository.save(profileFile);
+
+        CompanyInfo companyInfo = CompanyInfo.builder()
+                .user(userPS)
+                .businessNumber(null)
+                .businessAdress(null)
+                .tel(null)
+                .ceo(null)
+                .fileInfo(fileInfo)
+                .updatedAt(LocalDateTime.now())
+                .build();
+
+        companyInfoRepository.save(companyInfo);
 
         return new CompanyResponse.JoinDTO(userPS);
     }
@@ -92,7 +122,7 @@ public class CompanyService {
         userPS.setPassword(encPassword);
         // userPS.setUpdatedAt(updateInDTO.getUpdatedAt());
 
-        CompanyInfo companyInfoPS = companyInfoRepository.findByUserId(id).orElseThrow(() -> {
+        CompanyInfo companyInfoPS = companyInfoRepository.findByUserId(userPS.getId()).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 회사입니다.");
         });
         companyInfoPS.setTel(updateInDTO.getTel());
@@ -105,6 +135,7 @@ public class CompanyService {
                 });
 
         // size가 다르면 false, 같으면 true
+
         Boolean sizeCheck = S3Utils.updateProfileCheck_Company(companyProfileFilePS,
                 updateInDTO.getSourceFile().getFileBase64(), bucket, staticRegion);
 
