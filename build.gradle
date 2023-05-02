@@ -61,7 +61,7 @@ ext {
 tasks.named('test') {
 	outputs.dir snippetsDir
 	useJUnitPlatform()
-	exclude '**/AbstractControllerTest.*'
+	include '**/*ControllerTest.class'
 }
 
 tasks.named('asciidoctor') {
