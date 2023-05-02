@@ -84,7 +84,7 @@ public class CompanyService {
         CompanyInfo companyInfo = CompanyInfo.builder()
                 .user(userPS)
                 .businessNumber(null)
-                .businessAdress(null)
+                .businessAddress(null)
                 .tel(null)
                 .ceo(null)
                 .fileInfo(fileInfo)
@@ -126,7 +126,7 @@ public class CompanyService {
             throw new Exception400("존재하지 않는 회사입니다.");
         });
         companyInfoPS.setTel(updateInDTO.getTel());
-        companyInfoPS.setBusinessAdress(updateInDTO.getBusinessAdress());
+        companyInfoPS.setBusinessAddress(updateInDTO.getBusinessAddress());
         companyInfoPS.setBusinessNumber(updateInDTO.getBusinessNumber());
         // System.out.println("디버깅 00 : " + companyInfoPS.getFileInfo().getId());
         ProfileFile companyProfileFilePS = profileFileRepository.findById(companyInfoPS.getFileInfo().getId())

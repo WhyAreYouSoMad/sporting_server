@@ -51,7 +51,7 @@ public class CompanyInfo {
 
     @Comment("기업 주소")
     @Column(name = "business_address")
-    private String businessAdress;
+    private String businessAddress;
 
     @Comment("기업 전화번호")
     @Column(name = "tel")
