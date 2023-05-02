@@ -30,7 +30,7 @@ public class CompanyInfoRepositoryImpl implements CompanyInfoCustomRepository {
 
         JPAQuery<CompanyInfoResponseDTO> query = jpaQueryFactory
                 .select(new QCompanyInfoResponseDTO(
-                        qCompanyInfo.id, qCompanyInfo.tel, qCompanyInfo.businessAdress,
+                        qCompanyInfo.id, qCompanyInfo.tel, qCompanyInfo.businessAddress,
                         qCompanyInfo.businessNumber, new QCompanyFileResponseDTO(qFile.id, qFile.fileUrl)))
                 .from(qCompanyInfo)
                 .leftJoin(qFile).on(qCompanyInfo.fileInfo.id.eq(qFile.fileInfo.id))
