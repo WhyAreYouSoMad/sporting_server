@@ -6,8 +6,8 @@ cloud:
     s3:
       bucket: ${bucket}
     credentials:
-      access-key: ${access-key}
-      secret-key: ${secret-key}
+      access-key: ${access_key}
+      secret-key: ${secret_key}
     stack:
       auto: false
 
@@ -76,8 +76,8 @@ spring:
 
 meta:
   bucket: ${bucket}
-  access-key: ${access-key}
-  secret-key: ${secret-key}
+  access-key: ${access_key}
+  secret-key: ${secret_key}
   staticval: ${static}
 
 sentry:

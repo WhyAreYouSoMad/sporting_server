@@ -192,16 +192,16 @@ public class StadiumCompanyTest {
                 Long stadiumId = 3L;
                 Long companyUserId = 4L;
                 StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = new StadiumUpdateFomrOutDTO(3L, "a 농구장",
-                                "울산시", StadiumStatus.운영중,
+                                "울산시", "야구", StadiumStatus.운영중,
                                 LocalTime.of(9, 0), LocalTime.of(18, 0), new StadiumFileResponseDTO(1L, "경기장 URL"));
 
                 List<CourtResponseDTO> CourtResponseListDTO = new ArrayList();
                 CourtResponseDTO courtResponseDTO1 = new CourtResponseDTO(3L, "a 농구장(코트1)",
                                 "그물상태 양호 농구장", 10, 30000,
-                                "농구", new CourtFileResponseDto(1L, "코트 URL1"));
+                                new CourtFileResponseDto(1L, "코트 URL1"));
                 CourtResponseDTO courtResponseDTO2 = new CourtResponseDTO(4L, "a 농구장(코트2)",
                                 "코트상태 양호 농구장", 10, 30000,
-                                "농구", new CourtFileResponseDto(2L, "코트 URL2"));
+                                new CourtFileResponseDto(2L, "코트 URL2"));
                 CourtResponseListDTO.add(courtResponseDTO1);
                 CourtResponseListDTO.add(courtResponseDTO2);
 
