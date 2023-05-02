@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.topic.player;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.services.s3.AmazonS3Client;
 
 import lombok.RequiredArgsConstructor;
+import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAddress;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoGender;
@@ -24,6 +26,8 @@ import shop.mtcoding.sporting_server.core.util.BASE64DecodedMultipartFile;
 import shop.mtcoding.sporting_server.core.util.S3Utils;
 import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.file.repository.ProfileFileRepository;
+import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
+import shop.mtcoding.sporting_server.modules.fileinfo.repository.FileInfoRepository;
 import shop.mtcoding.sporting_server.modules.player_favorite_sport.entity.PlayerFavoriteSport;
 import shop.mtcoding.sporting_server.modules.player_favorite_sport.repository.PlayerFavoriteSportRepository;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
@@ -50,6 +54,7 @@ public class PlayerService {
     private final PlayerFavoriteSportRepository playerFavoriteSportRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final ProfileFileRepository profileFileRepository;
+    private final FileInfoRepository fileInfoRepository;
 
     @Value("${bucket}")
     private String bucket;
@@ -77,8 +82,30 @@ public class PlayerService {
         joinDTO.setPassword(encPassword);
         joinDTO.setRole(RoleType.PLAYER.toString());
 
+        // User 엔티티 생성 및 저장
+        User user = joinDTO.toEntity();
+        User userPS = userRepository.save(user);
+
+        // FileInfo fileInfo = new FileInfo(1L, FileInfoSource.플레이어프로필);
+        FileInfo fileInfo = fileInfoRepository.findById(1L).orElseThrow(() -> {
+            throw new Exception400("존재하지 않는 유저 입니다");
+        });
+        ;
+        // PlayerInfo 엔티티 생성
+        PlayerInfo playerInfo = PlayerInfo.builder()
+                .user(userPS)
+                .gender(null)
+                .age(null)
+                .address(null)
+                .tel(null)
+                .fileInfo(fileInfo)
+                .updatedAt(LocalDateTime.now())
+                .build();
+
+        // playerInfo 엔티티 저장
+        playerInfoRepository.save(playerInfo);
+
         // JPA 사용에 있어 영속성 컨텍스트
-        User userPS = userRepository.save(joinDTO.toEntity());
         return new PlayerResponse.JoinOutDto(userPS);
     }
 
@@ -105,16 +132,16 @@ public class PlayerService {
         userPS.setNickname(playerUpdateInDTO.getNickname());
         userPS.setPassword(encPassword);
 
-        PlayerInfo playerInfoPS = playerInfoRepository.findByUserId(id).orElseThrow(() -> {
+        PlayerInfo playerInfo = playerInfoRepository.findByUserId(userPS.getId()).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 Player 입니다.");
         });
 
-        playerInfoPS.setTel(playerUpdateInDTO.getTel());
-        playerInfoPS.setGender(PlayerInfoGender.valueOf(playerUpdateInDTO.getGender()));
-        playerInfoPS.setAge(PlayerInfoAge.valueOf(playerUpdateInDTO.getAge()));
-        playerInfoPS.setAddress(playerUpdateInDTO.getAddress());
+        playerInfo.setTel(playerUpdateInDTO.getTel());
+        playerInfo.setGender(PlayerInfoGender.valueOf(playerUpdateInDTO.getGender()));
+        playerInfo.setAge(PlayerInfoAge.valueOf(playerUpdateInDTO.getAge()));
+        playerInfo.setAddress(playerUpdateInDTO.getAddress());
 
-        ProfileFile playerProfileFilePS = profileFileRepository.findById(playerInfoPS.getFileInfo().getId())
+        ProfileFile playerProfileFilePS = profileFileRepository.findById(playerInfo.getFileInfo().getId())
                 .orElseThrow(() -> {
                     throw new Exception400("ProfileFile이 존재하지 않습니다.");
                 });
@@ -131,9 +158,11 @@ public class PlayerService {
             playerProfileFilePS.setFileUrl(nameAndUrl.get(1));
         }
 
-        PlayerInfo playerInfo = playerInfoRepository.findById(id).orElseThrow(() -> {
-            throw new Exception400("유저 정보가 존재하지 않습니다.");
-        });
+        // PlayerInfo playerInfo =
+        // playerInfoRepository.findById(playerInfoPS.getUser().getId()).orElseThrow(()
+        // -> {
+        // throw new Exception400("유저 정보가 존재하지 않습니다.");
+        // });
 
         List<PlayerFavoriteSportDTO> playerFavoriteSportDTOs = playerUpdateInDTO.getSportList(); // DTO 리스트
         List<String> sportList = playerFavoriteSportDTOs.stream()
@@ -195,7 +224,7 @@ public class PlayerService {
             playerFavoriteSportOutDTO.add(new PlayerFavoriteSportOutDTO(playerFavoriteSport));
         }
 
-        PlayerUpdateOutDTO playerUpdateOutDTO = new PlayerUpdateOutDTO(userPS, playerInfoPS, playerProfileFilePS,
+        PlayerUpdateOutDTO playerUpdateOutDTO = new PlayerUpdateOutDTO(userPS, playerInfo, playerProfileFilePS,
                 playerFavoriteSportOutDTO);
 
         return playerUpdateOutDTO;
