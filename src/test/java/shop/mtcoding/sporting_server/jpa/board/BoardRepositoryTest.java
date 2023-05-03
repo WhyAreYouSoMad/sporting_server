@@ -241,13 +241,13 @@ public class BoardRepositoryTest {
         return this.entityManager.persist(stadium);
     }
 
-    private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAdress,
+    private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAddress,
             String tel,
             String ceo, User user, LocalDateTime updatedAt) {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAdress(businessAdress);
+        companyInfo.setBusinessAddress(businessAddress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setUser(user);
