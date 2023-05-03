@@ -92,7 +92,6 @@ public class CourtPaymentTest {
         void paymentFormTest() throws Exception {
 
                 // given
-                Long id = 3L;
                 ReceiptDataDTO.CardData cardData = new ReceiptDataDTO.CardData();
                 cardData.setTid("T1234567890");
                 cardData.setCancelTid("");
@@ -112,8 +111,6 @@ public class CourtPaymentTest {
 
                 ReceiptInDTO receiptInDTO = new ReceiptInDTO("done", receiptDataDTO, "true");
 
-                // paymentService.paymentAndReservation(1L, "2022-05-03", "7", receiptInDTO,
-                // 1L);
                 Mockito.doNothing().when(paymentService).paymentAndReservation(
                                 Mockito.anyLong(), Mockito.anyString(), Mockito.anyString(),
                                 Mockito.any(ReceiptInDTO.class), Mockito.anyLong());
