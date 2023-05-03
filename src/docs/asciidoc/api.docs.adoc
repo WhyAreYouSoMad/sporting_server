@@ -1,0 +1,51 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+:user: user-controller-test
+
+= REST API
+:toc: left
+:toclevels: 2
+:source-highlighter: highlightjs
+
+== 유저
+=== Player 로그인 (성공)
+===== Request Example
+include::{snippets}/{user}/player_login_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/player_login_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{user}/player_login_test/curl-request.adoc[]
+
+=== Company 로그인 (성공)
+===== Request Example
+include::{snippets}/{user}/company_login_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/company_login_test/http-response.adoc[]
+
+===== Curl
+include::{snippets}/{user}/company_login_test/curl-request.adoc[]
+
+=== 로그인 (이메일 실패)
+===== Request Example
+include::{snippets}/{user}/login_fail_email_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/login_fail_email_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{user}/login_fail_email_test/curl-request.adoc[]
+
+=== 로그인 (패스워드 실패)
+===== Request Example
+include::{snippets}/{user}/login_fail_password_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/login_fail_password_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{user}/login_fail_password_test/curl-request.adoc[]

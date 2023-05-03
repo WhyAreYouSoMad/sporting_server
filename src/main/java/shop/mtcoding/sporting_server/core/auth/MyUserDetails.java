@@ -16,9 +16,14 @@ import shop.mtcoding.sporting_server.modules.user.entity.User;
 public class MyUserDetails implements UserDetails {
 
     private MyLoginUser user;
+    private User user1;
 
     public MyUserDetails(MyLoginUser user) {
         this.user = user;
+    }
+
+    public MyUserDetails(User user1) {
+        this.user1 = user1;
     }
 
     @Override
