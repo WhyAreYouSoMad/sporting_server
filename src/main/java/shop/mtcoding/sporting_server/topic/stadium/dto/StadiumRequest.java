@@ -55,7 +55,7 @@ public class StadiumRequest {
     @AllArgsConstructor
     @EqualsAndHashCode
     public static class StadiumUpdateInDTO {
-        private String id;
+        private Long id;
         // @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시
         // 등으로 입력)")
         private String address;
@@ -74,7 +74,7 @@ public class StadiumRequest {
         @AllArgsConstructor
         @EqualsAndHashCode
         public static class StadiumFileDTO {
-            private String id;
+            private Long id;
             private String fileBase64;
         }
 
@@ -84,7 +84,7 @@ public class StadiumRequest {
         @AllArgsConstructor
         @EqualsAndHashCode
         public static class CourtDTO {
-            private String id;
+            private Long id;
             private String title;
             private String content;
             private String capacity;
@@ -97,7 +97,7 @@ public class StadiumRequest {
             @AllArgsConstructor
             @EqualsAndHashCode
             public static class CourtFileDTO {
-                private String id;
+                private Long id;
                 private String fileBase64;
             }
         }

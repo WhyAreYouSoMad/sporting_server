@@ -71,7 +71,7 @@ public class StadiumResponse {
     @NoArgsConstructor
     @EqualsAndHashCode
     public static class StadiumUpdateOutDTO {
-        private String id;
+        private Long id;
         private String address;
         private String status;
         private String startTime;
@@ -80,7 +80,7 @@ public class StadiumResponse {
         private StadiumFileOutDTO sourceFile = new StadiumFileOutDTO();
         private List<CourtOutDTO> courts = new ArrayList<>();
 
-        public StadiumUpdateOutDTO(String id, String address, String status, String startTime, String endTime,
+        public StadiumUpdateOutDTO(Long id, String address, String status, String startTime, String endTime,
                 String sport, StadiumFileOutDTO stadiumFile, List<CourtOutDTO> courtList) {
             this.id = id;
             this.address = address;
@@ -93,13 +93,13 @@ public class StadiumResponse {
         }
 
         public StadiumUpdateOutDTO(Stadium stadiumPS, ProfileFile stadiumFile, List<CourtOutDTO> courtList) {
-            this.id = Long.toString(stadiumPS.getId());
+            this.id = stadiumPS.getId();
             this.address = stadiumPS.getAddress();
             this.status = stadiumPS.getStatus().name();
             this.startTime = stadiumPS.getStartTime().toString();
             this.endTime = stadiumPS.getEndTime().toString();
             this.sport = stadiumPS.getCategory().getSport();
-            this.sourceFile.id = Long.toString(stadiumFile.getId());
+            this.sourceFile.id = stadiumFile.getId();
             // this.sourceFile.fileName = stadiumFile.getFileName();
             this.sourceFile.fileUrl = stadiumFile.getFileUrl();
             this.courts = courtList;
@@ -111,7 +111,7 @@ public class StadiumResponse {
         @AllArgsConstructor
         @EqualsAndHashCode
         public static class StadiumFileOutDTO {
-            private String id;
+            private Long id;
             @JsonIgnore
             private String fileName;
             private String fileUrl;
@@ -122,14 +122,14 @@ public class StadiumResponse {
         @NoArgsConstructor
         @EqualsAndHashCode
         public static class CourtOutDTO {
-            private String id;
+            private Long id;
             private String title;
             private String content;
             private Integer capacity;
             private Integer price;
             private CourtFileOutDTO sourceFile = new CourtFileOutDTO();
 
-            public CourtOutDTO(String id, String title, String content, Integer capacity, String courtPrice,
+            public CourtOutDTO(Long id, String title, String content, Integer capacity, String courtPrice,
                     CourtFileOutDTO courtFile) {
                 this.id = id;
                 this.title = title;
@@ -140,12 +140,12 @@ public class StadiumResponse {
             }
 
             public CourtOutDTO(StadiumCourt stadiumCourtPS, ProfileFile courtFilePS) {
-                this.id = Long.toString(stadiumCourtPS.getId());
+                this.id = stadiumCourtPS.getId();
                 this.title = stadiumCourtPS.getTitle();
                 this.content = stadiumCourtPS.getContent();
                 this.capacity = stadiumCourtPS.getCapacity();
                 this.price = stadiumCourtPS.getCourtPrice();
-                this.sourceFile.id = Long.toString(courtFilePS.getId());
+                this.sourceFile.id = courtFilePS.getId();
                 // this.sourceFile.fileName = courtFilePS.getFileName();
                 this.sourceFile.fileUrl = courtFilePS.getFileUrl();
 
@@ -157,7 +157,7 @@ public class StadiumResponse {
             @AllArgsConstructor
             @EqualsAndHashCode
             public static class CourtFileOutDTO {
-                private String id;
+                private Long id;
                 @JsonIgnore
                 private String fileName;
                 private String fileUrl;

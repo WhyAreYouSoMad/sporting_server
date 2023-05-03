@@ -148,7 +148,7 @@ public class StadiumService {
     public StadiumUpdateOutDTO update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO)
             throws IOException {
 
-        Stadium stadiumPS = stadiumRepository.findById(Long.parseLong(stadiumUpdateInDTO.getId())).orElseThrow(() -> {
+        Stadium stadiumPS = stadiumRepository.findById(stadiumUpdateInDTO.getId()).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 경기장입니다.");
         });
 
@@ -158,7 +158,7 @@ public class StadiumService {
 
         List<CourtDTO> courtList = stadiumUpdateInDTO.getCourts();
         List<Long> courtIdList = courtList.stream()
-                .map(court -> Long.parseLong(court.getId()))
+                .map(court -> court.getId())
                 .collect(Collectors.toList());
 
         // DTO에 담긴 CourtIds를 이용한 DB 조회 리스트
@@ -174,7 +174,7 @@ public class StadiumService {
         List<StadiumCourt> stadiumsToUpdatePS = courtList.stream()
                 .map(court -> {
                     // court: RequestDTO, courtMap value: DB에서 조회
-                    StadiumCourt stadiumCourtPS = courtMap.get(Long.parseLong(court.getId()));
+                    StadiumCourt stadiumCourtPS = courtMap.get(court.getId());
 
                     if (!stadiumCourtPS.getStadium().equals(stadiumPS)) {
                         throw new Exception400("해당 경기장에서 관리하는 Court만 수정 가능합니다.");
@@ -220,7 +220,7 @@ public class StadiumService {
         // Court file 체킹 테스트
         List<Long> fileIds = new ArrayList<>();
         for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourts()) {
-            Long fileId = Long.parseLong(courtDTO.getSourceFile().getId());
+            Long fileId = courtDTO.getSourceFile().getId();
             fileIds.add(fileId);
         }
 
@@ -244,7 +244,7 @@ public class StadiumService {
         List<ProfileFile> courtsProfilesToUpdate = courtFileList.stream()
                 .map(courtFile -> {
                     // court: RequestDTO, courtFileMap value: DB에서 조회
-                    ProfileFile courtPorfilePS = courtProfilesMap.get(Long.parseLong(courtFile.getId()));
+                    ProfileFile courtPorfilePS = courtProfilesMap.get(courtFile.getId());
 
                     Boolean sizeCheck2;
                     try {

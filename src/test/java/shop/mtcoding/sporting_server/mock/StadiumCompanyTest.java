@@ -108,27 +108,27 @@ public class StadiumCompanyTest {
         void updateTest() throws Exception {
 
                 // given
-                CourtDTO courtInDTO1 = new CourtDTO("1", "테스트 제목1", "테스트 내용1", "20명", "50000",
-                                new CourtFileDTO("1", "base2"));
-                CourtDTO courtInDTO2 = new CourtDTO("2", "테스트 제목2", "테스트 내용2", "20명", "50000",
-                                new CourtFileDTO("2", "base3"));
+                CourtDTO courtInDTO1 = new CourtDTO(1L, "테스트 제목1", "테스트 내용1", "20명", "50000",
+                                new CourtFileDTO(1L, "base2"));
+                CourtDTO courtInDTO2 = new CourtDTO(2L, "테스트 제목2", "테스트 내용2", "20명", "50000",
+                                new CourtFileDTO(2L, "base3"));
                 List<CourtDTO> courtList = new ArrayList<>();
                 courtList.add(courtInDTO1);
                 courtList.add(courtInDTO2);
 
-                StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumUpdateInDTO("1", "부산시", "운영중", "09:00", "18:00",
-                                "축구", new StadiumFileDTO("1", "base1"), courtList);
+                StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumUpdateInDTO(1L, "부산시", "운영중", "09:00", "18:00",
+                                "축구", new StadiumFileDTO(1L, "base1"), courtList);
 
-                CourtOutDTO courtOutDTO1 = new CourtOutDTO("1", "테스트 제목1", "테스트 내용1", 20, "50000",
-                                new CourtFileOutDTO("1", "name2", "base2"));
-                CourtOutDTO courtOutDTO2 = new CourtOutDTO("2", "테스트 제목2", "테스트 내용2", 20, "50000",
-                                new CourtFileOutDTO("2", "name3", "base3"));
+                CourtOutDTO courtOutDTO1 = new CourtOutDTO(1L, "테스트 제목1", "테스트 내용1", 20, "50000",
+                                new CourtFileOutDTO(1L, "name2", "base2"));
+                CourtOutDTO courtOutDTO2 = new CourtOutDTO(2L, "테스트 제목2", "테스트 내용2", 20, "50000",
+                                new CourtFileOutDTO(2L, "name3", "base3"));
                 List<CourtOutDTO> courtOutDTOs = new ArrayList<>();
                 courtOutDTOs.add(courtOutDTO1);
                 courtOutDTOs.add(courtOutDTO2);
 
-                StadiumUpdateOutDTO stadiumUpdateOutDTO = new StadiumUpdateOutDTO("1", "부산시", "운영중", "09:00", "18:00",
-                                "축구", new StadiumFileOutDTO("1", "name1", "base1"), courtOutDTOs);
+                StadiumUpdateOutDTO stadiumUpdateOutDTO = new StadiumUpdateOutDTO(1L, "부산시", "운영중", "09:00", "18:00",
+                                "축구", new StadiumFileOutDTO(1L, "name1", "base1"), courtOutDTOs);
 
                 given(this.stadiumService.update(4L, stadiumUpdateInDTO))
                                 .willReturn(stadiumUpdateOutDTO);
