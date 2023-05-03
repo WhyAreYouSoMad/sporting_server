@@ -16,12 +16,6 @@ public class AdminConnectionController {
 
     private final AdminConnectionService adminStatisticsService;
 
-    @GetMapping("/main")
-    public String main() {
-
-        return "admin/main";
-    }
-
     @GetMapping("/statistics/connection")
     public String connection() {
 
