@@ -26,7 +26,6 @@ import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest.UpdateInDT
 @Table(name = "user_tb")
 @EqualsAndHashCode(of = "id", callSuper = false)
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("고유번호")

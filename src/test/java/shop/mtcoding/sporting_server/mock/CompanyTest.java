@@ -72,9 +72,7 @@ public class CompanyTest {
                 // given
                 CompanyRequest.JoinInDTO joinInDTO = new CompanyRequest.JoinInDTO();
 
-                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "ssar", "ssar@nate.com", "COMPANY",
-
-                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "1234", "sdif@sdflk.dsf", "User",
+                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "ssar", "sdif@sdflk.dsf", "User",
 
                                 "인증대기", "ddd");
                 given(this.companyService.회원가입(joinInDTO)).willReturn(joinOutDTO);
@@ -91,7 +89,7 @@ public class CompanyTest {
                 // Then
                 perform
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.data.email").value("ssar@nate.com"));
+                                .andExpect(jsonPath("$.data.email").value("ssar@nate.com"))
                                 .andExpect(jsonPath("$.data.email").value("sdif@sdflk.dsf"));
         }
 
@@ -135,7 +133,6 @@ public class CompanyTest {
                 CompanyRequest.UpdateInDTO.CompanyFileDTO companyFileDTO = new CompanyRequest.UpdateInDTO.CompanyFileDTO(
                                 3L, "skedfdf");
                 CompanyRequest.UpdateInDTO updateInDTO = new CompanyRequest.UpdateInDTO("아무개나", "1234",
-                                null,
                                 "010-0000-0000",
                                 "1234-65-745454",
                                 "123-65-456", companyFileDTO);

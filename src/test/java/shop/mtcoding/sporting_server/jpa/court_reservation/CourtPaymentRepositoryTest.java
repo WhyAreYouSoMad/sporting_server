@@ -49,7 +49,7 @@ public class CourtPaymentRepositoryTest {
     public void init() {
         em.createNativeQuery("ALTER TABLE court_payment_tb ALTER COLUMN ID RESTART WITH 1").executeUpdate();
 
-        setUp(PaymentType.계좌이체, 55555, "오리진 데이터", LocalDateTime.now(), CourtPaymentStatus.결제완료);
+        setUp("계좌이체", 55555, "오리진 데이터", LocalDateTime.now(), CourtPaymentStatus.결제완료);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class CourtPaymentRepositoryTest {
 
     @Test
     void insertAndDelete() {
-        CourtPayment courtPayment = setUp2(PaymentType.포인트, 5000, "오리진 데이터2", LocalDateTime.now(),
+        CourtPayment courtPayment = setUp2("포인트", 5000, "오리진 데이터2", LocalDateTime.now(),
                 CourtPaymentStatus.결제완료);
         System.out.println("테스트 : " + courtPayment.getId());
         Optional<CourtPayment> findCourtPayment = this.courtPaymentRepository.findById(courtPayment.getId());
@@ -103,7 +103,7 @@ public class CourtPaymentRepositoryTest {
         }
     }
 
-    private CourtPayment setUp(PaymentType paymentType, Integer paymentAmount, String originDate,
+    private CourtPayment setUp(String paymentType, Integer paymentAmount, String originDate,
             LocalDateTime createdAt, CourtPaymentStatus status) {
 
         CourtPayment courtPayment = new CourtPayment();
@@ -122,7 +122,7 @@ public class CourtPaymentRepositoryTest {
         return this.entityManager.persist(courtPayment);
     }
 
-    private CourtPayment setUp2(PaymentType paymentType, Integer paymentAmount, String originDate,
+    private CourtPayment setUp2(String paymentType, Integer paymentAmount, String originDate,
             LocalDateTime createdAt, CourtPaymentStatus status) {
 
         CourtPayment courtPayment = new CourtPayment();
@@ -165,7 +165,7 @@ public class CourtPaymentRepositoryTest {
                 LocalDateTime.now(), UserStatus.기업회원));
 
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAdress(businessAdress);
+        companyInfo.setBusinessAddress(businessAdress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setUpdatedAt(LocalDateTime.now());

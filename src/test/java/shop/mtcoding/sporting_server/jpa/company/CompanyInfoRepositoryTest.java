@@ -108,7 +108,7 @@ public class CompanyInfoRepositoryTest {
 
         companyInfo.setUser(user);
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAdress(businessAdress);
+        companyInfo.setBusinessAddress(businessAdress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setFileInfo(fileInfo);

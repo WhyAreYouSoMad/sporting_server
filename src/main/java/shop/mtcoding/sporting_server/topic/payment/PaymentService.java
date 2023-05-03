@@ -59,7 +59,8 @@ public class PaymentService {
 
     // return formOutDTO;
     // }
-    public void getForm(Long courtId, String resDate, String resTime, PaymentRequest.ReceiptInDTO ReceiptDTO, Long id)
+    public void paymentAndReservation(Long courtId, String resDate, String resTime,
+            PaymentRequest.ReceiptInDTO ReceiptDTO, Long id)
             throws JsonProcessingException {
         String restApiKey = "643f9df8755e27001ae57d0c";
         String privateKey = "Xh68nK2FMKk5JZSoPEOzuOA3d4N+nR0t3CGgGo7Jf/Y=";

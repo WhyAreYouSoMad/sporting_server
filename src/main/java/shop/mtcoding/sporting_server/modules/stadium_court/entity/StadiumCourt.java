@@ -93,8 +93,8 @@ public class StadiumCourt {
     public void dtoToEntityForCourtUpdate(StadiumUpdateInDTO.CourtDTO courtDTO) {
         this.title = courtDTO.getTitle();
         this.content = courtDTO.getContent();
-        this.capacity = Integer.parseInt(courtDTO.getCapacity());
-        this.courtPrice = Integer.parseInt(courtDTO.getCourtPrice());
+        this.capacity = courtDTO.getCapacity();
+        this.courtPrice = courtDTO.getCourtPrice();
         this.updatedAt = LocalDateTime.now();
     }
 }

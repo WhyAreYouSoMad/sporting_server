@@ -65,7 +65,7 @@ public class StadiumRepositoryTest {
         Assertions.assertNotEquals(stadiumList.size(), 0);
 
         Stadium stadium = stadiumList.get(0);
-        Assertions.assertEquals(stadium.getCompanyInfo().getBusinessAdress(), "부산시");
+        Assertions.assertEquals(stadium.getCompanyInfo().getBusinessAddress(), "부산시");
     }
 
     @Test
@@ -163,7 +163,7 @@ public class StadiumRepositoryTest {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAdress(businessAdress);
+        companyInfo.setBusinessAddress(businessAdress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setUser(user);

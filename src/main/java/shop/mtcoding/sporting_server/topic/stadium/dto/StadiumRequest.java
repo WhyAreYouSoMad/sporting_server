@@ -87,8 +87,8 @@ public class StadiumRequest {
             private Long id;
             private String title;
             private String content;
-            private String capacity;
-            private String courtPrice;
+            private Integer capacity;
+            private Integer courtPrice;
             private CourtFileDTO sourceFile;
 
             @Getter

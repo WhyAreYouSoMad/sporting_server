@@ -38,8 +38,7 @@ public class PaymentController {
     public ResponseEntity<?> payment(Long courtId, String resDate, String resTime,
             @RequestBody PaymentRequest.ReceiptInDTO ReceiptDTO, @AuthenticationPrincipal MyUserDetails myUserDetails)
             throws JsonProcessingException {
-
-        paymentService.getForm(courtId, resDate, resTime, ReceiptDTO, myUserDetails.getUser().getId());
+        paymentService.paymentAndReservation(courtId, resDate, resTime, ReceiptDTO, myUserDetails.getUser().getId());
 
         return ResponseEntity.ok().body(new ResponseDto<>());
     }
