@@ -101,14 +101,14 @@ public class CompanyInfoRepositoryTest {
         }
     }
 
-    private CompanyInfo setUp(User user, String businessNumber, String businessAdress,
+    private CompanyInfo setUp(User user, String businessNumber, String businessAddress,
             String tel,
             String ceo, FileInfo fileInfo, LocalDateTime updatedAt) {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setUser(user);
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAddress(businessAdress);
+        companyInfo.setBusinessAddress(businessAddress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setFileInfo(fileInfo);

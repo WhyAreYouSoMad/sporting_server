@@ -157,7 +157,7 @@ public class CourtPaymentRepositoryTest {
         return this.entityManager.persist(playerInfo);
     }
 
-    private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAdress, String tel, String ceo,
+    private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAddress, String tel, String ceo,
             LocalDateTime updatedAt) {
         CompanyInfo companyInfo = new CompanyInfo();
 
@@ -165,7 +165,7 @@ public class CourtPaymentRepositoryTest {
                 LocalDateTime.now(), UserStatus.기업회원));
 
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAddress(businessAdress);
+        companyInfo.setBusinessAddress(businessAddress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setUpdatedAt(LocalDateTime.now());
