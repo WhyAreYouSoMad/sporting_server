@@ -242,6 +242,7 @@ public class BoardApplyRepositoryTest {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setBusinessNumber(businessNumber);
+
         companyInfo.setBusinessAddress(businessAddress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);

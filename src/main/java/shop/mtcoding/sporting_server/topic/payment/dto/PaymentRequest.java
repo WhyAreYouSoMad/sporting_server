@@ -32,6 +32,7 @@ public class PaymentRequest {
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
+    @EqualsAndHashCode
     public static class ReceiptInDTO {
         @JsonProperty("event")
         private String event;
@@ -44,6 +45,7 @@ public class PaymentRequest {
         @Setter
         @AllArgsConstructor
         @NoArgsConstructor
+        @EqualsAndHashCode
         public static class ReceiptDataDTO {
             @JsonProperty("receipt_id")
             private String receiptId;
@@ -91,6 +93,7 @@ public class PaymentRequest {
             private String methodOriginSymbol;
 
             @JsonProperty("purchased_at")
+
             private OffsetDateTime purchasedAt;
 
             @JsonProperty("cancelled_at")
@@ -114,7 +117,8 @@ public class PaymentRequest {
             @Setter
             @AllArgsConstructor
             @NoArgsConstructor
-            public class CardData {
+            @EqualsAndHashCode
+            public static class CardData {
                 @JsonProperty("tid")
                 private String tid;
 
@@ -139,8 +143,9 @@ public class PaymentRequest {
 
             @Getter
             @Setter
+            @EqualsAndHashCode
             @JsonInclude(JsonInclude.Include.NON_NULL)
-            public class Metadata {
+            public static class Metadata {
                 // @JsonProperty("test")
                 // private String test;
             }

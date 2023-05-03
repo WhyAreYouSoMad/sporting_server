@@ -108,9 +108,9 @@ public class StadiumCompanyTest {
         void updateTest() throws Exception {
 
                 // given
-                CourtDTO courtInDTO1 = new CourtDTO(1L, "테스트 제목1", "테스트 내용1", "20명", "50000",
+                CourtDTO courtInDTO1 = new CourtDTO(1L, "테스트 제목1", "테스트 내용1", 20, 50000,
                                 new CourtFileDTO(1L, "base2"));
-                CourtDTO courtInDTO2 = new CourtDTO(2L, "테스트 제목2", "테스트 내용2", "20명", "50000",
+                CourtDTO courtInDTO2 = new CourtDTO(2L, "테스트 제목2", "테스트 내용2", 20, 50000,
                                 new CourtFileDTO(2L, "base3"));
                 List<CourtDTO> courtList = new ArrayList<>();
                 courtList.add(courtInDTO1);
