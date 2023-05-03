@@ -65,7 +65,7 @@ public class StadiumRepositoryTest {
         Assertions.assertNotEquals(stadiumList.size(), 0);
 
         Stadium stadium = stadiumList.get(0);
-        Assertions.assertEquals(stadium.getCompanyInfo().getBusinessAdress(), "부산시");
+        Assertions.assertEquals(stadium.getCompanyInfo().getBusinessAddress(), "부산시");
     }
 
     @Test
@@ -157,13 +157,13 @@ public class StadiumRepositoryTest {
         return this.entityManager.persist(sportCategory);
     }
 
-    private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAdress,
+    private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAddress,
             String tel,
             String ceo, User user, LocalDateTime updatedAt) {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setBusinessNumber(businessNumber);
-        companyInfo.setBusinessAdress(businessAdress);
+        companyInfo.setBusinessAddress(businessAddress);
         companyInfo.setTel(tel);
         companyInfo.setCeo(ceo);
         companyInfo.setUser(user);
