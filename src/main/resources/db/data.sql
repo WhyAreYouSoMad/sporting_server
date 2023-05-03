@@ -134,15 +134,33 @@ VALUES (1, 1, 9, 40000, 22, 'a 야구장(코트1)','최신 시설 야구장', '�
         
 
 -- ▶ 결제
-INSERT INTO court_payment_tb(id, payment_type, payment_amount, player_info_id, company_info_id, origin_data, status, created_at)
-VALUES (1, '카드결제', 40000, 1, 1, '', '결제완료', now()),
-       (2, '계좌이체', 50000, 2, 2, '', '결제완료', now());
+INSERT INTO court_payment_tb(id, payment_type, payment_amount, player_info_id, company_info_id, stadium_court_id, origin_data, receipt_id, status, requested_at, purchased_at, created_at)
+VALUES (1,  'Card', 40000, 1, 1,  1, 'data', 'RC16123', '결제완료', now(), now(), now()),
+       (2,  'Card', 20000, 1, 2,  8, 'data', 'RC51628', '결제완료', now(), now(), now()),
+       (3,  'Card', 40000, 1, 1,  1, 'data', 'RC61957', '결제완료', now(), now(), now()),
+       (4,  'Card', 50000, 1, 2,  6, 'data', 'RC32166', '결제완료', now(), now(), now()),
+       (5,  'Card', 30000, 1, 2, 11, 'data', 'RC51429', '결제완료', now(), now(), now()),
+ 
+       (6,  'Card', 30000, 2, 2,  3, 'data', 'RC661927', '결제완료', now(), now(), now()),
+       (7,  'Card', 30000, 2, 2,  3, 'data', 'RC992120', '결제완료', now(), now(), now()),
+       (8,  'Card', 30000, 2, 2,  3, 'data', 'RC169275', '결제완료', now(), now(), now()),
+       (9,  'Card', 30000, 2, 2,  3, 'data', 'RC136619', '결제완료', now(), now(), now()),
+       (10, 'Card', 30000, 2, 2,  3, 'data', 'RC991624', '결제완료', now(), now(), now());
 
 
 -- ▶ 예약
 INSERT INTO court_reservation_tb (id, user_id, court_payment_id, reservation_date, reservation_time, status, created_at)
-VALUES (1, 1, 1, '2023-06-11', '4', '승낙', NOW()),
-       (2, 2, 2, '2023-05-11', '5', '승낙', NOW());
+VALUES (1,  1,  1, '2023-05-13', '4', '승낙', NOW()),
+       (2,  1,  2, '2023-05-20', '2', '승낙', NOW()),
+       (3,  1,  3, '2023-05-21', '3', '승낙', NOW()),
+       (4,  1,  4, '2023-05-27', '3', '승낙', NOW()),
+       (5,  1,  5, '2023-05-28', '4', '승낙', NOW()),
+ 
+       (6,  2,  6, '2023-05-28', '9', '승낙', NOW()),
+       (7,  2,  7, '2023-05-28', '11', '승낙', NOW()),
+       (8,  2,  8, '2023-05-28', '12', '승낙', NOW()),
+       (9,  2,  9, '2023-05-28', '15', '승낙', NOW()),
+       (10, 2, 10, '2023-05-28', '16', '승낙', NOW());
 
 -- ▶ 선호 스포츠
 INSERT INTO user_favorite_sport_tb(id, player_info_id, category_id)

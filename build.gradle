@@ -20,6 +20,10 @@ repositories {
 }
 
 dependencies {
+	// BootPay
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'io.github.bootpay:backend:+'
+
 	// 이메일
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'commons-codec:commons-codec:1.15'

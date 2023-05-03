@@ -91,6 +91,7 @@ public class PaymentRequest {
             private String methodOriginSymbol;
 
             @JsonProperty("purchased_at")
+
             private OffsetDateTime purchasedAt;
 
             @JsonProperty("cancelled_at")

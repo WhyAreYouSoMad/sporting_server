@@ -24,17 +24,17 @@ public class StadiumResponse {
         private Long id;
         private String name;
         private String address;
-        private String category;
+        private String sport;
         private String startTime;
         private String endTime;
         private StadiumFileDto sourceFile = new StadiumFileDto();
 
-        public StadiumRegistrationOutDTO(Long id, String name, String address, String category, String startTime,
+        public StadiumRegistrationOutDTO(Long id, String name, String address, String sport, String startTime,
                 String endTime, StadiumFileDto stadiumFile) {
             this.id = id;
             this.name = name;
             this.address = address;
-            this.category = category;
+            this.sport = sport;
             this.startTime = startTime;
             this.endTime = endTime;
             this.sourceFile = stadiumFile;
@@ -44,7 +44,7 @@ public class StadiumResponse {
             this.id = stadiumPS.getId();
             this.name = stadiumPS.getName();
             this.address = stadiumPS.getAddress().toString();
-            this.category = stadiumPS.getCategory().getSport();
+            this.sport = stadiumPS.getCategory().getSport();
             this.startTime = stadiumPS.getStartTime().toString();
             this.endTime = stadiumPS.getEndTime().toString();
             this.sourceFile.setId(profileFile.getId());
