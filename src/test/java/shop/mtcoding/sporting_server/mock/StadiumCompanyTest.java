@@ -28,7 +28,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumController;
@@ -109,27 +108,27 @@ public class StadiumCompanyTest {
         void updateTest() throws Exception {
 
                 // given
-                CourtDTO courtInDTO1 = new CourtDTO("1", "테스트 제목1", "테스트 내용1", "20명", "50000",
-                                new CourtFileDTO("1", "base2"));
-                CourtDTO courtInDTO2 = new CourtDTO("2", "테스트 제목2", "테스트 내용2", "20명", "50000",
-                                new CourtFileDTO("2", "base3"));
+                CourtDTO courtInDTO1 = new CourtDTO(1L, "테스트 제목1", "테스트 내용1", "20명", "50000",
+                                new CourtFileDTO(1L, "base2"));
+                CourtDTO courtInDTO2 = new CourtDTO(2L, "테스트 제목2", "테스트 내용2", "20명", "50000",
+                                new CourtFileDTO(2L, "base3"));
                 List<CourtDTO> courtList = new ArrayList<>();
                 courtList.add(courtInDTO1);
                 courtList.add(courtInDTO2);
 
-                StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumUpdateInDTO("1", "부산시", "운영중", "09:00", "18:00",
-                                "축구", new StadiumFileDTO("1", "base1"), courtList);
+                StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumUpdateInDTO(1L, "부산시", "운영중", "09:00", "18:00",
+                                "축구", new StadiumFileDTO(1L, "base1"), courtList);
 
-                CourtOutDTO courtOutDTO1 = new CourtOutDTO("1", "테스트 제목1", "테스트 내용1", "20명", "50000",
-                                new CourtFileOutDTO("1", "name2", "base2"));
-                CourtOutDTO courtOutDTO2 = new CourtOutDTO("2", "테스트 제목2", "테스트 내용2", "20명", "50000",
-                                new CourtFileOutDTO("2", "name3", "base3"));
+                CourtOutDTO courtOutDTO1 = new CourtOutDTO(1L, "테스트 제목1", "테스트 내용1", 20, "50000",
+                                new CourtFileOutDTO(1L, "name2", "base2"));
+                CourtOutDTO courtOutDTO2 = new CourtOutDTO(2L, "테스트 제목2", "테스트 내용2", 20, "50000",
+                                new CourtFileOutDTO(2L, "name3", "base3"));
                 List<CourtOutDTO> courtOutDTOs = new ArrayList<>();
                 courtOutDTOs.add(courtOutDTO1);
                 courtOutDTOs.add(courtOutDTO2);
 
-                StadiumUpdateOutDTO stadiumUpdateOutDTO = new StadiumUpdateOutDTO("1", "부산시", "운영중", "09:00", "18:00",
-                                "축구", new StadiumFileOutDTO("1", "name1", "base1"), courtOutDTOs);
+                StadiumUpdateOutDTO stadiumUpdateOutDTO = new StadiumUpdateOutDTO(1L, "부산시", "운영중", "09:00", "18:00",
+                                "축구", new StadiumFileOutDTO(1L, "name1", "base1"), courtOutDTOs);
 
                 given(this.stadiumService.update(4L, stadiumUpdateInDTO))
                                 .willReturn(stadiumUpdateOutDTO);
@@ -147,7 +146,7 @@ public class StadiumCompanyTest {
                 // Then
                 resultActions
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.data.stadiumFile.fileName").value("name1"));
+                                .andExpect(jsonPath("$.data.sourceFile.fileUrl").value("base1"));
         }
 
         @Test
@@ -172,7 +171,7 @@ public class StadiumCompanyTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/company/mystadiums" + "?keyword=" + keyword)
+                                get("/api/company/stadiums" + "?keyword=" + keyword)
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();
@@ -193,27 +192,27 @@ public class StadiumCompanyTest {
                 Long stadiumId = 3L;
                 Long companyUserId = 4L;
                 StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = new StadiumUpdateFomrOutDTO(3L, "a 농구장",
-                                StadiumAddress.울산시, StadiumStatus.운영중,
+                                "울산시", "야구", StadiumStatus.운영중,
                                 LocalTime.of(9, 0), LocalTime.of(18, 0), new StadiumFileResponseDTO(1L, "경기장 URL"));
 
                 List<CourtResponseDTO> CourtResponseListDTO = new ArrayList();
                 CourtResponseDTO courtResponseDTO1 = new CourtResponseDTO(3L, "a 농구장(코트1)",
                                 "그물상태 양호 농구장", 10, 30000,
-                                "농구", new CourtFileResponseDto(1L, "코트 URL1"));
+                                new CourtFileResponseDto(1L, "코트 URL1"));
                 CourtResponseDTO courtResponseDTO2 = new CourtResponseDTO(4L, "a 농구장(코트2)",
                                 "코트상태 양호 농구장", 10, 30000,
-                                "농구", new CourtFileResponseDto(2L, "코트 URL2"));
+                                new CourtFileResponseDto(2L, "코트 URL2"));
                 CourtResponseListDTO.add(courtResponseDTO1);
                 CourtResponseListDTO.add(courtResponseDTO2);
 
-                stadiumUpdateFomrOutDTO.setCourt(CourtResponseListDTO);
+                stadiumUpdateFomrOutDTO.setCourts(CourtResponseListDTO);
 
                 given(this.stadiumService.getUpdateForm(companyUserId, stadiumId))
                                 .willReturn(stadiumUpdateFomrOutDTO);
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/company/mystadiums/updateform/" + stadiumId)
+                                get("/api/company/stadium/" + stadiumId)
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();

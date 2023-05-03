@@ -108,7 +108,7 @@ public class CourtPaymentRepositoryTest {
 
         CourtPayment courtPayment = new CourtPayment();
 
-        courtPayment.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_30, PlayerInfoAddress.부산시,
+        courtPayment.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_30, "부산시",
                 "000-1234-5678", LocalDateTime.now()));
         courtPayment.setCompanyInfo(
                 setUpCompanyInfo("1234-4567-789", "부산시 어딘가", "000-0000-0000", "박지연", LocalDateTime.now()));
@@ -127,7 +127,7 @@ public class CourtPaymentRepositoryTest {
 
         CourtPayment courtPayment = new CourtPayment();
 
-        courtPayment.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_30, PlayerInfoAddress.부산시,
+        courtPayment.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_30, "부산시",
                 "000-1234-5678", LocalDateTime.now()));
         courtPayment.setCompanyInfo(
                 setUpCompanyInfo("1234-2567-789", "천안시 어딘가", "000-0000-0000", "박지연", LocalDateTime.now()));
@@ -141,7 +141,7 @@ public class CourtPaymentRepositoryTest {
         return this.entityManager.persist(courtPayment);
     }
 
-    private PlayerInfo setUpPlayerInfo(PlayerInfoGender gender, PlayerInfoAge age, PlayerInfoAddress address,
+    private PlayerInfo setUpPlayerInfo(PlayerInfoGender gender, PlayerInfoAge age, String address,
             String tel, LocalDateTime updatedAt) {
         PlayerInfo playerInfo = new PlayerInfo();
 

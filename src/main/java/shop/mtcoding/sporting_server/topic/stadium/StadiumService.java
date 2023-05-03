@@ -100,6 +100,15 @@ public class StadiumService {
     public List<StadiumMyListOutDTO> findKeywordMyList(Long pricipalCompanyId, String keyword) {
         List<StadiumMyListOutDTO> stadiumMyListOut = stadiumRepository.findStadiumMyListBySportKeyword(keyword,
                 pricipalCompanyId);
+        stadiumMyListOut.forEach(stadiumOut -> {
+            List<StadiumCourt> stadiumCourtListPS = stadiumCourtRepository.findAllByStadiumId(stadiumOut.getId());
+            if (stadiumCourtListPS.size() != 0) {
+                stadiumOut.setPrice(stadiumCourtListPS.get(0).getCourtPrice());
+            } else {
+                stadiumOut.setPrice(0);
+            }
+        });
+        // .collect(Collectors.toList());
 
         return stadiumMyListOut;
     }
@@ -114,7 +123,7 @@ public class StadiumService {
 
         StadiumUpdateFomrOutDTO stadiumUpdateFomrOutDTO = stadiumRepository.findByStadiumId(stadiumId);
 
-        stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findCourtsByStadiumId(stadiumId));
+        stadiumUpdateFomrOutDTO.setCourts(stadiumRepository.findCourtsByStadiumId(stadiumId));
         // stadiumUpdateFomrOutDTO.setCourt(stadiumRepository.findByStadiumIdForCourtList(stadiumId));
 
         return stadiumUpdateFomrOutDTO;
@@ -130,7 +139,7 @@ public class StadiumService {
 
         stadiumDetailDTO.setCategory(stadiumRepository.findCategoryByStadiumId(stadium.getCategory().getId()));
 
-        stadiumDetailDTO.setStadiumCourt(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
+        stadiumDetailDTO.setCourts(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
 
         return stadiumDetailDTO;
     }
@@ -139,7 +148,7 @@ public class StadiumService {
     public StadiumUpdateOutDTO update(Long userId, StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO)
             throws IOException {
 
-        Stadium stadiumPS = stadiumRepository.findById(Long.parseLong(stadiumUpdateInDTO.getId())).orElseThrow(() -> {
+        Stadium stadiumPS = stadiumRepository.findById(stadiumUpdateInDTO.getId()).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 경기장입니다.");
         });
 
@@ -147,9 +156,9 @@ public class StadiumService {
             throw new Exception400("해당 게시물을 올린 사용자만 수정할 수 있습니다.");
         }
 
-        List<CourtDTO> courtList = stadiumUpdateInDTO.getCourtList();
+        List<CourtDTO> courtList = stadiumUpdateInDTO.getCourts();
         List<Long> courtIdList = courtList.stream()
-                .map(court -> Long.parseLong(court.getId()))
+                .map(court -> court.getId())
                 .collect(Collectors.toList());
 
         // DTO에 담긴 CourtIds를 이용한 DB 조회 리스트
@@ -165,7 +174,7 @@ public class StadiumService {
         List<StadiumCourt> stadiumsToUpdatePS = courtList.stream()
                 .map(court -> {
                     // court: RequestDTO, courtMap value: DB에서 조회
-                    StadiumCourt stadiumCourtPS = courtMap.get(Long.parseLong(court.getId()));
+                    StadiumCourt stadiumCourtPS = courtMap.get(court.getId());
 
                     if (!stadiumCourtPS.getStadium().equals(stadiumPS)) {
                         throw new Exception400("해당 경기장에서 관리하는 Court만 수정 가능합니다.");
@@ -179,8 +188,8 @@ public class StadiumService {
 
         // Stadium update - fileUrl 제외
         stadiumPS.dtoToEntityForStadiumUpdate(stadiumUpdateInDTO);
-        if (!stadiumPS.getCategory().getSport().equals(stadiumUpdateInDTO.getCategory())) {
-            SportCategory sportCategory = sportCategoryRepository.findBySport(stadiumUpdateInDTO.getCategory())
+        if (!stadiumPS.getCategory().getSport().equals(stadiumUpdateInDTO.getSport())) {
+            SportCategory sportCategory = sportCategoryRepository.findBySport(stadiumUpdateInDTO.getSport())
                     .orElseThrow(() -> {
                         throw new Exception400("해당 스포츠 카테고리가 존재하지 않습니다.");
                     });
@@ -210,8 +219,8 @@ public class StadiumService {
 
         // Court file 체킹 테스트
         List<Long> fileIds = new ArrayList<>();
-        for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourtList()) {
-            Long fileId = Long.parseLong(courtDTO.getSourceFile().getId());
+        for (StadiumRequest.StadiumUpdateInDTO.CourtDTO courtDTO : stadiumUpdateInDTO.getCourts()) {
+            Long fileId = courtDTO.getSourceFile().getId();
             fileIds.add(fileId);
         }
 
@@ -235,7 +244,7 @@ public class StadiumService {
         List<ProfileFile> courtsProfilesToUpdate = courtFileList.stream()
                 .map(courtFile -> {
                     // court: RequestDTO, courtFileMap value: DB에서 조회
-                    ProfileFile courtPorfilePS = courtProfilesMap.get(Long.parseLong(courtFile.getId()));
+                    ProfileFile courtPorfilePS = courtProfilesMap.get(courtFile.getId());
 
                     Boolean sizeCheck2;
                     try {

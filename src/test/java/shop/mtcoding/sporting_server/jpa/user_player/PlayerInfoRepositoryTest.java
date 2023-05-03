@@ -50,7 +50,7 @@ public class PlayerInfoRepositoryTest {
         setUpUser("ssar", "ssar@naver.com", "1234", "player", LocalDateTime.now(), LocalDateTime.now(),
                 UserStatus.인증대기);
         setUpFileInfo(FileInfoSource.플레이어프로필);
-        setUp(PlayerInfoGender.남자, PlayerInfoAge.AGE_20, PlayerInfoAddress.부산시, "123-4564-4561", LocalDateTime.now());
+        setUp(PlayerInfoGender.남자, PlayerInfoAge.AGE_20, "부산시", "123-4564-4561", LocalDateTime.now());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class PlayerInfoRepositoryTest {
 
     @Test
     void insertAndDelete() {
-        PlayerInfo playerInfo = setUp(PlayerInfoGender.여자, PlayerInfoAge.AGE_40, PlayerInfoAddress.대구시, "000-0000-0000",
+        PlayerInfo playerInfo = setUp(PlayerInfoGender.여자, PlayerInfoAge.AGE_40, "대구시", "000-0000-0000",
                 LocalDateTime.now());
         Optional<PlayerInfo> findPlayerInfo = this.playerInfoRepository.findById(playerInfo.getId());
 
@@ -103,7 +103,7 @@ public class PlayerInfoRepositoryTest {
         }
     }
 
-    private PlayerInfo setUp(PlayerInfoGender gender, PlayerInfoAge age, PlayerInfoAddress address,
+    private PlayerInfo setUp(PlayerInfoGender gender, PlayerInfoAge age, String address,
             String tel, LocalDateTime updatedAt) {
         PlayerInfo playerInfo = new PlayerInfo();
 

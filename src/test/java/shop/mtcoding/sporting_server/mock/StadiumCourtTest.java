@@ -63,7 +63,7 @@ public class StadiumCourtTest {
         @Test
         @WithMockUser(username = "cos", roles = { "Company" })
         @DisplayName("코트 등록 테스트")
-        void stadiumCOuTest() throws Exception {
+        void stadiumCourtTest() throws Exception {
 
                 // given
                 Long stadiumId = 1L;
@@ -73,14 +73,14 @@ public class StadiumCourtTest {
                                 "코트가좋아요", 20, 50000);
                 StadiumCourtResponse.StadiumCourtOutDTO stadiumCourtOutDTO = new StadiumCourtOutDTO(1L, 1L,
                                 new CourtFileDto(1L, "name", "Url"),
-                                "야구장코트", "코트가좋아요", 20, 50000, "50,000", LocalDateTime.now(), StadiumCourtStatus.등록대기);
+                                "야구장코트", "코트가좋아요", 20, 50000, LocalDateTime.now(), StadiumCourtStatus.등록대기);
 
                 given(this.stadiumCourtService.save(stadiumCourtInDTO, stadiumId, id))
                                 .willReturn(stadiumCourtOutDTO);
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                post("/api/company/stadiums/court/" + stadiumId)
+                                post("/api/company/stadiums/" + stadiumId + "/court/")
                                                 .with(csrf())
                                                 .content(objectMapper.writeValueAsString(stadiumCourtInDTO))
                                                 .contentType(MediaType.APPLICATION_JSON_VALUE));

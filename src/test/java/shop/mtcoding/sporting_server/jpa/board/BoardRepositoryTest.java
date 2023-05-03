@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.sporting_server.config.TextContextConfiguration;
 import shop.mtcoding.sporting_server.core.enums.field.etc.BoardAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.BoardStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
@@ -67,7 +66,7 @@ public class BoardRepositoryTest {
         SportCategory sportCategoryPS = setUpSportCategory("탁구", LocalDateTime.now());
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
 
-        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
+        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", "서울시", 129.5, 35.5,
                 "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
 
@@ -116,7 +115,7 @@ public class BoardRepositoryTest {
                 LocalDateTime.now(), LocalDateTime.now(), UserStatus.인증대기);
         FileInfo fileInfoPS = setUpFileInfo(FileInfoSource.플레이어프로필);
         SportCategory sportCategoryPS = setUpSportCategory("축구", LocalDateTime.now());
-        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", StadiumAddress.서울시, 129.5, 35.5,
+        Stadium stadiumPS = setUpStadium(companyInfoPS, "서울 탁구장", "깔끔", "서울시", 129.5, 35.5,
                 "020-2222-2222", sportCategoryPS, LocalTime.now(), LocalTime.now(), fileInfoPS, StadiumStatus.승인대기,
                 LocalDateTime.now());
         StadiumCourt stadiumCourtPS = setUpStadiumCourt(stadiumPS, fileInfoPS, 40000, 4, "최신 시설 코트",
@@ -219,7 +218,7 @@ public class BoardRepositoryTest {
         return this.entityManager.persist(fileInfo);
     }
 
-    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, StadiumAddress address,
+    private Stadium setUpStadium(CompanyInfo companyInfo, String name, String description, String address,
             Double lat,
             Double lon, String tel, SportCategory sportCategory,
             LocalTime startTime, LocalTime endTime, FileInfo fileInfo, StadiumStatus status, LocalDateTime updatedAt) {

@@ -6,8 +6,8 @@ cloud:
     s3:
       bucket: ${bucket}
     credentials:
-      access-key: ${access-key}
-      secret-key: ${secret-key}
+      access-key: ${access_key}
+      secret-key: ${secret_key}
     stack:
       auto: false
 
@@ -76,6 +76,20 @@ spring:
 
 meta:
   bucket: ${bucket}
-  access-key: ${access-key}
-  secret-key: ${secret-key}
+  access-key: ${access_key}
+  secret-key: ${secret_key}
   staticval: ${static}
+
+sentry:
+  dsn: https://4b1049f3028a4f97a7a35d21e41289a7@o4505106640863232.ingest.sentry.io/4505106660065280
+  # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+  # We recommend adjusting this value in production.
+  #debug: true # 디버그 모드
+  enable-tracing: true
+  send-default-pii: true # 사용자 정보 기록
+  environment: development # 개발환경 / environment=production
+  logging: # 범위
+    minimum-event-level: "WARN"
+    minimum-breadcrumb-level: "INFO"  
+  sample-rate: 1 # 샘플링 비율 1=100% 다 보냄
+  #traces-sample-rate # 트랜잭션 비율 설정

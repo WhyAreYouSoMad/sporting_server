@@ -17,9 +17,9 @@ public class StadiumCourtDTO {
     private String title;
     private String content;
     private Integer capacity;
-    @JsonIgnore
-    private Integer courtPrice;
-    private String price;
+    // @JsonIgnore
+    private Integer price;
+    // private String price;
     private CourtFileResponseDto sourceFile;
 
     @QueryProjection
@@ -29,8 +29,8 @@ public class StadiumCourtDTO {
         this.title = title;
         this.content = content;
         this.capacity = capacity;
-        String price = String.format("%,d", courtPrice);
-        this.price = price;
+        // String price = String.format("%,d", courtPrice);
+        this.price = courtPrice;
         this.sourceFile = courtFile;
     }
 }

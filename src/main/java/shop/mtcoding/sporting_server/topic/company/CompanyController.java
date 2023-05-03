@@ -51,7 +51,7 @@ public class CompanyController {
 
     @PutMapping("/company/update")
     public ResponseEntity<?> updateCompany(@AuthenticationPrincipal MyUserDetails myUserDetails,
-            @RequestBody CompanyRequest.UpdateInDTO updateInDTO) throws IOException {
+            @RequestBody @Valid CompanyRequest.UpdateInDTO updateInDTO) throws IOException {
         CompanyResponse.UpdateOutDTO updateOutDTO = companyService.정보변경(myUserDetails.getUser().getId(),
                 updateInDTO);
         return ResponseEntity.ok().body(new ResponseDto<>().data(updateOutDTO));

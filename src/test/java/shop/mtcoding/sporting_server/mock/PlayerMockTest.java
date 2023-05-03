@@ -111,7 +111,7 @@ public class PlayerMockTest {
 
                 PlayerInfoResponseDTO playerInfoResponseDTO = new PlayerInfoResponseDTO(1L, "010-1001-1111",
                                 PlayerInfoGender.남자, PlayerInfoAge.AGE_20,
-                                PlayerInfoAddress.부산시, new PlayerFileResponseDTO(1L, "경기장 URL"));
+                                "부산시", new PlayerFileResponseDTO(1L, "경기장 URL"));
                 playerUpdateFormOutDTO.setPlayerInfo(playerInfoResponseDTO);
 
                 given(this.playerService.getUpdateForm(userId))

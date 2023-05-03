@@ -2,7 +2,6 @@ package shop.mtcoding.sporting_server.topic.stadium.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +15,7 @@ public class StadiumMyListOutDTO {
     private Long id;
     private String sport;
     private String name;
+    private Integer price;
     private StadiumFileResponseDTO sourceFile;
 
     @QueryProjection

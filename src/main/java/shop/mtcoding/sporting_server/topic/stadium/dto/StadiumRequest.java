@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.ValueOfEnum;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.fk_fields.SportCategoryType;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
@@ -27,7 +26,8 @@ public class StadiumRequest {
     public static class StadiumRegistrationInDTO {
         private String name;
 
-        @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시 등으로 입력)")
+        // @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시
+        // 등으로 입력)")
         private String address;
 
         @ValueOfEnum(enumClass = SportCategoryType.class, message = "스포츠 카테고리 값 이상 (야구, 축구, 배구 등으로 입력)")
@@ -39,7 +39,7 @@ public class StadiumRequest {
                     .builder()
                     .companyInfo(companyInfoPS)
                     .name(stadiumRegistrationInDTO.getName())
-                    .address(StadiumAddress.valueOf(stadiumRegistrationInDTO.getAddress()))
+                    .address(stadiumRegistrationInDTO.getAddress())
                     .category(sportCategoryPS)
                     .status(StadiumStatus.운영중)
                     .startTime(LocalTime.of(9, 0))
@@ -55,17 +55,18 @@ public class StadiumRequest {
     @AllArgsConstructor
     @EqualsAndHashCode
     public static class StadiumUpdateInDTO {
-        private String id;
-        @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시 등으로 입력)")
+        private Long id;
+        // @ValueOfEnum(enumClass = StadiumAddress.class, message = "주소 값 이상 (부산시, 서울시
+        // 등으로 입력)")
         private String address;
         @ValueOfEnum(enumClass = StadiumStatus.class, message = "status 값 이상 (운영중, 휴업, 등록대기, 폐업으로 입력)")
         private String status;
         private String startTime;
         private String endTime;
         @ValueOfEnum(enumClass = SportCategoryType.class, message = "스포츠 카테고리 값 이상 (야구, 축구, 배구 등으로 입력)")
-        private String category;
+        private String sport;
         private StadiumFileDTO sourceFile;
-        private List<CourtDTO> courtList;
+        private List<CourtDTO> courts;
 
         @Getter
         @Setter
@@ -73,7 +74,7 @@ public class StadiumRequest {
         @AllArgsConstructor
         @EqualsAndHashCode
         public static class StadiumFileDTO {
-            private String id;
+            private Long id;
             private String fileBase64;
         }
 
@@ -83,7 +84,7 @@ public class StadiumRequest {
         @AllArgsConstructor
         @EqualsAndHashCode
         public static class CourtDTO {
-            private String id;
+            private Long id;
             private String title;
             private String content;
             private String capacity;
@@ -96,7 +97,7 @@ public class StadiumRequest {
             @AllArgsConstructor
             @EqualsAndHashCode
             public static class CourtFileDTO {
-                private String id;
+                private Long id;
                 private String fileBase64;
             }
         }

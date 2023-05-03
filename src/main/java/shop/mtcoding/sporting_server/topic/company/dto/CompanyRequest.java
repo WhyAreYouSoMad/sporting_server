@@ -46,11 +46,11 @@ public class CompanyRequest {
     public static class UpdateInDTO {
 
         private String nickname;
+        @NotEmpty(message = "password를 입력해주세요")
         private String password;
-        private LocalDateTime updatedAt;
 
         private String tel;
-        private String businessAdress;
+        private String businessAddress;
         private String businessNumber;
         private CompanyFileDTO sourceFile;
 

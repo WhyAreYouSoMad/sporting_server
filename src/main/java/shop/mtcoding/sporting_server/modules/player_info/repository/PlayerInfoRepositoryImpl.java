@@ -25,7 +25,8 @@ public class PlayerInfoRepositoryImpl implements PlayerInfoCustomRepository {
         QProfileFile qFile = QProfileFile.profileFile;
         JPAQuery<PlayerInfoResponseDTO> query = jpaQueryFactory
                 .select(new QPlayerInfoResponseDTO(
-                        qPlayerInfo.id, qPlayerInfo.tel, qPlayerInfo.gender, qPlayerInfo.age, qPlayerInfo.address, new QPlayerFileResponseDTO(qFile.id, qFile.fileUrl)))
+                        qPlayerInfo.id, qPlayerInfo.tel, qPlayerInfo.gender, qPlayerInfo.age, qPlayerInfo.address,
+                        new QPlayerFileResponseDTO(qFile.id, qFile.fileUrl)))
                 .from(qPlayerInfo)
                 .leftJoin(qFile).on(qPlayerInfo.fileInfo.id.eq(qFile.fileInfo.id))
                 .where(qPlayerInfo.user.id.eq(userId));

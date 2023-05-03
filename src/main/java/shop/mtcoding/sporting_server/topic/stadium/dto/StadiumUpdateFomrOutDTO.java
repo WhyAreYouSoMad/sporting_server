@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.mtcoding.sporting_server.core.enums.field.etc.StadiumAddress;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 
 @Getter
@@ -20,20 +19,22 @@ public class StadiumUpdateFomrOutDTO {
 
     private Long id;
     private String name;
-    private StadiumAddress address;
+    private String address;
+    private String sport;
     private StadiumStatus status;
     private LocalTime startTime;
     private LocalTime endTime;
     private StadiumFileResponseDTO sourceFile;
-    private List<CourtResponseDTO> court;
+    private List<CourtResponseDTO> courts;
 
     @QueryProjection
-    public StadiumUpdateFomrOutDTO(Long id, String name, StadiumAddress address,
+    public StadiumUpdateFomrOutDTO(Long id, String name, String address, String sport,
             StadiumStatus status,
             LocalTime startTime, LocalTime endTime, StadiumFileResponseDTO stadiumFile) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.sport = sport;
         this.status = status;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -41,7 +42,7 @@ public class StadiumUpdateFomrOutDTO {
     }
 
     public StadiumUpdateFomrOutDTO(List<CourtResponseDTO> court) {
-        this.court = court;
+        this.courts = court;
     }
 
 }

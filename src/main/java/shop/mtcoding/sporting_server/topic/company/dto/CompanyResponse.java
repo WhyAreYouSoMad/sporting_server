@@ -48,17 +48,17 @@ public class CompanyResponse {
         private String password;
 
         private String tel;
-        private String businessAdress;
+        private String businessAddress;
         private String businessNumber;
         private CompanyFileDTO sourceFile = new CompanyFileDTO();
 
-        public UpdateOutDTO(Long id, String nickname, String password, String tel, String businessAdress,
+        public UpdateOutDTO(Long id, String nickname, String password, String tel, String businessAddress,
                 String businessNumber, CompanyFileDTO companyFile) {
             this.id = id;
             this.nickname = nickname;
             this.password = password;
             this.tel = tel;
-            this.businessAdress = businessAdress;
+            this.businessAddress = businessAddress;
             this.businessNumber = businessNumber;
             this.sourceFile = companyFile;
         }
@@ -68,7 +68,7 @@ public class CompanyResponse {
             this.nickname = userPS.getNickname();
             this.password = userPS.getPassword();
             this.tel = companyInfoPS.getTel();
-            this.businessAdress = companyInfoPS.getBusinessAdress();
+            this.businessAddress = companyInfoPS.getBusinessAddress();
             this.businessNumber = companyInfoPS.getBusinessNumber();
             this.sourceFile.id = companyProfileFilePS.getId();
             // this.sourceFile.fileName = companyProfileFilePS.getFileName();
