@@ -447,7 +447,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_유저">유저</a>
 <ul class="sectlevel2">
-<li><a href="#_로그인_성공">로그인 (성공)</a></li>
+<li><a href="#_player_로그인_성공">Player 로그인 (성공)</a></li>
+<li><a href="#_company_로그인_성공">Company 로그인 (성공)</a></li>
 <li><a href="#_로그인_이메일_실패">로그인 (이메일 실패)</a></li>
 <li><a href="#_로그인_패스워드_실패">로그인 (패스워드 실패)</a></li>
 </ul>
@@ -460,18 +461,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_유저">유저</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_로그인_성공">로그인 (성공)</h3>
+<h3 id="_player_로그인_성공">Player 로그인 (성공)</h3>
 <div class="sect4">
 <h5 id="_request_example">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/login HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 54
+Content-Length: 57
 Host: localhost:8080
 
 {
-  "email" : "a@nate.com",
+  "email" : "ssar@nate.com",
   "password" : "1234"
 }</code></pre>
 </div>
@@ -485,7 +486,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJVU0VSIiwibmlja25hbWUiOiLsl5DsnbQiLCJpZCI6MywiZXhwIjoxNjgyOTkzMjUwfQ.OcTTSGaZkN2UYsDTawLrNYyWN_Nign9IhOqb-A8Zn5xiNd0q6Al518jdXLuVOfXD0o-_Zc784k8PM659j_nWnA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MywiZXhwIjoxNjgzMDIzMDQ2fQ.t2lmRJZFP0H7dZn6AHA0feckKrrt8hXR8TOGlcFwrchsGCX7EvcJtDkM5gsKjR4Nv70XVsbqVe_P_mGDyOM7ig
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -499,8 +500,8 @@ Content-Length: 127
   "msg" : "성공",
   "data" : {
     "id" : 3,
-    "nickname" : "에이",
-    "role" : "USER"
+    "nickname" : "ssar",
+    "role" : "PLAYER"
   }
 }</code></pre>
 </div>
@@ -513,7 +514,68 @@ Content-Length: 127
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/login' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -d '{
-  "email" : "a@nate.com",
+  "email" : "ssar@nate.com",
+  "password" : "1234"
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_company_로그인_성공">Company 로그인 (성공)</h3>
+<div class="sect4">
+<h5 id="_request_example_2">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/login HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 56
+Host: localhost:8080
+
+{
+  "email" : "cos@nate.com",
+  "password" : "1234"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_2">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6OCwiZXhwIjoxNjgzMDIzMDQ3fQ.iTZbnaiUE1IOmOAfhZsJRuxjvldSpCGmfvYc4Ytu08nw7JpAEPzrtKMcAb_sFoAGyehUB5oBLMiYVNdmWpx5bg
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 127
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : {
+    "id" : 8,
+    "nickname" : "cos",
+    "role" : "COMPNAY"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_curl_2">Curl</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/login' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{
+  "email" : "cos@nate.com",
   "password" : "1234"
 }'</code></pre>
 </div>
@@ -523,23 +585,23 @@ Content-Length: 127
 <div class="sect2">
 <h3 id="_로그인_이메일_실패">로그인 (이메일 실패)</h3>
 <div class="sect4">
-<h5 id="_request_example_2">Request Example</h5>
+<h5 id="_request_example_3">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/login HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 55
+Content-Length: 58
 Host: localhost:8080
 
 {
-  "email" : "ab@nate.com",
+  "email" : "ssar1@nate.com",
   "password" : "1234"
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_2">Response Example</h5>
+<h5 id="_response_example_3">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 400 Bad Request
@@ -562,13 +624,13 @@ Content-Length: 124
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_2">Curl</h6>
+<h6 id="_curl_3">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/login' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -d '{
-  "email" : "ab@nate.com",
+  "email" : "ssar1@nate.com",
   "password" : "1234"
 }'</code></pre>
 </div>
@@ -579,23 +641,23 @@ Content-Length: 124
 <div class="sect2">
 <h3 id="_로그인_패스워드_실패">로그인 (패스워드 실패)</h3>
 <div class="sect4">
-<h5 id="_request_example_3">Request Example</h5>
+<h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/login HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 55
+Content-Length: 58
 Host: localhost:8080
 
 {
-  "email" : "a@nate.com",
+  "email" : "ssar@nate.com",
   "password" : "12345"
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_3">Response Example</h5>
+<h5 id="_response_example_4">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 400 Bad Request
@@ -618,13 +680,13 @@ Content-Length: 104
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_3">Curl</h6>
+<h6 id="_curl_4">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/login' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -d '{
-  "email" : "a@nate.com",
+  "email" : "ssar@nate.com",
   "password" : "12345"
 }'</code></pre>
 </div>
@@ -638,7 +700,7 @@ Content-Length: 104
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-01 16:38:45 +0900
+Last updated 2023-05-02 18:23:10 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

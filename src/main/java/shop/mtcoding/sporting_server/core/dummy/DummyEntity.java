@@ -12,7 +12,7 @@ public class DummyEntity {
                 .nickname(nickname)
                 .email(username + "@nate.com")
                 .password(passwordEncoder.encode("1234"))
-                .role("USER")
+                .role("PLAYER")
                 .status(UserStatus.일반회원)
                 .build();
     }
@@ -24,7 +24,7 @@ public class DummyEntity {
                 .email(username + "@nate.com")
                 .password(passwordEncoder.encode("1234"))
                 .role("COMPNAY")
-                .status(UserStatus.인증대기)
+                .status(UserStatus.기업회원)
                 .build();
     }
 

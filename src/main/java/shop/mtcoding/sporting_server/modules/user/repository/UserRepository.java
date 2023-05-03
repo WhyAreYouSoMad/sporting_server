@@ -16,6 +16,9 @@ public interface UserRepository
         @Query("select u from User u where u.email = :email")
         Optional<User> findByEmail(@Param("email") String email);
 
+        @Query("select u from User u where u.nickname = :nickname")
+        Optional<User> findByNickname(@Param("nickname") String nickname);
+
         Page<User> findByEmailContaining(String keyword, Pageable pageable);
 
         List<User> findByIdIn(List<Long> emailIdList);

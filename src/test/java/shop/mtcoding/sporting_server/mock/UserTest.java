@@ -76,6 +76,7 @@ public class UserTest {
                 resultActions.andExpect(status().isOk())
                                 .andExpect(jsonPath("$.data.id").value(userId))
                                 .andExpect(jsonPath("$.data.nickname").value("ssar"));
+                // .andExpect(jsonPath("$.date.role").value("PLAYER"));
         }
 
         @Test
