@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.EqualsAndHashCode;
@@ -21,6 +22,7 @@ public class StadiumCourtDTO {
     private Integer price;
     // private String price;
     private CourtFileResponseDto sourceFile;
+    private List<Boolean> reservationTime;
 
     @QueryProjection
     public StadiumCourtDTO(Long id, String title, String content, Integer capacity, Integer courtPrice,

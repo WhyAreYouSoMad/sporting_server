@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.topic.stadium;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ import shop.mtcoding.sporting_server.core.util.BASE64DecodedMultipartFile;
 import shop.mtcoding.sporting_server.core.util.S3Utils;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
+import shop.mtcoding.sporting_server.modules.court_reservation.entity.CourtReservation;
+import shop.mtcoding.sporting_server.modules.court_reservation.repository.CourtReservationRepository;
 import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.file.repository.ProfileFileRepository;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
@@ -33,6 +36,7 @@ import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium.repository.StadiumRepository;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
+import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumCourtDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumDetailOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumListOutDTO;
 import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumMyListOutDTO;
@@ -55,6 +59,7 @@ public class StadiumService {
     private final StadiumCourtRepository stadiumCourtRepository;
     private final FileInfoRepository fileInfoRepository;
     private final ProfileFileRepository profileFileRepository;
+    private final CourtReservationRepository courtReservationRepository;
     private final AdminStatisticsUtils adminStatisticsUtils;
 
     @Value("${bucket}")
@@ -142,8 +147,39 @@ public class StadiumService {
 
         stadiumDetailDTO.setCategory(stadiumRepository.findCategoryByStadiumId(stadiumPS.getCategory().getId()));
 
-        stadiumDetailDTO.setCourts(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
+        List<StadiumCourtDTO> stdiumCourtDTOList = stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId);
 
+        LocalDate now = LocalDate.now(); // 2023-05-03
+        // Integer year = now.getYear(); // 2023
+        // Integer month = now.getMonthValue(); // 5
+        // String monthString = String.valueOf(month);
+        System.out.println("테스트 1");
+        List<StadiumCourtDTO> newStdiumCourtDTOList = stdiumCourtDTOList.stream()
+                .map(
+                        stadiumCourtDTO -> {
+                            List<Boolean> reservationTime = new ArrayList<>();
+
+                            for (int i = 0; i <= 10; i++) {
+                                reservationTime.add(true);
+                            }
+
+                            List<String> courtReservations = courtReservationRepository
+                                    .findReservationTimesByStadiumCourtIdAndReservationDate(
+                                            stadiumCourtDTO.getId(), now);
+
+                            if (courtReservations.size() != 0) {
+                                for (int i = 0; i < courtReservations.size(); i++) {
+                                    reservationTime.set(Integer.parseInt(courtReservations.get(i)) - 9,
+                                            false);
+                                }
+                            }
+
+                            stadiumCourtDTO.setReservationTime(reservationTime);
+                            return stadiumCourtDTO;
+                        })
+                .collect(Collectors.toList());
+
+        stadiumDetailDTO.setCourts(newStdiumCourtDTOList);
         adminStatisticsUtils.manageViewsData(stadiumPS);
 
         return stadiumDetailDTO;
