@@ -21,7 +21,7 @@ public class AdminViewController {
     @GetMapping("/statistics/views")
     public String views(Model model) {
         model.addAttribute("paging", new PagingButtonDTO(false, true, 1));
-        return "admin/views";
+        return "statistics/views";
     }
 
     @GetMapping("/statistics/views/data")

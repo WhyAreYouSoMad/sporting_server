@@ -15,6 +15,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
             <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
             <link rel="stylesheet" href="/css/style.css">
         </head>
 
@@ -36,6 +37,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/admin/main">메인페이지</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/statistics/connection">App 통계</a>
                             </li>
 
                         </ul>
