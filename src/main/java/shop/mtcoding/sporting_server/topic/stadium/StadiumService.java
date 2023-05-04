@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.exception.Exception403;
+import shop.mtcoding.sporting_server.core.util.AdminStatisticsUtils;
 import shop.mtcoding.sporting_server.core.util.BASE64DecodedMultipartFile;
 import shop.mtcoding.sporting_server.core.util.S3Utils;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
@@ -54,6 +55,7 @@ public class StadiumService {
     private final StadiumCourtRepository stadiumCourtRepository;
     private final FileInfoRepository fileInfoRepository;
     private final ProfileFileRepository profileFileRepository;
+    private final AdminStatisticsUtils adminStatisticsUtils;
 
     @Value("${bucket}")
     private String bucket;
@@ -129,17 +131,20 @@ public class StadiumService {
         return stadiumUpdateFomrOutDTO;
     }
 
+    @Transactional
     public StadiumDetailOutDTO detail(Long stadiumId) {
 
-        Stadium stadium = stadiumRepository.findById(stadiumId).orElseThrow(() -> {
+        Stadium stadiumPS = stadiumRepository.findById(stadiumId).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 경기장입니다.");
         });
 
         StadiumDetailOutDTO stadiumDetailDTO = stadiumRepository.findByStadiumId2(stadiumId);
 
-        stadiumDetailDTO.setCategory(stadiumRepository.findCategoryByStadiumId(stadium.getCategory().getId()));
+        stadiumDetailDTO.setCategory(stadiumRepository.findCategoryByStadiumId(stadiumPS.getCategory().getId()));
 
         stadiumDetailDTO.setCourts(stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId));
+
+        adminStatisticsUtils.manageViewsData(stadiumPS);
 
         return stadiumDetailDTO;
     }
