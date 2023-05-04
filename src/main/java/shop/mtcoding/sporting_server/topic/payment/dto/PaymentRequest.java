@@ -1,16 +1,27 @@
 package shop.mtcoding.sporting_server.topic.payment.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.mtcoding.sporting_server.core.enums.field.status.CourtPaymentStatus;
+import shop.mtcoding.sporting_server.core.enums.field.status.CourtReservationStatus;
+import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
+import shop.mtcoding.sporting_server.modules.court_payment.entity.CourtPayment;
+import shop.mtcoding.sporting_server.modules.court_reservation.entity.CourtReservation;
+import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
+import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 
 public class PaymentRequest {
 
@@ -34,6 +45,43 @@ public class PaymentRequest {
     @NoArgsConstructor
     @EqualsAndHashCode
     public static class ReceiptInDTO {
+
+        public static CourtPayment toPaymentEntity(ReceiptInDTO receiptDTO, PlayerInfo playerInfoPS,
+                CompanyInfo companyInfoPS,
+                StadiumCourt stadiumCourtPS) throws JsonProcessingException {
+
+            ObjectMapper om = new ObjectMapper();
+            om.registerModule(new JavaTimeModule());
+            return CourtPayment
+                    .builder()
+                    .paymentType(receiptDTO.getData().getMethod())
+                    .originData(om.writeValueAsString(receiptDTO))
+                    .playerInfo(playerInfoPS)
+                    .companyInfo(companyInfoPS)
+                    .paymentAmount(receiptDTO.getData().getPrice())
+                    .stadiumCourt(stadiumCourtPS)
+                    .receiptId(receiptDTO.getData().getReceiptId())
+                    .status(CourtPaymentStatus.결제완료)
+                    .purchasedAt(receiptDTO.getData().getPurchasedAt().toLocalDateTime())
+                    .requestedAt(receiptDTO.getData().getRequestedAt().toLocalDateTime())
+                    .createdAt(LocalDateTime.now())
+                    .build();
+        }
+
+        public static CourtReservation toReservationEntity(PlayerInfo playerInfoPS, LocalDate resDateParse,
+                String resTime, CourtPayment courtPayment) {
+
+            return CourtReservation
+                    .builder()
+                    .user(playerInfoPS.getUser())
+                    .reservationDate(resDateParse)
+                    .reservationTime(resTime)
+                    .courtPayment(courtPayment)
+                    .createdAt(LocalDateTime.now())
+                    .status(CourtReservationStatus.승낙)
+                    .build();
+        }
+
         @JsonProperty("event")
         private String event;
         @JsonProperty("data")

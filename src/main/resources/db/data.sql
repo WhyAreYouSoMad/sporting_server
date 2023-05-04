@@ -150,7 +150,7 @@ VALUES (1,  'Card', 40000, 1, 1,  1, 'data', 'RC16123', '결제완료', now(), n
 
 -- ▶ 예약
 INSERT INTO court_reservation_tb (id, user_id, court_payment_id, reservation_date, reservation_time, status, created_at)
-VALUES (1,  1,  1, '2023-05-13', '4', '승낙', NOW()),
+VALUES (1,  1,  1, '2023-05-03', '4', '승낙', NOW()),
        (2,  1,  2, '2023-05-20', '2', '승낙', NOW()),
        (3,  1,  3, '2023-05-21', '3', '승낙', NOW()),
        (4,  1,  4, '2023-05-27', '3', '승낙', NOW()),

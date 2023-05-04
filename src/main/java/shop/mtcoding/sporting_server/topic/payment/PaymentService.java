@@ -9,11 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import lombok.RequiredArgsConstructor;
-import shop.mtcoding.sporting_server.core.enums.field.status.CourtPaymentStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.CourtReservationStatus;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.util.BootPayPaymentUtils;
@@ -27,8 +24,8 @@ import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.player_info.repository.PlayerInfoRepository;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.stadium_court.repository.StadiumCourtRepository;
-import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.payment.dto.PaymentRequest;
+import shop.mtcoding.sporting_server.topic.payment.dto.PaymentRequest.ReceiptInDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +36,6 @@ public class PaymentService {
     private final StadiumCourtRepository stadiumCourtRepository;
     private final CourtReservationRepository courtReservationRepository;
     private final PlayerInfoRepository playerInfoRepository;
-    private final CompanyInfoRepository companyInfoRepository;
 
     // public PaymentResponse.FormOutDTO getForm(Long stadiumCourtId,
     // PaymentRequest.FormInDTO forInDTO) {
@@ -57,18 +53,18 @@ public class PaymentService {
     // PaymentResponse.FormOutDTO formOutDTO = new FormOutDTO(stadiumCourtPS,
     // forInDTO);
 
-    // return formOutDTO;
+    // return formOutDTO;image.png
     // }
     public void paymentAndReservation(Long courtId, String resDate, String resTime,
-            PaymentRequest.ReceiptInDTO ReceiptDTO, Long id)
+            PaymentRequest.ReceiptInDTO receiptDTO, Long id)
             throws JsonProcessingException {
-        String restApiKey = "643f9df8755e27001ae57d0c";
-        String privateKey = "Xh68nK2FMKk5JZSoPEOzuOA3d4N+nR0t3CGgGo7Jf/Y=";
 
+        // OffsetDateTime타입으로 받은 날짜 정보를 LocalDate타입으로 저장하기 위한 파싱
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate resDateParse = LocalDate.parse(resDate, formatter);
-        String receiptId = ReceiptDTO.getData().getReceiptId();
-        Integer price = ReceiptDTO.getData().getPrice();
+        // DB에 저장할 receiptId 및 price 정보
+        String receiptId = receiptDTO.getData().getReceiptId();
+        Integer price = receiptDTO.getData().getPrice();
 
         // 코트가 존재하지 않으면 결제 취소
         Optional<StadiumCourt> stadiumCourtPS = stadiumCourtRepository.findById(courtId);
@@ -80,13 +76,10 @@ public class PaymentService {
         Optional<CourtReservation> courtReservationPS = courtReservationRepository.findByDateAndTime(resDateParse,
                 resTime);
         if (courtReservationPS.isPresent()) {
-            BootPayPaymentUtils.cancelPayment("PrivateKey 값 확인필요", receiptId);
+            BootPayPaymentUtils.cancelPayment("예약할 수 없는 날짜", receiptId);
         }
 
-        System.out.println("테스트 1: " + stadiumCourtPS.get().getCourtPrice());
-        System.out.println("테스트 2: " + price);
         if (!stadiumCourtPS.get().getCourtPrice().equals(price)) {
-            System.out.println("테스트 : 11");
             BootPayPaymentUtils.cancelPayment("결제 요청가격 확인필요", receiptId);
         }
 
@@ -95,37 +88,14 @@ public class PaymentService {
         });
         CompanyInfo companyInfoPS = stadiumCourtPS.get().getStadium().getCompanyInfo();
 
-        ObjectMapper om = new ObjectMapper();
-        om.registerModule(new JavaTimeModule());
-        CourtPayment courtPayment = CourtPayment
-                .builder()
-                .paymentType(ReceiptDTO.getData().getMethod())
-                .originData(om.writeValueAsString(ReceiptDTO))
-                .playerInfo(playerInfoPS)
-                .companyInfo(companyInfoPS)
-                .paymentAmount(price)
-                .stadiumCourt(stadiumCourtPS.get())
-                .receiptId(receiptId)
-                .status(CourtPaymentStatus.결제완료)
-                .purchasedAt(ReceiptDTO.getData().getPurchasedAt().toLocalDateTime())
-                .requestedAt(ReceiptDTO.getData().getRequestedAt().toLocalDateTime())
-                .createdAt(LocalDateTime.now())
-                .build();
+        // 결제 정보 DB 저장
+        CourtPayment courtPayment = ReceiptInDTO.toPaymentEntity(receiptDTO, playerInfoPS, companyInfoPS,
+                stadiumCourtPS.get());
         courtPaymentRepository.save(courtPayment);
 
-        CourtReservation courtReservation = CourtReservation
-                .builder()
-                .user(playerInfoPS.getUser())
-                .reservationDate(resDateParse)
-                .reservationTime(resTime)
-                .courtPayment(courtPayment)
-                .createdAt(LocalDateTime.now())
-                .status(CourtReservationStatus.승낙)
-                .build();
+        // 예약 정보 DB 저장
+        CourtReservation courtReservation = ReceiptInDTO.toReservationEntity(playerInfoPS, resDateParse, resTime,
+                courtPayment);
         courtReservationRepository.save(courtReservation);
-
-        // PaymentResponse.FormOutDTO formOutDTO = new FormOutDTO(stadiumCourtPS,
-        // forInDTO);
-
     }
 }

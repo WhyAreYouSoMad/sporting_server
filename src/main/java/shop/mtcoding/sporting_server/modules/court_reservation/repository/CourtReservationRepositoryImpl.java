@@ -1,5 +1,6 @@
 package shop.mtcoding.sporting_server.modules.court_reservation.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -23,13 +24,15 @@ public class CourtReservationRepositoryImpl implements CourtReservationCustomRep
     @Override
     public List<ReservationListOutDTO> findReservationListByUserId(Long principalUserId) {
         QCourtReservation qCourtReservation = QCourtReservation.courtReservation;
+        LocalDate currentDate = LocalDate.now();
 
         JPAQuery<ReservationListOutDTO> query = jpaQueryFactory
                 .select(new QReservationListOutDTO(qCourtReservation.id,
                         qCourtReservation.courtPayment.stadiumCourt.title, qCourtReservation.reservationDate,
                         qCourtReservation.reservationTime, qCourtReservation.courtPayment.paymentAmount))
                 .from(qCourtReservation)
-                .where(qCourtReservation.user.id.eq(principalUserId));
+                .where(qCourtReservation.user.id.eq(principalUserId)
+                        .and(qCourtReservation.reservationDate.goe(currentDate)));
 
         return query.fetch();
     }

@@ -15,7 +15,6 @@ public class UserResService {
     private final CourtReservationRepository courtReservationRepository;
 
     public List<ReservationListOutDTO> getReservationList(Long id) {
-
         return courtReservationRepository.findReservationListByUserId(id);
     }
 
