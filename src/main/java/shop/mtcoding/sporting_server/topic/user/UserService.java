@@ -13,6 +13,8 @@ import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.core.exception.Exception400;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
+import shop.mtcoding.sporting_server.core.util.AdminStatisticsUtils;
+import shop.mtcoding.sporting_server.modules.connection_data.repository.ConnectionDataRepository;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 import shop.mtcoding.sporting_server.topic.user.dto.UserRequest;
@@ -25,8 +27,10 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ConnectionDataRepository connectionDataRepository;
+    private final AdminStatisticsUtils adminStatisticsUtils;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public ArrayList 로그인(UserRequest.LoginDTO loginDTO) {
 
         ArrayList loginOutList = new ArrayList();
@@ -48,6 +52,10 @@ public class UserService {
                 } else if (userPS.getStatus().equals(UserStatus.인증대기)) {
                     throw new Exception400("관리자의 승인이 필요합니다");
                 }
+
+                // 로그인 시 관리자 - 접속률 통계확인용 DB저장
+                adminStatisticsUtils.manageConnectionsData(userPS);
+
                 return loginOutList;
 
             }

@@ -1,6 +1,7 @@
 package shop.mtcoding.sporting_server.modules.connection_data.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,7 @@ public interface ConnectionDataRepository extends JpaRepository<ConnectionData, 
     @Query("SELECT c.cnt FROM ConnectionData c WHERE c.role = :role AND CONCAT(c.year, LPAD(c.month, 2, '0')) IN :yearMonthList")
     List<Integer> findByRoleAndYearMonthIn(@Param("role") String role,
             @Param("yearMonthList") List<String> yearMonthList);
+
+    Optional<ConnectionData> findByYearAndMonthAndRole(@Param("year") Integer currentYear,
+            @Param("month") Integer currentMonth, @Param("role") String role);
 }
