@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
+import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.payment.PaymentController;
 import shop.mtcoding.sporting_server.topic.payment.PaymentService;
 import shop.mtcoding.sporting_server.topic.payment.dto.PaymentRequest.ReceiptInDTO;
@@ -35,7 +35,7 @@ import shop.mtcoding.sporting_server.topic.payment.dto.PaymentRequest.ReceiptInD
 public class CourtPaymentTest {
         @BeforeEach
         public void init() {
-                MyLoginUser user = MyLoginUser.builder().id(4L).role("COMPANY").build();
+                User user = User.builder().id(4L).role("COMPANY").build();
                 MyUserDetails myUserDetails = new MyUserDetails(user);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                                 myUserDetails,

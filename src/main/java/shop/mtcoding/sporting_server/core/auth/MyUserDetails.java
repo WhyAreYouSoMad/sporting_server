@@ -8,22 +8,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
 @EqualsAndHashCode
 public class MyUserDetails implements UserDetails {
 
-    private MyLoginUser user;
-    private User user1;
+    // private User user;
+    private User user;
 
-    public MyUserDetails(MyLoginUser user) {
-        this.user = user;
-    }
+    // public MyUserDetails(User user) {
+    // this.user = user;
+    // }
 
     public MyUserDetails(User user1) {
-        this.user1 = user1;
+        this.user = user1;
     }
 
     @Override

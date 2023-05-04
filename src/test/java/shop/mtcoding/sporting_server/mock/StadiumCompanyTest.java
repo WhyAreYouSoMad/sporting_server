@@ -29,7 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
-import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
+import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumController;
 import shop.mtcoding.sporting_server.topic.stadium.StadiumService;
 import shop.mtcoding.sporting_server.topic.stadium.dto.CourtFileResponseDto;
@@ -61,7 +61,7 @@ public class StadiumCompanyTest {
 
         @BeforeEach
         public void init() {
-                MyLoginUser user = MyLoginUser.builder().id(4L).role("COMPANY").build();
+                User user = User.builder().id(4L).role("COMPANY").build();
                 MyUserDetails myUserDetails = new MyUserDetails(user);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                                 myUserDetails,

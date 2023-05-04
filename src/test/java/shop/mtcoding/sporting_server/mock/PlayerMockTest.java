@@ -27,10 +27,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAddress;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoAge;
 import shop.mtcoding.sporting_server.core.enums.field.etc.PlayerInfoGender;
-import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
+import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.player.PlayerController;
 import shop.mtcoding.sporting_server.topic.player.PlayerService;
 import shop.mtcoding.sporting_server.topic.player.dto.PlayerFavoriteSportResponseDTO;
@@ -54,7 +53,7 @@ public class PlayerMockTest {
 
         @BeforeEach
         public void init() {
-                MyLoginUser user = MyLoginUser.builder().id(1L).role("USER").build();
+                User user = User.builder().id(1L).role("USER").build();
                 MyUserDetails myUserDetails = new MyUserDetails(user);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                                 myUserDetails,

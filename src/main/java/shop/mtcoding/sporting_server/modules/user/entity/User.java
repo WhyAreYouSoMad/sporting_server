@@ -22,7 +22,9 @@ import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest.UpdateInDT
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "user_tb")
 @EqualsAndHashCode(of = "id", callSuper = false)
 public class User {
@@ -36,17 +38,14 @@ public class User {
     @Column(name = "nickname", unique = true)
     private String nickname;
 
-    @NonNull
     @Comment("유저-로그인 이메일")
     @Column(name = "email")
     private String email;
 
-    @NonNull
     @Comment("유저-로그인 비밀번호")
     @Column(name = "password")
     private String password;
 
-    @NonNull
     @Comment("PLAYER / USER / ADMIN(1단계에선 x)")
     private String role;
 
@@ -58,7 +57,6 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @NonNull
     @Comment("유저 활성상태 (일반회원/인증대기/인증완료/휴먼상태/탈퇴계정)")
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -74,18 +72,20 @@ public class User {
         this.updatedAt = LocalDateTime.now();
     }
 
-    @Builder
-    public User(Long id, String nickname, @NonNull String email, @NonNull String password, @NonNull String role,
-            LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status) {
-        this.id = id;
-        this.nickname = nickname;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.status = status;
-    }
+    // @Builder
+    // public User(Long id, String nickname, @NonNull String email, @NonNull String
+    // password, @NonNull String role,
+    // LocalDateTime createdAt, LocalDateTime updatedAt, @NonNull UserStatus status)
+    // {
+    // this.id = id;
+    // this.nickname = nickname;
+    // this.email = email;
+    // this.password = password;
+    // this.role = role;
+    // this.createdAt = createdAt;
+    // this.updatedAt = updatedAt;
+    // this.status = status;
+    // }
 
     public void companyUpdateUser(UpdateInDTO updateInDTO) {
         this.nickname = nickname.valueOf(updateInDTO.getNickname());

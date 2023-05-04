@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
+import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.user_reservation.UserResController;
 import shop.mtcoding.sporting_server.topic.user_reservation.UserResService;
 import shop.mtcoding.sporting_server.topic.user_reservation.dto.ReservationListOutDTO;
@@ -35,7 +35,7 @@ import shop.mtcoding.sporting_server.topic.user_reservation.dto.ReservationListO
 public class CourtReservationTest {
     @BeforeEach
     public void init() {
-        MyLoginUser user = MyLoginUser.builder().id(1L).role("PLAYER").build();
+        User user = User.builder().id(1L).role("PLAYER").build();
         MyUserDetails myUserDetails = new MyUserDetails(user);
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 myUserDetails,

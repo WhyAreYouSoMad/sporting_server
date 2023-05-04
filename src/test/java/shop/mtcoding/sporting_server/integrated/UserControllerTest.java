@@ -1,5 +1,6 @@
-package shop.mtcoding.sporting_server.controller;
+package shop.mtcoding.sporting_server.integrated;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,6 +17,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.TestExecutionEvent;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -56,7 +59,7 @@ public class UserControllerTest extends AbstractControllerTest {
     public void setUp() {
         userRepository.save(dummy.newPlayerUser("ssar", "ssar"));
         userRepository.save(dummy.newCompanyUser("cos", "cos"));
-        // MyLoginUser user = MyLoginUser.builder().id(1L).role("PLAYER").build();
+        // User user = User.builder().id(1L).role("PLAYER").build();
         // MyUserDetails myUserDetails = new MyUserDetails(user);
         // Authentication authentication = new UsernamePasswordAuthenticationToken(
         // myUserDetails,
@@ -157,25 +160,23 @@ public class UserControllerTest extends AbstractControllerTest {
         resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
     }
 
-    // @DisplayName("유저 내정보 페이지")
-    // @WithUserDetails(value = "ssar123", setupBefore =
-    // TestExecutionEvent.TEST_EXECUTION)
-    // @Test
-    // public void user_detail_test() throws Exception {
-    // // given
+    @DisplayName("유저 내정보 페이지")
+    @WithUserDetails(value = "ssar", setupBefore = TestExecutionEvent.TEST_EXECUTION)
+    @Test
+    public void user_detail_test() throws Exception {
+        // given
 
-    // // when
-    // ResultActions resultActions = mvc
-    // .perform(get("/api/a/user"));
-    // String reponseBody =
-    // resultActions.andReturn().getResponse().getContentAsString();
-    // System.out.println("테스트 : " + reponseBody);
+        // when
+        ResultActions resultActions = mvc
+                .perform(get("/api/a/user"));
+        String reponseBody = resultActions.andReturn().getResponse().getContentAsString();
+        System.out.println("테스트 : " + reponseBody);
 
-    // // then
-    // resultActions.andExpect(jsonPath("$.data.id").value(1L));
-    // resultActions.andExpect(jsonPath("$.data.nickname").value("ssar"));
-    // resultActions.andExpect(jsonPath("$.data.role").value("PLAYER"));
-    // resultActions.andExpect(status().isOk());
-    // resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    // }
+        // then
+        resultActions.andExpect(jsonPath("$.data.id").value(1L));
+        resultActions.andExpect(jsonPath("$.data.nickname").value("ssar"));
+        resultActions.andExpect(jsonPath("$.data.role").value("PLAYER"));
+        resultActions.andExpect(status().isOk());
+        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+    }
 }

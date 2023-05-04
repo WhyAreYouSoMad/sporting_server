@@ -47,7 +47,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             String nickname = decodedJWT.getClaim("nickname").asString();
             String role = decodedJWT.getClaim("role").asString();
 
-            MyLoginUser user = MyLoginUser.builder().id(id).nickname(nickname).role(role).build();
+            // User user =
+            // User.builder().id(id).nickname(nickname).role(role).build();
+            User user = User.builder().id(id).nickname(nickname).role(role).build();
             MyUserDetails myUserDetails = new MyUserDetails(user);
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     myUserDetails,

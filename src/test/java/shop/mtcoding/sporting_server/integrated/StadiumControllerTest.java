@@ -1,4 +1,4 @@
-package shop.mtcoding.sporting_server.controller;
+package shop.mtcoding.sporting_server.integrated;
 
 import javax.persistence.EntityManager;
 

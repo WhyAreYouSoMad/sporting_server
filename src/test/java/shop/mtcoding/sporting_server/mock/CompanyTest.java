@@ -2,15 +2,11 @@ package shop.mtcoding.sporting_server.mock;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,16 +26,12 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.jwt.MyLoginUser;
+import shop.mtcoding.sporting_server.modules.user.entity.User;
 import shop.mtcoding.sporting_server.topic.company.CompanyController;
 import shop.mtcoding.sporting_server.topic.company.CompanyService;
-import shop.mtcoding.sporting_server.topic.company.dto.CompanyInfoResponseDTO;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyRequest;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse;
 import shop.mtcoding.sporting_server.topic.company.dto.CompanyUpdateFormOutDTO;
-import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO;
-import shop.mtcoding.sporting_server.topic.company.dto.CompanyResponse.UpdateOutDTO.CompanyFileDTO;
-import shop.mtcoding.sporting_server.topic.player.dto.PlayerFavoriteSportResponseDTO;
 
 @WebMvcTest(CompanyController.class)
 @MockBean(JpaMetamodelMappingContext.class)
@@ -55,7 +47,7 @@ public class CompanyTest {
 
         @BeforeEach
         public void init() {
-                MyLoginUser user = MyLoginUser.builder().id(3L).role("COMPANY").build();
+                User user = User.builder().id(3L).role("COMPANY").build();
                 MyUserDetails myUserDetails = new MyUserDetails(user);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                                 myUserDetails,
@@ -72,7 +64,8 @@ public class CompanyTest {
                 // given
                 CompanyRequest.JoinInDTO joinInDTO = new CompanyRequest.JoinInDTO();
 
-                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "ssar", "sdif@sdflk.dsf", "User", "인증대기", "ddd");
+                CompanyResponse.JoinDTO joinOutDTO = new CompanyResponse.JoinDTO(1L, "ssar", "sdif@sdflk.dsf", "User",
+                                "인증대기", "ddd");
 
                 given(this.companyService.회원가입(joinInDTO)).willReturn(joinOutDTO);
 
