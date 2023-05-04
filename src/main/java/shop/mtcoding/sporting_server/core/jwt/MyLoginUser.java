@@ -18,10 +18,12 @@ public class MyLoginUser {
     private UserStatus status;
 
     @Builder
-    public MyLoginUser(Long id, String role, String email, String nickname) {
+    public MyLoginUser(Long id, String role, String email, String nickname, String password, UserStatus status) {
         this.id = id;
         this.role = role;
         this.email = email;
         this.nickname = nickname;
+        this.password = password;
+        this.status = status;
     }
 }
