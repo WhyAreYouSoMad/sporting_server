@@ -451,6 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_company_로그인_성공">Company 로그인 (성공)</a></li>
 <li><a href="#_로그인_이메일_실패">로그인 (이메일 실패)</a></li>
 <li><a href="#_로그인_패스워드_실패">로그인 (패스워드 실패)</a></li>
+<li><a href="#_유저_내정보_페이지">유저 내정보 페이지</a></li>
 </ul>
 </li>
 </ul>
@@ -486,7 +487,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MywiZXhwIjoxNjgzMDk3OTAyfQ.v_WWOa_j6REff60vHZuYH9DaTDlJ45rDALflFBkg45iMrpMRZUnKrchqpBbXL8uHhTq3qcnTYiCokj9gAB6Lww
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjA0MjMwfQ.90r_awAgPWjnhztGswFL1Xk9H0QMKvvBDDVA7yCi1c9yL4Wz1F6NPuk__3uqhvfMzVNKBS8xl-CQHXrP6Nj4hw
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -499,7 +500,7 @@ Content-Length: 127
   "status" : 200,
   "msg" : "성공",
   "data" : {
-    "id" : 3,
+    "id" : 1,
     "nickname" : "ssar",
     "role" : "PLAYER"
   }
@@ -547,7 +548,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6OCwiZXhwIjoxNjgzMDk3OTAyfQ.UM0yYwz2SdBqHLrBubnHZrU_H8YJ48rO09MmGdFXeiGJo1T8tg3ix7XZvdbtt-NP8ge2m4GlBKCPfC9eSTBO0A
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzMjA0MjMwfQ.qR6r4Yj5UhBPDU9diruBYVDe7gRClmJFhEsvNQW9DECLz6jWOpdNHs4ivrHudaAiXfKmunht6XjOcLQlimUuiQ
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -560,7 +561,7 @@ Content-Length: 127
   "status" : 200,
   "msg" : "성공",
   "data" : {
-    "id" : 8,
+    "id" : 2,
     "nickname" : "cos",
     "role" : "COMPNAY"
   }
@@ -694,13 +695,61 @@ Content-Length: 104
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_유저_내정보_페이지">유저 내정보 페이지</h3>
+<div class="sect4">
+<h5 id="_request_example_5">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/a/user HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_5">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 127
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : {
+    "id" : 1,
+    "nickname" : "ssar",
+    "role" : "PLAYER"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_curl_5">Curl</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/a/user' -i -X GET</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-03 14:46:39 +0900
+Last updated 2023-05-04 20:37:28 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

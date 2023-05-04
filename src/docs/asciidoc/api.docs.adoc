@@ -49,3 +49,13 @@ include::{snippets}/{user}/login_fail_password_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{user}/login_fail_password_test/curl-request.adoc[]
+
+=== 유저 내정보 페이지
+===== Request Example
+include::{snippets}/{user}/user_detail_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/user_detail_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{user}/user_detail_test/curl-request.adoc[]
