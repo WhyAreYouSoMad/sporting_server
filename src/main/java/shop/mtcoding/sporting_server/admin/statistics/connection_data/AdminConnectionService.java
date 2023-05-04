@@ -41,9 +41,9 @@ public class AdminConnectionService {
         }
 
         Collections.reverse(recentMonths);
-        List<Integer> connectionPlayerDataListPS = connectionDataRepository.findByRoleAndYearMonthIn("Player",
+        List<Integer> connectionPlayerDataListPS = connectionDataRepository.findByRoleAndYearMonthIn("PLAYER",
                 recentMonthsForCalcul);
-        List<Integer> connectionCompanyDataListPS = connectionDataRepository.findByRoleAndYearMonthIn("Company",
+        List<Integer> connectionCompanyDataListPS = connectionDataRepository.findByRoleAndYearMonthIn("COMPANY",
                 recentMonthsForCalcul);
 
         return new ConnectionDataOutDTO(connectionPlayerDataListPS, connectionCompanyDataListPS, recentMonths);

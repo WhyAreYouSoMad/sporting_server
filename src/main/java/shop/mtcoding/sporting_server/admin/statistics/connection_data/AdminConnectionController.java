@@ -19,13 +19,13 @@ public class AdminConnectionController {
     @GetMapping("/statistics/connection")
     public String connection() {
 
-        return "admin/connection";
+        return "statistics/connection";
     }
 
     @GetMapping("/statistics/reservation")
     public String reservation() {
 
-        return "admin/reservation";
+        return "statistics/reservation";
     }
 
     @GetMapping("/statistics/connection/data")
