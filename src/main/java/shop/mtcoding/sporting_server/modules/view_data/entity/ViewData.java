@@ -18,9 +18,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -36,7 +38,7 @@ public class ViewData {
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @Comment("유저 테이블")
+    @Comment("경기장 테이블")
     @JoinColumn(name = "stadium_id")
     private Stadium stadium;
 
