@@ -27,6 +27,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import shop.mtcoding.sporting_server.core.enums.field.status.CourtReservationStatus;
 import shop.mtcoding.sporting_server.modules.court_payment.entity.CourtPayment;
+import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
 @Getter
@@ -54,6 +55,11 @@ public class CourtReservation {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "court_payment_id", unique = true)
     private CourtPayment courtPayment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Comment("코트 테이블")
+    @JoinColumn(name = "stadium_court_id")
+    private StadiumCourt stadiumCourt;
 
     @NonNull
     @Comment("예약 날짜")

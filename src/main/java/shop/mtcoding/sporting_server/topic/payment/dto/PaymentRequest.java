@@ -69,7 +69,7 @@ public class PaymentRequest {
         }
 
         public static CourtReservation toReservationEntity(PlayerInfo playerInfoPS, LocalDate resDateParse,
-                String resTime, CourtPayment courtPayment) {
+                String resTime, CourtPayment courtPayment, StadiumCourt stadiumCourt) {
 
             return CourtReservation
                     .builder()
@@ -77,6 +77,7 @@ public class PaymentRequest {
                     .reservationDate(resDateParse)
                     .reservationTime(resTime)
                     .courtPayment(courtPayment)
+                    .stadiumCourt(stadiumCourt)
                     .createdAt(LocalDateTime.now())
                     .status(CourtReservationStatus.승낙)
                     .build();

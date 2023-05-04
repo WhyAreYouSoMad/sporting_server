@@ -95,7 +95,7 @@ public class PaymentService {
 
         // 예약 정보 DB 저장
         CourtReservation courtReservation = ReceiptInDTO.toReservationEntity(playerInfoPS, resDateParse, resTime,
-                courtPayment);
+                courtPayment, stadiumCourtPS.get());
         courtReservationRepository.save(courtReservation);
     }
 }
