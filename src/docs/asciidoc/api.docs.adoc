@@ -4,6 +4,7 @@ endif::[]
 
 :user: user-controller-test
 :company: company-controller-test
+:payment: payment-controller-test
 
 = REST API
 :toc: left
@@ -51,6 +52,16 @@ include::{snippets}/{user}/login_fail_password_test/http-response.adoc[]
 ====== Curl
 include::{snippets}/{user}/login_fail_password_test/curl-request.adoc[]
 
+=== 유저 내정보 페이지
+===== Request Example
+include::{snippets}/{user}/user_detail_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{user}/user_detail_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{user}/user_detail_test/curl-request.adoc[]
+
 == Company
 === Company 회원가입
 ===== Request Example
@@ -81,14 +92,14 @@ include::{snippets}/{company}/update_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{company}/update_test/curl-request.adoc[]
-=======
-=== 유저 내정보 페이지
+
+== 결제
+=== 결제하기
 ===== Request Example
-include::{snippets}/{user}/user_detail_test/http-request.adoc[]
+include::{snippets}/{payment}/payment_test/http-request.adoc[]
 
 ===== Response Example
-include::{snippets}/{user}/user_detail_test/http-response.adoc[]
+include::{snippets}/{payment}/payment_test/http-response.adoc[]
 
 ====== Curl
-include::{snippets}/{user}/user_detail_test/curl-request.adoc[]
-
+include::{snippets}/{payment}/payment_test/curl-request.adoc[]

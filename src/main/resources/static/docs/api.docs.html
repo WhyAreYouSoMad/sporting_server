@@ -461,6 +461,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_company_정보수정">Company 정보수정</a></li>
 </ul>
 </li>
+<li><a href="#_결제">결제</a>
+<ul class="sectlevel2">
+<li><a href="#_결제하기">결제하기</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -494,7 +499,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjU5MDQ4fQ.EhY2LVa6vrljtmDnE0ENJQynF2cTTNHvBahnAeIVK6wVdbZljykWMb6SMKMBNhwNzH8S0fb0Sllp0w9siQWnfA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTI1fQ.FT5Y4VpmsPVeqLnL4KyfDTrHdHMcNlb7bN1cxJ9gN82WzU_Vr5zMT2HVt3v9ynegfc5FM8EV5alhL-OvJBLADA
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -555,7 +560,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzMjA0MjMwfQ.qR6r4Yj5UhBPDU9diruBYVDe7gRClmJFhEsvNQW9DECLz6jWOpdNHs4ivrHudaAiXfKmunht6XjOcLQlimUuiQ
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzMjYzNTI1fQ.WONg801ZSS8zUNsLaSTxaOYrB8eZ6iMfJn-2mRuB9aIynMYM4KG3xIldnJT6_fXQuuSdl4VQG7MYBiYYvZcFqQ
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -758,7 +763,7 @@ Content-Length: 127
 <div class="sect2">
 <h3 id="_company_회원가입">Company 회원가입</h3>
 <div class="sect4">
-<h5 id="_request_example_5">Request Example</h5>
+<h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/joinCompany HTTP/1.1
@@ -776,7 +781,7 @@ Host: localhost:8080
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_5">Response Example</h5>
+<h5 id="_response_example_6">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
@@ -800,13 +805,13 @@ Content-Length: 245
     "email" : "ssar2@nate.com",
     "role" : "COMPANY",
     "status" : "인증대기",
-    "createdAt" : "2023-05-05 11:57:28"
+    "createdAt" : "2023-05-05 13:12:03"
   }
 }</code></pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_5">Curl</h6>
+<h6 id="_curl_6">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/joinCompany' -i -X POST \
@@ -825,17 +830,17 @@ Content-Length: 245
 <div class="sect2">
 <h3 id="_company_정보수정_페이지">Company 정보수정 페이지</h3>
 <div class="sect4">
-<h5 id="_request_example_6">Request Example</h5>
+<h5 id="_request_example_7">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/company/1 HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjU5MDQ4fQ.PpX9FIZpel-3tiawgnSS8kxdDmlkkb-uXjO7QdW1sMR-BGBeuLLLah7A_fbQkIVxQ9-32-ZuS0Df8fT0V066Yw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTIzfQ.WAsND8595UKAT7NiJ6SQ3oQhSXcs1N8_h2LOZchl51Y1labVP9euKsqM9Bx7SWBk20GmEZpDhsfXhCRjpqfS0g
 Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_6">Response Example</h5>
+<h5 id="_response_example_7">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
@@ -857,7 +862,7 @@ Content-Length: 501
     "id" : 1,
     "nickname" : "cos",
     "email" : "cos@nate.com",
-    "password" : "$2a$10$YEW2WDILL.ZLX2LsyWSf3OYsX.GUAoBJ.hQ803aefsX2cxHlA.PBO",
+    "password" : "$2a$10$BCGs9VtGYvUXSzpchj9Jv.QoVyNoal45s5Klgh5cYxmtkJPKiVGO.",
     "companyInfo" : {
       "id" : 1,
       "tel" : null,
@@ -873,11 +878,11 @@ Content-Length: 501
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_6">Curl</h6>
+<h6 id="_curl_7">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/1' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjU5MDQ4fQ.PpX9FIZpel-3tiawgnSS8kxdDmlkkb-uXjO7QdW1sMR-BGBeuLLLah7A_fbQkIVxQ9-32-ZuS0Df8fT0V066Yw'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTIzfQ.WAsND8595UKAT7NiJ6SQ3oQhSXcs1N8_h2LOZchl51Y1labVP9euKsqM9Bx7SWBk20GmEZpDhsfXhCRjpqfS0g'</code></pre>
 </div>
 </div>
 </div>
@@ -886,12 +891,12 @@ Content-Length: 501
 <div class="sect2">
 <h3 id="_company_정보수정">Company 정보수정</h3>
 <div class="sect4">
-<h5 id="_request_example_7">Request Example</h5>
+<h5 id="_request_example_8">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/company/update HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjU5MDQyfQ.93xj6sOuBi9vV9LkXmmaQKcKG-2gIsClpO53mETCfpOj7MA4QjlYcvzpanbnYC-2HPvxVzzT9CxwArH2peoIFw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTE4fQ.p2HXxCH0uw5ZtxtUZycs40UkaZS9iThiUR-sgOD3VK7bGhFAl2vOB0hnQP5-wj6tC5o_jNobIGhnKtX5eZqGnA
 Content-Length: 302
 Host: localhost:8080
 
@@ -910,7 +915,7 @@ Host: localhost:8080
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_7">Response Example</h5>
+<h5 id="_response_example_8">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
@@ -931,25 +936,25 @@ Content-Length: 502
   "data" : {
     "id" : 1,
     "nickname" : "축구를 잘하는 지연이",
-    "password" : "$2a$10$CBDJUBuTybChxw6aQ/rbbec0NjsirIJKGABlNDd6Pvm.i51oq4Jp2",
+    "password" : "$2a$10$htTtVhVJs2ofjMLgTI3vMeBOWdEf.kfGMMPCswd1xsKLVzw8/KuJe",
     "tel" : "010-1234-5678",
     "businessAddress" : "부산 남구",
     "businessNumber" : "1234-45-789542",
     "sourceFile" : {
       "id" : 1,
-      "fileBase64" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/2433e181-c3a2-4963-9d19-6f49dbdb0d70.jpg"
+      "fileBase64" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/6b61cdb0-77fd-4755-8ddb-e4997e291771.jpg"
     }
   }
 }</code></pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_7">Curl</h6>
+<h6 id="_curl_8">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/update' -i -X PUT \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjU5MDQyfQ.93xj6sOuBi9vV9LkXmmaQKcKG-2gIsClpO53mETCfpOj7MA4QjlYcvzpanbnYC-2HPvxVzzT9CxwArH2peoIFw' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTE4fQ.p2HXxCH0uw5ZtxtUZycs40UkaZS9iThiUR-sgOD3VK7bGhFAl2vOB0hnQP5-wj6tC5o_jNobIGhnKtX5eZqGnA' \
     -d '{
   "nickname" : "축구를 잘하는 지연이",
   "password" : "1234",
@@ -968,11 +973,130 @@ Content-Length: 502
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_결제">결제</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_결제하기">결제하기</h3>
+<div class="sect4">
+<h5 id="_request_example_9">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user/payments?courtId=1&amp;resDate=20230506&amp;resTime=6 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTI0fQ.ft4CzlNN6oViVFeMDdp6tkyBftIOJklsG_AYiwMNq_m5wa4MZ8Unf9ukJbdxmqsEFZCN3hiyd0lz5Ly7RO-itw
+Content-Length: 881
+Host: localhost:8080
+
+{
+  "event" : "done",
+  "data" : {
+    "receipt_id" : "RC12345",
+    "order_id" : "OD67890",
+    "price" : 40000,
+    "tax_free" : 0,
+    "cancelled_price" : 0,
+    "cancelled_tax_free" : 0,
+    "order_name" : "Product A",
+    "company_name" : "Company X",
+    "gateway_url" : "https://www.example.com/pay",
+    "metadata" : { },
+    "sandbox" : true,
+    "pg" : "kakaopay",
+    "method" : "card",
+    "method_symbol" : "VISA",
+    "method_origin" : "USA",
+    "method_origin_symbol" : "USD",
+    "purchased_at" : "2023-05-03T12:34:56.789Z",
+    "cancelled_at" : null,
+    "requested_at" : "2023-05-03T12:34:56.789Z",
+    "status_locale" : "en_US",
+    "receipt_url" : "https://www.example.com/receipts/RC12345",
+    "status" : 1,
+    "kakao_money_data" : {
+      "tid" : "T1234567890",
+      "cancel_tid" : ""
+    }
+  },
+  "bootpay_event" : "true"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_9">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 61
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : null
+}</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_curl_9">Curl</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/payments?courtId=1&amp;resDate=20230506&amp;resTime=6' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjYzNTI0fQ.ft4CzlNN6oViVFeMDdp6tkyBftIOJklsG_AYiwMNq_m5wa4MZ8Unf9ukJbdxmqsEFZCN3hiyd0lz5Ly7RO-itw' \
+    -d '{
+  "event" : "done",
+  "data" : {
+    "receipt_id" : "RC12345",
+    "order_id" : "OD67890",
+    "price" : 40000,
+    "tax_free" : 0,
+    "cancelled_price" : 0,
+    "cancelled_tax_free" : 0,
+    "order_name" : "Product A",
+    "company_name" : "Company X",
+    "gateway_url" : "https://www.example.com/pay",
+    "metadata" : { },
+    "sandbox" : true,
+    "pg" : "kakaopay",
+    "method" : "card",
+    "method_symbol" : "VISA",
+    "method_origin" : "USA",
+    "method_origin_symbol" : "USD",
+    "purchased_at" : "2023-05-03T12:34:56.789Z",
+    "cancelled_at" : null,
+    "requested_at" : "2023-05-03T12:34:56.789Z",
+    "status_locale" : "en_US",
+    "receipt_url" : "https://www.example.com/receipts/RC12345",
+    "status" : 1,
+    "kakao_money_data" : {
+      "tid" : "T1234567890",
+      "cancel_tid" : ""
+    }
+  },
+  "bootpay_event" : "true"
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-05 10:30:28 +0900
+Last updated 2023-05-05 13:11:28 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

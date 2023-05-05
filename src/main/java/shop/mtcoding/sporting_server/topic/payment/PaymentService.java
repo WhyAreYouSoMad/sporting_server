@@ -37,24 +37,6 @@ public class PaymentService {
     private final CourtReservationRepository courtReservationRepository;
     private final PlayerInfoRepository playerInfoRepository;
 
-    // public PaymentResponse.FormOutDTO getForm(Long stadiumCourtId,
-    // PaymentRequest.FormInDTO forInDTO) {
-    // StadiumCourt stadiumCourtPS =
-    // stadiumCourtRepository.findById(stadiumCourtId).orElseThrow(() -> {
-    // throw new Exception400("해당 코트가 존재하지 않습니다.");
-    // });
-
-    // courtReservationRepository.findByDateAndTime(forInDTO.getReservationDate(),
-    // forInDTO.getTime())
-    // .ifPresent(reservation -> {
-    // throw new Exception400("해당 일시에 예약이 불가능합니다.");
-    // });
-
-    // PaymentResponse.FormOutDTO formOutDTO = new FormOutDTO(stadiumCourtPS,
-    // forInDTO);
-
-    // return formOutDTO;image.png
-    // }
     public void paymentAndReservation(Long courtId, String resDate, String resTime,
             PaymentRequest.ReceiptInDTO receiptDTO, Long id)
             throws JsonProcessingException {
@@ -87,15 +69,19 @@ public class PaymentService {
             throw new Exception400("유저 정보가 존재하지 않습니다 : 로그인 토큰 로직 재확인 필요");
         });
         CompanyInfo companyInfoPS = stadiumCourtPS.get().getStadium().getCompanyInfo();
-
+        System.out.println("테스트 0 : ");
         // 결제 정보 DB 저장
         CourtPayment courtPayment = ReceiptInDTO.toPaymentEntity(receiptDTO, playerInfoPS, companyInfoPS,
                 stadiumCourtPS.get());
+        System.out.println("테스트 1 : ");
         courtPaymentRepository.save(courtPayment);
+        System.out.println("테스트 2 : ");
 
         // 예약 정보 DB 저장
         CourtReservation courtReservation = ReceiptInDTO.toReservationEntity(playerInfoPS, resDateParse, resTime,
                 courtPayment, stadiumCourtPS.get());
+        System.out.println("테스트 3 : ");
         courtReservationRepository.save(courtReservation);
+        System.out.println("테스트 4 : ");
     }
 }
