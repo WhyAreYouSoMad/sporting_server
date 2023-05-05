@@ -59,13 +59,6 @@ public class UserControllerTest extends AbstractControllerTest {
     public void setUp() {
         userRepository.save(dummy.newPlayerUser("ssar", "ssar"));
         userRepository.save(dummy.newCompanyUser("cos", "cos"));
-        // User user = User.builder().id(1L).role("PLAYER").build();
-        // MyUserDetails myUserDetails = new MyUserDetails(user);
-        // Authentication authentication = new UsernamePasswordAuthenticationToken(
-        // myUserDetails,
-        // myUserDetails.getPassword(),
-        // myUserDetails.getAuthorities());
-        // SecurityContextHolder.getContext().setAuthentication(authentication);
         em.clear();
 
     }
