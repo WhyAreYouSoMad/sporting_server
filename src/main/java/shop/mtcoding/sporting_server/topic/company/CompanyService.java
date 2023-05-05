@@ -97,7 +97,6 @@ public class CompanyService {
     }
 
     public CompanyUpdateFormOutDTO getUpdateForm(Long id) {
-
         userRepository.findById(id).orElseThrow(() -> {
             throw new Exception400("존재하지 않는 유저 입니다");
         });
@@ -128,7 +127,6 @@ public class CompanyService {
         companyInfoPS.setTel(updateInDTO.getTel());
         companyInfoPS.setBusinessAddress(updateInDTO.getBusinessAddress());
         companyInfoPS.setBusinessNumber(updateInDTO.getBusinessNumber());
-        // System.out.println("디버깅 00 : " + companyInfoPS.getFileInfo().getId());
         ProfileFile companyProfileFilePS = profileFileRepository.findById(companyInfoPS.getFileInfo().getId())
                 .orElseThrow(() -> {
                     throw new Exception400("Profile File이 존재하지 않습니다.");

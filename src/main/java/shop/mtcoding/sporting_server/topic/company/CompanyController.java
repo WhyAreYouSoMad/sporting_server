@@ -45,7 +45,6 @@ public class CompanyController {
     public ResponseEntity<?> updateForm(@AuthenticationPrincipal MyUserDetails myUserDetails, @PathVariable Long id) {
         CompanyUpdateFormOutDTO companyResponseOutDTO = companyService
                 .getUpdateForm(myUserDetails.getUser().getId());
-
         return ResponseEntity.ok().body(new ResponseDto<>().data(companyResponseOutDTO));
     }
 

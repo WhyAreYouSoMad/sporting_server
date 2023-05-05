@@ -3,6 +3,7 @@ ifndef::snippets[]
 endif::[]
 
 :user: user-controller-test
+:company: company-controller-test
 
 = REST API
 :toc: left
@@ -50,6 +51,37 @@ include::{snippets}/{user}/login_fail_password_test/http-response.adoc[]
 ====== Curl
 include::{snippets}/{user}/login_fail_password_test/curl-request.adoc[]
 
+== Company
+=== Company 회원가입
+===== Request Example
+include::{snippets}/{company}/join_company_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{company}/join_company_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{company}/join_company_test/curl-request.adoc[]
+
+=== Company 정보수정 페이지
+===== Request Example
+include::{snippets}/{company}/update_form_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{company}/update_form_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{company}/update_form_test/curl-request.adoc[]
+
+=== Company 정보수정
+===== Request Example
+include::{snippets}/{company}/update_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{company}/update_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{company}/update_test/curl-request.adoc[]
+=======
 === 유저 내정보 페이지
 ===== Request Example
 include::{snippets}/{user}/user_detail_test/http-request.adoc[]
@@ -59,3 +91,4 @@ include::{snippets}/{user}/user_detail_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{user}/user_detail_test/curl-request.adoc[]
+

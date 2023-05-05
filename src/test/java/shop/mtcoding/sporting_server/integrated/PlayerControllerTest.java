@@ -7,12 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
+import shop.mtcoding.sporting_server.AbstractControllerTest;
+
 @DisplayName("플레이어 API")
 @AutoConfigureRestDocs(uriScheme = "http", uriHost = "localhost", uriPort = 8080)
 @ActiveProfiles("test")
 @Sql("classpath:db/teardown.sql")
 @AutoConfigureMockMvc
 @SpringBootTest
-public class PlayerControllerTest {
+public class PlayerControllerTest extends AbstractControllerTest {
 
 }

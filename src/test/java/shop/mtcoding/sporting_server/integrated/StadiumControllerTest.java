@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.sporting_server.AbstractControllerTest;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
 import shop.mtcoding.sporting_server.core.dummy.DummyEntity;
 import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
@@ -25,7 +26,7 @@ import shop.mtcoding.sporting_server.modules.user.repository.UserRepository;
 @Sql("classpath:db/teardown.sql")
 @AutoConfigureMockMvc
 @SpringBootTest
-public class StadiumControllerTest {
+public class StadiumControllerTest extends AbstractControllerTest {
 
     private DummyEntity dummy = new DummyEntity();
 

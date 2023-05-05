@@ -15,6 +15,6 @@ import shop.mtcoding.sporting_server.AbstractControllerTest;
 @Sql("classpath:db/teardown.sql")
 @AutoConfigureMockMvc
 @SpringBootTest
-public class StadiumCourtControllerTest {
+public class StadiumCourtControllerTest extends AbstractControllerTest {
 
 }
