@@ -69,19 +69,14 @@ public class PaymentService {
             throw new Exception400("유저 정보가 존재하지 않습니다 : 로그인 토큰 로직 재확인 필요");
         });
         CompanyInfo companyInfoPS = stadiumCourtPS.get().getStadium().getCompanyInfo();
-        System.out.println("테스트 0 : ");
         // 결제 정보 DB 저장
         CourtPayment courtPayment = ReceiptInDTO.toPaymentEntity(receiptDTO, playerInfoPS, companyInfoPS,
                 stadiumCourtPS.get());
-        System.out.println("테스트 1 : ");
         courtPaymentRepository.save(courtPayment);
-        System.out.println("테스트 2 : ");
 
         // 예약 정보 DB 저장
         CourtReservation courtReservation = ReceiptInDTO.toReservationEntity(playerInfoPS, resDateParse, resTime,
                 courtPayment, stadiumCourtPS.get());
-        System.out.println("테스트 3 : ");
         courtReservationRepository.save(courtReservation);
-        System.out.println("테스트 4 : ");
     }
 }
