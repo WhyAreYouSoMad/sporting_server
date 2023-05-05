@@ -150,10 +150,7 @@ public class StadiumService {
         List<StadiumCourtDTO> stdiumCourtDTOList = stadiumCourtRepository.findStadiumCourtByStadiumId(stadiumId);
 
         LocalDate now = LocalDate.now(); // 2023-05-03
-        // Integer year = now.getYear(); // 2023
-        // Integer month = now.getMonthValue(); // 5
-        // String monthString = String.valueOf(month);
-        System.out.println("테스트 1");
+
         List<StadiumCourtDTO> newStdiumCourtDTOList = stdiumCourtDTOList.stream()
                 .map(
                         stadiumCourtDTO -> {

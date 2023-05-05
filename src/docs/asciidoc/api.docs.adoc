@@ -5,6 +5,7 @@ endif::[]
 :user: user-controller-test
 :company: company-controller-test
 :payment: payment-controller-test
+:reservation: user-res-controller-test
 
 = REST API
 :toc: left
@@ -103,3 +104,14 @@ include::{snippets}/{payment}/payment_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{payment}/payment_test/curl-request.adoc[]
+
+== 예약
+=== 예약하기
+===== Request Example
+include::{snippets}/{reservation}/reservation_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{reservation}/reservation_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{reservation}/reservation_test/curl-request.adoc[]
