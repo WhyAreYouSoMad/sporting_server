@@ -17,6 +17,7 @@ public class CompanyRequest {
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
+    @Builder
     public static class JoinInDTO {
         @Email(message = "올바른 email 형식이 아닙니다")
         @NotEmpty(message = "email을 입력해주세요")
