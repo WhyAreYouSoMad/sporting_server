@@ -26,7 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.sporting_server.AbstractControllerTest;
 import shop.mtcoding.sporting_server.core.auth.MyUserDetails;
-import shop.mtcoding.sporting_server.core.dummy.DummyEntity;
+import shop.mtcoding.sporting_server.core.dummy.ComapnyPaymentResDummy;
+import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
 import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.company_info.repository.CompanyInfoRepository;
 import shop.mtcoding.sporting_server.modules.file.repository.ProfileFileRepository;
@@ -46,7 +47,7 @@ public class CompanyControllerTest extends AbstractControllerTest {
 
     protected MockMvc mockMvc;
     protected final ObjectMapper objectMapper = new ObjectMapper();
-    private DummyEntity dummy = new DummyEntity();
+    private ComapnyPaymentResDummy dummy = new ComapnyPaymentResDummy();
 
     @Autowired
     private MockMvc mvc;
@@ -67,10 +68,10 @@ public class CompanyControllerTest extends AbstractControllerTest {
 
     @BeforeEach
     public void setUp() {
-        User user = userRepository.save(dummy.newCompanyUser("cos", "cos"));
-        FileInfo fileInfo = fileInfoRepository.save(dummy.newFileInfo());
+        User companyUser = userRepository.save(dummy.newCompanyUser("cos", "cos"));
+        FileInfo fileInfo = fileInfoRepository.save(dummy.newFileInfo(FileInfoSource.기업프로필));
         profileFileRepository.save(dummy.newProfileFile(fileInfo));
-        companyInfoRepository.save(dummy.newCompanyInfo(user, fileInfo));
+        companyInfoRepository.save(dummy.newCompanyInfo(companyUser, fileInfo));
         em.clear();
     }
 
@@ -127,7 +128,7 @@ public class CompanyControllerTest extends AbstractControllerTest {
     void update_test() throws Exception {
         // given
         String requestJSON = "{\n" +
-                "  \"nickname\": \"축구를 잘하는 지연이\",\n" +
+                "  \"nickname\": \"cos update\",\n" +
                 "  \"password\": \"1234\",\n" +
                 "  \"tel\": \"010-1234-5678\",\n" +
                 "  \"businessAddress\": \"부산 남구\",\n" +

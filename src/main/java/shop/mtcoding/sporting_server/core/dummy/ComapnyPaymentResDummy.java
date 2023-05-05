@@ -20,7 +20,7 @@ import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
-public class DummyEntity {
+public class ComapnyPaymentResDummy {
     // User
     public User newPlayerUser(String username, String nickname) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
