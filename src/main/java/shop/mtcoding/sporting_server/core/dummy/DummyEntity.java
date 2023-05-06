@@ -1,9 +1,8 @@
 package shop.mtcoding.sporting_server.core.dummy;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -14,6 +13,7 @@ import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
 import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
+import shop.mtcoding.sporting_server.modules.player_favorite_sport.entity.PlayerFavoriteSport;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
@@ -84,6 +84,16 @@ public class DummyEntity {
                 .build();
     }
 
+    public ProfileFile newPlayerProfileFile(FileInfo fileInfo) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        return ProfileFile.builder()
+                .fileInfo(fileInfo)
+                .fileName("PlayerProfile/player.jpg")
+                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg")
+                .build();
+    }
+
     public FileInfo newFileInfo(FileInfoSource fileInfoSource) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return FileInfo.builder().type(fileInfoSource).build();
@@ -130,6 +140,15 @@ public class DummyEntity {
                 .sport("축구")
                 .createdAt(LocalDateTime.now())
                 .build();
+    }
+
+    public PlayerFavoriteSport newFavoriteSport(SportCategory sportCategory, PlayerInfo playerInfo) {
+        return PlayerFavoriteSport
+                .builder()
+                .category(sportCategory)
+                .playerInfo(playerInfo)
+                .build();
+
     }
 
 }
