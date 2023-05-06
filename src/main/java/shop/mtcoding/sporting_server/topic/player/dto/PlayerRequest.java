@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,9 @@ public class PlayerRequest {
     @Getter
     @Setter
     @EqualsAndHashCode
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class JoinInDTO {
         @Email(message = "올바른 email 형식이 아닙니다")
         @NotEmpty(message = "email을 입력해주세요")
