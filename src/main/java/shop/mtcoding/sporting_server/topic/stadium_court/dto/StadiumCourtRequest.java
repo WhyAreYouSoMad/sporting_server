@@ -3,6 +3,7 @@ package shop.mtcoding.sporting_server.topic.stadium_court.dto;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class StadiumCourtRequest {
     @NoArgsConstructor
     @AllArgsConstructor
     @EqualsAndHashCode
+    @Builder
     public static class StadiumCourtInDTO {
 
         private String courtProfile;
