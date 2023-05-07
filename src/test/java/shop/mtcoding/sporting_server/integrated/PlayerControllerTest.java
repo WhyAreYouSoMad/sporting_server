@@ -5,8 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +32,6 @@ import shop.mtcoding.sporting_server.core.jwt.MyJwtProvider;
 import shop.mtcoding.sporting_server.modules.file.repository.ProfileFileRepository;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
 import shop.mtcoding.sporting_server.modules.fileinfo.repository.FileInfoRepository;
-import shop.mtcoding.sporting_server.modules.player_favorite_sport.entity.PlayerFavoriteSport;
 import shop.mtcoding.sporting_server.modules.player_favorite_sport.repository.PlayerFavoriteSportRepository;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.player_info.repository.PlayerInfoRepository;
