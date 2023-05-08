@@ -127,10 +127,10 @@ public class CourtPaymentRepositoryTest {
 
         CourtPayment courtPayment = new CourtPayment();
 
-        courtPayment.setPlayerInfo(setUpPlayerInfo(PlayerInfoGender.남자, PlayerInfoAge.AGE_30, "부산시",
+        courtPayment.setPlayerInfo(setUpPlayerInfo2(PlayerInfoGender.남자, PlayerInfoAge.AGE_30, "부산시",
                 "000-1234-5678", LocalDateTime.now()));
         courtPayment.setCompanyInfo(
-                setUpCompanyInfo("1234-2567-789", "천안시 어딘가", "000-0000-0000", "박지연", LocalDateTime.now()));
+                setUpCompanyInfo2("1234-2567-446", "천안시 어딘가", "000-0000-0000", "박지연", LocalDateTime.now()));
 
         courtPayment.setPaymentType(paymentType);
         courtPayment.setPaymentAmount(paymentAmount);
@@ -157,11 +157,43 @@ public class CourtPaymentRepositoryTest {
         return this.entityManager.persist(playerInfo);
     }
 
+    private PlayerInfo setUpPlayerInfo2(PlayerInfoGender gender, PlayerInfoAge age, String address,
+            String tel, LocalDateTime updatedAt) {
+        PlayerInfo playerInfo = new PlayerInfo();
+
+        playerInfo.setUser(setUpUser("love", "love@naver.com", "1234", "role", LocalDateTime.now(), LocalDateTime.now(),
+                UserStatus.일반회원));
+
+        playerInfo.setGender(gender);
+        playerInfo.setAge(age);
+        playerInfo.setAddress(address);
+        playerInfo.setTel(tel);
+        playerInfo.setUpdatedAt(LocalDateTime.now());
+
+        return this.entityManager.persist(playerInfo);
+    }
+
     private CompanyInfo setUpCompanyInfo(String businessNumber, String businessAddress, String tel, String ceo,
             LocalDateTime updatedAt) {
         CompanyInfo companyInfo = new CompanyInfo();
 
         companyInfo.setUser(setUpUser2("NAVER", "naver@naver.com", "1234", "role", LocalDateTime.now(),
+                LocalDateTime.now(), UserStatus.기업회원));
+
+        companyInfo.setBusinessNumber(businessNumber);
+        companyInfo.setBusinessAddress(businessAddress);
+        companyInfo.setTel(tel);
+        companyInfo.setCeo(ceo);
+        companyInfo.setUpdatedAt(LocalDateTime.now());
+
+        return this.entityManager.persist(companyInfo);
+    }
+
+    private CompanyInfo setUpCompanyInfo2(String businessNumber, String businessAddress, String tel, String ceo,
+            LocalDateTime updatedAt) {
+        CompanyInfo companyInfo = new CompanyInfo();
+
+        companyInfo.setUser(setUpUser2("NAVER2", "naver2@naver.com", "1234", "role", LocalDateTime.now(),
                 LocalDateTime.now(), UserStatus.기업회원));
 
         companyInfo.setBusinessNumber(businessNumber);

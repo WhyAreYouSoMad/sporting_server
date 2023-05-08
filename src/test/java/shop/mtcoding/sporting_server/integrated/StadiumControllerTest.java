@@ -59,220 +59,220 @@ import shop.mtcoding.sporting_server.topic.stadium.dto.StadiumRequest;
 @SpringBootTest
 public class StadiumControllerTest extends AbstractControllerTest {
 
-    private DummyEntity dummy = new DummyEntity();
+        private DummyEntity dummy = new DummyEntity();
 
-    @Autowired
-    private MockMvc mvc;
-    @Autowired
-    private ObjectMapper om;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private CompanyInfoRepository companyInfoRepository;
-    @Autowired
-    private FileInfoRepository fileInfoRepository;
-    @Autowired
-    private ProfileFileRepository profileFileRepository;
-    @Autowired
-    private SportCategoryRepository sportCategoryRepository;
-    @Autowired
-    private PlayerInfoRepository playerInfoRepository;
-    @Autowired
-    private StadiumCourtRepository stadiumCourtRepository;
-    @Autowired
-    private StadiumRepository stadiumRepository;
-    @Autowired
-    private EntityManager em;
-    @MockBean
-    private MyUserDetails myUserDetails;
+        @Autowired
+        private MockMvc mvc;
+        @Autowired
+        private ObjectMapper om;
+        @Autowired
+        private UserRepository userRepository;
+        @Autowired
+        private CompanyInfoRepository companyInfoRepository;
+        @Autowired
+        private FileInfoRepository fileInfoRepository;
+        @Autowired
+        private ProfileFileRepository profileFileRepository;
+        @Autowired
+        private SportCategoryRepository sportCategoryRepository;
+        @Autowired
+        private PlayerInfoRepository playerInfoRepository;
+        @Autowired
+        private StadiumCourtRepository stadiumCourtRepository;
+        @Autowired
+        private StadiumRepository stadiumRepository;
+        @Autowired
+        private EntityManager em;
+        @MockBean
+        private MyUserDetails myUserDetails;
 
-    @BeforeEach
-    public void setUp() {
-        User companyUser = userRepository.save(dummy.newCompanyUser("cos", "cos"));
-        FileInfo fileInfo = fileInfoRepository.save(dummy.newFileInfo(FileInfoSource.기업프로필));
-        profileFileRepository.save(dummy.newProfileFile(fileInfo));
-        CompanyInfo companyInfo = companyInfoRepository.save(dummy.newCompanyInfo(companyUser, fileInfo));
+        @BeforeEach
+        public void setUp() {
+                User companyUser = userRepository.save(dummy.newCompanyUser("cos", "cos"));
+                FileInfo fileInfo = fileInfoRepository.save(dummy.newFileInfo(FileInfoSource.기업프로필));
+                profileFileRepository.save(dummy.newProfileFile(fileInfo));
+                CompanyInfo companyInfo = companyInfoRepository.save(dummy.newCompanyInfo(companyUser, fileInfo));
 
-        User playerUser = userRepository.save(dummy.newPlayerUser("ssar", "ssar"));
-        FileInfo fileInfoPlayer = fileInfoRepository.save(dummy.newFileInfo(FileInfoSource.플레이어프로필));
-        playerInfoRepository.save(dummy.newPlayerInfo(playerUser, fileInfoPlayer));
+                User playerUser = userRepository.save(dummy.newPlayerUser("ssar", "ssar"));
+                FileInfo fileInfoPlayer = fileInfoRepository.save(dummy.newFileInfo(FileInfoSource.플레이어프로필));
+                playerInfoRepository.save(dummy.newPlayerInfo(playerUser, fileInfoPlayer));
 
-        FileInfo fileInfoCourt = fileInfoRepository.save(new FileInfo(2L, FileInfoSource.코트사진));
-        profileFileRepository.save(dummy.newProfileFileCourt(fileInfoCourt));
+                FileInfo fileInfoCourt = fileInfoRepository.save(new FileInfo(2L, FileInfoSource.코트사진));
+                profileFileRepository.save(dummy.newProfileFileCourt(fileInfoCourt));
 
-        FileInfo fileInfoStadium = fileInfoRepository.save(new FileInfo(3L, FileInfoSource.경기장사진));
-        profileFileRepository.save(dummy.newProfileFileStadium(fileInfoStadium));
+                FileInfo fileInfoStadium = fileInfoRepository.save(new FileInfo(3L, FileInfoSource.경기장사진));
+                profileFileRepository.save(dummy.newProfileFileStadium(fileInfoStadium));
 
-        SportCategory sportCategory1 = sportCategoryRepository
-                .save(SportCategory.builder().sport("볼링").createdAt(LocalDateTime.now()).build());
-        SportCategory sportCategory2 = sportCategoryRepository
-                .save(SportCategory.builder().sport("야구").createdAt(LocalDateTime.now()).build());
+                SportCategory sportCategory1 = sportCategoryRepository
+                                .save(SportCategory.builder().sport("볼링").createdAt(LocalDateTime.now()).build());
 
-        Stadium stadium1 = stadiumRepository.save(dummy.newStadium(companyInfo, sportCategory1, fileInfoStadium));
+                Stadium stadium1 = stadiumRepository
+                                .save(dummy.newStadium(companyInfo, sportCategory1, fileInfoStadium));
 
-        stadiumCourtRepository.save(dummy.newStadiumCourt(stadium1, fileInfoCourt));
-        stadiumCourtRepository.save(dummy.newStadiumCourt(stadium1, fileInfoCourt));
+                stadiumCourtRepository.save(dummy.newStadiumCourt(stadium1, fileInfoCourt));
+                stadiumCourtRepository.save(dummy.newStadiumCourt(stadium1, fileInfoCourt));
 
-        em.clear();
-    }
+                em.clear();
+        }
 
-    @DisplayName("경기장 등록")
-    @WithMockUser(username = "cos", roles = { "Company" })
-    @Test
-    public void stadium_save_test() throws Exception {
-        // given
-        String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
-        MyUserDetails myUserDetails = new MyUserDetails(User.builder().id(1L).nickname("cos").role("COMPANY").build());
-        StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO = new StadiumRequest.StadiumRegistrationInDTO();
+        @DisplayName("경기장 등록")
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @Test
+        public void stadium_save_test() throws Exception {
+                // given
+                String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
+                MyUserDetails myUserDetails = new MyUserDetails(
+                                User.builder().id(1L).nickname("cos").role("COMPANY").build());
+                StadiumRequest.StadiumRegistrationInDTO stadiumRegistrationInDTO = new StadiumRequest.StadiumRegistrationInDTO();
 
-        stadiumRegistrationInDTO.setName("볼링 경기장");
-        stadiumRegistrationInDTO.setAddress("부산 진구");
-        stadiumRegistrationInDTO.setCategory(SportCategoryType.볼링.toString());
-        String requestBody = om.writeValueAsString(stadiumRegistrationInDTO);
+                stadiumRegistrationInDTO.setName("볼링 경기장");
+                stadiumRegistrationInDTO.setAddress("부산 진구");
+                stadiumRegistrationInDTO.setCategory(SportCategoryType.볼링.toString());
+                String requestBody = om.writeValueAsString(stadiumRegistrationInDTO);
 
-        // when
-        ResultActions resultActions = mvc
-                .perform(post("/api/company/stadiums").content(requestBody).contentType(MediaType.APPLICATION_JSON)
-                        .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+                // when
+                ResultActions resultActions = mvc
+                                .perform(post("/api/company/stadiums").content(requestBody)
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        // then
-        resultActions.andExpect(status().isOk());
-        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+                // then
+                resultActions.andExpect(status().isOk());
+                resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+        }
 
-    @DisplayName("경기장 리스트 조회(플레이어)")
-    @WithMockUser(username = "ssar", roles = { "Player" })
-    @Test
-    public void stadium_findAll_test() throws Exception {
-        // given
-        String jwt = MyJwtProvider.create(User.builder().id(2L).nickname("ssar").role("PLAYER").build());
+        @DisplayName("경기장 리스트 조회(플레이어)")
+        @WithMockUser(username = "ssar", roles = { "Player" })
+        @Test
+        public void stadium_findAll_test() throws Exception {
+                // given
+                String jwt = MyJwtProvider.create(User.builder().id(2L).nickname("ssar").role("PLAYER").build());
 
-        String keyword = "볼링";
+                String keyword = "볼링";
 
-        // when
-        ResultActions resultActions = mvc
-                .perform(get("/api/user/stadiums")
-                        .param("keyword", keyword)
-                        .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+                // when
+                ResultActions resultActions = mvc
+                                .perform(get("/api/user/stadiums")
+                                                .param("keyword", keyword)
+                                                .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        // then
-        resultActions.andExpect(status().isOk());
-        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+                // then
+                resultActions.andExpect(status().isOk());
+                resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+        }
 
-    @DisplayName("경기장 리스트 조회(기업)")
-    @WithMockUser(username = "cos", roles = { "Company" })
-    @Test
-    public void stadium_company_findAll_test() throws Exception {
-        // given
-        String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
+        @DisplayName("경기장 리스트 조회(기업)")
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @Test
+        public void stadium_company_findAll_test() throws Exception {
+                // given
+                String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
 
-        MyUserDetails myUserDetails = new MyUserDetails(User.builder().id(1L).nickname("cos").role("COMPANY").build());
+                MyUserDetails myUserDetails = new MyUserDetails(
+                                User.builder().id(1L).nickname("cos").role("COMPANY").build());
 
-        String keyword = "야구";
+                String keyword = "야구";
 
-        // when
-        ResultActions resultActions = mvc
-                .perform(get("/api/company/stadiums")
-                        .param("keyword", keyword)
-                        .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+                // when
+                ResultActions resultActions = mvc
+                                .perform(get("/api/company/stadiums")
+                                                .param("keyword", keyword)
+                                                .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        // then
-        resultActions.andExpect(status().isOk());
-        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+                // then
+                resultActions.andExpect(status().isOk());
+                resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+        }
 
-    @DisplayName("경기장 수정 FORM")
-    @WithMockUser(username = "cos", roles = { "Company" })
-    @Test
-    public void stadium_updateForm_test() throws Exception {
-        // given
-        String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
+        @DisplayName("경기장 수정 FORM")
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @Test
+        public void stadium_updateForm_test() throws Exception {
+                // given
+                String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
 
-        Long stadiumId = 1L;
+                Long stadiumId = 1L;
 
-        // when
-        ResultActions resultActions = mvc
-                .perform(get("/api/company/stadium/" + stadiumId)
-                        .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
+                // when
+                ResultActions resultActions = mvc
+                                .perform(get("/api/company/stadium/" + stadiumId)
+                                                .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
 
-        // then
-        resultActions.andExpect(status().isOk());
-        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+                // then
+                resultActions.andExpect(status().isOk());
+                resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+        }
 
-    @DisplayName("경기장 디테일")
-    @WithMockUser(username = "ssar", roles = { "Player" })
-    @Test
-    public void stadium_detail_test() throws Exception {
-        // given
-        String jwt = MyJwtProvider.create(User.builder().id(2L).nickname("ssar").role("PLAYER").build());
+        @DisplayName("경기장 디테일")
+        @WithMockUser(username = "ssar", roles = { "Player" })
+        @Test
+        public void stadium_detail_test() throws Exception {
+                // given
+                String jwt = MyJwtProvider.create(User.builder().id(2L).nickname("ssar").role("PLAYER").build());
 
-        Long stadiumId = 1L;
+                Long stadiumId = 1L;
 
-        // when
-        ResultActions resultActions = mvc
-                .perform(get("/api/user/stadium/" + stadiumId)
-                        .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
+                // when
+                ResultActions resultActions = mvc
+                                .perform(get("/api/user/stadium/" + stadiumId)
+                                                .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        // then
-        resultActions.andExpect(status().isOk());
-        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+                // then
+                resultActions.andExpect(status().isOk());
+                resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+        }
 
-    @DisplayName("경기장 수정")
-    @WithMockUser(username = "cos", roles = { "Company" })
-    @Test
-    public void stadium_update_test() throws Exception {
-        // given
-        String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
+        @DisplayName("경기장 수정")
+        @WithMockUser(username = "cos", roles = { "Company" })
+        @Test
+        public void stadium_update_test() throws Exception {
+                // given
+                String jwt = MyJwtProvider.create(User.builder().id(1L).nickname("cos").role("COMPANY").build());
 
-        MyUserDetails myUserDetails = new MyUserDetails(User.builder().id(1L).nickname("cos").role("COMPANY").build());
+                StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO courtFileDTO1 = new StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO();
+                courtFileDTO1.setId(2L);
+                courtFileDTO1.setFileBase64("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaUAAAGy");
 
-        StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO courtFileDTO1 = new StadiumRequest.StadiumUpdateInDTO.CourtDTO.CourtFileDTO();
-        courtFileDTO1.setId(2L);
-        courtFileDTO1.setFileBase64("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaUAAAGy");
+                List<StadiumRequest.StadiumUpdateInDTO.CourtDTO> courtDTO = new ArrayList<>();
+                courtDTO.add(new StadiumRequest.StadiumUpdateInDTO.CourtDTO(1L, "COURT1", "COURT1 CONTENT", 5, 20000,
+                                courtFileDTO1));
 
-        List<StadiumRequest.StadiumUpdateInDTO.CourtDTO> courtDTO = new ArrayList<>();
-        courtDTO.add(new StadiumRequest.StadiumUpdateInDTO.CourtDTO(1L, "COURT1", "COURT1 CONTENT", 5, 20000,
-                courtFileDTO1));
+                StadiumRequest.StadiumUpdateInDTO.StadiumFileDTO stadiumFileDTO = new StadiumRequest.StadiumUpdateInDTO.StadiumFileDTO();
+                stadiumFileDTO.setId(3L);
+                stadiumFileDTO.setFileBase64("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA");
 
-        StadiumRequest.StadiumUpdateInDTO.StadiumFileDTO stadiumFileDTO = new StadiumRequest.StadiumUpdateInDTO.StadiumFileDTO();
-        stadiumFileDTO.setId(3L);
-        stadiumFileDTO.setFileBase64("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA");
+                StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumRequest.StadiumUpdateInDTO();
+                stadiumUpdateInDTO.setId(1L);
+                stadiumUpdateInDTO.setAddress("부산 진구");
+                stadiumUpdateInDTO.setStatus(StadiumStatus.운영중.toString());
+                stadiumUpdateInDTO.setStartTime("12:00");
+                stadiumUpdateInDTO.setEndTime("18:30");
+                stadiumUpdateInDTO.setSport("볼링");
+                stadiumUpdateInDTO.setSourceFile(stadiumFileDTO);
+                stadiumUpdateInDTO.setCourts(courtDTO);
 
-        StadiumRequest.StadiumUpdateInDTO stadiumUpdateInDTO = new StadiumRequest.StadiumUpdateInDTO();
-        stadiumUpdateInDTO.setId(1L);
-        stadiumUpdateInDTO.setAddress("부산 진구");
-        stadiumUpdateInDTO.setStatus(StadiumStatus.운영중.toString());
-        stadiumUpdateInDTO.setStartTime("12:00");
-        stadiumUpdateInDTO.setEndTime("18:30");
-        stadiumUpdateInDTO.setSport("야구");
-        stadiumUpdateInDTO.setSourceFile(stadiumFileDTO);
-        stadiumUpdateInDTO.setCourts(courtDTO);
+                String requestBody = om.writeValueAsString(stadiumUpdateInDTO);
+                // when
+                ResultActions resultActions = mvc
+                                .perform(put("/api/company/stadiums")
+                                                .content(requestBody)
+                                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                                .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
 
-        String requestBody = om.writeValueAsString(stadiumUpdateInDTO);
-        // when
-        ResultActions resultActions = mvc
-                .perform(put("/api/company/stadiums")
-                        .content(requestBody)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .header(MyJwtProvider.HEADER, MyJwtProvider.TOKEN_PREFIX + jwt));
+                String responseBody = resultActions.andReturn().getResponse().getContentAsString();
+                System.out.println("테스트 : " + responseBody);
 
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println("테스트 : " + responseBody);
-
-        // then
-        resultActions.andExpect(status().isOk());
-        resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
-    }
+                // then
+                resultActions.andExpect(status().isOk());
+                resultActions.andDo(MockMvcResultHandlers.print()).andDo(document);
+        }
 
 }

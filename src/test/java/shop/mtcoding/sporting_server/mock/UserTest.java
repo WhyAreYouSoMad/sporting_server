@@ -89,8 +89,9 @@ public class UserTest {
                 UserRequest.LoginDTO loginDTO = new UserRequest.LoginDTO(email, password);
 
                 ArrayList loginOutList = new ArrayList();
-                loginOutList.add("1");
+                loginOutList.add("token");
                 loginOutList.add(1L);
+                loginOutList.add("1");
                 loginOutList.add("2");
 
                 given(this.userService.로그인(loginDTO)).willReturn(loginOutList);

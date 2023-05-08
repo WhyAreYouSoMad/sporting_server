@@ -103,7 +103,7 @@ public class CompanyTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/company/updateform")
+                                get("/api/company/" + id)
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();

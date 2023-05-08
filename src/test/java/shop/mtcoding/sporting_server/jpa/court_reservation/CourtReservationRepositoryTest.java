@@ -80,7 +80,7 @@ public class CourtReservationRepositoryTest {
 
     @Test
     void insertAndDelete() {
-        CourtReservation courtReservation = setUp(null, LocalDate.now(), "13", LocalDateTime.now(),
+        CourtReservation courtReservation = setUp2(null, LocalDate.now(), "13", LocalDateTime.now(),
                 CourtReservationStatus.승낙);
         Optional<CourtReservation> findCourtReservation = this.courtReservationRepository
                 .findById(courtReservation.getId());
@@ -107,6 +107,22 @@ public class CourtReservationRepositoryTest {
         CourtReservation courtReservation = new CourtReservation();
 
         courtReservation.setUser(setUpUser("ssar", "ssar@naver.com", "1234", "role", LocalDateTime.now(),
+                LocalDateTime.now(), UserStatus.일반회원));
+
+        courtReservation.setCourtPayment(stadiumPayment);
+        courtReservation.setReservationDate(reservationDate);
+        courtReservation.setReservationTime(reservationTime);
+        courtReservation.setCreatedAt(createdAt);
+        courtReservation.setStatus(status);
+        return this.entityManager.persist(courtReservation);
+    }
+
+    private CourtReservation setUp2(CourtPayment stadiumPayment, LocalDate reservationDate,
+            String reservationTime, LocalDateTime createdAt, CourtReservationStatus status) {
+
+        CourtReservation courtReservation = new CourtReservation();
+
+        courtReservation.setUser(setUpUser("love", "love@naver.com", "1234", "role", LocalDateTime.now(),
                 LocalDateTime.now(), UserStatus.일반회원));
 
         courtReservation.setCourtPayment(stadiumPayment);
