@@ -171,7 +171,7 @@ public class StadiumCompanyTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/company")
+                                get("/api/company/stadiums?keyword=배구")
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();

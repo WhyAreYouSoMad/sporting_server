@@ -118,7 +118,7 @@ public class PlayerMockTest {
 
                 // When
                 ResultActions resultActions = this.mvc.perform(
-                                get("/api/user/updateform")
+                                get("/api/user/" + userId)
                                                 .with(csrf()));
 
                 String responseBody = resultActions.andReturn().getResponse().getContentAsString();
