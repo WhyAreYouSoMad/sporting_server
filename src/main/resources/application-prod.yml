@@ -1,0 +1,95 @@
+cloud:
+  aws:
+    region:
+      static: ${static}
+      auto: false
+    s3:
+      bucket: ${bucket}
+    credentials:
+      access-key: ${access_key}
+      secret-key: ${secret_key}
+    stack:
+      auto: false
+
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  port: 8080
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp 
+  datasource:
+    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${rds.username}
+    password: ${rds.password}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: aozp83@gmail.com
+    password: zbedqwnlrbxmollv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true  
+
+    
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+    
+  output:
+    ansi:
+      enabled: always
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      dialect: org.hibernate.dialect.H2Dialect # DB 방언설정 (H2)
+    show-sql: true    
+    properties:
+      hibernate:
+        hbm2ddl:
+          import_files: classpath:db/data.sql # DB 파일 명시적으로 선택
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor # 멀티 라인 입력 가능하도록
+        connection: 
+          charSet: UTF-8 # 인코딩 설정
+        '[format_sql]': true
+        dialect: org.hibernate.dialect.H2Dialect
+        naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        default_batch_fetch_size: 1000
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+
+meta:
+  bucket: ${bucket}
+  access-key: ${access_key}
+  secret-key: ${secret_key}
+  staticval: ${static}
+
+sentry:
+  dsn: https://4b1049f3028a4f97a7a35d21e41289a7@o4505106640863232.ingest.sentry.io/4505106660065280
+  # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+  # We recommend adjusting this value in production.
+  #debug: true # 디버그 모드
+  enable-tracing: true
+  send-default-pii: true # 사용자 정보 기록
+  environment: development # 개발환경 / environment=production
+  logging: # 범위
+    minimum-event-level: "WARN"
+    minimum-breadcrumb-level: "INFO"  
+  sample-rate: 1 # 샘플링 비율 1=100% 다 보냄
+  #traces-sample-rate # 트랜잭션 비율 설정
