@@ -461,6 +461,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_company_정보수정">Company 정보수정</a></li>
 </ul>
 </li>
+<li><a href="#_player">Player</a>
+<ul class="sectlevel2">
+<li><a href="#_player_회원가입">Player 회원가입</a></li>
+<li><a href="#_player_정보수정_페이지">Player 정보수정 페이지</a></li>
+<li><a href="#_player_정보수정">Player 정보수정</a></li>
+</ul>
+</li>
 <li><a href="#_결제">결제</a>
 <ul class="sectlevel2">
 <li><a href="#_결제하기">결제하기</a></li>
@@ -469,6 +476,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_예약">예약</a>
 <ul class="sectlevel2">
 <li><a href="#_예약하기">예약하기</a></li>
+</ul>
+</li>
+<li><a href="#_경기장_코트">경기장 코트</a>
+<ul class="sectlevel2">
+<li><a href="#_코트_등록">코트 등록</a></li>
 </ul>
 </li>
 </ul>
@@ -504,7 +516,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU1fQ.1qoagIUweNX5Ggw3SVzdZASbqOfkqaVjyiPBL40u1i9sk5uaOaBXcE27l1z-hJuWDdcQNBqQse5wi4Q43eTL2A
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE1fQ.jCHSTqn0_Z_B_e-rebaAwQo0-tfuK3DSnr_mZQ64e2TL24cwRPZA_ADlpqdPuUWdRVNDIuT6jtk0Y6CWYhgjMQ
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -565,7 +577,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzMjY3NjU1fQ.bAgBNrnSjpu9-JA4zf2K_8ct5PUfJxO3SfksqUn07FdPr8navIJhf2kBwTEasTIM3HvkKs7vRLhhdCXvyR88Ow
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzNDQyNzE2fQ.gvhZaZVJN8xvVnneDXUrXBzU4PLfNuxnbT4HyJcajC45d-ECsR1jmjBDvP6qOgr3dJRKKW_M64m_Sn-nkBBoDQ
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -810,7 +822,7 @@ Content-Length: 245
     "email" : "ssar2@nate.com",
     "role" : "COMPANY",
     "status" : "인증대기",
-    "createdAt" : "2023-05-05 14:20:53"
+    "createdAt" : "2023-05-07 14:58:29"
   }
 }</code></pre>
 </div>
@@ -839,7 +851,7 @@ Content-Length: 245
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/company/1 HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU0fQ.oyIjLmPPtJGclU_RWddnjzu6JXdALjAc6rhddIz_4TOMwnOpdgcnQnQyPpyprRUAXXCncfZCHjNmVmpGP86WTw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzA5fQ.C9M5LJD7udY6Wg6DsHAPLHOR0lTuovIuRj6G60GrzkDx43GLET4xyir_jmLQBx9yAiEGATU2RCFHS955WIx7yA
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -867,7 +879,7 @@ Content-Length: 501
     "id" : 1,
     "nickname" : "cos",
     "email" : "cos@nate.com",
-    "password" : "$2a$10$i8LVbThzT/f1jSDXKWDi9OOLJQePx0hqjdCx7Oho/W08qyO5WBrd.",
+    "password" : "$2a$10$SFz6NZ/KXir.XES2FPrzXe6pVp8Cv/tdTJpi00H7KanjMcQ7ED7B.",
     "companyInfo" : {
       "id" : 1,
       "tel" : null,
@@ -887,7 +899,7 @@ Content-Length: 501
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/1' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU0fQ.oyIjLmPPtJGclU_RWddnjzu6JXdALjAc6rhddIz_4TOMwnOpdgcnQnQyPpyprRUAXXCncfZCHjNmVmpGP86WTw'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzA5fQ.C9M5LJD7udY6Wg6DsHAPLHOR0lTuovIuRj6G60GrzkDx43GLET4xyir_jmLQBx9yAiEGATU2RCFHS955WIx7yA'</code></pre>
 </div>
 </div>
 </div>
@@ -901,7 +913,7 @@ Content-Length: 501
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/company/update HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjQ4fQ.kTpDtNjPo-Lc6Who-HgjzYoWfe0BdF7Vi5SmIx0Nja0oZOTUoq0OWi7U3Uw3ftTboUKiG0C9re9hlQ-kf1zDGw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzA0fQ.dN5zMdkKggmBotYtxzlyXk6vXdoeE_e-_eEC_QWk-MJpdh5lU_20erJdCE3YK1eHILiYAJsW4yegpWJ2zbcltQ
 Content-Length: 283
 Host: localhost:8080
 
@@ -941,13 +953,13 @@ Content-Length: 483
   "data" : {
     "id" : 1,
     "nickname" : "cos update",
-    "password" : "$2a$10$.YAGqvERxhGZxARRNrphmOWeNNGiEH7.XSs7bqANvgSVSXAl0cgsC",
+    "password" : "$2a$10$BIGvcl3UYYlZqkWHk0M7HeiRLY27A/bmbSwzs41V3mn23olO.kRIC",
     "tel" : "010-1234-5678",
     "businessAddress" : "부산 남구",
     "businessNumber" : "1234-45-789542",
     "sourceFile" : {
       "id" : 1,
-      "fileBase64" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/220c75e4-ddca-4ecb-b2e4-099cbbbfc438.jpg"
+      "fileBase64" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/a6ff9f24-6eb4-4702-8f1b-7bfa7483e967.jpg"
     }
   }
 }</code></pre>
@@ -959,7 +971,7 @@ Content-Length: 483
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/update' -i -X PUT \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjQ4fQ.kTpDtNjPo-Lc6Who-HgjzYoWfe0BdF7Vi5SmIx0Nja0oZOTUoq0OWi7U3Uw3ftTboUKiG0C9re9hlQ-kf1zDGw' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzA0fQ.dN5zMdkKggmBotYtxzlyXk6vXdoeE_e-_eEC_QWk-MJpdh5lU_20erJdCE3YK1eHILiYAJsW4yegpWJ2zbcltQ' \
     -d '{
   "nickname" : "cos update",
   "password" : "1234",
@@ -979,17 +991,252 @@ Content-Length: 483
 </div>
 </div>
 <div class="sect1">
+<h2 id="_player">Player</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_player_회원가입">Player 회원가입</h3>
+<div class="sect4">
+<h5 id="_request_example_9">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/joinPlayer HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 76
+Host: localhost:8080
+
+{
+  "email" : "ssar1@nate.com",
+  "password" : "1234",
+  "role" : null
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_9">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 244
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : {
+    "id" : 2,
+    "nickname" : "ssar1@nate.com",
+    "email" : "ssar1@nate.com",
+    "role" : "PLAYER",
+    "status" : "일반회원",
+    "createdAt" : "2023-05-07 14:58:35"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_curl_9">Curl</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/joinPlayer' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{
+  "email" : "ssar1@nate.com",
+  "password" : "1234",
+  "role" : null
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_player_정보수정_페이지">Player 정보수정 페이지</h3>
+<div class="sect4">
+<h5 id="_request_example_10">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/1 HTTP/1.1
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE0fQ.Th_EQM6zzK_eUavGJ0JwzEu8JvLBnWsOlY0TzBF1U19o8T_pBBfq15b9_f_Xgky-JAC0hVwN70zjQ5dajBYXog
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_10">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 645
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : {
+    "id" : 1,
+    "nickname" : "ssar",
+    "email" : "ssar@nate.com",
+    "password" : "$2a$10$9WbR2.DKo1OEPoNZuw9O3ejqfhqxyW/ie4Co1VkHoeaZapxkI4Evu",
+    "playerInfo" : {
+      "id" : 1,
+      "tel" : null,
+      "gender" : null,
+      "age" : null,
+      "address" : null,
+      "sourceFile" : {
+        "id" : 1,
+        "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg"
+      }
+    },
+    "playerFavoriteSport" : [ {
+      "id" : 1,
+      "sport" : "축구"
+    }, {
+      "id" : 2,
+      "sport" : "축구"
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_curl_10">Curl</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/1' -i -X GET \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE0fQ.Th_EQM6zzK_eUavGJ0JwzEu8JvLBnWsOlY0TzBF1U19o8T_pBBfq15b9_f_Xgky-JAC0hVwN70zjQ5dajBYXog'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_player_정보수정">Player 정보수정</h3>
+<div class="sect4">
+<h5 id="_request_example_11">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user/update HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzEwfQ.wL52lXv4IubQvrtSeBA80J_MNKmNQej1aCo6yZvwLxrm5-7YLrOh4tVo5jTmINejSVa1kDhTtaKzYHBSbDkMaQ
+Content-Length: 332
+Host: localhost:8080
+
+{
+  "nickname" : "ssar1 update",
+  "password" : "12345",
+  "tel" : "010-111-1111",
+  "gender" : "여자",
+  "age" : "AGE_40",
+  "address" : "서울시1",
+  "sourceFile" : {
+    "id" : 2,
+    "fileBase64" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaUAAAGy"
+  },
+  "sportList" : [ {
+    "sport" : "축구"
+  } ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_11">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 552
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : {
+    "id" : 1,
+    "nickname" : "ssar1 update",
+    "password" : "$2a$10$0u0gpFgH4TZQD4SFNbQYe.ThfK/tzKQ8tqahD.mxaRzAI4.yzGjE6",
+    "tel" : "010-111-1111",
+    "gender" : "여자",
+    "age" : "AGE_40",
+    "address" : "서울시1",
+    "sourceFile" : {
+      "id" : 1,
+      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/a3c8a22a-0bc9-45ad-a6aa-29dea5c9feba.jpg"
+    },
+    "sportList" : [ {
+      "id" : 1,
+      "sport" : "축구"
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_curl_11">Curl</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/update' -i -X PUT \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzEwfQ.wL52lXv4IubQvrtSeBA80J_MNKmNQej1aCo6yZvwLxrm5-7YLrOh4tVo5jTmINejSVa1kDhTtaKzYHBSbDkMaQ' \
+    -d '{
+  "nickname" : "ssar1 update",
+  "password" : "12345",
+  "tel" : "010-111-1111",
+  "gender" : "여자",
+  "age" : "AGE_40",
+  "address" : "서울시1",
+  "sourceFile" : {
+    "id" : 2,
+    "fileBase64" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaUAAAGy"
+  },
+  "sportList" : [ {
+    "sport" : "축구"
+  } ]
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_결제">결제</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_결제하기">결제하기</h3>
 <div class="sect4">
-<h5 id="_request_example_9">Request Example</h5>
+<h5 id="_request_example_12">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user/payments?courtId=1&amp;resDate=20230506&amp;resTime=10 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU0fQ.1ltgDrKn03lMstb6DpeyC27VTE4Xd9ac2-i80pONR4NmAsu0y1psfVI9ojTQSq_N7C1qpAmbewq2pGE65F57vA
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzEwfQ.wL52lXv4IubQvrtSeBA80J_MNKmNQej1aCo6yZvwLxrm5-7YLrOh4tVo5jTmINejSVa1kDhTtaKzYHBSbDkMaQ
 Content-Length: 881
 Host: localhost:8080
 
@@ -1029,7 +1276,7 @@ Host: localhost:8080
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_9">Response Example</h5>
+<h5 id="_response_example_12">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
@@ -1052,12 +1299,12 @@ Content-Length: 61
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_9">Curl</h6>
+<h6 id="_curl_12">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/payments?courtId=1&amp;resDate=20230506&amp;resTime=10' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU0fQ.1ltgDrKn03lMstb6DpeyC27VTE4Xd9ac2-i80pONR4NmAsu0y1psfVI9ojTQSq_N7C1qpAmbewq2pGE65F57vA' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzEwfQ.wL52lXv4IubQvrtSeBA80J_MNKmNQej1aCo6yZvwLxrm5-7YLrOh4tVo5jTmINejSVa1kDhTtaKzYHBSbDkMaQ' \
     -d '{
   "event" : "done",
   "data" : {
@@ -1103,17 +1350,17 @@ Content-Length: 61
 <div class="sect2">
 <h3 id="_예약하기">예약하기</h3>
 <div class="sect4">
-<h5 id="_request_example_10">Request Example</h5>
+<h5 id="_request_example_13">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/reservations HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU1fQ.1qoagIUweNX5Ggw3SVzdZASbqOfkqaVjyiPBL40u1i9sk5uaOaBXcE27l1z-hJuWDdcQNBqQse5wi4Q43eTL2A
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE2fQ.9yaw7e8vktGCrow_IOSgDKOEmdzvnks7tx6xSLsK9sC5Seh1sE_G5mSmuDCJhmYCl-SVySdyW1BAsK85TkpFgA
 Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_example_10">Response Example</h5>
+<h5 id="_response_example_13">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
@@ -1134,28 +1381,110 @@ Content-Length: 503
   "data" : [ {
     "id" : 1,
     "name" : "코트제목(통합테스트)",
-    "reservationDateTime" : "2023-05-05T11:00:00",
+    "reservationDateTime" : "2023-05-07T11:00:00",
     "courtPrice" : 40000
   }, {
     "id" : 2,
     "name" : "코트제목(통합테스트)",
-    "reservationDateTime" : "2023-05-05T12:00:00",
+    "reservationDateTime" : "2023-05-07T12:00:00",
     "courtPrice" : 40000
   }, {
     "id" : 3,
     "name" : "코트제목(통합테스트)",
-    "reservationDateTime" : "2023-05-05T13:00:00",
+    "reservationDateTime" : "2023-05-07T13:00:00",
     "courtPrice" : 40000
   } ]
 }</code></pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_curl_10">Curl</h6>
+<h6 id="_curl_13">Curl</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/reservations' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzMjY3NjU1fQ.1qoagIUweNX5Ggw3SVzdZASbqOfkqaVjyiPBL40u1i9sk5uaOaBXcE27l1z-hJuWDdcQNBqQse5wi4Q43eTL2A'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE2fQ.9yaw7e8vktGCrow_IOSgDKOEmdzvnks7tx6xSLsK9sC5Seh1sE_G5mSmuDCJhmYCl-SVySdyW1BAsK85TkpFgA'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_경기장_코트">경기장 코트</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_코트_등록">코트 등록</h3>
+<div class="sect4">
+<h5 id="_request_example_14">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/company/stadiums/1/court HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE1fQ.5MGDIaCGAzcUBesLf9s48_F5WpG0VA6ezjdOFfoUjV7cF1t0N4u5k3XenYCGLB7WS7rAi3xX74EcHufAmDNoiQ
+Content-Length: 140
+Host: localhost:8080
+
+{
+  "courtProfile" : "",
+  "title" : "테스트 제목",
+  "content" : "테스트 내용",
+  "capacity" : 10,
+  "courtPrice" : 30000
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_example_14">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 451
+
+{
+  "status" : 200,
+  "msg" : "성공",
+  "data" : {
+    "stadiumId" : 1,
+    "id" : 2,
+    "sourceFile" : {
+      "id" : 2,
+      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EC%B6%95%EA%B5%AC_Court.png"
+    },
+    "title" : "테스트 제목",
+    "content" : "테스트 내용",
+    "capacity" : 10,
+    "price" : 30000,
+    "createdAt" : "2023-05-07T14:58:35.1592126",
+    "status" : "등록대기"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_curl_14">Curl</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/stadiums/1/court' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNDQyNzE1fQ.5MGDIaCGAzcUBesLf9s48_F5WpG0VA6ezjdOFfoUjV7cF1t0N4u5k3XenYCGLB7WS7rAi3xX74EcHufAmDNoiQ' \
+    -d '{
+  "courtProfile" : "",
+  "title" : "테스트 제목",
+  "content" : "테스트 내용",
+  "capacity" : 10,
+  "courtPrice" : 30000
+}'</code></pre>
 </div>
 </div>
 </div>
@@ -1167,7 +1496,7 @@ Content-Length: 503
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-05 14:10:34 +0900
+Last updated 2023-05-07 14:55:21 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

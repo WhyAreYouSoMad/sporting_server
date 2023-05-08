@@ -6,6 +6,7 @@ endif::[]
 :company: company-controller-test
 :payment: payment-controller-test
 :reservation: user-res-controller-test
+
 :stadium: stadium-controller-test
 
 = REST API
@@ -95,6 +96,37 @@ include::{snippets}/{company}/update_test/http-response.adoc[]
 ====== Curl
 include::{snippets}/{company}/update_test/curl-request.adoc[]
 
+== Player
+=== Player 회원가입
+===== Request Example
+include::{snippets}/{player}/join_player_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{player}/join_player_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{player}/join_player_test/curl-request.adoc[]
+
+=== Player 정보수정 페이지
+===== Request Example
+include::{snippets}/{player}/player_update_form_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{player}/player_update_form_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{player}/player_update_form_test/curl-request.adoc[]
+
+=== Player 정보수정 
+===== Request Example
+include::{snippets}/{player}/player_update_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{player}/player_update_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{player}/player_update_test/curl-request.adoc[]
+
 == 결제
 === 결제하기
 ===== Request Example
@@ -167,3 +199,14 @@ include::{snippets}/{stadium}/stadium_detail_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{stadium}/stadium_detail_test/curl-request.adoc[]
+=======
+== 경기장 코트
+=== 코트 등록
+===== Request Example
+include::{snippets}/{court}/stadium_court_save_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{court}/stadium_court_save_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{court}/stadium_court_save_test/curl-request.adoc[]

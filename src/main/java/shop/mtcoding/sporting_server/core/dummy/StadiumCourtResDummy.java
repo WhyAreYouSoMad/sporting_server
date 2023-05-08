@@ -1,29 +1,36 @@
 package shop.mtcoding.sporting_server.core.dummy;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import shop.mtcoding.sporting_server.core.enums.field.etc.FileInfoSource;
+import shop.mtcoding.sporting_server.core.enums.field.status.CourtPaymentStatus;
+import shop.mtcoding.sporting_server.core.enums.field.status.CourtReservationStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumCourtStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.StadiumStatus;
 import shop.mtcoding.sporting_server.core.enums.field.status.UserStatus;
 import shop.mtcoding.sporting_server.modules.company_info.entity.CompanyInfo;
+import shop.mtcoding.sporting_server.modules.court_payment.entity.CourtPayment;
+import shop.mtcoding.sporting_server.modules.court_reservation.entity.CourtReservation;
 import shop.mtcoding.sporting_server.modules.file.entity.ProfileFile;
 import shop.mtcoding.sporting_server.modules.fileinfo.entity.FileInfo;
-import shop.mtcoding.sporting_server.modules.player_favorite_sport.entity.PlayerFavoriteSport;
 import shop.mtcoding.sporting_server.modules.player_info.entity.PlayerInfo;
 import shop.mtcoding.sporting_server.modules.sport_category.entity.SportCategory;
 import shop.mtcoding.sporting_server.modules.stadium.entity.Stadium;
 import shop.mtcoding.sporting_server.modules.stadium_court.entity.StadiumCourt;
 import shop.mtcoding.sporting_server.modules.user.entity.User;
 
-public class DummyEntity {
+public class StadiumCourtResDummy {
     // User
     public User newPlayerUser(String username, String nickname) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         return User.builder()
                 .nickname(nickname)
                 .email(username + "@nate.com")
@@ -35,6 +42,7 @@ public class DummyEntity {
 
     public User newCompanyUser(String username, String nickname) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         return User.builder()
                 .nickname(nickname)
                 .email(username + "@nate.com")
@@ -46,7 +54,6 @@ public class DummyEntity {
 
     // Info
     public CompanyInfo newCompanyInfo(User user, FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         return CompanyInfo.builder()
                 .user(user)
@@ -60,7 +67,6 @@ public class DummyEntity {
     }
 
     public PlayerInfo newPlayerInfo(User user, FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         return PlayerInfo.builder()
                 .user(user)
@@ -75,7 +81,6 @@ public class DummyEntity {
 
     // ProfileFile, FileInfo
     public ProfileFile newProfileFile(FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         return ProfileFile.builder()
                 .fileInfo(fileInfo)
@@ -84,34 +89,13 @@ public class DummyEntity {
                 .build();
     }
 
-    public ProfileFile newProfileFileCourt(FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        return ProfileFile.builder()
-                .fileInfo(fileInfo)
-                .fileName("Court/볼링_Court.png")
-                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png")
-                .build();
-    }
-
-    public ProfileFile newProfileFileStadium(FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        return ProfileFile.builder()
-                .fileInfo(fileInfo)
-                .fileName("Stadium/볼링_Stadium.png")
-                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png")
-                .build();
-    }
-
     public FileInfo newFileInfo(FileInfoSource fileInfoSource) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         return FileInfo.builder().type(fileInfoSource).build();
     }
 
     // Stadium, Court
-    public Stadium newStadium(CompanyInfo companyInfo, SportCategory sportCategory, FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public Stadium newStadium(CompanyInfo companyInfo, SportCategory sportCategory) {
 
         return Stadium
                 .builder()
@@ -122,13 +106,11 @@ public class DummyEntity {
                 .status(StadiumStatus.운영중)
                 .startTime(LocalTime.of(9, 0))
                 .endTime(LocalTime.of(18, 0))
-                .fileInfo(fileInfo)
                 .createdAt(LocalDateTime.now())
                 .build();
     }
 
     public StadiumCourt newStadiumCourt(Stadium stadium, FileInfo fileInfo) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         return StadiumCourt.builder()
                 .stadium(stadium)
@@ -144,7 +126,6 @@ public class DummyEntity {
 
     // SportCategory
     public SportCategory newSportCategory() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         return SportCategory
                 .builder()
@@ -153,13 +134,41 @@ public class DummyEntity {
                 .build();
     }
 
-    public PlayerFavoriteSport newFavoriteSport(SportCategory sportCategory, PlayerInfo playerInfo) {
-        return PlayerFavoriteSport
-                .builder()
-                .category(sportCategory)
-                .playerInfo(playerInfo)
-                .build();
+    // Payment, Reservation
+    public CourtPayment newCourtPayment(PlayerInfo playerInfo, CompanyInfo companyInfo, StadiumCourt stadiumCourt,
+            Integer price) throws JsonProcessingException {
 
+        ObjectMapper om = new ObjectMapper();
+
+        return CourtPayment
+                .builder()
+                .paymentType("card")
+                .originData(om.writeValueAsString("originData"))
+                .playerInfo(playerInfo)
+                .companyInfo(companyInfo)
+                .paymentAmount(price)
+                .stadiumCourt(stadiumCourt)
+                .receiptId("RC12345")
+                .status(CourtPaymentStatus.결제완료)
+                .purchasedAt(LocalDateTime.now())
+                .requestedAt(LocalDateTime.now())
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    public CourtReservation newCourtReservation(PlayerInfo playerInfo, String resTime, CourtPayment courtPayment,
+            StadiumCourt stadiumCourt) throws JsonProcessingException {
+
+        return CourtReservation
+                .builder()
+                .user(playerInfo.getUser())
+                .reservationDate(LocalDate.now())
+                .reservationTime(resTime)
+                .courtPayment(courtPayment)
+                .stadiumCourt(stadiumCourt)
+                .createdAt(LocalDateTime.now())
+                .status(CourtReservationStatus.승낙)
+                .build();
     }
 
 }
