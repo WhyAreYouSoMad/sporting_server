@@ -25,8 +25,8 @@ spring:
       prefix: /WEB-INF/view/
       suffix: .jsp 
   datasource:
-    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: org.mariadb.jdbc.Driver
     username: ${rds.username}
     password: ${rds.password}
   mail:
@@ -56,7 +56,7 @@ spring:
       ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      dialect: org.hibernate.dialect.H2Dialect # DB 방언설정 (H2)
+      dialect: org.hibernate.dialect.MySQL5Dialect # DB 방언설정 (H2)
     show-sql: true    
     properties:
       hibernate:

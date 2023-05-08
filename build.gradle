@@ -20,7 +20,8 @@ repositories {
 }
 
 dependencies {
-	runtimeOnly("com.mysql:mysql-connector-j")
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
 	// BootPay
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 	implementation 'io.github.bootpay:backend:+'
