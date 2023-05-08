@@ -74,6 +74,16 @@ public class DummyEntity {
     }
 
     // ProfileFile, FileInfo
+    public ProfileFile newPlayerProfileFile(FileInfo fileInfo) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        return ProfileFile.builder()
+                .fileInfo(fileInfo)
+                .fileName("PlayerProfile/player.jpg")
+                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/player.jpg")
+                .build();
+    }
+
     public ProfileFile newProfileFile(FileInfo fileInfo) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
