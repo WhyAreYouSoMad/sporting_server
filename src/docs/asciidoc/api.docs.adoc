@@ -6,7 +6,8 @@ endif::[]
 :company: company-controller-test
 :payment: payment-controller-test
 :reservation: user-res-controller-test
-
+:player: player-controller-test
+:court: stadium-court-controller-test 
 :stadium: stadium-controller-test
 
 = REST API
@@ -127,25 +128,6 @@ include::{snippets}/{player}/player_update_test/http-response.adoc[]
 ====== Curl
 include::{snippets}/{player}/player_update_test/curl-request.adoc[]
 
-== 결제
-=== 결제하기
-===== Request Example
-include::{snippets}/{payment}/payment_test/http-request.adoc[]
-
-===== Response Example
-include::{snippets}/{payment}/payment_test/http-response.adoc[]
-
-====== Curl
-include::{snippets}/{payment}/payment_test/curl-request.adoc[]
-
-== 예약
-=== 예약하기
-===== Request Example
-include::{snippets}/{reservation}/reservation_test/http-request.adoc[]
-
-===== Response Example
-include::{snippets}/{reservation}/reservation_test/http-response.adoc[]
-
 ====== Curl
 include::{snippets}/{reservation}/reservation_test/curl-request.adoc[]
 
@@ -199,7 +181,17 @@ include::{snippets}/{stadium}/stadium_detail_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{stadium}/stadium_detail_test/curl-request.adoc[]
-=======
+
+=== 경기장 수정
+===== Request Example
+include::{snippets}/{stadium}/stadium_update_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{stadium}/stadium_update_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{stadium}/stadium_update_test/curl-request.adoc[]
+
 == 경기장 코트
 === 코트 등록
 ===== Request Example
@@ -210,3 +202,22 @@ include::{snippets}/{court}/stadium_court_save_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{court}/stadium_court_save_test/curl-request.adoc[]
+
+== 결제
+=== 결제하기
+===== Request Example
+include::{snippets}/{payment}/payment_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{payment}/payment_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{payment}/payment_test/curl-request.adoc[]
+
+== 예약
+=== 예약하기
+===== Request Example
+include::{snippets}/{reservation}/reservation_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{reservation}/reservation_test/http-response.adoc[]
