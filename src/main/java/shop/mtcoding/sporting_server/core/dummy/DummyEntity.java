@@ -84,13 +84,33 @@ public class DummyEntity {
                 .build();
     }
 
+    public ProfileFile newProfileFileCourt(FileInfo fileInfo) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        return ProfileFile.builder()
+                .fileInfo(fileInfo)
+                .fileName("Court/볼링_Court.png")
+                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/%EB%B3%BC%EB%A7%81_Court.png")
+                .build();
+    }
+
+    public ProfileFile newProfileFileStadium(FileInfo fileInfo) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        return ProfileFile.builder()
+                .fileInfo(fileInfo)
+                .fileName("Stadium/볼링_Stadium.png")
+                .fileUrl("https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/%EB%B3%BC%EB%A7%81_Stadium.png")
+                .build();
+    }
+
     public FileInfo newFileInfo(FileInfoSource fileInfoSource) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return FileInfo.builder().type(fileInfoSource).build();
     }
 
     // Stadium, Court
-    public Stadium newStadium(CompanyInfo companyInfo, SportCategory sportCategory) {
+    public Stadium newStadium(CompanyInfo companyInfo, SportCategory sportCategory, FileInfo fileInfo) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         return Stadium
@@ -102,6 +122,7 @@ public class DummyEntity {
                 .status(StadiumStatus.운영중)
                 .startTime(LocalTime.of(9, 0))
                 .endTime(LocalTime.of(18, 0))
+                .fileInfo(fileInfo)
                 .createdAt(LocalDateTime.now())
                 .build();
     }

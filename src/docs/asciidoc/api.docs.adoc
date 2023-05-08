@@ -6,6 +6,7 @@ endif::[]
 :company: company-controller-test
 :payment: payment-controller-test
 :reservation: user-res-controller-test
+:stadium: stadium-controller-test
 
 = REST API
 :toc: left
@@ -115,3 +116,54 @@ include::{snippets}/{reservation}/reservation_test/http-response.adoc[]
 
 ====== Curl
 include::{snippets}/{reservation}/reservation_test/curl-request.adoc[]
+
+== 경기장
+=== 경기장 등록
+===== Request Example
+include::{snippets}/{stadium}/stadium_save_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{stadium}/stadium_save_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{stadium}/stadium_save_test/curl-request.adoc[]
+
+=== 경기장 리스트(플레이어)
+===== Request Example
+include::{snippets}/{stadium}/stadium_find-all_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{stadium}/stadium_find-all_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{stadium}/stadium_find-all_test/curl-request.adoc[]
+
+=== 경기장 리스트(기업)
+===== Request Example
+include::{snippets}/{stadium}/stadium_company_find-all_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{stadium}/stadium_company_find-all_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{stadium}/stadium_company_find-all_test/curl-request.adoc[]
+
+=== 경기장 수정 Form
+===== Request Example
+include::{snippets}/{stadium}/stadium_update_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{stadium}/stadium_update_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{stadium}/stadium_update_test/curl-request.adoc[]
+
+=== 경기장 상세페이지
+===== Request Example
+include::{snippets}/{stadium}/stadium_detail_test/http-request.adoc[]
+
+===== Response Example
+include::{snippets}/{stadium}/stadium_detail_test/http-response.adoc[]
+
+====== Curl
+include::{snippets}/{stadium}/stadium_detail_test/curl-request.adoc[]
