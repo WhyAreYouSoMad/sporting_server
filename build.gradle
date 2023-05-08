@@ -20,8 +20,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'mysql:mysql-connector-java:8.0.26'
-
+	runtimeOnly("com.mysql:mysql-connector-j")
 	// BootPay
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 	implementation 'io.github.bootpay:backend:+'
