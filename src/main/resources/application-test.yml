@@ -29,6 +29,11 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
+  # datasource:
+  #   url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
+  #   driver-class-name: org.mariadb.jdbc.Driver
+  #   username: ${rds.username}
+  #   password: ${rds.password}
   mail:
     host: smtp.gmail.com
     port: 587

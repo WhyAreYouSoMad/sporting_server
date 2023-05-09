@@ -24,11 +24,16 @@ spring:
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp 
+  # datasource:
+  #   url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
+  #   driver-class-name: org.mariadb.jdbc.Driver
+  #   username: ${rds.username}
+  #   password: ${rds.password}
   datasource:
-    url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: ${rds.username}
-    password: ${rds.password}
+    url : jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
   mail:
     host: smtp.gmail.com
     port: 587
