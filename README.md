@@ -18,9 +18,10 @@ TODO 유튜브 링크 들어갈 곳
 |SpringBoot|
 
 ### Front-End
-|<img src = "https://user-images.githubusercontent.com/118786401/235388856-a9918dac-e5ed-4cb3-86cc-6bf65ba00e85.png" width="150" height="150" />|
-|:--:|
-|Flutter|
+|<img src = "https://user-images.githubusercontent.com/118786401/235388856-a9918dac-e5ed-4cb3-86cc-6bf65ba00e85.png" width="150" height="150" />|<img src = "https://blog.kakaocdn.net/dn/cj5mLL/btrAJSMQt43/yfpTni01hZgrvKHmUdVjk1/img.png" width="150" height="150" />|<img src = "https://blog.kakaocdn.net/dn/eG2w1k/btrAD5NJ1dy/YwmkEkygLgmKevkYNgWiPk/img.png" width="150" height="150" />|<img src = "https://blog.kakaocdn.net/dn/dJtW2R/btrAIfhLlRL/cTJDpEZlRWh9m9QczAkGqK/img.png" width="150" height="150" />|<img src = "https://blog.kakaocdn.net/dn/biJtm8/btrAGfWUCEm/wLv8P9GuJP55PI0AWxOyS1/img.png" width="150" height="150" />|<img src = "https://blog.kakaocdn.net/dn/m3Phc/btrAGgBsKbm/FNYpkhIrVweUUEH4h5tsWK/img.png" width="150" height="150" />|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|Flutter|HTML5|CSS|jQuery|Bootstrap|JavaScript|
+
 ### 협업툴
 |<img src = "https://blog.kakaocdn.net/dn/eyjfrN/btrAKvXV0RA/zkyytdkZy7ESd85knYRDq1/img.png" width="150" height="150" />|<img src = "https://blog.kakaocdn.net/dn/mEK9t/btrAHjxWZX3/iEGILm2rWSrOKsfilmPUA1/img.png" width="150" height="150" />|<img src = "https://user-images.githubusercontent.com/118786401/235388614-9304e93a-be4c-43ee-a203-22ff64ddd1da.png" width="150" height="150" />|
 |:--:|:--:|:--:|
@@ -62,11 +63,14 @@ TODO 유튜브 링크 들어갈 곳
 - 이메일 회원가입 기능
 - 이메일 로그인 기능
 - 내 정보 수정 기능
+- OAuoth 로그인 기능
 
 |||
 | :------------: | :-------------: |
 | 회원가입 | 로그인 |
 | ![회원가입 (1)](https://user-images.githubusercontent.com/118786401/235410401-2dc8e4aa-6044-478d-9c48-f94326645663.gif) | ![로그인 (1)](https://user-images.githubusercontent.com/118786401/235410412-9ee2a68d-bba0-4b51-9fb0-f3dedb265d13.gif) |
+| 회원 정보 수정 | OAuth 로그인 |
+| ![일반회원-수정하기](https://user-images.githubusercontent.com/118786401/235585788-17d8ad9c-6fe1-4996-b010-aba88ec7ecfd.gif) | ![내카카오오오스](https://user-images.githubusercontent.com/118786401/236964986-294caa6d-97c8-4815-8527-ad45cd99ca51.gif) |
 
 ### 기업 회원 관련 기능
 - 이메일 회원가입 기능
@@ -77,29 +81,61 @@ TODO 유튜브 링크 들어갈 곳
 | :------------: | :-------------: |
 | 회원가입 | 로그인 |
 | ![회원가입 (1)](https://user-images.githubusercontent.com/118786401/235410401-2dc8e4aa-6044-478d-9c48-f94326645663.gif) | ![로그인 (1)](https://user-images.githubusercontent.com/118786401/235410412-9ee2a68d-bba0-4b51-9fb0-f3dedb265d13.gif) |
+| 회원 정보 수정 | OAuth 로그인 |
+| ![기업회원정보수정](https://user-images.githubusercontent.com/118786401/236104041-2efc5932-054a-4239-8b17-ad2ae2fd0da1.gif) | ![내카카오오오스](https://user-images.githubusercontent.com/118786401/236964986-294caa6d-97c8-4815-8527-ad45cd99ca51.gif) |
 
 ### 경기장 관련 기능
 - 경기장 목록보기
 - 경기장 상세보기
+- 경기장 예약 결제 기능
 - 경기장 등록하기 기능
 - 내가 등록한 경기장 목록보기
 - 내가 등록한 경기장 상세보기
 - 내가 등록한 경기장 수정하기
-- 결제 기능
+- 지도 API를 사용하여서 주변 경기장 찾기 기능
+- 지역별 경기장 찾기 기능
 
 |||
 | :------------: | :-------------: |
-| 경기장 목록보기 |  |
-| ![경기장-리스트](https://user-images.githubusercontent.com/118786401/235410807-0d7a5bbd-2841-409e-bd3e-bfeeb35ef20a.gif) |  |
+| 경기장 목록보기 | 경기장 상세보기 |
+| ![경기장-리스트](https://user-images.githubusercontent.com/118786401/235410807-0d7a5bbd-2841-409e-bd3e-bfeeb35ef20a.gif) | ![경기장-상세-페이지](https://user-images.githubusercontent.com/118786401/235840487-f0380533-5ea4-4696-9c86-d3240b4d95d2.gif) |
+| 경기장 예약 결제 | 경기장 등록하기 |
+| <img src = "https://user-images.githubusercontent.com/118786401/235840568-b767bd79-0192-44d4-8281-3f6e5e9e2207.gif" width="360" height="694" /> | ![경기장-등록하기](https://user-images.githubusercontent.com/118786401/236105517-da445b1f-afda-4151-9eba-3e15c9c497ca.gif) |
+| 내가 등록한 경기장 목록보기 | 주변 경기장 찾기 기능 |
+| ![내-경기장-리스트](https://user-images.githubusercontent.com/118786401/235842177-51ae4197-a42e-457e-a521-29089e38a52c.gif) | ![지도](https://user-images.githubusercontent.com/118786401/236969658-236cf7e0-2a05-4769-8955-cb3884456a46.gif) |
+| 지역별 경기장 | 
+| ![지역별-검색](https://user-images.githubusercontent.com/118786401/237002905-09e0ec29-1902-429a-8e0a-312090f4340e.gif) |
+### 관리자 관련 기능
+- 경기장 및 코트 등록 승인, 비활성화 등 상태 변경 기능
+- 기업/일반 회원 비활성화 등 상태 변경 기능
+- 회원 접속률 및 경기장 조회수 통계 기능
+- 등록된 회원에게 관리자가 이메일을 보내는 기능
+
+|||
+| :------------: | :-------------: |
+| 경기장 등록 승인 | 경기장 비활성화 |
+| ![경기장-등록-승인](https://user-images.githubusercontent.com/118786401/236108145-d67696c8-2b88-4515-9bcf-7d505183577a.gif) | ![경기장-삭제](https://user-images.githubusercontent.com/118786401/236108156-8d625ffa-ceb5-4cf5-97b8-d7d7f3a56351.gif) |
+| 비활성화된 경기장 상태 변경 | 기업 회원 가입 승인 |
+| ![비활성경기장상태변경](https://user-images.githubusercontent.com/118786401/236108344-c537462c-41f2-47c3-ab23-3fcde0264ade.gif) | ![KakaoTalk_20230504_125252112](https://user-images.githubusercontent.com/118786401/236116149-cf70a15c-2591-475c-a489-b0a9d58a93ef.gif) |
+| 기업 회원 삭제 | 메일링 기능 |
+| ![KakaoTalk_20230504_125252112_01](https://user-images.githubusercontent.com/118786401/236116199-63566051-04d9-45b0-9a92-70e77cc1217d.gif) | ![KakaoTalk_20230504_140206107](https://user-images.githubusercontent.com/118786401/236116970-d4045d3b-4952-4cda-a021-a7ccf9673cf0.gif) |
+| 통계 |
+| ![KakaoTalk_20230504_125252112_02](https://user-images.githubusercontent.com/118786401/236117333-a5411b7e-62a5-40de-a446-89a9e66436e3.gif) |
 
 ### 기타 기능
 - 이달의 선수 보기 기능
 - 이달의 경기장 보기 기능
+- 회사 소개 기능
+- 공지 사항 기능
 
 |||
 | :------------: | :-------------: |
 | 이달의 선수 보기 기능 | 이달의 경기장 보기 기능 |
 | ![명예의선수](https://user-images.githubusercontent.com/118786401/235411237-b8f0940c-3990-4f4f-9cb5-050116f2930f.gif) | ![이달의구장](https://user-images.githubusercontent.com/118786401/235411254-7c8348f2-a02e-4fd0-8c73-4d7176604ec1.gif) |
+| 회사 소개 | 이달의 플레이 |
+| ![회사소개](https://user-images.githubusercontent.com/118786401/236106104-3de05c82-4c84-4754-b382-98037757bda5.gif) | ![어플_유튜브](https://user-images.githubusercontent.com/118786401/236968469-aa2b14ba-812f-4606-a564-39db9c9efb66.gif) |
+| 공지 사항 |
+| ![공지사항](https://user-images.githubusercontent.com/118786401/237002807-6b321e3c-3a18-4388-9e34-af048c93839e.gif) |
 
 ## 테이블 설계
 ![DB설계](https://user-images.githubusercontent.com/118786401/235402286-40c1a4a8-8624-4600-b9d9-5d12499ea795.png)
