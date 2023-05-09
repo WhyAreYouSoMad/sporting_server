@@ -526,7 +526,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTk5fQ.EJmPt9jjNkW0ymLrGPj_Uq9hmtOIBY0tQKywlD7JDcXxfZdZ4nmU7nnoldGIs6YsBoazAUGjcahoOcRtQcr3HA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTkzfQ.MryP6zRujl2_1zOMBVhjKfMUKwPp7X9kbeZZ4G5Da0bgI7s8dbCmn-F_yp-yehMjS74omBwLQO7qQwoIL-Nzwg
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -587,7 +587,7 @@ Host: localhost:8080
 Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzNTQzNjAwfQ.4tTQCXMsQC4JDl6y7HQKDsKJ7HKJI2FFWqaUG-ZHmR0fkiW5zLNd5EDMBn10ArB1Yadujqx5zIhc8vljOpSwRw
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QTkFZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MiwiZXhwIjoxNjgzNTk1OTkzfQ.mxaxgM2bV3KlfQf-6httzR_EAiR0eLIdwU45FSmjXEjvbUCLbZTtxWSvorOFhirxdP6hlfi0LbSniuFfV0EF4w
 Content-Type: application/json;charset=UTF-8
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -832,7 +832,7 @@ Content-Length: 245
     "email" : "ssar2@nate.com",
     "role" : "COMPANY",
     "status" : "인증대기",
-    "createdAt" : "2023-05-08 18:59:43"
+    "createdAt" : "2023-05-09 09:32:57"
   }
 }</code></pre>
 </div>
@@ -861,7 +861,7 @@ Content-Length: 245
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/company/1 HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg0fQ.Nqg7A3MxZ11NZ4ayChoWTpH48r8cKf3FSWq6oy-0DakM9Uq1fltLBr3a-6UX292uZKJOtrfBbZkmUHWZYxn_1Q
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTc3fQ.OpjmHdMR05LJEfD8fYJR7mK6hf7WZHwnGzf1oVyuJSOXwqA5TAY_yjyvL7ugTkHxxUmxE1zPrBFIO_hrS-N45w
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -889,7 +889,7 @@ Content-Length: 501
     "id" : 1,
     "nickname" : "cos",
     "email" : "cos@nate.com",
-    "password" : "$2a$10$5rooSigkTupTjOxhNZS2JeogjjNs4vQHbqqHUUYVL7XfNT.bBqvgS",
+    "password" : "$2a$10$yQ0uKOE44J2obv5diO4qp.H42lsIC5lvUXH.8dJHT5HXLavj7/DFC",
     "companyInfo" : {
       "id" : 1,
       "tel" : null,
@@ -909,7 +909,7 @@ Content-Length: 501
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/1' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg0fQ.Nqg7A3MxZ11NZ4ayChoWTpH48r8cKf3FSWq6oy-0DakM9Uq1fltLBr3a-6UX292uZKJOtrfBbZkmUHWZYxn_1Q'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTc3fQ.OpjmHdMR05LJEfD8fYJR7mK6hf7WZHwnGzf1oVyuJSOXwqA5TAY_yjyvL7ugTkHxxUmxE1zPrBFIO_hrS-N45w'</code></pre>
 </div>
 </div>
 </div>
@@ -923,7 +923,7 @@ Content-Length: 501
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/company/update HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTc4fQ.i2xx6n7FI2p-IUB4DvcmaFidpAtrZJ_Gh735FaZz434dqTnrH9HcIz4B9XR6PuAmWvHalaXUCL0aCmpsen6IMg
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTcxfQ.oUwanqVemHQaMlTFuJOkpuRQhjcvxP2UkaOf9klePQ4vYyW3Z-EJJEP6QYMg2v6mKdn9UQL56m2my2aYBMx1LQ
 Content-Length: 283
 Host: localhost:8080
 
@@ -963,13 +963,13 @@ Content-Length: 483
   "data" : {
     "id" : 1,
     "nickname" : "cos update",
-    "password" : "$2a$10$Vym4bVz45md7eODn4oW/I.E7BHhiQ4Etwkl7WwwxAIfYtfSo9TbdO",
+    "password" : "$2a$10$8d5CJQ58DM9DUevuajO21.AZD09pwktySwjs2hEtq29hSloOIU1CO",
     "tel" : "010-1234-5678",
     "businessAddress" : "부산 남구",
     "businessNumber" : "1234-45-789542",
     "sourceFile" : {
       "id" : 1,
-      "fileBase64" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/3b1af62e-83e6-420d-a6e9-5d9deb5823ed.jpg"
+      "fileBase64" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/CompanyProfile/5530a291-b7dc-426e-8662-2cd0961feee6.jpg"
     }
   }
 }</code></pre>
@@ -981,7 +981,7 @@ Content-Length: 483
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/update' -i -X PUT \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTc4fQ.i2xx6n7FI2p-IUB4DvcmaFidpAtrZJ_Gh735FaZz434dqTnrH9HcIz4B9XR6PuAmWvHalaXUCL0aCmpsen6IMg' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTcxfQ.oUwanqVemHQaMlTFuJOkpuRQhjcvxP2UkaOf9klePQ4vYyW3Z-EJJEP6QYMg2v6mKdn9UQL56m2my2aYBMx1LQ' \
     -d '{
   "nickname" : "cos update",
   "password" : "1234",
@@ -1047,7 +1047,7 @@ Content-Length: 244
     "email" : "ssar1@nate.com",
     "role" : "PLAYER",
     "status" : "일반회원",
-    "createdAt" : "2023-05-08 18:59:49"
+    "createdAt" : "2023-05-09 09:33:02"
   }
 }</code></pre>
 </div>
@@ -1075,7 +1075,7 @@ Content-Length: 244
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/1 HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg5fQ.rMcl4M39QgSEckFM3kN6Dm214LF9GVE601zMGUfSeJKe0HnJOrU7GX_eYyroBwwrmxAM37uA1169sbFntfIYtw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgyfQ.YS8DUc00-CQzW5odFmqDvmH9uiYOLhargXCGC4Ve3euNkjTI5HFG7PFzCr854ljI8ZCHoonWR318BaTU-MVgCQ
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1103,7 +1103,7 @@ Content-Length: 645
     "id" : 1,
     "nickname" : "ssar",
     "email" : "ssar@nate.com",
-    "password" : "$2a$10$3azDsWHxyfNwukjar8aPd.gIiOExzomWNcOlUgOkPrmZLoc13.K/O",
+    "password" : "$2a$10$1/SWvEO4YLpgXun.OBhtn.m894/jL3g8eYNQ35AfuZqIy0odRuvQK",
     "playerInfo" : {
       "id" : 1,
       "tel" : null,
@@ -1131,7 +1131,7 @@ Content-Length: 645
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/1' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg5fQ.rMcl4M39QgSEckFM3kN6Dm214LF9GVE601zMGUfSeJKe0HnJOrU7GX_eYyroBwwrmxAM37uA1169sbFntfIYtw'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgyfQ.YS8DUc00-CQzW5odFmqDvmH9uiYOLhargXCGC4Ve3euNkjTI5HFG7PFzCr854ljI8ZCHoonWR318BaTU-MVgCQ'</code></pre>
 </div>
 </div>
 </div>
@@ -1145,7 +1145,7 @@ Content-Length: 645
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user/update HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg0fQ.Y8BKcaaTH8U4gOTOffnJs-oOZZX_DB7lrTcrHjKSPJ-yk-PmNBH2pCYCCFFl0nyLWUMXHc-DHY3do7ds3qtsAw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTc3fQ.c6-g_iPPc9MDsqgxtdbPxuLZlS4kxuce4atJnP1WchtR9S7FFsOqYanjJti_xve8QlR40wbFSgw52Kzik2GoIg
 Content-Length: 332
 Host: localhost:8080
 
@@ -1189,14 +1189,14 @@ Content-Length: 552
   "data" : {
     "id" : 1,
     "nickname" : "ssar1 update",
-    "password" : "$2a$10$k.JCdX6mUGV.EKdXOnLf1uOh67sLLLulrrFlL9SXxPPw.2.GpOPuu",
+    "password" : "$2a$10$En9klm945oAw97.TPgqtJuIOdNOSNyMDuCDXv8lzqyGZjHORoDJ.6",
     "tel" : "010-111-1111",
     "gender" : "여자",
     "age" : "AGE_40",
     "address" : "서울시1",
     "sourceFile" : {
       "id" : 1,
-      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/35425424-d628-41c4-93cf-8a5006afe1a0.jpg"
+      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/PlayerProfile/0db851b5-bcaf-4460-8e93-014ab17a0c42.jpg"
     },
     "sportList" : [ {
       "id" : 1,
@@ -1212,7 +1212,7 @@ Content-Length: 552
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/update' -i -X PUT \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg0fQ.Y8BKcaaTH8U4gOTOffnJs-oOZZX_DB7lrTcrHjKSPJ-yk-PmNBH2pCYCCFFl0nyLWUMXHc-DHY3do7ds3qtsAw' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTc3fQ.c6-g_iPPc9MDsqgxtdbPxuLZlS4kxuce4atJnP1WchtR9S7FFsOqYanjJti_xve8QlR40wbFSgw52Kzik2GoIg' \
     -d '{
   "nickname" : "ssar1 update",
   "password" : "12345",
@@ -1236,7 +1236,7 @@ Content-Length: 552
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/reservations' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNjAwfQ.TzLG4IpaNRXMM4I1_1LreROJYF57YoilNbdK-TlhWeTSNM920yHO696R_3bHuv8KwvjGFv79UB8r3mhUVY9mqA'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTk0fQ.2Tm_5rJ8ATdSKnG5h92CPa7MbSXAtGkhEjL0ryZyfyZx4qT-zFTkX6HE1KW2D7JEk33PICHcD5ChHt2NQEt6Lg'</code></pre>
 </div>
 </div>
 </div>
@@ -1255,7 +1255,7 @@ Content-Length: 552
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/company/stadiums HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg5fQ.8hqDvfvmQ9seZvwz5UgwCbyMjiDpXzEqXTyIE3HQJZm4U9FMzonpfeNaofYVXu9E_VXW02qYO7hlCMjAsvwrzg
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA
 Content-Length: 93
 Host: localhost:8080
 
@@ -1307,7 +1307,7 @@ Content-Length: 382
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/stadiums' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg5fQ.8hqDvfvmQ9seZvwz5UgwCbyMjiDpXzEqXTyIE3HQJZm4U9FMzonpfeNaofYVXu9E_VXW02qYO7hlCMjAsvwrzg' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA' \
     -d '{
   "name" : "볼링 경기장",
   "address" : "부산 진구",
@@ -1325,7 +1325,7 @@ Content-Length: 382
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/stadiums?keyword=%EB%B3%BC%EB%A7%81 HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTQzNTg5fQ.kxnXk9_bl4c-8v3A-bY8jB1Hl8AaRqpje1hAF_JFBeI6T34vseYZySO8ko_sN0ZB8g5HVzQOv353h4csJPYVVw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTk1OTgyfQ.gVfaUi7P-9PlPTpJ4mcQ1eyWaHrLxEZ1fmpu3a4dtjDrcB74RTr_LJdckqLqmlj3q5DVHTVmSqzL3EAOTkublw
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1367,7 +1367,7 @@ Content-Length: 323
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/stadiums?keyword=%EB%B3%BC%EB%A7%81' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTQzNTg5fQ.kxnXk9_bl4c-8v3A-bY8jB1Hl8AaRqpje1hAF_JFBeI6T34vseYZySO8ko_sN0ZB8g5HVzQOv353h4csJPYVVw'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTk1OTgyfQ.gVfaUi7P-9PlPTpJ4mcQ1eyWaHrLxEZ1fmpu3a4dtjDrcB74RTr_LJdckqLqmlj3q5DVHTVmSqzL3EAOTkublw'</code></pre>
 </div>
 </div>
 </div>
@@ -1380,7 +1380,7 @@ Content-Length: 323
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/company/stadiums?keyword=%EC%95%BC%EA%B5%AC HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTkwfQ.a5spqnHyY5oAbWuwGGRoJedYFDxdFrMThMvxYhYZA8KvmVeED3Nwd50LY7t0yC_ijFRC3wt1SabpI53E7jrVwg
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1413,7 +1413,7 @@ Content-Length: 60
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/stadiums?keyword=%EC%95%BC%EA%B5%AC' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTkwfQ.a5spqnHyY5oAbWuwGGRoJedYFDxdFrMThMvxYhYZA8KvmVeED3Nwd50LY7t0yC_ijFRC3wt1SabpI53E7jrVwg'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA'</code></pre>
 </div>
 </div>
 </div>
@@ -1427,7 +1427,7 @@ Content-Length: 60
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/company/stadiums HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTkwfQ.a5spqnHyY5oAbWuwGGRoJedYFDxdFrMThMvxYhYZA8KvmVeED3Nwd50LY7t0yC_ijFRC3wt1SabpI53E7jrVwg
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA
 Content-Length: 532
 Host: localhost:8080
 
@@ -1485,7 +1485,7 @@ Content-Length: 718
     "sport" : "볼링",
     "sourceFile" : {
       "id" : 3,
-      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/8fd70cad-1afd-421e-b6fd-aff4433e1df4.jpg"
+      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/b7a2a5aa-5a6d-452f-8e6f-809adf44c2d6.jpg"
     },
     "courts" : [ {
       "id" : 1,
@@ -1495,7 +1495,7 @@ Content-Length: 718
       "price" : 20000,
       "sourceFile" : {
         "id" : 2,
-        "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/5034d625-80d2-4535-a264-5bef84fec147.jpg"
+        "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/a751c1dd-aca7-475e-b06b-170d319d493c.jpg"
       }
     } ]
   }
@@ -1508,7 +1508,7 @@ Content-Length: 718
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/stadiums' -i -X PUT \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTkwfQ.a5spqnHyY5oAbWuwGGRoJedYFDxdFrMThMvxYhYZA8KvmVeED3Nwd50LY7t0yC_ijFRC3wt1SabpI53E7jrVwg' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA' \
     -d '{
   "id" : 1,
   "address" : "부산 진구",
@@ -1544,7 +1544,7 @@ Content-Length: 718
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/stadium/1 HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTQzNTg5fQ.kxnXk9_bl4c-8v3A-bY8jB1Hl8AaRqpje1hAF_JFBeI6T34vseYZySO8ko_sN0ZB8g5HVzQOv353h4csJPYVVw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTk1OTgzfQ.aiEMUTRlMCMosEMbMPdimB0w1kQ7Mftu_8-71Ehe2Jj0H_0JRliQuM0u_-cRypiAN6dXiSgaVgYoSlu5w1I0jw
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1616,7 +1616,7 @@ Content-Length: 1371
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/stadium/1' -i -X GET \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTQzNTg5fQ.kxnXk9_bl4c-8v3A-bY8jB1Hl8AaRqpje1hAF_JFBeI6T34vseYZySO8ko_sN0ZB8g5HVzQOv353h4csJPYVVw'</code></pre>
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MiwiZXhwIjoxNjgzNTk1OTgzfQ.aiEMUTRlMCMosEMbMPdimB0w1kQ7Mftu_8-71Ehe2Jj0H_0JRliQuM0u_-cRypiAN6dXiSgaVgYoSlu5w1I0jw'</code></pre>
 </div>
 </div>
 </div>
@@ -1630,7 +1630,7 @@ Content-Length: 1371
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/company/stadiums HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTkwfQ.a5spqnHyY5oAbWuwGGRoJedYFDxdFrMThMvxYhYZA8KvmVeED3Nwd50LY7t0yC_ijFRC3wt1SabpI53E7jrVwg
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA
 Content-Length: 532
 Host: localhost:8080
 
@@ -1688,7 +1688,7 @@ Content-Length: 718
     "sport" : "볼링",
     "sourceFile" : {
       "id" : 3,
-      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/8fd70cad-1afd-421e-b6fd-aff4433e1df4.jpg"
+      "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Stadium/b7a2a5aa-5a6d-452f-8e6f-809adf44c2d6.jpg"
     },
     "courts" : [ {
       "id" : 1,
@@ -1698,7 +1698,7 @@ Content-Length: 718
       "price" : 20000,
       "sourceFile" : {
         "id" : 2,
-        "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/5034d625-80d2-4535-a264-5bef84fec147.jpg"
+        "fileUrl" : "https://3-sporting.s3.ap-northeast-2.amazonaws.com/Court/a751c1dd-aca7-475e-b06b-170d319d493c.jpg"
       }
     } ]
   }
@@ -1711,7 +1711,7 @@ Content-Length: 718
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/stadiums' -i -X PUT \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTkwfQ.a5spqnHyY5oAbWuwGGRoJedYFDxdFrMThMvxYhYZA8KvmVeED3Nwd50LY7t0yC_ijFRC3wt1SabpI53E7jrVwg' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTgzfQ.Cxe_LfylIQSAhm55-IwyLuh6tSnMJUCfcIp-a4tB6Y-LYL079BOE-ysV4WDUsZRgwcPbRJNara7VPSejpKAIOA' \
     -d '{
   "id" : 1,
   "address" : "부산 진구",
@@ -1753,7 +1753,7 @@ Content-Length: 718
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/company/stadiums/1/court HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTk5fQ.hXGGpIwEy9P_--cdfpFK6m2F8I-uEVyvgt8CvUXJOUUoBckzd-I1vrTMHMMCAon_rDxQBe6PfDFlmXOM0dj9RQ
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTkyfQ.yRi4CT7F5rjOgElHD_89NASE850IpWyXCrnBLHVEHjJaUK-aj1tZ8NsZQy4lo_FyRYbG7Gg4-IYVJimArjL9NA
 Content-Length: 140
 Host: localhost:8080
 
@@ -1781,7 +1781,7 @@ X-XSS-Protection: 1; mode=block
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
-Content-Length: 451
+Content-Length: 450
 
 {
   "status" : 200,
@@ -1797,7 +1797,7 @@ Content-Length: 451
     "content" : "테스트 내용",
     "capacity" : 10,
     "price" : 30000,
-    "createdAt" : "2023-05-08T18:59:59.2123008",
+    "createdAt" : "2023-05-09T09:33:12.838982",
     "status" : "등록대기"
   }
 }</code></pre>
@@ -1809,7 +1809,7 @@ Content-Length: 451
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/company/stadiums/1/court' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTk5fQ.hXGGpIwEy9P_--cdfpFK6m2F8I-uEVyvgt8CvUXJOUUoBckzd-I1vrTMHMMCAon_rDxQBe6PfDFlmXOM0dj9RQ' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJDT01QQU5ZIiwibmlja25hbWUiOiJjb3MiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTkyfQ.yRi4CT7F5rjOgElHD_89NASE850IpWyXCrnBLHVEHjJaUK-aj1tZ8NsZQy4lo_FyRYbG7Gg4-IYVJimArjL9NA' \
     -d '{
   "courtProfile" : "",
   "title" : "테스트 제목",
@@ -1835,7 +1835,7 @@ Content-Length: 451
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user/payments?courtId=1&amp;resDate=20230506&amp;resTime=10 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg0fQ.Y8BKcaaTH8U4gOTOffnJs-oOZZX_DB7lrTcrHjKSPJ-yk-PmNBH2pCYCCFFl0nyLWUMXHc-DHY3do7ds3qtsAw
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTc3fQ.c6-g_iPPc9MDsqgxtdbPxuLZlS4kxuce4atJnP1WchtR9S7FFsOqYanjJti_xve8QlR40wbFSgw52Kzik2GoIg
 Content-Length: 881
 Host: localhost:8080
 
@@ -1903,7 +1903,7 @@ Content-Length: 61
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/api/user/payments?courtId=1&amp;resDate=20230506&amp;resTime=10' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNTg0fQ.Y8BKcaaTH8U4gOTOffnJs-oOZZX_DB7lrTcrHjKSPJ-yk-PmNBH2pCYCCFFl0nyLWUMXHc-DHY3do7ds3qtsAw' \
+    -H 'Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTc3fQ.c6-g_iPPc9MDsqgxtdbPxuLZlS4kxuce4atJnP1WchtR9S7FFsOqYanjJti_xve8QlR40wbFSgw52Kzik2GoIg' \
     -d '{
   "event" : "done",
   "data" : {
@@ -1953,7 +1953,7 @@ Content-Length: 61
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/reservations HTTP/1.1
-Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTQzNjAwfQ.TzLG4IpaNRXMM4I1_1LreROJYF57YoilNbdK-TlhWeTSNM920yHO696R_3bHuv8KwvjGFv79UB8r3mhUVY9mqA
+Authorization: Bearer Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3RzdHVkeSIsInJvbGUiOiJQTEFZRVIiLCJuaWNrbmFtZSI6InNzYXIiLCJpZCI6MSwiZXhwIjoxNjgzNTk1OTk0fQ.2Tm_5rJ8ATdSKnG5h92CPa7MbSXAtGkhEjL0ryZyfyZx4qT-zFTkX6HE1KW2D7JEk33PICHcD5ChHt2NQEt6Lg
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1980,17 +1980,17 @@ Content-Length: 503
   "data" : [ {
     "id" : 1,
     "name" : "코트제목(통합테스트)",
-    "reservationDateTime" : "2023-05-08T11:00:00",
+    "reservationDateTime" : "2023-05-09T11:00:00",
     "courtPrice" : 40000
   }, {
     "id" : 2,
     "name" : "코트제목(통합테스트)",
-    "reservationDateTime" : "2023-05-08T12:00:00",
+    "reservationDateTime" : "2023-05-09T12:00:00",
     "courtPrice" : 40000
   }, {
     "id" : 3,
     "name" : "코트제목(통합테스트)",
-    "reservationDateTime" : "2023-05-08T13:00:00",
+    "reservationDateTime" : "2023-05-09T13:00:00",
     "courtPrice" : 40000
   } ]
 }</code></pre>
