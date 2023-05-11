@@ -2,7 +2,7 @@
 ![로고](https://user-images.githubusercontent.com/118786401/235388216-78fb76d0-b9ec-4dad-ab40-c12c2a86176b.png)
 
 ## 시연 영상
-TODO 유튜브 링크 들어갈 곳
+[![파이널_시연영상](http://img.youtube.com/vi/IId4x-dPgvY/0.jpg)](https://youtu.be/IId4x-dPgvY?t=0s)
 
 ## 프로젝트 2조
 - 김태훈(팀장)
